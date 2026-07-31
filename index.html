@@ -433,12 +433,12 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
 .stat-number .highlight { color: var(--accent); }
 .stat-number-infinity {
   font-family: var(--display);
-  font-size: 3.2rem;
+  font-size: 4.8rem;
   font-weight: 900;
-  line-height: 0.95;
+  line-height: 0.75;
   color: var(--accent);
-  text-shadow: 0 0 24px var(--accent-glow);
-  margin-bottom: 4px;
+  text-shadow: 0 0 30px var(--accent-glow);
+  margin-bottom: 2px;
 }
 .infinity-symbol-badge {
   font-family: var(--display);
@@ -1060,18 +1060,16 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
   margin-bottom: 20px;
 }
 .d4-icon-box {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.25s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 .d4-card:hover .d4-icon-box {
-  transform: scale(1.08);
+  transform: scale(1.14);
 }
 
 .d4-badge {
@@ -1326,10 +1324,9 @@ footer {
   <!-- HERO -->
   <section class="hero reveal">
     <div class="hero-tag">
-      <span class="hero-dot"></span>
       <span>Pontapalli Rohith — B.Tech Computer Science</span>
       <div class="hero-tag-line"></div>
-      <span class="hero-tag-end">FULL-STACK &amp; AI</span>
+      <span class="hero-tag-end">LEARNING AI &amp; SYSTEMS</span>
     </div>
     <div class="hero-title-box">
       <h1 class="hero-main-title">PONT<span class="accent-letter">A</span>PALLI</h1>
@@ -1342,7 +1339,7 @@ footer {
         <div>
           <div class="hero-col-label">Current Status</div>
           <div class="hero-col-value">
-            <div class="status-pill"><span class="status-dot-green"></span> 3rd Year CSE Student</div>
+            <div class="status-pill">3rd Year CSE Student</div>
           </div>
         </div>
         <div style="display:flex; flex-direction:column; gap:8px; margin-top:20px">
@@ -1524,8 +1521,8 @@ footer {
         <!-- FEATURED HERO RESUME CARD -->
         <div class="d4-card hero-resume" onclick="window.open('resume.html','_blank')">
           <div class="d4-top-row">
-            <div class="d4-icon-box" style="background:rgba(224,83,21,0.15); border-color:rgba(224,83,21,0.4)">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <div class="d4-icon-box">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px rgba(224,83,21,0.4))"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             </div>
             <div style="display:flex; gap:8px">
               <a href="Pontapalli_Rohith_Resume.docx" download="Pontapalli_Rohith_Resume.docx" class="btn btn-secondary" style="padding:5px 12px; font-size:0.6rem" onclick="event.stopPropagation()">DOCX 📥</a>
@@ -1537,15 +1534,15 @@ footer {
             <div class="d4-subtitle">Pontapalli_Rohith_Resume.docx • Official Engineering Resume</div>
           </div>
           <div class="d4-footer">
-            <div class="d4-tag"><span class="exec-tag-dot" style="background:var(--accent)"></span> Direct DOCX Download &amp; Interactive Web CV</div>
+            <div class="d4-tag">Direct DOCX Download &amp; Interactive Web CV</div>
           </div>
         </div>
 
         <!-- LINKEDIN CARD -->
         <a href="https://in.linkedin.com/in/pontapalli-rohith" target="_blank" rel="noopener" class="d4-card linkedin">
           <div class="d4-top-row">
-            <div class="d4-icon-box" style="background:rgba(10,102,194,0.15); border-color:rgba(10,102,194,0.3)">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#0A66C2"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94z"/></svg>
+            <div class="d4-icon-box">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="#0A66C2" style="filter:drop-shadow(0 0 10px rgba(10,102,194,0.4))"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94z"/></svg>
             </div>
             <span class="d4-badge">Connect ↗</span>
           </div>
@@ -1554,15 +1551,15 @@ footer {
             <div class="d4-subtitle">in/pontapalli-rohith</div>
           </div>
           <div class="d4-footer">
-            <div class="d4-tag"><span class="exec-tag-dot" style="background:#0A66C2"></span> Professional Network</div>
+            <div class="d4-tag">Professional Network</div>
           </div>
         </a>
 
         <!-- GITHUB CARD -->
         <a href="https://github.com/Rohith-Shimori" target="_blank" rel="noopener" class="d4-card github">
           <div class="d4-top-row">
-            <div class="d4-icon-box" style="background:rgba(244,244,245,0.08); border-color:rgba(244,244,245,0.2)">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#F4F4F5"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <div class="d4-icon-box">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="#F4F4F5" style="filter:drop-shadow(0 0 10px rgba(244,244,245,0.3))"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             </div>
             <span class="d4-badge">Explore ↗</span>
           </div>
@@ -1571,15 +1568,15 @@ footer {
             <div class="d4-subtitle">@Rohith-Shimori</div>
           </div>
           <div class="d4-footer">
-            <div class="d4-tag"><span class="exec-tag-dot" style="background:#F4F4F5"></span> Open Source Code</div>
+            <div class="d4-tag">Open Source Code</div>
           </div>
         </a>
 
         <!-- DIRECT EMAIL CARD -->
         <div class="d4-card email" onclick="copyEmailToClipboard()">
           <div class="d4-top-row">
-            <div class="d4-icon-box" style="background:rgba(224,83,21,0.15); border-color:rgba(224,83,21,0.3)">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div class="d4-icon-box">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px rgba(224,83,21,0.4))"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div style="display:flex; gap:6px">
               <button class="btn btn-secondary" id="copyEmailBadgeBtn" type="button" style="padding:4px 10px; font-size:0.58rem" onclick="event.stopPropagation(); copyEmailToClipboard()">Copy 📋</button>
@@ -1591,15 +1588,15 @@ footer {
             <div class="d4-subtitle">pontapallirohith@gmail.com</div>
           </div>
           <div class="d4-footer">
-            <div class="d4-tag"><span class="exec-tag-dot" style="background:var(--accent)"></span> Primary Contact</div>
+            <div class="d4-tag">Primary Contact</div>
           </div>
         </div>
 
         <!-- CREDLY CARD -->
         <a href="https://www.credly.com/users/rohith-pontapalli" target="_blank" rel="noopener" class="d4-card credly">
           <div class="d4-top-row">
-            <div class="d4-icon-box" style="background:rgba(245,130,32,0.15); border-color:rgba(245,130,32,0.3)">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#F58220"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+            <div class="d4-icon-box">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="#F58220" style="filter:drop-shadow(0 0 10px rgba(245,130,32,0.4))"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
             </div>
             <span class="d4-badge" style="border-color:rgba(245,130,32,0.4); color:#F58220">Verify ↗</span>
           </div>
@@ -1608,7 +1605,8 @@ footer {
             <div class="d4-subtitle">EY, IBM &amp; Microsoft Badges</div>
           </div>
           <div class="d4-footer">
-            <div class="d4-tag"><span class="exec-tag-dot" style="background:#F58220"></span> Certified Credentials</div>
+            <div class="d4-tag">Certified Credentials</div>
+          </div>
           </div>
         </a>
 
