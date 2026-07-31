@@ -45,7 +45,7 @@
     align-items: flex-start;
     border-bottom: 2px solid var(--border);
     padding-bottom: 24px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
   .header-main h1 {
     font-family: var(--display);
@@ -56,7 +56,7 @@
   }
   .header-main .subtitle {
     font-family: var(--sans);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     color: var(--accent);
     font-weight: 600;
     margin-top: 4px;
@@ -64,8 +64,9 @@
   .header-contact {
     text-align: right;
     font-family: var(--mono);
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: var(--text-muted);
+    line-height: 1.5;
   }
   .header-contact a { color: var(--paper); text-decoration: none; }
   .header-contact a:hover { color: var(--accent); }
@@ -73,7 +74,7 @@
   .action-bar {
     display: flex;
     gap: 12px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
   .btn {
     font-family: var(--mono);
@@ -93,15 +94,15 @@
   .btn-secondary { background: var(--surface-2); color: var(--paper); border: 1px solid var(--border); }
   .btn-secondary:hover { border-color: var(--paper); }
 
-  .section { margin-bottom: 32px; }
+  .section { margin-bottom: 28px; }
   .section-title {
     font-family: var(--mono);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--accent);
     letter-spacing: 2px;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -113,31 +114,53 @@
     background: var(--border);
   }
   
-  .exp-item { margin-bottom: 24px; }
+  .objective-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .exp-item { margin-bottom: 20px; }
   .exp-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 6px;
+    align-items: baseline;
+    margin-bottom: 4px;
   }
-  .exp-role { font-weight: 700; font-size: 1.05rem; color: var(--paper); }
-  .exp-date { font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); }
-  .exp-company { font-size: 0.88rem; color: var(--accent); margin-bottom: 8px; }
-  .exp-bullets { list-style: square; padding-left: 20px; font-size: 0.9rem; color: var(--text-muted); }
-  .exp-bullets li { margin-bottom: 6px; }
+  .exp-role { font-weight: 700; font-size: 1.02rem; color: var(--paper); }
+  .exp-date { font-family: var(--mono); font-size: 0.76rem; color: var(--text-muted); }
+  .exp-company { font-size: 0.85rem; color: var(--accent); margin-bottom: 6px; font-weight: 500; }
+  .exp-bullets { list-style: square; padding-left: 18px; font-size: 0.88rem; color: var(--text-muted); }
+  .exp-bullets li { margin-bottom: 4px; }
 
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
   }
   .skill-cat {
     background: var(--surface-2);
     border: 1px solid var(--border);
-    padding: 16px;
-    border-radius: 10px;
+    padding: 14px;
+    border-radius: 8px;
   }
-  .cat-title { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
-  .cat-list { font-size: 0.85rem; color: var(--paper); }
+  .cat-title { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+  .cat-list { font-size: 0.83rem; color: var(--paper); line-height: 1.5; }
+
+  .cert-list { list-style: none; }
+  .cert-list li {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cert-list li::before {
+    content: "•";
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
 
   @media print {
     body { background: #fff; color: #000; padding: 0; }
@@ -145,7 +168,7 @@
     .action-bar { display: none; }
     .header-main h1, .exp-role { color: #000; }
     .header-main .subtitle, .exp-company, .section-title, .cat-title { color: #d94600; }
-    .exp-bullets, .header-contact { color: #333; }
+    .exp-bullets, .header-contact, .objective-text, .cert-list li { color: #333; }
     .skill-cat { background: #f8f8f8; border-color: #ddd; }
     .cat-list { color: #111; }
   }
@@ -162,14 +185,23 @@
   <div class="resume-header">
     <div class="header-main">
       <h1>PONTAPALLI ROHITH</h1>
-      <div class="subtitle">Full-Stack Developer &amp; Computer Science Engineer</div>
+      <div class="subtitle">Computer Science Engineering Student</div>
+      <div style="font-size:0.78rem; color:var(--text-muted); margin-top:2px">Vizianagaram, Andhra Pradesh, India • +91 6302334379</div>
     </div>
     <div class="header-contact">
-      <div><a href="https://rohith.is-a.dev">rohith.is-a.dev</a></div>
       <div><a href="mailto:pontapallirohith@gmail.com">pontapallirohith@gmail.com</a></div>
+      <div><a href="https://rohith.is-a.dev">rohith.is-a.dev</a></div>
+      <div><a href="https://linkedin.com/in/pontapalli-rohith">linkedin.com/in/pontapalli-rohith</a></div>
       <div><a href="https://github.com/Rohith-Shimori">github.com/Rohith-Shimori</a></div>
-      <div><a href="https://in.linkedin.com/in/pontapalli-rohith">linkedin.com/in/pontapalli-rohith</a></div>
     </div>
+  </div>
+
+  <!-- OBJECTIVE -->
+  <div class="section">
+    <div class="section-title">Objective</div>
+    <p class="objective-text">
+      Computer Science undergraduate with hands-on experience building full-stack web apps, mobile apps, and AI-based tools, from initial idea through deployment. Comfortable with Python, Flutter, React, and Supabase/PostgreSQL, and quick to pick up new tools using AI-assisted development workflows. Looking for an internship to build real-world engineering experience.
+    </p>
   </div>
 
   <!-- EDUCATION -->
@@ -177,77 +209,103 @@
     <div class="section-title">Education</div>
     <div class="exp-item">
       <div class="exp-header">
-        <div class="exp-role">B.Tech in Computer Science and Engineering</div>
-        <div class="exp-date">2022 — 2026 (3rd Year)</div>
+        <div class="exp-role">B.Tech, Computer Science and Engineering</div>
+        <div class="exp-date">Aug 2024 – Aug 2028 (Expected)</div>
       </div>
-      <div class="exp-company">CGPA: 8.88 / 10.0</div>
+      <div class="exp-company">MVGR College of Engineering, Vizianagaram | CGPA: 8.6 / 10.0</div>
+      <div style="font-size:0.83rem; color:var(--text-muted); margin-top:4px">Current specialization: AI &amp; Machine Learning (3rd-year elective thread)</div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="cat-title">Languages</div>
+        <div class="cat-list">Python (actively improving), JavaScript (basic), Dart (basic), C (basics)</div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-title">Web &amp; Mobile</div>
+        <div class="cat-list">HTML, CSS, Flutter, React (applied, learning)</div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-title">Backend &amp; Data</div>
+        <div class="cat-list">Supabase, PostgreSQL (basics), REST APIs</div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-title">Tools &amp; Practices</div>
+        <div class="cat-list">Git &amp; GitHub, VS Code, AI-assisted development (Claude, Gemini), SDLC fundamentals</div>
+      </div>
     </div>
   </div>
 
   <!-- PROJECTS -->
   <div class="section">
-    <div class="section-title">Featured Engineering Projects</div>
+    <div class="section-title">Projects</div>
     
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">MVGR NexUs — Campus Companion App</div>
+        <div class="exp-date">TechSprint 2026 Hackathon</div>
+      </div>
+      <div class="exp-company">Flutter | Awarded Certificate of Excellence | GitHub: github.com/Rohith-Shimori/MVGR-NexUs</div>
+      <ul class="exp-bullets">
+        <li>Built a Flutter-based Android app to centralize campus information for MVGR students, shipping a working, installable APK.</li>
+        <li>Implemented event announcements, academic resource access, and campus navigation as core features.</li>
+        <li>Presented the project to hackathon judges with a live demo; awarded Certificate of Excellence at TechSprint 2026.</li>
+      </ul>
+    </div>
+
     <div class="exp-item">
       <div class="exp-header">
         <div class="exp-role">NCC Digital Training Platform</div>
         <div class="exp-date">Live @ nccdigi.vercel.app</div>
       </div>
-      <div class="exp-company">React 19, Supabase Postgres, Vite, TailwindCSS v4, Dexie.js PWA</div>
+      <div class="exp-company">React, Supabase (PostgreSQL) — Contributor</div>
       <ul class="exp-bullets">
-        <li>Architected full-stack PWA digitizing National Cadet Corps training, syllabus tracking, and drill exam simulations.</li>
-        <li>Implemented 16 structured Supabase SQL migrations enforcing granular Row-Level Security (RLS).</li>
-        <li>Designed offline-first IndexedDB sync engine using Dexie.js for low-bandwidth field deployment.</li>
+        <li>Contributed to a full-stack web app for digitizing National Cadet Corps training workflows, including syllabus tracking and mock exams.</li>
+        <li>Worked with Supabase/PostgreSQL to structure application data and applied basic row-level access control concepts.</li>
+        <li>Helped deploy the application live on Vercel; used AI pair programming to learn React fundamentals while building.</li>
       </ul>
     </div>
 
     <div class="exp-item">
       <div class="exp-header">
-        <div class="exp-role">TruthLens: Multi-Agent Fact Verification Pipeline</div>
+        <div class="exp-role">TruthLens AI Agent</div>
         <div class="exp-date">Kaggle &times; Google AI Agents Capstone</div>
       </div>
-      <div class="exp-company">Python, Google ADK, FastMCP, Gradio, Docker</div>
+      <div class="exp-company">Python | Kaggle Capstone Project</div>
       <ul class="exp-bullets">
-        <li>Built an enterprise 7-agent multimodal fact-checking graph (ClaimExtractor → EvidenceHunter → FactChecker → VerdictAgent).</li>
-        <li>Achieved 100% pass rate (24/24) on automated golden evaluation test suites.</li>
-        <li>Deployed interactive demo on HuggingFace Spaces with FastMCP tool protocol integration.</li>
+        <li>Explored a multi-step agent pipeline concept in Python aimed at flagging potentially misleading multimodal content.</li>
+        <li>Experimented with the FastMCP protocol to coordinate simple agent-to-agent task handoffs, as an introduction to multi-agent system design.</li>
+        <li>Published a working demo on Hugging Face Spaces.</li>
       </ul>
     </div>
 
     <div class="exp-item">
       <div class="exp-header">
-        <div class="exp-role">NexUs: Campus Super-App</div>
-        <div class="exp-date">Mobile Application</div>
+        <div class="exp-role">Task Flow — Smart Task &amp; Scheduling Engine</div>
+        <div class="exp-date">Python</div>
       </div>
-      <div class="exp-company">Flutter 3.x, Dart, Firebase, Provider</div>
+      <div class="exp-company">Python | GitHub: github.com/Rohith-Shimori/Task_Flow</div>
       <ul class="exp-bullets">
-        <li>Engineered 4-tier role-based campus platform (Student, Club Admin, Council, Faculty).</li>
-        <li>Implemented non-algorithmic chronological announcement feeds and event RSVP tracking with QR check-in scanner.</li>
+        <li>Designed and implemented a task management and scheduling tool with a minimal GUI.</li>
+        <li>Built logic to organize tasks into daily plans based on deadlines, priorities, and duration.</li>
       </ul>
     </div>
   </div>
 
-  <!-- SKILLS -->
+  <!-- CERTIFICATIONS & AWARDS -->
   <div class="section">
-    <div class="section-title">Technical Capabilities</div>
-    <div class="skills-grid">
-      <div class="skill-cat">
-        <div class="cat-title">Languages &amp; Core</div>
-        <div class="cat-list">Python, JavaScript (ES6+), TypeScript, Dart, HTML5, CSS3, SQL</div>
-      </div>
-      <div class="skill-cat">
-        <div class="cat-title">Frontend &amp; Mobile</div>
-        <div class="cat-list">React 19, Vite, TailwindCSS v4, PWA, Flutter, Provider</div>
-      </div>
-      <div class="skill-cat">
-        <div class="cat-title">Backend &amp; Database</div>
-        <div class="cat-list">Supabase, PostgreSQL, FastMCP, REST APIs, Firebase</div>
-      </div>
-      <div class="skill-cat">
-        <div class="cat-title">Tools &amp; Workflow</div>
-        <div class="cat-list">Git, GitHub, Vercel, HuggingFace Spaces, Docker, VS Code</div>
-      </div>
-    </div>
+    <div class="section-title">Certifications &amp; Awards</div>
+    <ul class="cert-list">
+      <li><strong>Certificate of Excellence</strong> — TechSprint 2026, MVGR College inter-college hackathon</li>
+      <li><strong>Code Vipassana Season 13</strong> — Building Postgres-Compatible AI Applications with Google Cloud</li>
+      <li><strong>Green Skills &amp; Applied AI for Climate Action</strong> — 1M1B (1 Million for 1 Billion)</li>
+      <li><strong>AI Sustainability Virtual Internship</strong> — IBM × 1M1B</li>
+      <li><strong>Microsoft AI Skills Passport</strong> — EY × Microsoft</li>
+    </ul>
   </div>
 
 </div>
