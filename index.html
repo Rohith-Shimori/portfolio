@@ -1223,9 +1223,8 @@ footer {
 <!-- NAV -->
 <nav role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="#" class="nav-logo" aria-label="Navigate to top" style="display:flex; align-items:center; gap:10px; text-decoration:none">
-      <img src="prohi_logo.jpg" alt="ROHITH Logo" style="width:30px; height:30px; border-radius:50%; border:1.5px solid var(--accent); object-fit:cover;">
-      <span style="font-family:var(--display); font-weight:800; font-size:0.95rem; letter-spacing:-0.02em; color:var(--paper)">ROHITH</span>
+    <a href="#" class="nav-logo" aria-label="Navigate to top" style="text-decoration:none">
+      <span style="font-family:var(--display); font-weight:800; font-size:1.1rem; letter-spacing:-0.02em; color:var(--paper)">ROHITH</span>
     </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
@@ -1249,7 +1248,7 @@ footer {
       <span class="hero-dot"></span>
       <span>Pontapalli Rohith — B.Tech Computer Science</span>
       <div class="hero-tag-line"></div>
-      <span class="hero-tag-end">3RD YEAR CSE</span>
+      <span class="hero-tag-end">FULL-STACK &amp; AI</span>
     </div>
     <div class="hero-title-box">
       <h1 class="hero-main-title">PONT<span class="accent-letter">A</span>PALLI</h1>
@@ -1294,27 +1293,27 @@ footer {
   </div>
   <div class="about-layout">
     <div class="about-bio reveal">
-      <p>I am a <strong>3rd-year Computer Science engineering student</strong>. I build real, production-ready web applications, interactive software tools, and AI-powered systems.</p>
-      <p>My work includes the <a href="https://nccdigi.vercel.app" target="_blank" rel="noopener">NCC Digital Training Platform</a> (React 19 + Supabase PWA deployed live), <strong>TruthLens</strong> — an enterprise 7-agent misinformation detection pipeline built for the <em>Kaggle × Google AI Agents Capstone</em> — and the <strong>NexUs</strong> campus platform.</p>
-      <p>I focus on clean architecture, responsive UI design, and shipping fast, reliable products.</p>
+      <p>I am a <strong>3rd-year Computer Science engineering student</strong>. I build full-stack web applications, mobile apps, and AI-based tools from idea through live deployment.</p>
+      <p>My work includes the <a href="https://nccdigi.vercel.app" target="_blank" rel="noopener">NCC Digital Training Platform</a> (React + Supabase PWA deployed live on Vercel), the award-winning <strong>MVGR NexUs</strong> campus app (Flutter | TechSprint 2026 Certificate of Excellence), and <strong>TruthLens</strong> — an AI agent pipeline concept built for the <em>Kaggle × Google AI Agents Capstone</em> using Python and FastMCP.</p>
+      <p>Comfortable with Python, Flutter, React, and Supabase/PostgreSQL, leveraging AI-assisted development workflows to ship fast, functional software.</p>
     </div>
     <div class="reveal">
       <div class="stats-card-grid">
         <div class="stat-box">
           <div class="stat-number">3<span class="highlight">rd</span></div>
-          <div class="stat-label">Year B.Tech Student</div>
+          <div class="stat-label">Year CSE Student</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">8.<span class="highlight">88</span></div>
+          <div class="stat-number">8.<span class="highlight">60</span></div>
           <div class="stat-label">B.Tech CGPA</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">10<span class="highlight">+</span></div>
-          <div class="stat-label">Shipped Projects</div>
+          <div class="stat-number">4<span class="highlight">+</span></div>
+          <div class="stat-label">Core Projects</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">100<span class="highlight">%</span></div>
-          <div class="stat-label">Test Suite Coverage</div>
+          <div class="stat-number">5<span class="highlight">+</span></div>
+          <div class="stat-label">Certifications</div>
         </div>
       </div>
       <div class="bio-meta-list">
@@ -1611,16 +1610,15 @@ const PORTFOLIO_DATA = {
       number: '02',
       categories: ['live', 'ai'],
       featured: true,
-      title: 'TruthLens: Multi-Agent Fact-Checking Engine',
-      desc: 'Enterprise 7-agent misinformation verification system built for the Kaggle × Google AI Agents Capstone using Google ADK 2.0, Multimodal LLMs, and FastMCP.',
-      description: 'TruthLens orchestrates 7 specialized AI agents in a deterministic verification graph: ClaimExtractor → EvidenceHunter → FactChecker → CredibilityAnalyzer → BiasAnalyzer → VerdictAgent → ReportGenerator. Built with Google ADK 2.0, Multimodal LLMs, and FastMCP tool protocol. Achieves 100% test pass rate across 24 golden evaluation tests.',
-      tags: ['Python', 'Google ADK', 'Multimodal LLMs', 'FastMCP', 'Gradio', 'Docker'],
+      title: 'TruthLens AI Agent',
+      summary: 'Multi-step AI agent pipeline in Python for flagging potentially misleading multimodal content using FastMCP protocol.',
+      description: 'Explored a multi-step agent pipeline concept in Python aimed at flagging potentially misleading multimodal content. Experimented with the FastMCP protocol to coordinate simple agent-to-agent task handoffs as an introduction to multi-agent system design. Published working demo on Hugging Face Spaces.',
+      tags: ['Python', 'FastMCP', 'Google AI Capstone', 'HuggingFace', 'Agentic AI'],
       highlights: [
-        'Live HuggingFace Space deployment with interactive Gradio interface',
-        '7-agent deterministic pipeline architecture with full trace logging',
-        'Multimodal OCR screenshot claim extraction via Vision LLMs',
-        '100% pass rate (24/24) on automated golden evaluation test suite',
-        'Kaggle × Google AI Agents Capstone submission project'
+        'Kaggle × Google AI Agents Capstone project',
+        'Multi-step agent pipeline for multimodal content verification',
+        'FastMCP protocol integration for agent-to-agent task handoffs',
+        'Published working demo on Hugging Face Spaces'
       ],
       githubUrl: 'https://github.com/Rohith-Shimori/TruthLens-AI-Agent',
       demoUrl: 'https://huggingface.co/spaces/Rohith-Shimori/TruthLens-AI-Agent',
@@ -1631,15 +1629,15 @@ const PORTFOLIO_DATA = {
       id: 'nexus',
       number: '03',
       categories: ['mobile'],
-      title: 'NexUs: Campus Super-App',
-      summary: 'Unified digital campus app with role-based dashboards for Students, Club Admins, Council, and Faculty built in Flutter.',
-      description: 'Student-centric campus platform designed with an utility-first philosophy. Features 4-tier role-based dashboards, event RSVP management with QR code check-ins, non-algorithmic chronological announcement feeds, and study buddy matching.',
-      tags: ['Flutter 3.x', 'Dart', 'Provider', 'Firebase', 'REST API'],
+      title: 'MVGR NexUs — Campus Companion App',
+      summary: 'Flutter-based Android app centralizing campus information for MVGR students (TechSprint 2026 Certificate of Excellence).',
+      description: 'Built a Flutter-based Android app to centralize campus information for MVGR students, shipping a working, installable APK. Implemented event announcements, academic resource access, and campus navigation as core features. Presented the project to hackathon judges with a live demo; awarded Certificate of Excellence at TechSprint 2026.',
+      tags: ['Flutter', 'Dart', 'Android APK', 'Hackathon Award'],
       highlights: [
-        '4-tier role-based architecture (Student, Club Admin, Council, Faculty)',
-        'Chronological non-algorithmic announcement feed engine',
-        'Event RSVP tracking with QR check-in scanner',
-        'Zero static analysis issues across codebase'
+        'Certificate of Excellence — TechSprint 2026 Hackathon',
+        'Flutter-based Android app shipping a working, installable APK',
+        'Event announcements & academic resource access',
+        'Campus navigation & live judge demonstration'
       ],
       githubUrl: 'https://github.com/Rohith-Shimori/MVGR-NexUs'
     },
@@ -1675,35 +1673,35 @@ const PORTFOLIO_DATA = {
     },
     {
       id: 'taskflow',
-      number: '06',
+      number: '04',
       categories: ['full-stack'],
-      title: 'TaskFlow Zenith: Desktop Scheduler',
-      summary: 'Desktop productivity application with intelligent deadline prioritization engine and emerald dark mode UI built with CustomTkinter.',
-      description: 'Desktop task management application featuring an urgency calculation algorithm that dynamically prioritizes tasks based on deadline proximity.',
-      tags: ['Python', 'CustomTkinter', 'JSON Storage'],
+      title: 'Task Flow — Smart Task & Scheduling Engine',
+      summary: 'Task management and scheduling tool with a minimal GUI built in Python to organize daily plans.',
+      description: 'Designed and implemented a task management and scheduling tool with a minimal GUI. Built logic to organize tasks into daily plans based on deadlines, priorities, and duration.',
+      tags: ['Python', 'GUI', 'Task Scheduling'],
       highlights: [
-        'Urgency calculation algorithm for priority sorting',
-        'Polished CustomTkinter emerald dark mode UI',
-        'Persistent JSON data storage'
+        'Designed task management & scheduling tool with minimal GUI',
+        'Organizes tasks into daily plans by deadline, priority & duration',
+        'Python implementation with persistent task storage'
       ],
       githubUrl: 'https://github.com/Rohith-Shimori/Task_Flow'
     }
   ],
   skillsA: [
-    { name: 'AI Pair Programming', level: 'EXPERT', pct: 0.95, projects: ['ncc', 'truthlens', 'nexus'] },
-    { name: 'React 19 & JavaScript', level: 'ADVANCED', pct: 0.88, projects: ['ncc', 'votepath'] },
-    { name: 'Python Engineering', level: 'ADVANCED', pct: 0.88, projects: ['truthlens', 'ananta', 'taskflow'] },
-    { name: 'Dart & Flutter', level: 'ADVANCED', pct: 0.85, projects: ['nexus'] },
-    { name: 'TailwindCSS v4', level: 'ADVANCED', pct: 0.88, projects: ['ncc'] },
-    { name: 'SQL & Postgres', level: 'ADVANCED', pct: 0.85, projects: ['ncc', 'truthlens'] }
+    { name: 'Python Development', level: 'ACTIVELY IMPROVING', pct: 0.82, projects: ['truthlens', 'taskflow', 'ananta'] },
+    { name: 'JavaScript & React', level: 'APPLIED LEARNING', pct: 0.78, projects: ['ncc', 'votepath'] },
+    { name: 'Dart & Flutter', level: 'MOBILE DEV', pct: 0.80, projects: ['nexus'] },
+    { name: 'HTML5 & CSS3', level: 'FOUNDATIONAL', pct: 0.85, projects: ['ncc', 'votepath'] },
+    { name: 'Supabase & PostgreSQL', level: 'BACKEND BASICS', pct: 0.78, projects: ['ncc'] },
+    { name: 'REST APIs', level: 'INTEGRATION', pct: 0.80, projects: ['ncc', 'nexus'] }
   ],
   skillsB: [
-    { name: 'Supabase Cloud', level: 'ADVANCED', pct: 0.88, projects: ['ncc'] },
-    { name: 'Google ADK 2.0', level: 'ADVANCED', pct: 0.88, projects: ['truthlens'] },
-    { name: 'Vercel Deployment', level: 'EXPERT', pct: 0.92, projects: ['ncc'] },
-    { name: 'HuggingFace Spaces', level: 'ADVANCED', pct: 0.86, projects: ['truthlens'] },
-    { name: 'Git & GitHub CLI', level: 'ADVANCED', pct: 0.90, projects: ['ncc', 'truthlens', 'nexus'] },
-    { name: 'System Architecture', level: 'PROFICIENT', pct: 0.82, projects: ['nexus', 'truthlens'] }
+    { name: 'AI-Assisted Workflows', level: 'PAIR PROGRAMMING', pct: 0.90, projects: ['ncc', 'truthlens', 'nexus'] },
+    { name: 'Git & GitHub', level: 'VERSION CONTROL', pct: 0.88, projects: ['ncc', 'truthlens', 'nexus', 'taskflow'] },
+    { name: 'Vercel Deployment', level: 'LIVE HOISTING', pct: 0.88, projects: ['ncc'] },
+    { name: 'HuggingFace Spaces', level: 'DEMO DEPLOY', pct: 0.82, projects: ['truthlens'] },
+    { name: 'VS Code & Tools', level: 'DEVELOPER ENVIRONMENT', pct: 0.90, projects: ['ncc', 'nexus'] },
+    { name: 'SDLC Fundamentals', level: 'SOFTWARE LIFE CYCLE', pct: 0.80, projects: ['ncc', 'nexus'] }
   ]
 };
 
