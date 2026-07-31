@@ -3,12 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Pontapalli Rohith — Student Developer</title>
-<meta name="description" content="Portfolio of Pontapalli Rohith — Full-Stack &amp; AI Developer. Building web applications, AI tools, and mobile platforms.">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3CSVG xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 34'%3E%3Crect width='34' height='34' rx='8' fill='%23121215' stroke='%23E05315' stroke-width='1.5'/%3E%3Cpath d='M9 25V9H16.5C18.433 9 20 10.567 20 12.5C20 14.433 18.433 16 16.5 16H9' stroke='%23F4F4F5' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 16H21.5C23.433 16 25 17.567 25 19.5C25 21.433 23.433 23 21.5 23H17V25' stroke='%23E05315' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='24.5' cy='9.5' r='1.5' fill='%23E05315'/%3E%3C/svg%3E">
+<title>Pontapalli Rohith — AI-Native Student Engineer</title>
+<meta name="description" content="Portfolio of Pontapalli Rohith — 3rd Year CSE Student at MVGR College. Building live web applications, multi-agent AI systems, and mobile platforms with AI pair programming.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Unbounded:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Official LinkedIn Badge Script -->
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+
 <style>
 :root {
   --bg-dark: #0B0B0C;
@@ -271,14 +273,10 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
   display: grid;
   grid-template-columns: 1fr 1.1fr 1.2fr;
   gap: 32px;
-  align-items: stretch;
 }
 .hero-col {
   padding-right: 24px;
   border-right: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 .hero-col:last-child { border-right: none; padding-right: 0; }
 .hero-col-label {
@@ -417,12 +415,7 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
 }
 .stat-box {
   background: var(--surface-1);
-  padding: 22px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 110px;
+  padding: 24px 20px;
   transition: background 0.2s;
 }
 .stat-box:hover { background: var(--surface-2); }
@@ -432,36 +425,16 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
   font-size: 2.4rem;
   line-height: 1;
   letter-spacing: -0.03em;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   color: var(--paper);
 }
 .stat-number .highlight { color: var(--accent); }
-.stat-number-infinity {
-  font-family: var(--display);
-  font-size: 4.8rem;
-  font-weight: 900;
-  line-height: 0.75;
-  color: var(--accent);
-  text-shadow: 0 0 30px var(--accent-glow);
-  margin-bottom: 2px;
-}
-.infinity-symbol-badge {
-  font-family: var(--display);
-  font-size: 2.8rem;
-  font-weight: 900;
-  line-height: 1;
-  color: var(--accent);
-  text-shadow: 0 0 24px var(--accent-glow);
-  display: inline-block;
-  margin-bottom: 8px;
-}
 .stat-label {
   font-family: var(--mono);
   font-size: 0.58rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-dim);
-  line-height: 1.3;
 }
 
 .bio-meta-list {
@@ -477,27 +450,12 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  min-height: 48px;
-}
-.bio-meta-row:last-child { border-bottom: none; }
-.bio-meta-key {
-  color: var(--text-dim);
-  text-transform: uppercase;
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  flex-shrink: 0;
-  line-height: 1.2;
-}
-.bio-meta-val {
-  color: var(--paper);
   font-family: var(--mono);
   font-size: 0.72rem;
-  font-weight: 600;
-  text-align: right;
-  line-height: 1.3;
 }
+.bio-meta-row:last-child { border-bottom: none; }
+.bio-meta-key { color: var(--text-dim); text-transform: uppercase; font-size: 0.6rem; letter-spacing: 0.08em; }
+.bio-meta-val { color: var(--paper); text-align: right; }
 .bio-meta-val a { color: var(--accent); text-decoration: underline; }
 
 @media (max-width: 840px) { .about-layout { grid-template-columns: 1fr; gap: 40px; } }
@@ -895,9 +853,9 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
 #contact { padding-bottom: 80px; }
 .contact-layout {
   display: grid;
-  grid-template-columns: 1.2fr 0.85fr;
-  gap: 32px;
-  align-items: stretch;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 60px;
+  align-items: start;
 }
 .contact-headline {
   font-family: var(--display);
@@ -1015,125 +973,46 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
   color: var(--text-muted);
   margin-top: 2px;
 }
-/* EXECUTIVE BENTO GRID CONTACT LAYOUT */
-.bento-contact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 32px;
-}
-@media (max-width: 980px) {
-  .bento-contact-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
-  .bento-contact-grid { grid-template-columns: 1fr; }
-}
 
-.bento-contact-card {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 26px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 250px;
-  gap: 16px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  text-decoration: none;
+/* CUSTOM LINKEDIN PROFILE CARD */
+.linkedin-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
   position: relative;
   overflow: hidden;
+  transition: border-color 0.2s;
 }
-.bento-contact-card.hero-email-card {
-  grid-column: span 2;
-  background: linear-gradient(135deg, rgba(224, 83, 21, 0.08) 0%, rgba(20, 20, 24, 0.95) 100%);
-  border-color: rgba(224, 83, 21, 0.3);
+.linkedin-card:hover { border-color: var(--accent); }
+.li-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
 }
-@media (max-width: 980px) {
-  .bento-contact-card.hero-email-card { grid-column: span 1; }
+.li-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--surface-3);
+  border: 2px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-weight: 900; font-size: 1.1rem;
+  color: var(--paper); flex-shrink: 0;
 }
+.li-info { flex: 1; }
+.li-name { font-family: var(--display); font-size: 0.88rem; font-weight: 800; color: var(--paper); }
+.li-title { font-size: 0.68rem; color: var(--text-muted); line-height: 1.4; margin-top: 2px; }
+.li-college { font-family: var(--mono); font-size: 0.58rem; color: var(--accent); margin-top: 2px; }
 
-.bento-contact-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.045);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 255, 255, 0.05);
-}
-
-.bento-contact-card.hero-email-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 16px 36px rgba(224, 83, 21, 0.25);
-}
-.bento-contact-card.github:hover {
-  border-color: rgba(244, 244, 245, 0.4);
-  box-shadow: 0 16px 36px rgba(244, 244, 245, 0.15);
-}
-.bento-contact-card.linkedin:hover {
-  border-color: rgba(10, 102, 194, 0.5);
-  box-shadow: 0 16px 36px rgba(10, 102, 194, 0.25);
-}
-.bento-contact-card.resume:hover {
-  border-color: rgba(224, 83, 21, 0.5);
-  box-shadow: 0 16px 36px rgba(224, 83, 21, 0.25);
-}
-.bento-contact-card.credly:hover {
-  border-color: rgba(245, 130, 32, 0.5);
-  box-shadow: 0 16px 36px rgba(245, 130, 32, 0.25);
-}
-
-.bento-card-top {
+.li-card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  margin-top: 14px;
 }
-.bento-card-body {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.bento-card-title {
-  font-family: var(--sans);
-  font-size: 1.12rem;
-  font-weight: 600;
-  color: var(--paper);
-  margin-bottom: 6px;
-  word-break: break-word;
-  line-height: 1.3;
-}
-.bento-card-desc {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 14px;
-}
-
-.bento-pill-btn {
-  width: 100%;
-  padding: 12px 18px;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--paper);
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  text-decoration: none;
-}
-.bento-contact-card:hover .bento-pill-btn {
-  background: var(--paper);
-  color: var(--bg-dark);
-  border-color: var(--paper);
-}
+.li-location { font-family: var(--mono); font-size: 0.6rem; color: var(--text-dim); }
 
 /* Form Card */
 .contact-form-card {
@@ -1319,8 +1198,8 @@ footer {
 <!-- NAV -->
 <nav role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="#" class="nav-logo" aria-label="Navigate to top" style="text-decoration:none">
-      <span style="font-family:var(--display); font-weight:800; font-size:1.1rem; letter-spacing:-0.02em; color:var(--paper)">ROHITH</span>
+    <a href="#" class="nav-logo">
+      ROHITH <span class="nav-logo-badge">3rd Year CSE</span>
     </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
@@ -1341,9 +1220,10 @@ footer {
   <!-- HERO -->
   <section class="hero reveal">
     <div class="hero-tag">
+      <span class="hero-dot"></span>
       <span>Pontapalli Rohith — B.Tech Computer Science</span>
       <div class="hero-tag-line"></div>
-      <span class="hero-tag-end">LEARNING AI &amp; SYSTEMS</span>
+      <span class="hero-tag-end">MVGR COLLEGE</span>
     </div>
     <div class="hero-title-box">
       <h1 class="hero-main-title">PONT<span class="accent-letter">A</span>PALLI</h1>
@@ -1351,40 +1231,27 @@ footer {
     </div>
     <div class="hero-rule"></div>
     <div class="hero-grid">
-      <!-- COLUMN 1: CURRENT STATUS & RESUME ACTIONS -->
       <div class="hero-col">
-        <div>
-          <div class="hero-col-label">Current Status</div>
-          <div class="hero-col-value">
-            <div class="status-pill">3rd Year CSE Student</div>
-          </div>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:8px; margin-top:20px">
-          <a href="Pontapalli_Rohith_Resume.docx" download="Pontapalli_Rohith_Resume.docx" class="btn btn-secondary" style="border-color:var(--accent); color:var(--paper); padding:8px 12px; font-size:0.65rem; justify-content:center">Download Resume</a>
-          <a href="resume.html" target="_blank" class="btn btn-secondary" style="padding:8px 12px; font-size:0.65rem; justify-content:center">Web CV ↗</a>
+        <div class="hero-col-label">Current Status</div>
+        <div class="hero-col-value">
+          <div class="status-pill"><span class="status-dot-green"></span> 3rd Year CSE Student</div>
+          <div style="color:var(--text-dim); font-size:0.75rem; margin-top:4px">MVGR College of Engineering — Vizianagaram</div>
         </div>
       </div>
-
-      <!-- COLUMN 2: ENGINEERING FOCUS & PROJECTS ACTION -->
       <div class="hero-col">
-        <div>
-          <div class="hero-col-label">Engineering Focus</div>
-          <div class="hero-col-value bold">Learning AI &amp; Systems | Turning Ideas into Working Experiments</div>
-        </div>
-        <div style="margin-top:20px">
-          <a href="#projects" class="btn btn-primary" style="width:100%; padding:9px 16px; font-size:0.68rem; justify-content:center">Explore Projects ↗</a>
-        </div>
+        <div class="hero-col-label">Engineering Focus</div>
+        <div class="hero-col-value bold">AI-Native Developer &amp; Production Web Builder</div>
       </div>
-
-      <!-- COLUMN 3: IDEATION MINDSET -->
       <div class="hero-col">
-        <div>
-          <div class="hero-col-label">Ideation Mindset</div>
-          <div class="hero-infinity-box" style="margin-top:6px">
-            <span class="infinity-symbol-badge">∞</span>
-            <div class="hero-infinity-title">Ideation &amp; Systems</div>
-            <div class="hero-infinity-desc">Exploring Ideas ➔ Learning &amp; Thinking ➔ Building Slowly. Turning real-world problems into working software experiments through AI-assisted workflows.</div>
-          </div>
+        <div class="hero-col-label">Ideation Mindset</div>
+        <div class="hero-infinity-box">
+          <span class="infinity-symbol-badge">∞</span>
+          <div class="hero-infinity-title">Infinite Ideas per Problem</div>
+          <div class="hero-infinity-desc">Whenever I face a real-world problem or friction point, an endless stream of ideas sparks. I instantly pair with AI to turn every problem into a live, deployed solution.</div>
+        </div>
+        <div class="hero-cta-group">
+          <a href="#projects" class="btn btn-primary">Explore Work</a>
+          <button class="btn btn-secondary" id="copyEmailHeroBtn" type="button">Copy Email</button>
         </div>
       </div>
     </div>
@@ -1401,38 +1268,37 @@ footer {
   </div>
   <div class="about-layout">
     <div class="about-bio reveal">
-      <p>I am a <strong>3rd-year Computer Science student</strong> on an active engineering learning journey — building web applications, mobile tools, and AI experiments.</p>
-      <p>I enjoy exploring systems, clean architecture, and practical technology to solve real problems. I actively leverage AI tools as pair-programming learning partners to dive into complex concepts, understand code, and build working software beyond standard coursework.</p>
-      <p>My work includes the live <a href="https://nccdigi.vercel.app" target="_blank" rel="noopener">NCC Digital Training Platform</a> (React + Supabase), <strong>TruthLens</strong> (FastMCP AI agent capstone for Kaggle), and the <strong>MVGR NexUs</strong> campus app (Flutter | TechSprint 2026 Certificate of Excellence).</p>
-      <p style="color:var(--accent); font-family:var(--mono); font-size:0.8rem; margin-top:14px">Focusing on deep learning, staying honest about progress, and improving step by step.</p>
+      <p>I am a <strong>3rd-year Computer Science engineering student</strong> at MVGR College of Engineering. I didn't come into college with years of traditional coding experience — but I leveraged <strong>AI-native pair programming</strong>, treating state-of-the-art LLMs (Claude &amp; Gemini) as core engineering partners to build real, production-ready systems.</p>
+      <p>My work includes the <a href="https://nccdigi.vercel.app" target="_blank" rel="noopener">NCC Digital Training Platform</a> (React 19 + Supabase PWA deployed live), <strong>TruthLens</strong> — an enterprise 7-agent misinformation detection pipeline built for the <em>Kaggle × Google AI Agents Capstone</em> — and <strong>MVGR NexUs</strong> campus platform.</p>
+      <p>I believe the future of software development belongs to engineers who can orchestrate AI models, design clean architectures, and ship high-impact products rapidly.</p>
     </div>
     <div class="reveal">
       <div class="stats-card-grid">
         <div class="stat-box">
           <div class="stat-number">3<span class="highlight">rd</span></div>
-          <div class="stat-label">Year CSE Student</div>
+          <div class="stat-label">Year B.Tech CSE</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">8.<span class="highlight">60</span></div>
-          <div class="stat-label">B.Tech CGPA</div>
+          <div class="stat-number">8.6</div>
+          <div class="stat-label">CGPA @ MVGR College</div>
         </div>
         <div class="stat-box">
           <div class="stat-number">2<span class="highlight">+</span></div>
-          <div class="stat-label">Live Platforms</div>
+          <div class="stat-label">Live Production Sites</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number-infinity">∞</div>
-          <div class="stat-label">Infinite Ideas</div>
+          <div class="stat-number highlight">6</div>
+          <div class="stat-label">Shipped Repos</div>
         </div>
       </div>
       <div class="bio-meta-list">
         <div class="bio-meta-row">
-          <span class="bio-meta-key">DEGREE</span>
-          <span class="bio-meta-val">B.Tech Computer Science</span>
+          <span class="bio-meta-key">Institution</span>
+          <span class="bio-meta-val">MVGR College of Engineering</span>
         </div>
         <div class="bio-meta-row">
           <span class="bio-meta-key">Methodology</span>
-          <span class="bio-meta-val">AI-Assisted Learning &amp; Building</span>
+          <span class="bio-meta-val">AI-Native Pair Programming</span>
         </div>
         <div class="bio-meta-row">
           <span class="bio-meta-key">Live Platform</span>
@@ -1484,7 +1350,7 @@ footer {
       <div class="approach-num">02</div>
       <div class="approach-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
       <div class="approach-title">AI Pair Programming</div>
-      <div class="approach-desc">Accelerate development velocity by directing AI agents and multi-agent protocols (FastMCP, Python) to implement code, run unit tests, and resolve edge cases with zero slop.</div>
+      <div class="approach-desc">Accelerate development velocity by directing AI agents (Claude, Gemini, FastMCP) to implement code, run unit tests, and resolve edge cases with zero slop.</div>
       <div class="approach-tags"><span>React 19</span><span>Flutter</span><span>Python</span><span>FastMCP</span></div>
     </div>
     <div class="approach-card">
@@ -1525,109 +1391,99 @@ footer {
   <div class="section-head reveal">
     <span class="section-num">05</span>
     <div class="section-line"></div>
-    <span class="section-title">Connect &amp; Explore</span>
+    <span class="section-title">Get In Touch</span>
   </div>
-  
-  <div class="reveal" style="display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom: 32px">
-    <div>
-      <div style="font-family:var(--mono); font-size:0.82rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px">Connect &amp; Explore // Pontapalli Rohith</div>
-      <h2 class="contact-headline" style="margin-bottom:12px">LET'S<span class="outline">CONNECT.</span></h2>
-      <p class="contact-sub" style="max-width:580px; margin-bottom:0">Interested in software engineering internships, AI pair programming collaborations, or technical discussions.</p>
-    </div>
-    
-    <!-- CUTE FLOATING DEVELOPER CHARACTER BADGE -->
-    <div style="position:relative; display:flex; align-items:center; gap:16px; background:rgba(255,255,255,0.02); border:1px solid rgba(224,83,21,0.25); border-radius:24px; padding:12px 18px; backdrop-filter:blur(12px); box-shadow:0 12px 30px rgba(0,0,0,0.5)">
-      <div style="position:relative; width:88px; height:88px; border-radius:18px; overflow:hidden; border:2px solid var(--accent); animation:floatCute 3.5s ease-in-out infinite; box-shadow:0 0 16px rgba(224,83,21,0.3)">
-        <img src="cute_character.jpg" alt="Rohith 3D Cute Developer Avatar" style="width:100%; height:100%; object-fit:cover; mix-blend-mode:screen">
-      </div>
-      <div>
-        <div style="display:flex; align-items:center; gap:8px">
-          <span style="font-family:var(--display); font-size:0.95rem; font-weight:800; color:var(--paper)">Rohith</span>
-          <span style="font-family:var(--mono); font-size:0.6rem; color:var(--accent); background:rgba(224,83,21,0.15); padding:2px 8px; border-radius:10px; border:1px solid rgba(224,83,21,0.3)">3rd Year CSE</span>
+  <div class="contact-layout">
+    <div class="reveal">
+      <h2 class="contact-headline">LET'S<span class="outline">CONNECT.</span></h2>
+      <p class="contact-sub">Interested in software engineering internships, AI pair programming collaborations, or technical discussions.</p>
+      
+      <!-- UNIFIED DEVELOPER BADGES CONTAINER (NO DUPLICATION) -->
+      <div class="badges-container" style="margin-top:0">
+
+        <!-- GITHUB DEVELOPER BADGE -->
+        <div class="custom-badge-card" onclick="window.open('https://github.com/Rohith-Shimori','_blank')" tabindex="0" role="button" aria-label="Visit GitHub Profile" style="cursor:pointer">
+          <div class="badge-left">
+            <div class="badge-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div>
+              <div class="badge-info-title">GitHub Profile</div>
+              <div class="badge-info-sub">@Rohith-Shimori • 6 Public Repos</div>
+            </div>
+          </div>
+          <a href="https://github.com/Rohith-Shimori" target="_blank" rel="noopener" class="btn btn-primary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">Visit GitHub ↗</a>
         </div>
-        <div style="font-family:var(--sans); font-size:0.78rem; color:var(--text-muted); margin-top:4px">"Ready to build together."</div>
-        <div style="font-family:var(--mono); font-size:0.6rem; color:var(--text-dim); margin-top:2px">Learning AI &amp; Systems @ MVGR</div>
-      </div>
-    </div>
-  </div>
 
-  <!-- EXECUTIVE BENTO GRID CONTACT DECK -->
-  <div class="bento-contact-grid reveal">
-
-    <!-- CARD 1: HERO PRIMARY EMAIL & AVAILABILITY TILE (2 SPAN) -->
-    <div class="bento-contact-card hero-email-card" onclick="copyEmailToClipboard()">
-      <div class="bento-card-top">
-        <div style="display:flex; align-items:center; gap:10px">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px rgba(224,83,21,0.4))"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <span style="font-family:var(--mono); font-size:0.65rem; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase">Direct Contact Channel</span>
+        <!-- EMAIL ACTION BADGE (FULLY CLICKABLE) -->
+        <div class="custom-badge-card" id="emailCardBadge" onclick="copyEmailToClipboard()" tabindex="0" role="button" aria-label="Copy email address" style="cursor:pointer">
+          <div class="badge-left">
+            <div class="badge-icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <div class="badge-info-title">Direct Email</div>
+              <div class="badge-info-sub">pontapallirohith@gmail.com</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px">
+            <button class="btn btn-secondary" id="copyEmailBadgeBtn" type="button" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation(); copyEmailToClipboard()">Copy Email</button>
+            <a href="mailto:pontapallirohith@gmail.com" class="btn btn-primary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">Send Mail</a>
+          </div>
         </div>
-        <span style="font-family:var(--mono); font-size:0.62rem; color:var(--text-dim)">Vizianagaram, AP, India • IST (UTC+5:30)</span>
-      </div>
-      <div class="bento-card-body">
-        <div class="bento-card-title" style="font-size:1.35rem; color:var(--accent); font-family:var(--mono)">pontapallirohith@gmail.com</div>
-        <div class="bento-card-desc">Open for 2026 software engineering internships, AI pair-programming collaborations, and technical discussions.</div>
-      </div>
-      <div style="display:flex; gap:12px; flex-wrap:wrap">
-        <button class="bento-pill-btn" id="copyEmailBadgeBtn" type="button" style="flex:1; background:var(--accent); border-color:var(--accent); color:var(--paper)" onclick="event.stopPropagation(); copyEmailToClipboard()">Copy Email</button>
-        <a href="mailto:pontapallirohith@gmail.com" class="bento-pill-btn" style="flex:1" onclick="event.stopPropagation()">Send Direct Email</a>
+
+        <!-- CREDLY VERIFIED BADGES CARD -->
+        <div class="custom-badge-card" onclick="window.open('https://www.credly.com/users/rohith-pontapalli','_blank')" tabindex="0" role="button" aria-label="View Credly Badges" style="cursor:pointer">
+          <div class="badge-left">
+            <div class="badge-icon-box" style="color:#F58220; font-weight:900"><svg width="20" height="20" viewBox="0 0 24 24" fill="#F58220"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg></div>
+            <div>
+              <div class="badge-info-title">Credly Verification</div>
+              <div class="badge-info-sub">Verified Digital Credentials &amp; Badges</div>
+            </div>
+          </div>
+          <a href="https://www.credly.com/users/rohith-pontapalli" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">View Credly ↗</a>
+        </div>
+
+        <!-- OFFICIAL LINKEDIN PROFILE BADGE CARD -->
+        <div class="linkedin-card">
+          <div class="li-card-header">
+            <div class="li-avatar">PR</div>
+            <div class="li-info">
+              <div class="li-name">Pontapalli Rohith</div>
+              <div class="li-title">AI-Native Developer &amp; Student Engineer</div>
+              <div class="li-college">MVGR College of Engineering — 3rd Year CSE</div>
+            </div>
+          </div>
+          <!-- Official LinkedIn Badge Script Element -->
+          <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="pontapalli-rohith" data-version="v1">
+            <a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/pontapalli-rohith?trk=profile-badge">Pontapalli Rohith on LinkedIn</a>
+          </div>
+          <div class="li-card-footer">
+            <span class="li-location">Andhra Pradesh, India</span>
+            <a href="https://www.linkedin.com/in/pontapalli-rohith/" target="_blank" rel="noopener" class="btn btn-primary" style="padding:6px 12px; font-size:0.58rem">Connect ↗</a>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- CARD 2: OFFICIAL RESUME / CV TILE (TOP ROW) -->
-    <div class="bento-contact-card resume" onclick="window.open('resume.html','_blank')">
-      <div class="bento-card-top">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px rgba(224,83,21,0.4))"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span style="font-family:var(--mono); font-size:0.6rem; color:var(--accent)">Curriculum Vitae</span>
-      </div>
-      <div class="bento-card-body">
-        <div class="bento-card-title">Pontapalli_Rohith_Resume.docx</div>
-        <div class="bento-card-desc">Download official engineering CV (DOCX) or view interactive Web CV.</div>
-      </div>
-      <div style="display:flex; gap:10px">
-        <a href="Pontapalli_Rohith_Resume.docx" download="Pontapalli_Rohith_Resume.docx" class="bento-pill-btn" style="flex:1" onclick="event.stopPropagation()">Download DOCX</a>
-        <a href="resume.html" target="_blank" class="bento-pill-btn" style="flex:1; background:rgba(224,83,21,0.18); border-color:var(--accent)" onclick="event.stopPropagation()">Web CV ↗</a>
-      </div>
+    <!-- Contact Form -->
+    <div class="reveal">
+      <form class="contact-form-card" id="contactForm">
+        <div class="form-title">Send a Direct Message</div>
+        <div class="form-group">
+          <label for="inputName">Your Name</label>
+          <input type="text" id="inputName" required placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label for="inputEmail">Your Email</label>
+          <input type="email" id="inputEmail" required placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label for="inputMessage">Message</label>
+          <textarea id="inputMessage" required placeholder="Hello Rohith, I'd like to discuss..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Send Message ↗</button>
+      </form>
     </div>
-
-    <!-- CARD 3: LINKEDIN TILE -->
-    <a href="https://in.linkedin.com/in/pontapalli-rohith" target="_blank" rel="noopener" class="bento-contact-card linkedin">
-      <div class="bento-card-top">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="#0A66C2" style="filter:drop-shadow(0 0 10px rgba(10,102,194,0.4))"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94z"/></svg>
-        <span style="font-family:var(--mono); font-size:0.6rem; color:#0A66C2">LinkedIn</span>
-      </div>
-      <div class="bento-card-body">
-        <div class="bento-card-title">linkedin.com/in/pontapalli-rohith</div>
-        <div class="bento-card-desc">Connect professionally, view learning journey &amp; professional updates.</div>
-      </div>
-      <div class="bento-pill-btn">Connect ↗</div>
-    </a>
-
-    <!-- CARD 4: GITHUB TILE -->
-    <a href="https://github.com/Rohith-Shimori" target="_blank" rel="noopener" class="bento-contact-card github">
-      <div class="bento-card-top">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="#F4F4F5" style="filter:drop-shadow(0 0 10px rgba(244,244,245,0.3))"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        <span style="font-family:var(--mono); font-size:0.6rem; color:#F4F4F5">GitHub</span>
-      </div>
-      <div class="bento-card-body">
-        <div class="bento-card-title">github.com/Rohith-Shimori</div>
-        <div class="bento-card-desc">Explore open-source repositories, projects, and AI experiments.</div>
-      </div>
-      <div class="bento-pill-btn">Explore Code ↗</div>
-    </a>
-
-    <!-- CARD 5: OFFICIAL CREDLY CERTIFICATION TILE (BOTTOM ROW) -->
-    <a href="https://www.credly.com/users/rohith-pontapalli" target="_blank" rel="noopener" class="bento-contact-card credly">
-      <div class="bento-card-top">
-        <svg width="74" height="26" viewBox="0 0 110 36" fill="#F58220" style="filter:drop-shadow(0 0 10px rgba(245,130,32,0.4))"><text x="0" y="26" font-family="'Brush Script MT', 'Dancing Script', 'Caveat', cursive, sans-serif" font-size="30" font-weight="700" fill="#F58220" font-style="italic">Credly</text></svg>
-        <span style="font-family:var(--mono); font-size:0.6rem; color:#F58220">Verified</span>
-      </div>
-      <div class="bento-card-body">
-        <div class="bento-card-title">credly.com/users/rohith-pontapalli</div>
-        <div class="bento-card-desc">Verify official badges &amp; certifications from EY, IBM, &amp; Microsoft.</div>
-      </div>
-      <div class="bento-pill-btn">Verify Badges ↗</div>
-    </a>
-
   </div>
 </section>
 </div>
@@ -1637,7 +1493,7 @@ footer {
 <footer>
   <span class="foot-copy">© 2026 Pontapalli Rohith</span>
   <span class="foot-brand">ROHITH</span>
-  <span class="foot-copy">Computer Science Engineering</span>
+  <span class="foot-copy">MVGR College of Engineering</span>
 </footer>
 </div>
 </main>
@@ -1670,14 +1526,13 @@ const PORTFOLIO_DATA = {
   github: 'https://github.com/Rohith-Shimori',
   linkedin: 'https://www.linkedin.com/in/pontapalli-rohith/',
   tickerItems: [
-    '3rd Year Computer Science Student',
-    'Learning AI & Systems',
-    'Turning Ideas into Working Experiments',
-    'Exploring Ideas ➔ Learning & Thinking ➔ Building Slowly',
-    'Custom Domain: rohith.is-a.dev',
+    '3rd Year CSE — MVGR College',
+    'AI-Native Student Developer',
     'Live Platform: nccdigi.vercel.app',
-    'TruthLens Kaggle Capstone (FastMCP)',
-    'React & Supabase Stack'
+    'TruthLens Kaggle Capstone',
+    'React 19 & Supabase Stack',
+    'Flutter Mobile Engineer',
+    'Google ADK 2.0 & Gemini 2.5'
   ],
   filters: ['All', 'Live', 'AI', 'Full-Stack', 'Mobile'],
   projects: [
@@ -1707,15 +1562,16 @@ const PORTFOLIO_DATA = {
       number: '02',
       categories: ['live', 'ai'],
       featured: true,
-      title: 'TruthLens AI Agent',
-      summary: 'Multi-step AI agent pipeline in Python for flagging potentially misleading multimodal content using FastMCP protocol.',
-      description: 'Explored a multi-step agent pipeline concept in Python aimed at flagging potentially misleading multimodal content. Experimented with the FastMCP protocol to coordinate simple agent-to-agent task handoffs as an introduction to multi-agent system design. Published working demo on Hugging Face Spaces.',
-      tags: ['Python', 'FastMCP', 'Google AI Capstone', 'HuggingFace', 'Agentic AI'],
+      title: 'TruthLens: Multi-Agent Fact-Checking Engine',
+      desc: 'Enterprise 7-agent misinformation verification system built for the Kaggle × Google AI Agents Capstone using Google ADK 2.0, Gemini 2.5 Flash, and FastMCP.',
+      description: 'TruthLens orchestrates 7 specialized AI agents in a deterministic verification graph: ClaimExtractor → EvidenceHunter → FactChecker → CredibilityAnalyzer → BiasAnalyzer → VerdictAgent → ReportGenerator. Built with Google ADK 2.0, Gemini 2.5 Flash, and FastMCP tool protocol. Achieves 100% test pass rate across 24 golden evaluation tests.',
+      tags: ['Python', 'Google ADK 2.0', 'Gemini 2.5 Flash', 'FastMCP', 'Gradio', 'Docker'],
       highlights: [
-        'Kaggle × Google AI Agents Capstone project',
-        'Multi-step agent pipeline for multimodal content verification',
-        'FastMCP protocol integration for agent-to-agent task handoffs',
-        'Published working demo on Hugging Face Spaces'
+        'Live HuggingFace Space deployment with interactive Gradio interface',
+        '7-agent deterministic pipeline architecture with full trace logging',
+        'Multimodal OCR screenshot claim extraction via Gemini Vision',
+        '100% pass rate (24/24) on automated golden evaluation test suite',
+        'Kaggle × Google AI Agents Capstone submission project'
       ],
       githubUrl: 'https://github.com/Rohith-Shimori/TruthLens-AI-Agent',
       demoUrl: 'https://huggingface.co/spaces/Rohith-Shimori/TruthLens-AI-Agent',
@@ -1726,15 +1582,15 @@ const PORTFOLIO_DATA = {
       id: 'nexus',
       number: '03',
       categories: ['mobile'],
-      title: 'MVGR NexUs — Campus Companion App',
-      summary: 'Flutter-based Android app centralizing campus information for MVGR students (TechSprint 2026 Certificate of Excellence).',
-      description: 'Built a Flutter-based Android app to centralize campus information for MVGR students, shipping a working, installable APK. Implemented event announcements, academic resource access, and campus navigation as core features. Presented the project to hackathon judges with a live demo; awarded Certificate of Excellence at TechSprint 2026.',
-      tags: ['Flutter', 'Dart', 'Android APK', 'Hackathon Award'],
+      title: 'MVGR NexUs: Campus Super-App',
+      summary: 'Unified digital campus app for MVGR College with role-based dashboards for Students, Club Admins, Council, and Faculty built in Flutter.',
+      description: 'Student-centric campus platform designed with an utility-first philosophy. Features 4-tier role-based dashboards, event RSVP management with QR code check-ins, non-algorithmic chronological announcement feeds, and study buddy matching.',
+      tags: ['Flutter 3.x', 'Dart', 'Provider', 'Firebase', 'REST API'],
       highlights: [
-        'Certificate of Excellence — TechSprint 2026 Hackathon',
-        'Flutter-based Android app shipping a working, installable APK',
-        'Event announcements & academic resource access',
-        'Campus navigation & live judge demonstration'
+        '4-tier role-based architecture (Student, Club Admin, Council, Faculty)',
+        'Chronological non-algorithmic announcement feed engine',
+        'Event RSVP tracking with QR check-in scanner',
+        'Zero static analysis issues across codebase'
       ],
       githubUrl: 'https://github.com/Rohith-Shimori/MVGR-NexUs'
     },
@@ -1770,35 +1626,35 @@ const PORTFOLIO_DATA = {
     },
     {
       id: 'taskflow',
-      number: '04',
+      number: '06',
       categories: ['full-stack'],
-      title: 'Task Flow — Smart Task & Scheduling Engine',
-      summary: 'Task management and scheduling tool with a minimal GUI built in Python to organize daily plans.',
-      description: 'Designed and implemented a task management and scheduling tool with a minimal GUI. Built logic to organize tasks into daily plans based on deadlines, priorities, and duration.',
-      tags: ['Python', 'GUI', 'Task Scheduling'],
+      title: 'TaskFlow Zenith: Desktop Scheduler',
+      summary: 'Desktop productivity application with intelligent deadline prioritization engine and emerald dark mode UI built with CustomTkinter.',
+      description: 'Desktop task management application featuring an urgency calculation algorithm that dynamically prioritizes tasks based on deadline proximity.',
+      tags: ['Python', 'CustomTkinter', 'JSON Storage'],
       highlights: [
-        'Designed task management & scheduling tool with minimal GUI',
-        'Organizes tasks into daily plans by deadline, priority & duration',
-        'Python implementation with persistent task storage'
+        'Urgency calculation algorithm for priority sorting',
+        'Polished CustomTkinter emerald dark mode UI',
+        'Persistent JSON data storage'
       ],
       githubUrl: 'https://github.com/Rohith-Shimori/Task_Flow'
     }
   ],
   skillsA: [
-    { name: 'Python Development', level: 'ACTIVELY IMPROVING', pct: 0.82, projects: ['truthlens', 'taskflow', 'ananta'] },
-    { name: 'JavaScript & React', level: 'APPLIED LEARNING', pct: 0.78, projects: ['ncc', 'votepath'] },
-    { name: 'Dart & Flutter', level: 'MOBILE DEV', pct: 0.80, projects: ['nexus'] },
-    { name: 'HTML5 & CSS3', level: 'FOUNDATIONAL', pct: 0.85, projects: ['ncc', 'votepath'] },
-    { name: 'Supabase & PostgreSQL', level: 'BACKEND BASICS', pct: 0.78, projects: ['ncc'] },
-    { name: 'REST APIs', level: 'INTEGRATION', pct: 0.80, projects: ['ncc', 'nexus'] }
+    { name: 'AI Pair Programming', level: 'EXPERT', pct: 0.95, projects: ['ncc', 'truthlens', 'nexus'] },
+    { name: 'React 19 & JavaScript', level: 'ADVANCED', pct: 0.88, projects: ['ncc', 'votepath'] },
+    { name: 'Python Engineering', level: 'ADVANCED', pct: 0.88, projects: ['truthlens', 'ananta', 'taskflow'] },
+    { name: 'Dart & Flutter', level: 'ADVANCED', pct: 0.85, projects: ['nexus'] },
+    { name: 'TailwindCSS v4', level: 'ADVANCED', pct: 0.88, projects: ['ncc'] },
+    { name: 'SQL & Postgres', level: 'ADVANCED', pct: 0.85, projects: ['ncc', 'truthlens'] }
   ],
   skillsB: [
-    { name: 'AI-Assisted Workflows', level: 'PAIR PROGRAMMING', pct: 0.90, projects: ['ncc', 'truthlens', 'nexus'] },
-    { name: 'Git & GitHub', level: 'VERSION CONTROL', pct: 0.88, projects: ['ncc', 'truthlens', 'nexus', 'taskflow'] },
-    { name: 'Vercel Deployment', level: 'LIVE HOISTING', pct: 0.88, projects: ['ncc'] },
-    { name: 'HuggingFace Spaces', level: 'DEMO DEPLOY', pct: 0.82, projects: ['truthlens'] },
-    { name: 'VS Code & Tools', level: 'DEVELOPER ENVIRONMENT', pct: 0.90, projects: ['ncc', 'nexus'] },
-    { name: 'SDLC Fundamentals', level: 'SOFTWARE LIFE CYCLE', pct: 0.80, projects: ['ncc', 'nexus'] }
+    { name: 'Supabase Cloud', level: 'ADVANCED', pct: 0.88, projects: ['ncc'] },
+    { name: 'Google ADK 2.0', level: 'ADVANCED', pct: 0.88, projects: ['truthlens'] },
+    { name: 'Vercel Deployment', level: 'EXPERT', pct: 0.92, projects: ['ncc'] },
+    { name: 'HuggingFace Spaces', level: 'ADVANCED', pct: 0.86, projects: ['truthlens'] },
+    { name: 'Git & GitHub CLI', level: 'ADVANCED', pct: 0.90, projects: ['ncc', 'truthlens', 'nexus'] },
+    { name: 'System Architecture', level: 'PROFICIENT', pct: 0.82, projects: ['nexus', 'truthlens'] }
   ]
 };
 
@@ -2138,7 +1994,7 @@ const COMMANDS = [
   { id: 'open-linkedin', label: 'Open LinkedIn Profile', action: () => window.open(PORTFOLIO_DATA.linkedin, '_blank') },
   { id: 'view-ncc', label: 'View NCC Platform Architecture Modal', action: () => openProjectModal('ncc') },
   { id: 'view-truthlens', label: 'View TruthLens Capstone Modal', action: () => openProjectModal('truthlens') },
-  { id: 'view-nexus', label: 'View NexUs Architecture Modal', action: () => openProjectModal('nexus') }
+  { id: 'view-nexus', label: 'View MVGR NexUs Architecture Modal', action: () => openProjectModal('nexus') }
 ];
 
 let selectedCommandIndex = 0;
