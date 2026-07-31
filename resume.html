@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pontapalli Rohith — Resume / Curriculum Vitae</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #0B0B0C;
+    --surface-1: #121215;
+    --surface-2: #18181C;
+    --paper: #F4F4F5;
+    --accent: #E05315;
+    --text-muted: #9DA3AE;
+    --border: #27272A;
+    --mono: 'Space Mono', monospace;
+    --display: 'Unbounded', sans-serif;
+    --sans: 'Inter', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg-dark);
+    color: var(--paper);
+    font-family: var(--sans);
+    line-height: 1.6;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .resume-paper {
+    width: 100%;
+    max-width: 850px;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+  .resume-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+  .header-main h1 {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--paper);
+    letter-spacing: -0.02em;
+  }
+  .header-main .subtitle {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .header-contact {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .header-contact a { color: var(--paper); text-decoration: none; }
+  .header-contact a:hover { color: var(--accent); }
+  
+  .action-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--accent); color: #fff; border: none; }
+  .btn-primary:hover { background: #ff6b26; }
+  .btn-secondary { background: var(--surface-2); color: var(--paper); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--paper); }
+
+  .section { margin-bottom: 32px; }
+  .section-title {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  
+  .exp-item { margin-bottom: 24px; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .exp-role { font-weight: 700; font-size: 1.05rem; color: var(--paper); }
+  .exp-date { font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); }
+  .exp-company { font-size: 0.88rem; color: var(--accent); margin-bottom: 8px; }
+  .exp-bullets { list-style: square; padding-left: 20px; font-size: 0.9rem; color: var(--text-muted); }
+  .exp-bullets li { margin-bottom: 6px; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .skill-cat {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 10px;
+  }
+  .cat-title { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+  .cat-list { font-size: 0.85rem; color: var(--paper); }
+
+  @media print {
+    body { background: #fff; color: #000; padding: 0; }
+    .resume-paper { border: none; box-shadow: none; padding: 0; background: #fff; }
+    .action-bar { display: none; }
+    .header-main h1, .exp-role { color: #000; }
+    .header-main .subtitle, .exp-company, .section-title, .cat-title { color: #d94600; }
+    .exp-bullets, .header-contact { color: #333; }
+    .skill-cat { background: #f8f8f8; border-color: #ddd; }
+    .cat-list { color: #111; }
+  }
+</style>
+</head>
+<body>
+
+<div class="resume-paper">
+  <div class="action-bar">
+    <button class="btn btn-primary" onclick="window.print()">Print / Save PDF 📥</button>
+    <a href="index.html" class="btn btn-secondary">← Back to Portfolio</a>
+  </div>
+
+  <div class="resume-header">
+    <div class="header-main">
+      <h1>PONTAPALLI ROHITH</h1>
+      <div class="subtitle">Full-Stack Developer &amp; Computer Science Engineer</div>
+    </div>
+    <div class="header-contact">
+      <div><a href="https://rohith.is-a.dev">rohith.is-a.dev</a></div>
+      <div><a href="mailto:pontapallirohith@gmail.com">pontapallirohith@gmail.com</a></div>
+      <div><a href="https://github.com/Rohith-Shimori">github.com/Rohith-Shimori</a></div>
+      <div><a href="https://in.linkedin.com/in/pontapalli-rohith">linkedin.com/in/pontapalli-rohith</a></div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">B.Tech in Computer Science and Engineering</div>
+        <div class="exp-date">2022 — 2026 (3rd Year)</div>
+      </div>
+      <div class="exp-company">CGPA: 8.88 / 10.0</div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section">
+    <div class="section-title">Featured Engineering Projects</div>
+    
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">NCC Digital Training Platform</div>
+        <div class="exp-date">Live @ nccdigi.vercel.app</div>
+      </div>
+      <div class="exp-company">React 19, Supabase Postgres, Vite, TailwindCSS v4, Dexie.js PWA</div>
+      <ul class="exp-bullets">
+        <li>Architected full-stack PWA digitizing National Cadet Corps training, syllabus tracking, and drill exam simulations.</li>
+        <li>Implemented 16 structured Supabase SQL migrations enforcing granular Row-Level Security (RLS).</li>
+        <li>Designed offline-first IndexedDB sync engine using Dexie.js for low-bandwidth field deployment.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">TruthLens: Multi-Agent Fact Verification Pipeline</div>
+        <div class="exp-date">Kaggle &times; Google AI Agents Capstone</div>
+      </div>
+      <div class="exp-company">Python, Google ADK, FastMCP, Gradio, Docker</div>
+      <ul class="exp-bullets">
+        <li>Built an enterprise 7-agent multimodal fact-checking graph (ClaimExtractor → EvidenceHunter → FactChecker → VerdictAgent).</li>
+        <li>Achieved 100% pass rate (24/24) on automated golden evaluation test suites.</li>
+        <li>Deployed interactive demo on HuggingFace Spaces with FastMCP tool protocol integration.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">NexUs: Campus Super-App</div>
+        <div class="exp-date">Mobile Application</div>
+      </div>
+      <div class="exp-company">Flutter 3.x, Dart, Firebase, Provider</div>
+      <ul class="exp-bullets">
+        <li>Engineered 4-tier role-based campus platform (Student, Club Admin, Council, Faculty).</li>
+        <li>Implemented non-algorithmic chronological announcement feeds and event RSVP tracking with QR check-in scanner.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Capabilities</div>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <div class="cat-title">Languages &amp; Core</div>
+        <div class="cat-list">Python, JavaScript (ES6+), TypeScript, Dart, HTML5, CSS3, SQL</div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-title">Frontend &amp; Mobile</div>
+        <div class="cat-list">React 19, Vite, TailwindCSS v4, PWA, Flutter, Provider</div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-title">Backend &amp; Database</div>
+        <div class="cat-list">Supabase, PostgreSQL, FastMCP, REST APIs, Firebase</div>
+      </div>
+      <div class="skill-cat">
+        <div class="cat-title">Tools &amp; Workflow</div>
+        <div class="cat-list">Git, GitHub, Vercel, HuggingFace Spaces, Docker, VS Code</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
