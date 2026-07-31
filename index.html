@@ -1015,128 +1015,115 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
   color: var(--text-muted);
   margin-top: 2px;
 }
-/* DIRECTION 4: MINIMALIST GLASS / DARK NEON ACCENT CARDS */
-.direction4-cards-grid {
+/* DIRECTION 4: MINIMALIST GLASS DECK (EXACT MOCKUP REPLICA) */
+.connect-d4-deck {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 32px;
 }
-@media (max-width: 768px) {
-  .direction4-cards-grid { grid-template-columns: 1fr; }
+@media (max-width: 980px) {
+  .connect-d4-deck { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .connect-d4-deck { grid-template-columns: 1fr; }
 }
 
-.d4-card {
-  background: var(--surface-1);
+.d4-mock-card {
+  background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 22px;
+  border-radius: 18px;
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
-  overflow: hidden;
+  min-height: 230px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
-  cursor: pointer;
-}
-.d4-card.hero-resume {
-  grid-column: span 2;
-  background: linear-gradient(135deg, rgba(224, 83, 21, 0.1) 0%, rgba(18, 18, 21, 0.95) 100%);
-  border-color: rgba(224, 83, 21, 0.35);
-}
-@media (max-width: 768px) {
-  .d4-card.hero-resume { grid-column: span 1; }
+  position: relative;
+  overflow: hidden;
 }
 
-.d4-card:hover {
+.d4-mock-card:hover {
   transform: translateY(-4px);
-  background: var(--surface-2);
-}
-.d4-card.hero-resume:hover {
-  border-color: var(--accent);
-  box-shadow: 0 12px 30px rgba(224, 83, 21, 0.25);
-}
-.d4-card.linkedin:hover {
-  border-color: #0A66C2;
-  box-shadow: 0 12px 30px rgba(10, 102, 194, 0.25);
-}
-.d4-card.github:hover {
-  border-color: #F4F4F5;
-  box-shadow: 0 12px 30px rgba(244, 244, 245, 0.18);
-}
-.d4-card.email:hover {
-  border-color: var(--accent);
-  box-shadow: 0 12px 30px rgba(224, 83, 21, 0.25);
-}
-.d4-card.credly:hover {
-  border-color: #F58220;
-  box-shadow: 0 12px 30px rgba(245, 130, 32, 0.25);
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 255, 255, 0.05);
 }
 
-.d4-top-row {
+.d4-mock-card.github:hover {
+  border-color: rgba(244, 244, 245, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(244, 244, 245, 0.15);
+}
+.d4-mock-card.linkedin:hover {
+  border-color: rgba(10, 102, 194, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(10, 102, 194, 0.25);
+}
+.d4-mock-card.resume:hover {
+  border-color: rgba(224, 83, 21, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(224, 83, 21, 0.25);
+}
+.d4-mock-card.email:hover {
+  border-color: rgba(224, 83, 21, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(224, 83, 21, 0.25);
+}
+.d4-mock-card.credly:hover {
+  border-color: rgba(245, 130, 32, 0.5);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(245, 130, 32, 0.25);
+}
+
+.d4-card-icon {
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
 }
-.d4-icon-box {
-  display: flex;
+
+.d4-card-body {
+  flex-grow: 1;
+  margin-bottom: 24px;
+}
+
+.d4-card-title {
+  font-family: var(--sans);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 8px;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.d4-card-desc {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.d4-pill-btn {
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.25s ease;
-  background: transparent;
-  border: none;
-  padding: 0;
-}
-.d4-card:hover .d4-icon-box {
-  transform: scale(1.14);
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.d4-badge {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  color: var(--paper);
-  background: rgba(255, 255, 255, 0.03);
-  transition: all 0.2s ease;
-}
-.d4-card:hover .d4-badge {
+.d4-mock-card:hover .d4-pill-btn {
   background: var(--paper);
-  color: var(--bg);
-}
-
-.d4-title {
-  font-family: var(--display);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--paper);
-  letter-spacing: -0.01em;
-}
-.d4-subtitle {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-.d4-footer {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.d4-tag {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  color: var(--bg-dark);
+  border-color: var(--paper);
 }
 
 /* Form Card */
@@ -1529,130 +1516,84 @@ footer {
   <div class="section-head reveal">
     <span class="section-num">05</span>
     <div class="section-line"></div>
-    <span class="section-title">Get In Touch</span>
+    <span class="section-title">Connect &amp; Explore</span>
   </div>
-  <div class="reveal" style="margin-bottom: 32px">
-    <h2 class="contact-headline">LET'S<span class="outline">CONNECT.</span></h2>
-    <p class="contact-sub">Interested in software engineering internships, AI pair programming collaborations, or technical discussions.</p>
+  
+  <div class="reveal">
+    <div style="font-family:var(--mono); font-size:0.85rem; color:var(--text-dim); margin-bottom:6px">Connect &amp; Explore // Pontapalli Rohith</div>
+    <h2 class="contact-headline" style="font-size:clamp(2.4rem, 5vw, 4rem); margin-bottom:12px">LET'S<span class="outline">CONNECT.</span></h2>
+    <p class="contact-sub" style="max-width:650px; margin-bottom:0">Interested in software engineering internships, AI pair programming collaborations, or technical discussions.</p>
   </div>
-  <div class="contact-layout">
-    <!-- LEFT COLUMN: SOCIAL CARDS DECK -->
-    <div class="reveal">
-      <div class="direction4-cards-grid">
 
-        <!-- FEATURED HERO RESUME CARD -->
-        <div class="d4-card hero-resume" onclick="window.open('resume.html','_blank')">
-          <div class="d4-top-row">
-            <div class="d4-icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px rgba(224,83,21,0.4))"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            </div>
-            <div style="display:flex; gap:8px">
-              <a href="Pontapalli_Rohith_Resume.docx" download="Pontapalli_Rohith_Resume.docx" class="btn btn-secondary" style="padding:5px 12px; font-size:0.6rem" onclick="event.stopPropagation()">DOCX 📥</a>
-              <a href="resume.html" target="_blank" class="btn btn-primary" style="padding:5px 12px; font-size:0.6rem" onclick="event.stopPropagation()">Web CV ↗</a>
-            </div>
-          </div>
-          <div>
-            <div class="d4-title" style="color:var(--accent)">Curriculum Vitae / Resume</div>
-            <div class="d4-subtitle">Pontapalli_Rohith_Resume.docx • Official Engineering Resume</div>
-          </div>
-          <div class="d4-footer">
-            <div class="d4-tag">Direct DOCX Download &amp; Interactive Web CV</div>
-          </div>
-        </div>
+  <!-- DIRECTION 4 EXACT MOCKUP DECK -->
+  <div class="connect-d4-deck reveal">
 
-        <!-- LINKEDIN CARD -->
-        <a href="https://in.linkedin.com/in/pontapalli-rohith" target="_blank" rel="noopener" class="d4-card linkedin">
-          <div class="d4-top-row">
-            <div class="d4-icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="#0A66C2" style="filter:drop-shadow(0 0 10px rgba(10,102,194,0.4))"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94z"/></svg>
-            </div>
-            <span class="d4-badge">Connect ↗</span>
-          </div>
-          <div>
-            <div class="d4-title">LinkedIn</div>
-            <div class="d4-subtitle">in/pontapalli-rohith</div>
-          </div>
-          <div class="d4-footer">
-            <div class="d4-tag">Professional Network</div>
-          </div>
-        </a>
+    <!-- CARD 1: GITHUB -->
+    <a href="https://github.com/Rohith-Shimori" target="_blank" rel="noopener" class="d4-mock-card github">
+      <div class="d4-card-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="#F4F4F5"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </div>
+      <div class="d4-card-body">
+        <div class="d4-card-title">github.com/Rohith-Shimori</div>
+        <div class="d4-card-desc">Explore repositories, projects, code contributions.</div>
+      </div>
+      <div class="d4-pill-btn">View Profile</div>
+    </a>
 
-        <!-- GITHUB CARD -->
-        <a href="https://github.com/Rohith-Shimori" target="_blank" rel="noopener" class="d4-card github">
-          <div class="d4-top-row">
-            <div class="d4-icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="#F4F4F5" style="filter:drop-shadow(0 0 10px rgba(244,244,245,0.3))"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            </div>
-            <span class="d4-badge">Explore ↗</span>
-          </div>
-          <div>
-            <div class="d4-title">GitHub</div>
-            <div class="d4-subtitle">@Rohith-Shimori</div>
-          </div>
-          <div class="d4-footer">
-            <div class="d4-tag">Open Source Code</div>
-          </div>
-        </a>
+    <!-- CARD 2: LINKEDIN -->
+    <a href="https://in.linkedin.com/in/pontapalli-rohith" target="_blank" rel="noopener" class="d4-mock-card linkedin">
+      <div class="d4-card-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="#0A66C2"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94z"/></svg>
+      </div>
+      <div class="d4-card-body">
+        <div class="d4-card-title">linkedin.com/in/pontapalli-rohith</div>
+        <div class="d4-card-desc">Connect professionally, view network, endorsements.</div>
+      </div>
+      <div class="d4-pill-btn">Connect</div>
+    </a>
 
-        <!-- DIRECT EMAIL CARD -->
-        <div class="d4-card email" onclick="copyEmailToClipboard()">
-          <div class="d4-top-row">
-            <div class="d4-icon-box">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px rgba(224,83,21,0.4))"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div style="display:flex; gap:6px">
-              <button class="btn btn-secondary" id="copyEmailBadgeBtn" type="button" style="padding:4px 10px; font-size:0.58rem" onclick="event.stopPropagation(); copyEmailToClipboard()">Copy 📋</button>
-              <a href="mailto:pontapallirohith@gmail.com" class="btn btn-primary" style="padding:4px 10px; font-size:0.58rem" onclick="event.stopPropagation()">Mail ✉️</a>
-            </div>
-          </div>
-          <div>
-            <div class="d4-title">Direct Email</div>
-            <div class="d4-subtitle">pontapallirohith@gmail.com</div>
-          </div>
-          <div class="d4-footer">
-            <div class="d4-tag">Primary Contact</div>
-          </div>
-        </div>
-
-        <!-- CREDLY CARD -->
-        <a href="https://www.credly.com/users/rohith-pontapalli" target="_blank" rel="noopener" class="d4-card credly">
-          <div class="d4-top-row">
-            <div class="d4-icon-box">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="#F58220" style="filter:drop-shadow(0 0 10px rgba(245,130,32,0.4))"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
-            </div>
-            <span class="d4-badge" style="border-color:rgba(245,130,32,0.4); color:#F58220">Verify ↗</span>
-          </div>
-          <div>
-            <div class="d4-title">Credly Verification</div>
-            <div class="d4-subtitle">EY, IBM &amp; Microsoft Badges</div>
-          </div>
-          <div class="d4-footer">
-            <div class="d4-tag">Certified Credentials</div>
-          </div>
-        </a>
-
+    <!-- CARD 3: RESUME -->
+    <div class="d4-mock-card resume" onclick="window.open('resume.html','_blank')">
+      <div class="d4-card-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div class="d4-card-body">
+        <div class="d4-card-title">Pontapalli_Rohith_Resume.docx</div>
+        <div class="d4-card-desc">Download my CV (DOCX), detailed experience &amp; skills.</div>
+      </div>
+      <div style="display:flex; gap:10px">
+        <a href="Pontapalli_Rohith_Resume.docx" download="Pontapalli_Rohith_Resume.docx" class="d4-pill-btn" style="flex:1" onclick="event.stopPropagation()">Download CV</a>
+        <a href="resume.html" target="_blank" class="d4-pill-btn" style="flex:1; background:rgba(224,83,21,0.18); border-color:var(--accent)" onclick="event.stopPropagation()">Web CV ↗</a>
       </div>
     </div>
 
-    <!-- RIGHT COLUMN: SLEEK CONTACT FORM CARD -->
-    <div class="reveal">
-      <form class="contact-form-card" id="contactForm">
-        <div class="form-title">Send a Direct Message</div>
-        <div class="form-group">
-          <label for="inputName">Your Name</label>
-          <input type="text" id="inputName" required placeholder="John Doe">
-        </div>
-        <div class="form-group">
-          <label for="inputEmail">Your Email</label>
-          <input type="email" id="inputEmail" required placeholder="john@example.com">
-        </div>
-        <div class="form-group">
-          <label for="inputMessage">Message</label>
-          <textarea id="inputMessage" required placeholder="Hello Rohith, I'd like to discuss..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%">Send Message ↗</button>
-      </form>
+    <!-- CARD 4: DIRECT EMAIL -->
+    <div class="d4-mock-card email" onclick="copyEmailToClipboard()">
+      <div class="d4-card-icon">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="d4-card-body">
+        <div class="d4-card-title">pontapallirohith@gmail.com</div>
+        <div class="d4-card-desc">Get in touch, collaborations, work inquiries.</div>
+      </div>
+      <div style="display:flex; gap:10px">
+        <button class="d4-pill-btn" id="copyEmailBadgeBtn" type="button" style="flex:1" onclick="event.stopPropagation(); copyEmailToClipboard()">Copy Email 📋</button>
+        <a href="mailto:pontapallirohith@gmail.com" class="d4-pill-btn" style="flex:1; background:rgba(224,83,21,0.18); border-color:var(--accent)" onclick="event.stopPropagation()">Send Mail ✉️</a>
+      </div>
     </div>
+
+    <!-- CARD 5: CREDLY -->
+    <a href="https://www.credly.com/users/rohith-pontapalli" target="_blank" rel="noopener" class="d4-mock-card credly">
+      <div class="d4-card-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="#F58220"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+      </div>
+      <div class="d4-card-body">
+        <div class="d4-card-title">credly.com/users/rohith-pontapalli</div>
+        <div class="d4-card-desc">Verify badges, professional certifications, achievements.</div>
+      </div>
+      <div class="d4-pill-btn">View Badges</div>
+    </a>
+
   </div>
 </section>
 </div>
