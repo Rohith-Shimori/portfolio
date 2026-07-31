@@ -970,19 +970,80 @@ h1.hero-main-title .accent-letter { color: var(--accent); }
   color: var(--text-muted);
   margin-top: 2px;
 }
-/* CUSTOM BRAND CARDS & GLOW EFFECTS */
-.li-theme:hover { border-color: #0A66C2; box-shadow: 0 4px 20px rgba(10, 102, 194, 0.15); }
-.gh-theme:hover { border-color: var(--paper); box-shadow: 0 4px 20px rgba(244, 244, 245, 0.1); }
-.email-theme:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(224, 83, 21, 0.15); }
-.credly-theme:hover { border-color: #F58220; box-shadow: 0 4px 20px rgba(245, 130, 32, 0.15); }
+/* ULTRA-PREMIUM BENTO STUDIO CARDS */
+.contact-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .contact-bento-grid { grid-template-columns: 1fr; }
+}
 
-.li-icon-glow { background: rgba(10, 102, 194, 0.1); border-color: rgba(10, 102, 194, 0.3); }
-.gh-icon-glow { background: rgba(244, 244, 245, 0.08); border-color: rgba(244, 244, 245, 0.2); }
-.mail-icon-glow { background: rgba(224, 83, 21, 0.1); border-color: rgba(224, 83, 21, 0.3); }
-.credly-icon-glow { background: rgba(245, 130, 32, 0.1); border-color: rgba(245, 130, 32, 0.3); }
+.studio-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+.studio-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+.studio-card.hero-card {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(224,83,21,0.08) 0%, rgba(18,18,21,1) 100%);
+  border-color: rgba(224, 83, 21, 0.4);
+}
+@media (max-width: 768px) {
+  .studio-card.hero-card { grid-column: span 1; }
+}
 
-.btn-primary.li-btn { background: #0A66C2; color: #ffffff; }
-.btn-primary.li-btn:hover { background: #004182; }
+.studio-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.studio-icon-box {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.studio-card:hover .studio-icon-box { transform: scale(1.08); border-color: var(--accent); }
+
+.studio-card-title {
+  font-family: var(--display);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--paper);
+}
+.studio-card-sub {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.studio-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
 
 /* Form Card */
 .contact-form-card {
@@ -1369,83 +1430,98 @@ footer {
       <h2 class="contact-headline">LET'S<span class="outline">CONNECT.</span></h2>
       <p class="contact-sub">Interested in software engineering internships, AI pair programming collaborations, or technical discussions.</p>
       
-      <!-- UNIFIED DEVELOPER BADGES CONTAINER (NO DUPLICATION) -->
-      <div class="badges-container" style="margin-top:0">
+      <!-- ULTRA-PREMIUM BENTO STUDIO CARDS DECK -->
+      <div class="contact-bento-grid">
 
-        <!-- FEATURED RESUME CARD -->
-        <div class="custom-badge-card email-theme" onclick="window.open('resume.html','_blank')" tabindex="0" role="button" aria-label="View Resume" style="cursor:pointer; border-color:var(--accent); background:rgba(224, 83, 21, 0.04)">
-          <div class="badge-left">
-            <div class="badge-icon-box mail-icon-glow">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <!-- FEATURED HERO RESUME CARD -->
+        <div class="studio-card hero-card" onclick="window.open('resume.html','_blank')" tabindex="0" role="button" aria-label="View Interactive Resume">
+          <div class="studio-card-head">
+            <div class="studio-icon-box" style="background:rgba(224,83,21,0.12); border-color:rgba(224,83,21,0.3)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             </div>
             <div>
-              <div class="badge-info-title" style="color:var(--accent)">Curriculum Vitae / Resume</div>
-              <div class="badge-info-sub">Pontapalli_Rohith_Resume.pdf • Interactive Web &amp; Print PDF</div>
+              <div class="studio-card-title" style="color:var(--accent)">Curriculum Vitae / Resume</div>
+              <div class="studio-card-sub">Pontapalli_Rohith_Resume.docx • Official Resume File &amp; Web CV</div>
             </div>
           </div>
-          <div style="display:flex; gap:8px">
-            <a href="resume.html" target="_blank" class="btn btn-primary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">View Resume 📄</a>
+          <div class="studio-card-actions">
+            <span style="font-family:var(--mono); font-size:0.62rem; color:var(--text-dim)">📄 Verified Engineering Resume</span>
+            <div style="display:flex; gap:8px">
+              <a href="Pontapalli_Rohith_Resume.docx" download="Pontapalli_Rohith_Resume.docx" class="btn btn-secondary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">Download DOCX 📥</a>
+              <a href="resume.html" target="_blank" class="btn btn-primary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">Web CV ↗</a>
+            </div>
           </div>
         </div>
 
-        <!-- LINKEDIN CUSTOM CARD -->
-        <div class="custom-badge-card li-theme" onclick="window.open('https://in.linkedin.com/in/pontapalli-rohith','_blank')" tabindex="0" role="button" aria-label="Visit LinkedIn Profile" style="cursor:pointer">
-          <div class="badge-left">
-            <div class="badge-icon-box li-icon-glow">
+        <!-- LINKEDIN STUDIO CARD -->
+        <div class="studio-card" onclick="window.open('https://in.linkedin.com/in/pontapalli-rohith','_blank')" tabindex="0" role="button" aria-label="Visit LinkedIn">
+          <div class="studio-card-head">
+            <div class="studio-icon-box" style="background:rgba(10,102,194,0.12); border-color:rgba(10,102,194,0.3)">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="#0A66C2"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94z"/></svg>
             </div>
             <div>
-              <div class="badge-info-title">LinkedIn Profile</div>
-              <div class="badge-info-sub">in/pontapalli-rohith • Professional Network</div>
+              <div class="studio-card-title">LinkedIn</div>
+              <div class="studio-card-sub">in/pontapalli-rohith • Professional</div>
             </div>
           </div>
-          <a href="https://in.linkedin.com/in/pontapalli-rohith" target="_blank" rel="noopener" class="btn btn-primary li-btn" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">Connect ↗</a>
+          <div class="studio-card-actions">
+            <span style="font-family:var(--mono); font-size:0.62rem; color:var(--text-dim)">500+ Connections</span>
+            <a href="https://in.linkedin.com/in/pontapalli-rohith" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:6px 12px; font-size:0.58rem; border-color:#0A66C2; color:#0A66C2" onclick="event.stopPropagation()">Connect ↗</a>
+          </div>
         </div>
 
-        <!-- GITHUB CUSTOM CARD -->
-        <div class="custom-badge-card gh-theme" onclick="window.open('https://github.com/Rohith-Shimori','_blank')" tabindex="0" role="button" aria-label="Visit GitHub Profile" style="cursor:pointer">
-          <div class="badge-left">
-            <div class="badge-icon-box gh-icon-glow">
+        <!-- GITHUB STUDIO CARD -->
+        <div class="studio-card" onclick="window.open('https://github.com/Rohith-Shimori','_blank')" tabindex="0" role="button" aria-label="Visit GitHub">
+          <div class="studio-card-head">
+            <div class="studio-icon-box" style="background:rgba(244,244,245,0.08); border-color:rgba(244,244,245,0.2)">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="#F4F4F5"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             </div>
             <div>
-              <div class="badge-info-title">GitHub Profile</div>
-              <div class="badge-info-sub">@Rohith-Shimori • Open Source Code</div>
+              <div class="studio-card-title">GitHub</div>
+              <div class="studio-card-sub">@Rohith-Shimori • Repositories</div>
             </div>
           </div>
-          <a href="https://github.com/Rohith-Shimori" target="_blank" rel="noopener" class="btn btn-primary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">Visit GitHub ↗</a>
+          <div class="studio-card-actions">
+            <span style="font-family:var(--mono); font-size:0.62rem; color:var(--text-dim)">Public Repositories</span>
+            <a href="https://github.com/Rohith-Shimori" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">Visit ↗</a>
+          </div>
         </div>
 
-        <!-- DIRECT EMAIL CUSTOM CARD -->
-        <div class="custom-badge-card email-theme" id="emailCardBadge" onclick="copyEmailToClipboard()" tabindex="0" role="button" aria-label="Copy email address" style="cursor:pointer">
-          <div class="badge-left">
-            <div class="badge-icon-box mail-icon-glow">
+        <!-- DIRECT EMAIL STUDIO CARD -->
+        <div class="studio-card" id="emailCardBadge" onclick="copyEmailToClipboard()" tabindex="0" role="button" aria-label="Copy Email">
+          <div class="studio-card-head">
+            <div class="studio-icon-box" style="background:rgba(224,83,21,0.12); border-color:rgba(224,83,21,0.3)">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div>
-              <div class="badge-info-title">Direct Email</div>
-              <div class="badge-info-sub">pontapallirohith@gmail.com</div>
+              <div class="studio-card-title">Direct Email</div>
+              <div class="studio-card-sub">pontapallirohith@gmail.com</div>
             </div>
           </div>
-          <div style="display:flex; gap:8px">
+          <div class="studio-card-actions">
             <button class="btn btn-secondary" id="copyEmailBadgeBtn" type="button" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation(); copyEmailToClipboard()">Copy 📋</button>
             <a href="mailto:pontapallirohith@gmail.com" class="btn btn-primary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">Mail ✉️</a>
           </div>
         </div>
 
-        <!-- CREDLY VERIFICATION CUSTOM CARD -->
-        <div class="custom-badge-card credly-theme" onclick="window.open('https://www.credly.com/users/rohith-pontapalli','_blank')" tabindex="0" role="button" aria-label="View Credly Badges" style="cursor:pointer">
-          <div class="badge-left">
-            <div class="badge-icon-box credly-icon-glow">
+        <!-- CREDLY VERIFICATION STUDIO CARD -->
+        <div class="studio-card" onclick="window.open('https://www.credly.com/users/rohith-pontapalli','_blank')" tabindex="0" role="button" aria-label="View Credly">
+          <div class="studio-card-head">
+            <div class="studio-icon-box" style="background:rgba(245,130,32,0.12); border-color:rgba(245,130,32,0.3)">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="#F58220"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
             </div>
             <div>
-              <div class="badge-info-title">Credly Verification</div>
-              <div class="badge-info-sub">Verified Digital Badges</div>
+              <div class="studio-card-title">Credly</div>
+              <div class="studio-card-sub">Verified Digital Badges</div>
             </div>
           </div>
-          <a href="https://www.credly.com/users/rohith-pontapalli" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:6px 12px; font-size:0.58rem" onclick="event.stopPropagation()">View Credly ↗</a>
+          <div class="studio-card-actions">
+            <span style="font-family:var(--mono); font-size:0.62rem; color:var(--text-dim)">EY, IBM, Microsoft</span>
+            <a href="https://www.credly.com/users/rohith-pontapalli" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:6px 12px; font-size:0.58rem; border-color:#F58220; color:#F58220" onclick="event.stopPropagation()">View ↗</a>
+          </div>
         </div>
+
+      </div>
 
       </div>
     </div>
