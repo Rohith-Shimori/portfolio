@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Pontapalli Rohith — Curious to build, persistent to finish.</title>
+  <title>Pontapalli Rohith — CS Student &amp; AI Systems Builder</title>
   <meta name="description"
-    content="Official portfolio of Pontapalli Rohith (rohith.is-a.dev). Curious enough to build it, persistent enough to finish it. Full-stack &amp; AI Developer.">
+    content="Official portfolio of Pontapalli Rohith (rohith.is-a.dev). Computer Science student, building web apps, mobile tools &amp; AI agent workflows.">
   <meta name="keywords" content="rohith is a dev, rohith.is-a.dev, Pontapalli Rohith, Rohith Shimori, Pontapalli Rohith portfolio">
   <meta name="google-site-verification" content="tt2Q3agziCFtHhbkxJeJkHTHPEvtUf4WTbdHN4Mv_2o" />
   <link rel="canonical" href="https://rohith.is-a.dev/">
@@ -14,8 +14,8 @@
   <!-- Open Graph / Social & Search SEO -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rohith.is-a.dev/">
-  <meta property="og:title" content="Pontapalli Rohith — Curious enough to build it. Persistent enough to finish it.">
-  <meta property="og:description" content="Curious enough to build it. Persistent enough to finish it. Building web applications, mobile tools, and AI agent workflows.">
+  <meta property="og:title" content="Pontapalli Rohith — CS Student &amp; AI Systems Builder">
+  <meta property="og:description" content="Computer Science undergraduate &amp; AI systems builder. Building web applications, mobile tools, and autonomous AI agent workflows.">
   <meta property="og:image" content="https://rohith.is-a.dev/mascot_wave.png">
 
   <!-- Schema.org JSON-LD Structured Data for Google/Bing Indexing -->
@@ -27,7 +27,7 @@
     "alternateName": ["Rohith", "rohith is a dev", "rohith.is-a.dev", "Rohith Shimori", "Pontapalli Rohith Portfolio"],
     "url": "https://rohith.is-a.dev",
     "image": "https://rohith.is-a.dev/mascot_wave.png",
-    "jobTitle": "Full-Stack & AI Systems Developer",
+    "jobTitle": "Computer Science Student & AI Systems Builder",
     "sameAs": [
       "https://github.com/Rohith-Shimori",
       "https://in.linkedin.com/in/pontapalli-rohith",
@@ -136,6 +136,27 @@
 
     .skip-link:focus {
       top: 12px;
+    }
+
+    /* Accessibility: Respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .mascot-interactive {
+        animation: none !important;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .ticker-track {
+        animation: none !important;
+      }
     }
 
     /* Top Ticker */
@@ -2712,36 +2733,6 @@
             'Emotion-aware voice input & speech synthesis'
           ],
           githubUrl: 'https://github.com/Rohith-Shimori/Ananta_Rebirth'
-        },
-        {
-          id: 'votepath',
-          number: '05',
-          categories: ['full-stack'],
-          title: 'VotePath Pro+: Civic Readiness Engine',
-          summary: 'Deterministic voting readiness engine supporting 19 countries and 8 election types with voice navigation, built for Hack2Skill Prompt Wars.',
-          description: 'Zero-dependency client-side engine evaluating voter readiness across 19 countries and 8 election types. Features Google Maps polling station lookup and V.A.N. (Voice Accessible Navigator) via Web Speech API with WCAG AA compliance.',
-          tags: ['HTML5', 'CSS3', 'JavaScript', 'Web Speech API', 'Google Maps'],
-          highlights: [
-            'Supports 19 countries and 8 election types deterministically',
-            'V.A.N. Voice Accessible Navigator via Web Speech API',
-            'Hack2Skill Prompt Wars Challenge 2 submission'
-          ],
-          githubUrl: 'https://github.com/Rohith-Shimori/Vote_Path'
-        },
-        {
-          id: 'taskflow',
-          number: '04',
-          categories: ['full-stack'],
-          title: 'Task Flow — Smart Task & Scheduling Engine',
-          summary: 'Task management and scheduling tool with a minimal GUI built in Python to organize daily plans.',
-          description: 'Designed and implemented a task management and scheduling tool with a minimal GUI. Built logic to organize tasks into daily plans based on deadlines, priorities, and duration.',
-          tags: ['Python', 'GUI', 'Task Scheduling'],
-          highlights: [
-            'Designed task management & scheduling tool with minimal GUI',
-            'Organizes tasks into daily plans by deadline, priority & duration',
-            'Python implementation with persistent task storage'
-          ],
-          githubUrl: 'https://github.com/Rohith-Shimori/Task_Flow'
         }
       ],
       skillsA: [
@@ -3212,13 +3203,6 @@
       navigator.clipboard.writeText(PORTFOLIO_DATA.email)
         .then(() => showToast('Copied ' + PORTFOLIO_DATA.email + ' to clipboard!'))
         .catch(() => showToast('Email: ' + PORTFOLIO_DATA.email));
-    }
-
-    if ($('#copyEmailHeroBtn')) {
-      $('#copyEmailHeroBtn').addEventListener('click', copyEmailToClipboard);
-    }
-    if ($('#copyEmailBadgeBtn')) {
-      $('#copyEmailBadgeBtn').addEventListener('click', copyEmailToClipboard);
     }
 
     /* =============================================
