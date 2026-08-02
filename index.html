@@ -85,15 +85,52 @@
     }
 
     body.light-theme {
-      --bg-dark: #F4F4F8;
+      --bg-dark: #F8FAFC;
       --surface-1: #FFFFFF;
-      --surface-2: #F0F0F5;
-      --surface-3: #E4E4EB;
-      --paper: #121215;
-      --text-muted: #64748B;
-      --text-dim: #94A3B8;
+      --surface-2: #F1F5F9;
+      --surface-3: #E2E8F0;
+      --paper: #0F172A;
+      --text-muted: #475569;
+      --text-dim: #64748B;
       --border: #E2E8F0;
       --border-light: #CBD5E1;
+    }
+
+    body.light-theme .hero-subtitle-outline {
+      color: transparent;
+      -webkit-text-stroke: 1.5px #475569;
+    }
+
+    body.light-theme .bento-contact-card,
+    body.light-theme .project-bench-card,
+    body.light-theme .approach-card-v2,
+    body.light-theme .cmd-modal-box,
+    body.light-theme .modal-content-card,
+    body.light-theme .skill-card-box {
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.07);
+      background: var(--surface-1);
+    }
+
+    body.light-theme .mascot-speech-bubble {
+      background: #FFFFFF;
+      color: #0F172A;
+      border-color: #E2E8F0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    body.light-theme .cmd-btn,
+    body.light-theme .nav-links a {
+      color: #0F172A;
+    }
+
+    body.light-theme .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    body.light-theme navbar,
+    body.light-theme .navbar {
+      background: rgba(248, 250, 252, 0.85);
+      border-bottom: 1px solid #E2E8F0;
     }
 
     *,
@@ -2249,7 +2286,7 @@
                 <div class="status-pill" style="white-space:nowrap">3rd Year CSE Student</div>
                 <div style="display:flex; flex-direction:column; gap:4px; margin-top:4px">
                   <a href="mailto:rohith@rohith.is-a.dev?subject=Resume%20Request%20-%20Pontapalli%20Rohith" class="btn btn-secondary" style="border-color:var(--accent); color:var(--paper); padding:6px 10px; font-size:0.62rem; white-space:nowrap; text-align:center">Request Resume</a>
-                  <a href="cv.html" target="_blank" class="btn btn-secondary" style="padding:6px 10px; font-size:0.62rem; white-space:nowrap; text-align:center">Web CV ↗</a>
+                  <a href="cv.html" target="_blank" onclick="window.open('cv.html', 'RohithWebCV'); return false;" class="btn btn-secondary" style="padding:6px 10px; font-size:0.62rem; white-space:nowrap; text-align:center">Web CV ↗</a>
                 </div>
               </div>
               <!-- ENLARGED RIGHT SIDE MASCOT: LOCKED IN WITH INTERACTIVE BUBBLE -->
@@ -2561,7 +2598,7 @@
                 style="flex:1" onclick="event.stopPropagation()">Request Resume</a>
               <a href="cv.html" target="_blank" class="bento-pill-btn"
                 style="flex:1; background:rgba(224,83,21,0.18); border-color:var(--accent)"
-                onclick="event.stopPropagation()">Web CV ↗</a>
+                onclick="event.stopPropagation(); window.open('cv.html', 'RohithWebCV'); return false;">Web CV ↗</a>
             </div>
           </div>
 
