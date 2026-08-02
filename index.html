@@ -3212,8 +3212,16 @@
           </div>
           <span class="cmd-key-tag" style="font-size:0.65rem; background:rgba(224,83,21,0.15); color:var(--accent); border:1px solid var(--accent); padding:2px 8px; border-radius:4px">${escapeHtml(item.category)}</span>
         `;
-        row.addEventListener('click', () => { closeCommandPalette(); item.action(); });
-        row.addEventListener('mouseenter', () => { selectedCommandIndex = idx; renderCommandList(); });
+        row.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          closeCommandPalette();
+          setTimeout(() => item.action(), 50);
+        });
+        row.addEventListener('mouseenter', () => {
+          selectedCommandIndex = idx;
+          $$('.cmd-item-row').forEach((r, i) => r.classList.toggle('selected', i === idx));
+        });
         listContainer.appendChild(row);
       });
     }
