@@ -9,7 +9,10 @@
     content="I enjoy exploring new ideas, building software, and turning curiosity into projects that solve real problems.">
   <meta name="keywords" content="rohith is a dev, rohith.is-a.dev, Pontapalli Rohith, Rohith Shimori, Pontapalli Rohith portfolio">
   <meta name="google-site-verification" content="tt2Q3agziCFtHhbkxJeJkHTHPEvtUf4WTbdHN4Mv_2o" />
+  <meta name="author" content="Pontapalli Rohith">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://rohith.is-a.dev/">
+  <link rel="alternate" hreflang="en" href="https://rohith.is-a.dev/">
   
   <!-- Open Graph / Social & Search SEO -->
   <meta property="og:type" content="website">
@@ -2229,7 +2232,7 @@
                 <div class="status-pill" style="white-space:nowrap">3rd Year CSE Student</div>
                 <div style="display:flex; flex-direction:column; gap:4px; margin-top:4px">
                   <a href="mailto:rohith@rohith.is-a.dev?subject=Resume%20Request%20-%20Pontapalli%20Rohith" class="btn btn-secondary" style="border-color:var(--accent); color:var(--paper); padding:6px 10px; font-size:0.62rem; white-space:nowrap; text-align:center">Request Resume</a>
-                  <a href="resume.html" target="_blank" class="btn btn-secondary" style="padding:6px 10px; font-size:0.62rem; white-space:nowrap; text-align:center">Web CV ↗</a>
+                  <a href="cv.html" target="_blank" class="btn btn-secondary" style="padding:6px 10px; font-size:0.62rem; white-space:nowrap; text-align:center">Web CV ↗</a>
                 </div>
               </div>
               <!-- ENLARGED RIGHT SIDE MASCOT: LOCKED IN WITH INTERACTIVE BUBBLE -->
@@ -2521,7 +2524,7 @@
           </div>
 
           <!-- CARD 2: OFFICIAL RESUME / CV TILE (TOP ROW) -->
-          <div class="bento-contact-card resume" onclick="window.open('resume.html','_blank')">
+          <div class="bento-contact-card resume" onclick="window.open('cv.html','_blank')">
             <div class="bento-card-top">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 10px rgba(224,83,21,0.4))">
@@ -2539,7 +2542,7 @@
             <div style="display:flex; gap:10px">
               <a href="mailto:rohith@rohith.is-a.dev?subject=Resume%20Request%20-%20Pontapalli%20Rohith" class="bento-pill-btn"
                 style="flex:1" onclick="event.stopPropagation()">Request Resume</a>
-              <a href="resume.html" target="_blank" class="bento-pill-btn"
+              <a href="cv.html" target="_blank" class="bento-pill-btn"
                 style="flex:1; background:rgba(224,83,21,0.18); border-color:var(--accent)"
                 onclick="event.stopPropagation()">Web CV ↗</a>
             </div>
@@ -3098,23 +3101,77 @@
     /* =============================================
        COMMAND PALETTE ENGINE
     ============================================= */
-    const COMMANDS = [
-      { id: 'live-ncc', label: 'Open Live Application: nccdigi.vercel.app', action: () => window.open('https://nccdigi.vercel.app', '_blank') },
-      { id: 'live-truthlens', label: 'Open Live Space: TruthLens AI', action: () => window.open('https://huggingface.co/spaces/Rohith-Shimori/TruthLens-AI-Agent', '_blank') },
-      { id: 'nav-projects', label: 'Navigate to Projects', action: () => smoothScrollTo('#projects') },
-      { id: 'nav-about', label: 'Navigate to About', action: () => smoothScrollTo('#about') },
-      { id: 'nav-approach', label: 'Navigate to How I Build', action: () => smoothScrollTo('#approach') },
-      { id: 'nav-skills', label: 'Navigate to Capabilities', action: () => smoothScrollTo('#skills') },
-      { id: 'nav-contact', label: 'Navigate to Contact', action: () => smoothScrollTo('#contact') },
-      { id: 'copy-email', label: 'Copy Email Address to Clipboard', action: () => copyEmailToClipboard() },
-      { id: 'open-github', label: 'Open GitHub Profile', action: () => window.open(PORTFOLIO_DATA.github, '_blank') },
-      { id: 'open-linkedin', label: 'Open LinkedIn Profile', action: () => window.open(PORTFOLIO_DATA.linkedin, '_blank') },
-      { id: 'view-ncc', label: 'View NCC Platform Architecture Modal', action: () => openProjectModal('ncc') },
-      { id: 'view-truthlens', label: 'View TruthLens Capstone Modal', action: () => openProjectModal('truthlens') },
-      { id: 'view-nexus', label: 'View NexUs Architecture Modal', action: () => openProjectModal('nexus') }
-    ];
+    /* =============================================
+       UNIVERSAL REAL-TIME SEARCH ENGINE
+    ============================================= */
+    function buildSearchIndex() {
+      const items = [];
+      
+      // 1. Projects
+      if (PORTFOLIO_DATA.projects) {
+        PORTFOLIO_DATA.projects.forEach(p => {
+          items.push({
+            id: 'project-' + p.id,
+            label: p.title,
+            subtext: 'Project • ' + p.summary,
+            category: 'Project',
+            keywords: (p.title + ' ' + p.summary + ' ' + p.description + ' ' + (p.tags ? p.tags.join(' ') : '')).toLowerCase(),
+            action: () => openProjectModal(p.id)
+          });
+        });
+      }
+
+      // 2. Skills
+      const allSkills = [...(PORTFOLIO_DATA.skillsA || []), ...(PORTFOLIO_DATA.skillsB || [])];
+      allSkills.forEach(s => {
+        items.push({
+          id: 'skill-' + s.name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
+          label: s.name + ' (' + s.level + ')',
+          subtext: 'Capability / Tech Stack',
+          category: 'Skill',
+          keywords: (s.name + ' ' + s.level).toLowerCase(),
+          action: () => smoothScrollTo('#skills')
+        });
+      });
+
+      // 3. Pages & Sections
+      items.push(
+        { id: 'page-cv', label: 'Interactive Web CV (Curriculum Vitae)', subtext: 'Page • Open cv.html', category: 'Page', keywords: 'cv resume web cv curriculum vitae experience education credentials', action: () => window.open('cv.html', '_blank') },
+        { id: 'nav-projects', label: 'Featured Projects Bench', subtext: 'Section • #projects', category: 'Section', keywords: 'projects work portfolio systems apps ncc truthlens nexus ananta', action: () => smoothScrollTo('#projects') },
+        { id: 'nav-about', label: 'About & Identity', subtext: 'Section • #about', category: 'Section', keywords: 'about identity bio background student student status', action: () => smoothScrollTo('#about') },
+        { id: 'nav-approach', label: 'Engineering Workflow / How I Build', subtext: 'Section • #approach', category: 'Section', keywords: 'approach workflow build stack process mascots blueprint', action: () => smoothScrollTo('#approach') },
+        { id: 'nav-skills', label: 'Capabilities & Tech Matrix', subtext: 'Section • #skills', category: 'Section', keywords: 'skills capabilities tech stack languages tools frameworks python react flutter supabase', action: () => smoothScrollTo('#skills') },
+        { id: 'nav-contact', label: 'Bento Contact & Social Cards', subtext: 'Section • #contact', category: 'Section', keywords: 'contact email linkedin github credly message reach out', action: () => smoothScrollTo('#contact') }
+      );
+
+      // 4. Direct Actions & Links
+      items.push(
+        { id: 'live-ncc', label: 'NCC Digital Training Platform (Live App)', subtext: 'Live • nccdigi.vercel.app', category: 'Live Demo', keywords: 'ncc cadet live vercel pwa react supabase', action: () => window.open('https://nccdigi.vercel.app', '_blank') },
+        { id: 'live-truthlens', label: 'TruthLens AI Agent (HuggingFace Space)', subtext: 'Live • huggingface.co', category: 'Live Demo', keywords: 'truthlens ai agent space huggingface fastmcp python', action: () => window.open('https://huggingface.co/spaces/Rohith-Shimori/TruthLens-AI-Agent', '_blank') },
+        { id: 'copy-email', label: 'Copy Custom Email (rohith@rohith.is-a.dev)', subtext: 'Action • Copy to clipboard', category: 'Action', keywords: 'copy email mail address contact rohith', action: () => copyEmailToClipboard() },
+        { id: 'request-resume', label: 'Request Official Resume Document', subtext: 'Action • Email request link', category: 'Action', keywords: 'request resume doc document email mailto', action: () => window.open('mailto:rohith@rohith.is-a.dev?subject=Resume%20Request%20-%20Pontapalli%20Rohith') },
+        { id: 'open-github', label: 'GitHub Profile (@Rohith-Shimori)', subtext: 'Social • github.com/Rohith-Shimori', category: 'Social', keywords: 'github code repo profile repositories', action: () => window.open(PORTFOLIO_DATA.github, '_blank') },
+        { id: 'open-linkedin', label: 'LinkedIn Profile (Pontapalli Rohith)', subtext: 'Social • linkedin.com', category: 'Social', keywords: 'linkedin network profile connection', action: () => window.open(PORTFOLIO_DATA.linkedin, '_blank') },
+        { id: 'open-credly', label: 'Credly Certifications (EY, IBM, Microsoft)', subtext: 'Credentials • credly.com', category: 'Credentials', keywords: 'credly certifications badges ey ibm microsoft', action: () => window.open('https://www.credly.com/users/rohith-pontapalli', '_blank') }
+      );
+
+      return items;
+    }
 
     let selectedCommandIndex = 0;
+
+    function getMatchingSearchResults() {
+      const query = $('#cmdInputField') ? $('#cmdInputField').value.toLowerCase().trim() : '';
+      const allItems = buildSearchIndex();
+      if (!query) return allItems;
+
+      return allItems.filter(item => {
+        return item.label.toLowerCase().includes(query) ||
+               item.subtext.toLowerCase().includes(query) ||
+               item.category.toLowerCase().includes(query) ||
+               item.keywords.includes(query);
+      });
+    }
 
     function openCommandPalette() {
       $('#cmdOverlay').classList.add('active');
@@ -3131,59 +3188,66 @@
     }
 
     function renderCommandList() {
-      const query = $('#cmdInputField').value.toLowerCase().trim();
+      const query = $('#cmdInputField') ? $('#cmdInputField').value.toLowerCase().trim() : '';
       const listContainer = $('#cmdItemsList');
-      const matches = COMMANDS.filter(c => c.id.includes(query) || c.label.toLowerCase().includes(query));
+      const matches = getMatchingSearchResults();
 
       if (selectedCommandIndex >= matches.length) selectedCommandIndex = Math.max(0, matches.length - 1);
       listContainer.innerHTML = '';
 
       if (!matches.length) {
-        listContainer.innerHTML = '<div style="padding:16px; text-align:center; color:var(--text-dim); font-family:var(--mono); font-size:0.75rem">No matching commands</div>';
+        listContainer.innerHTML = '<div style="padding:24px; text-align:center; color:var(--text-dim); font-family:var(--mono); font-size:0.8rem">No search results matching "' + escapeHtml(query) + '"</div>';
         return;
       }
 
-      matches.forEach((cmd, idx) => {
+      matches.forEach((item, idx) => {
         const row = document.createElement('div');
         row.className = 'cmd-item-row' + (idx === selectedCommandIndex ? ' selected' : '');
         row.setAttribute('role', 'option');
         row.setAttribute('aria-selected', idx === selectedCommandIndex ? 'true' : 'false');
-        row.innerHTML = `<span>${escapeHtml(cmd.label)}</span><span class="cmd-key-tag">${cmd.id}</span>`;
-        row.addEventListener('click', () => { closeCommandPalette(); cmd.action(); });
+        row.innerHTML = `
+          <div style="display:flex; flex-direction:column; gap:2px; text-align:left">
+            <span style="font-weight:600; color:var(--paper); font-size:0.88rem">${escapeHtml(item.label)}</span>
+            <span style="font-size:0.72rem; color:var(--text-dim)">${escapeHtml(item.subtext)}</span>
+          </div>
+          <span class="cmd-key-tag" style="font-size:0.65rem; background:rgba(224,83,21,0.15); color:var(--accent); border:1px solid var(--accent); padding:2px 8px; border-radius:4px">${escapeHtml(item.category)}</span>
+        `;
+        row.addEventListener('click', () => { closeCommandPalette(); item.action(); });
         row.addEventListener('mouseenter', () => { selectedCommandIndex = idx; renderCommandList(); });
         listContainer.appendChild(row);
       });
     }
 
-    $('#cmdInputField').addEventListener('input', () => {
-      selectedCommandIndex = 0;
-      renderCommandList();
-    });
+    if ($('#cmdInputField')) {
+      $('#cmdInputField').addEventListener('input', () => {
+        selectedCommandIndex = 0;
+        renderCommandList();
+      });
 
-    $('#cmdInputField').addEventListener('keydown', (e) => {
-      const query = $('#cmdInputField').value.toLowerCase().trim();
-      const matches = COMMANDS.filter(c => c.id.includes(query) || c.label.toLowerCase().includes(query));
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        selectedCommandIndex = Math.min(selectedCommandIndex + 1, matches.length - 1);
-        renderCommandList();
-        $$('.cmd-item-row.selected')[0]?.scrollIntoView({ block: 'nearest' });
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        selectedCommandIndex = Math.max(selectedCommandIndex - 1, 0);
-        renderCommandList();
-        $$('.cmd-item-row.selected')[0]?.scrollIntoView({ block: 'nearest' });
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        if (matches[selectedCommandIndex]) {
-          closeCommandPalette();
-          matches[selectedCommandIndex].action();
+      $('#cmdInputField').addEventListener('keydown', (e) => {
+        const matches = getMatchingSearchResults();
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          selectedCommandIndex = Math.min(selectedCommandIndex + 1, matches.length - 1);
+          renderCommandList();
+          $$('.cmd-item-row.selected')[0]?.scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          selectedCommandIndex = Math.max(selectedCommandIndex - 1, 0);
+          renderCommandList();
+          $$('.cmd-item-row.selected')[0]?.scrollIntoView({ block: 'nearest' });
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (matches[selectedCommandIndex]) {
+            closeCommandPalette();
+            matches[selectedCommandIndex].action();
+          }
         }
-      }
-    });
+      });
+    }
 
-    $('#cmdToggleBtn').addEventListener('click', openCommandPalette);
-    $('#cmdOverlay').addEventListener('click', (e) => { if (e.target === $('#cmdOverlay')) closeCommandPalette(); });
+    if ($('#cmdToggleBtn')) $('#cmdToggleBtn').addEventListener('click', openCommandPalette);
+    if ($('#cmdOverlay')) $('#cmdOverlay').addEventListener('click', (e) => { if (e.target === $('#cmdOverlay')) closeCommandPalette(); });
 
     document.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
