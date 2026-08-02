@@ -87,203 +87,7 @@
       --radius-lg: 16px;
     }
 
-    /* =============================================
-       MASTER LIGHT THEME DESIGN PASS
-    ============================================= */
-    body.light-theme {
-      --bg-dark: #FAFAFC;
-      --surface-1: #FFFFFF;
-      --surface-2: #F4F4F7;
-      --surface-3: #E4E4E9;
-      --paper: #09090B;
-      --text-muted: #27272A;
-      --text-dim: #52525B;
-      --border: #E4E4E7;
-      --border-light: #D4D4D8;
-    }
 
-    /* 1. TOP MARQUEE TICKER BAR */
-    body.light-theme .ticker {
-      background: #09090B !important;
-      color: #F4F4F5 !important;
-      border-bottom: 1px solid #27272A !important;
-    }
-
-    body.light-theme .ticker-item {
-      color: #D4D4D8 !important;
-    }
-
-    /* 2. FROSTED ICE GLASS NAVBAR */
-    body.light-theme nav,
-    body.light-theme .navbar {
-      background: rgba(250, 250, 252, 0.88) !important;
-      backdrop-filter: blur(16px) !important;
-      -webkit-backdrop-filter: blur(16px) !important;
-      border-bottom: 1px solid #E4E4E7 !important;
-      box-shadow: 0 4px 25px -4px rgba(9, 9, 11, 0.05) !important;
-    }
-
-    body.light-theme .nav-logo span {
-      color: #09090B !important;
-    }
-
-    body.light-theme .nav-links a {
-      color: #27272A !important;
-      font-weight: 600 !important;
-      background: transparent !important;
-      border: none !important;
-    }
-
-    body.light-theme .nav-links a:hover {
-      color: var(--accent) !important;
-    }
-
-    /* 3. HERO SECTION FIXES (NO GREY BOXES AROUND LABELS) */
-    body.light-theme .hero-main-title {
-      color: #09090B !important;
-    }
-
-    body.light-theme .hero-subtitle-outline {
-      color: transparent !important;
-      -webkit-text-stroke: 1.8px #3F3F46 !important;
-    }
-
-    body.light-theme .hero-col-label {
-      background: transparent !important;
-      border: none !important;
-      color: #71717A !important;
-      padding: 0 !important;
-      font-weight: 700 !important;
-      font-family: var(--mono) !important;
-      text-transform: uppercase !important;
-      font-size: 0.72rem !important;
-      letter-spacing: 0.08em !important;
-    }
-
-    body.light-theme .hero-tag-end,
-    body.light-theme .section-title-tag,
-    body.light-theme .cmd-kbd {
-      color: #27272A !important;
-      background: #F4F4F7 !important;
-      border: 1px solid #E4E4E7 !important;
-    }
-
-    body.light-theme .status-pill {
-      background: rgba(224, 83, 21, 0.08) !important;
-      color: var(--accent) !important;
-      border: 1px solid rgba(224, 83, 21, 0.25) !important;
-      font-weight: 600 !important;
-    }
-
-    /* 4. LET'S CONNECT HEADLINE & OUTLINE FIX */
-    body.light-theme .contact-headline {
-      color: #09090B !important;
-    }
-
-    body.light-theme .contact-headline .outline {
-      color: transparent !important;
-      -webkit-text-stroke: 1.8px #09090B !important;
-    }
-
-    /* 5. CARDS & HOVER STATES (NO WHITE PSEUDO-ELEMENT OVERLAY WASH OUT) */
-    body.light-theme .bento-contact-card::before,
-    body.light-theme .project-bench-card::before,
-    body.light-theme .approach-card-v2::before,
-    body.light-theme .skill-card-box::before {
-      display: none !important;
-    }
-
-    body.light-theme .bento-contact-card,
-    body.light-theme .project-bench-card,
-    body.light-theme .approach-card-v2,
-    body.light-theme .cmd-modal-box,
-    body.light-theme .modal-content-card,
-    body.light-theme .skill-card-box {
-      background: #FFFFFF !important;
-      border: 1px solid #E4E4E7 !important;
-      box-shadow: 0 4px 20px -3px rgba(9, 9, 11, 0.05) !important;
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-
-    body.light-theme .bento-contact-card:hover,
-    body.light-theme .project-bench-card:hover,
-    body.light-theme .approach-card-v2:hover,
-    body.light-theme .skill-card-box:hover {
-      background: #FFFFFF !important;
-      border-color: var(--accent) !important;
-      box-shadow: 0 14px 35px -6px rgba(224, 83, 21, 0.24) !important;
-      transform: translateY(-4px) !important;
-    }
-
-    /* 6. TYPOGRAPHY & SVG ICONS */
-    body.light-theme .section-title,
-    body.light-theme .bento-card-title,
-    body.light-theme .project-card-title,
-    body.light-theme .approach-title-v2,
-    body.light-theme .skill-card-title,
-    body.light-theme h1, body.light-theme h2, body.light-theme h3, body.light-theme h4 {
-      color: #09090B !important;
-      font-weight: 700 !important;
-    }
-
-    body.light-theme .bento-card-desc,
-    body.light-theme .project-card-desc,
-    body.light-theme .approach-desc-v2,
-    body.light-theme .skill-item-name,
-    body.light-theme p, body.light-theme li {
-      color: #27272A !important;
-    }
-
-    body.light-theme .bento-contact-card .bento-card-top span {
-      color: #52525B !important;
-    }
-
-    body.light-theme .bento-contact-card svg path[fill="#F4F4F5"],
-    body.light-theme .bento-contact-card svg path[fill="#ffffff"],
-    body.light-theme .bento-contact-card svg text[fill="#F4F4F5"] {
-      fill: #09090B !important;
-    }
-
-    body.light-theme .bento-contact-card svg path[stroke="#F4F4F5"] {
-      stroke: #09090B !important;
-    }
-
-    /* 7. BUTTONS & PILLS */
-    body.light-theme .bento-pill-btn,
-    body.light-theme .btn-secondary,
-    body.light-theme .cmd-btn,
-    body.light-theme .tag-pill {
-      background: #FFFFFF !important;
-      color: #09090B !important;
-      border: 1.5px solid #09090B !important;
-      font-weight: 600 !important;
-    }
-
-    body.light-theme .bento-pill-btn:hover,
-    body.light-theme .btn-secondary:hover,
-    body.light-theme .cmd-btn:hover,
-    body.light-theme .tag-pill:hover {
-      background: #09090B !important;
-      color: #FFFFFF !important;
-      border-color: #09090B !important;
-    }
-
-    body.light-theme .mascot-speech-bubble {
-      background: #FFFFFF !important;
-      color: #09090B !important;
-      border: 1px solid #D4D4D8 !important;
-      box-shadow: 0 8px 30px rgba(9, 9, 11, 0.08) !important;
-    }
-
-    body.light-theme .cmd-input-field {
-      background: #FAFAFC !important;
-      color: #09090B !important;
-      border: 1px solid #D4D4D8 !important;
-    }
-
-    body.light-theme .cmd-item-row.selected {
-      background: #F4F4F7 !important;
-    }
 
     *,
     *::before,
@@ -2397,14 +2201,9 @@
         <li><a href="#skills">Capabilities</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <div style="display:flex; align-items:center; gap:8px">
-        <button class="cmd-btn" id="cmdToggleBtn" aria-label="Open command palette (Ctrl+K)">
-          ⌘ Search <span class="cmd-kbd">Ctrl+K</span>
-        </button>
-        <button class="cmd-btn" id="themeToggleBtn" onclick="togglePortfolioTheme()" aria-label="Toggle light/dark theme" title="Toggle theme" style="padding:6px 10px; display:inline-flex; align-items:center; justify-content:center">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        </button>
-      </div>
+      <button class="cmd-btn" id="cmdToggleBtn" aria-label="Open command palette (Ctrl+K)">
+        ⌘ Search <span class="cmd-kbd">Ctrl+K</span>
+      </button>
     </div>
   </nav>
 
@@ -3474,30 +3273,11 @@
       }
     });
 
-    /* =============================================
-       LIGHT / DARK THEME TOGGLE ENGINE
-    ============================================= */
-    const SUN_SVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
-    const MOON_SVG = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
-
-    function togglePortfolioTheme() {
-      document.body.classList.toggle('light-theme');
-      const isLight = document.body.classList.contains('light-theme');
-      localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
-      const btn = $('#themeToggleBtn');
-      if (btn) btn.innerHTML = isLight ? MOON_SVG : SUN_SVG;
-      showToast('Switched to ' + (isLight ? 'Light' : 'Dark') + ' theme');
-    }
-
-    (function initSavedTheme() {
-      const btn = $('#themeToggleBtn');
-      if (localStorage.getItem('portfolio-theme') === 'light') {
-        document.body.classList.add('light-theme');
-        if (btn) btn.innerHTML = MOON_SVG;
-      } else {
-        if (btn) btn.innerHTML = SUN_SVG;
-      }
-    })();
+    /* Reset theme to 100% Dark Mode */
+    try {
+      localStorage.removeItem('portfolio-theme');
+      document.body.classList.remove('light-theme');
+    } catch(e) {}
 
     /* =============================================
        CONTACT FORM & EMAIL ACTION
