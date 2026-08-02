@@ -84,6 +84,18 @@
       --radius-lg: 16px;
     }
 
+    body.light-theme {
+      --bg-dark: #F4F4F8;
+      --surface-1: #FFFFFF;
+      --surface-2: #F0F0F5;
+      --surface-3: #E4E4EB;
+      --paper: #121215;
+      --text-muted: #64748B;
+      --text-dim: #94A3B8;
+      --border: #E2E8F0;
+      --border-light: #CBD5E1;
+    }
+
     *,
     *::before,
     *::after {
@@ -2196,9 +2208,14 @@
         <li><a href="#skills">Capabilities</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="cmd-btn" id="cmdToggleBtn" aria-label="Open command palette (Ctrl+K)">
-        ⌘ Search <span class="cmd-kbd">Ctrl+K</span>
-      </button>
+      <div style="display:flex; align-items:center; gap:8px">
+        <button class="cmd-btn" id="cmdToggleBtn" aria-label="Open command palette (Ctrl+K)">
+          ⌘ Search <span class="cmd-kbd">Ctrl+K</span>
+        </button>
+        <button class="cmd-btn" id="themeToggleBtn" onclick="togglePortfolioTheme()" aria-label="Toggle light/dark theme" title="Toggle theme" style="padding:6px 10px">
+          ☀️
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -2596,7 +2613,7 @@
             </div>
             <div class="bento-card-body">
               <div class="bento-card-title">credly.com/users/rohith-pontapalli</div>
-              <div class="bento-card-desc">Verify official badges &amp; certifications from EY, IBM, &amp; Microsoft.
+              <div class="bento-card-desc">Verify official digital badges and credentials on Credly.
               </div>
             </div>
             <div class="bento-pill-btn">Verify Badges ↗</div>
@@ -3267,6 +3284,26 @@
         else if ($('#projectModal').classList.contains('active')) closeProjectModal();
       }
     });
+
+    /* =============================================
+       LIGHT / DARK THEME TOGGLE ENGINE
+    ============================================= */
+    function togglePortfolioTheme() {
+      document.body.classList.toggle('light-theme');
+      const isLight = document.body.classList.contains('light-theme');
+      localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+      const btn = $('#themeToggleBtn');
+      if (btn) btn.innerHTML = isLight ? '🌙' : '☀️';
+      showToast('Switched to ' + (isLight ? 'Light' : 'Dark') + ' theme');
+    }
+
+    (function initSavedTheme() {
+      if (localStorage.getItem('portfolio-theme') === 'light') {
+        document.body.classList.add('light-theme');
+        const btn = $('#themeToggleBtn');
+        if (btn) btn.innerHTML = '🌙';
+      }
+    })();
 
     /* =============================================
        CONTACT FORM & EMAIL ACTION

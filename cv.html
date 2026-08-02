@@ -327,10 +327,10 @@
 
   <!-- Top Action Toolbar -->
   <div class="cv-toolbar">
-    <a href="https://rohith.is-a.dev/" class="nav-btn">
+    <button onclick="returnToPortfolio()" class="nav-btn">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Portfolio
-    </a>
+    </button>
     <div class="nav-actions">
       <button class="nav-btn" onclick="toggleTheme()" id="themeToggleBtn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -504,14 +504,25 @@
       <h3 class="section-title">Certifications & Achievements</h3>
       <ul class="entry-bullets">
         <li><strong>TechSprint 2026 Hackathon Winner</strong>: Awarded <em>Certificate of Excellence</em> for MVGR NexUs Android Application after live judge demonstration.</li>
-        <li><strong>Kaggle FastMCP Capstone AI Architecture</strong>: Selected &amp; built TruthLens autonomous multi-agent verification system powered by FastMCP protocols.</li>
-        <li><strong>Verified Professional Credentials (Credly)</strong>: Official verified credentials from <strong>EY</strong>, <strong>IBM</strong>, and <strong>Microsoft</strong> (<a href="https://www.credly.com/users/rohith-pontapalli" target="_blank" style="color: var(--accent); text-decoration: none;">credly.com/users/rohith-pontapalli ↗</a>).</li>
+        <li><strong>Professional Licenses & Certifications</strong>: To view verified technical certificates, awards, and credentials, visit my <a href="https://in.linkedin.com/in/pontapalli-rohith/details/certifications/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn Certifications Page ↗</a>.</li>
+        <li><strong>Verified Digital Badges</strong>: Official verified credentials on <a href="https://www.credly.com/users/rohith-pontapalli" target="_blank" style="color: var(--accent); text-decoration: none;">Credly Profile ↗</a>.</li>
       </ul>
     </section>
 
   </main>
 
   <script>
+    function returnToPortfolio() {
+      if (window.opener && !window.opener.closed) {
+        try {
+          window.opener.focus();
+          window.close();
+          return;
+        } catch (e) {}
+      }
+      window.location.href = 'https://rohith.is-a.dev/';
+    }
+
     function toggleTheme() {
       document.body.classList.toggle('light-theme');
       const isLight = document.body.classList.contains('light-theme');
