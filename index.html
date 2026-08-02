@@ -88,27 +88,53 @@
     }
 
     /* =============================================
-       HIGH-CONTRAST MASTER LIGHT THEME OVERRIDES
+       SIGNATURE ELECTRIC ORANGE + ICE OBSIDIAN LIGHT THEME
     ============================================= */
     body.light-theme {
-      --bg-dark: #F8FAFC;
+      --bg-dark: #FAFAFC;
       --surface-1: #FFFFFF;
-      --surface-2: #F1F5F9;
-      --surface-3: #E2E8F0;
-      --paper: #0F172A;
-      --text-muted: #334155;
-      --text-dim: #64748B;
-      --border: #CBD5E1;
-      --border-light: #E2E8F0;
+      --surface-2: #F4F4F7;
+      --surface-3: #E4E4E9;
+      --paper: #09090B;
+      --text-muted: #27272A;
+      --text-dim: #52525B;
+      --border: #E4E4E7;
+      --border-light: #D4D4D8;
     }
 
+    /* NAVBAR FROSTED ICE GLASS */
+    body.light-theme nav,
+    body.light-theme .navbar {
+      background: rgba(250, 250, 252, 0.85) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border-bottom: 1px solid rgba(228, 228, 231, 0.8) !important;
+      box-shadow: 0 4px 25px -4px rgba(9, 9, 11, 0.04) !important;
+    }
+
+    body.light-theme .nav-logo span {
+      color: #09090B !important;
+    }
+
+    body.light-theme .nav-links a {
+      color: #27272A !important;
+      font-weight: 500 !important;
+      background: transparent !important;
+      border: none !important;
+    }
+
+    body.light-theme .nav-links a:hover {
+      color: var(--accent) !important;
+    }
+
+    /* HERO STYLING */
     body.light-theme .hero-main-title {
-      color: #0F172A !important;
+      color: #09090B !important;
     }
 
     body.light-theme .hero-subtitle-outline {
       color: transparent !important;
-      -webkit-text-stroke: 1.8px #334155 !important;
+      -webkit-text-stroke: 1.8px #3F3F46 !important;
     }
 
     body.light-theme .hero-tag-end,
@@ -116,11 +142,12 @@
     body.light-theme .status-pill,
     body.light-theme .section-title-tag,
     body.light-theme .cmd-kbd {
-      color: #334155 !important;
-      background: #F1F5F9 !important;
-      border-color: #CBD5E1 !important;
+      color: #27272A !important;
+      background: #F4F4F7 !important;
+      border: 1px solid #E4E4E7 !important;
     }
 
+    /* CARDS: OBSIDIAN-EDGED ICE PORCELAIN WITH NEON ORANGE GLOW HOVER */
     body.light-theme .bento-contact-card,
     body.light-theme .project-bench-card,
     body.light-theme .approach-card-v2,
@@ -128,75 +155,91 @@
     body.light-theme .modal-content-card,
     body.light-theme .skill-card-box,
     body.light-theme .ticker {
-      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08) !important;
       background: #FFFFFF !important;
-      border-color: #E2E8F0 !important;
+      border: 1px solid #E4E4E7 !important;
+      box-shadow: 0 4px 20px -3px rgba(9, 9, 11, 0.05) !important;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
+    body.light-theme .bento-contact-card:hover,
+    body.light-theme .project-bench-card:hover,
+    body.light-theme .approach-card-v2:hover,
+    body.light-theme .skill-card-box:hover {
+      background: #FFFFFF !important;
+      border-color: var(--accent) !important;
+      box-shadow: 0 14px 35px -6px rgba(224, 83, 21, 0.24) !important;
+      transform: translateY(-4px) !important;
+    }
+
+    /* HEADINGS & TYPOGRAPHY */
+    body.light-theme .section-title,
     body.light-theme .bento-card-title,
     body.light-theme .project-card-title,
     body.light-theme .approach-title-v2,
     body.light-theme .skill-card-title,
-    body.light-theme .nav-logo span,
     body.light-theme h1, body.light-theme h2, body.light-theme h3, body.light-theme h4 {
-      color: #0F172A !important;
+      color: #09090B !important;
+      font-weight: 700 !important;
     }
 
     body.light-theme .bento-card-desc,
     body.light-theme .project-card-desc,
     body.light-theme .approach-desc-v2,
     body.light-theme .skill-item-name,
-    body.light-theme p, body.light-theme li, body.light-theme span {
-      color: #334155 !important;
+    body.light-theme p, body.light-theme li {
+      color: #27272A !important;
     }
 
-    body.light-theme .accent-letter,
-    body.light-theme .accent-text,
-    body.light-theme .section-title-accent {
-      color: var(--accent) !important;
+    body.light-theme .bento-contact-card .bento-card-top span {
+      color: #52525B !important;
     }
 
-    body.light-theme .tag-pill,
+    /* SVG ICON CONTRAST IN LIGHT MODE */
+    body.light-theme .bento-contact-card svg path[fill="#F4F4F5"],
+    body.light-theme .bento-contact-card svg path[fill="#ffffff"],
+    body.light-theme .bento-contact-card svg text[fill="#F4F4F5"] {
+      fill: #09090B !important;
+    }
+
+    body.light-theme .bento-contact-card svg path[stroke="#F4F4F5"] {
+      stroke: #09090B !important;
+    }
+
+    /* BUTTONS & INTERACTIVE PILLS */
     body.light-theme .bento-pill-btn,
     body.light-theme .btn-secondary,
     body.light-theme .cmd-btn,
-    body.light-theme .nav-links a {
-      background: #F1F5F9 !important;
-      color: #0F172A !important;
-      border-color: #CBD5E1 !important;
+    body.light-theme .tag-pill {
+      background: #F4F4F7 !important;
+      color: #09090B !important;
+      border: 1px solid #D4D4D8 !important;
+      font-weight: 600 !important;
     }
 
-    body.light-theme .tag-pill:hover,
     body.light-theme .bento-pill-btn:hover,
     body.light-theme .btn-secondary:hover,
     body.light-theme .cmd-btn:hover,
-    body.light-theme .nav-links a:hover {
-      background: #E2E8F0 !important;
+    body.light-theme .tag-pill:hover {
+      background: #E4E4E9 !important;
       color: var(--accent) !important;
       border-color: var(--accent) !important;
     }
 
     body.light-theme .mascot-speech-bubble {
       background: #FFFFFF !important;
-      color: #0F172A !important;
-      border-color: #CBD5E1 !important;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-    }
-
-    body.light-theme navbar,
-    body.light-theme .navbar {
-      background: rgba(248, 250, 252, 0.92) !important;
-      border-bottom: 1px solid #CBD5E1 !important;
+      color: #09090B !important;
+      border: 1px solid #D4D4D8 !important;
+      box-shadow: 0 8px 30px rgba(9, 9, 11, 0.08) !important;
     }
 
     body.light-theme .cmd-input-field {
-      background: #F8FAFC !important;
-      color: #0F172A !important;
-      border-color: #CBD5E1 !important;
+      background: #FAFAFC !important;
+      color: #09090B !important;
+      border: 1px solid #D4D4D8 !important;
     }
 
     body.light-theme .cmd-item-row.selected {
-      background: #F1F5F9 !important;
+      background: #F4F4F7 !important;
     }
 
     *,
