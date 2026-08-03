@@ -7,13 +7,13 @@
       linkedin: 'https://www.linkedin.com/in/pontapalli-rohith/',
       tickerItems: [
         '3rd Year Computer Science Student',
-        'Learning AI & Systems',
-        'Turning Ideas into Working Experiments',
-        'Exploring Ideas ➔ Learning & Thinking ➔ Building Slowly',
+        'Building Software & Exploring AI',
+        'Curious enough to build it. Persistent enough to finish it.',
         'Custom Domain: rohith.is-a.dev',
         'Live Platform: nccdigi.vercel.app',
         'TruthLens Kaggle Capstone (FastMCP)',
-        'React & Supabase Stack'
+        'React 19 & Supabase Stack',
+        'MVGR NexUs Campus App (Flutter)'
       ],
       filters: ['All', 'Live', 'AI', 'Full-Stack', 'Mobile'],
       projects: [
@@ -24,7 +24,7 @@
           featured: true,
           title: 'NCC Digital Training Platform',
           summary: 'Full-stack React 19 & Supabase PWA digitizing National Cadet Corps training operations — syllabus tracking, drill exams, wing analytics, and offline sync.',
-          description: 'Production PWA built for the National Cadet Corps. Powered by React 19, Vite, and TailwindCSS v4 on the frontend, backed by Supabase Postgres with 16 structured SQL migrations enforcing Row Level Security (RLS). Features instructor dashboards with Recharts analytics, drill exam engines, offline-first IndexedDB sync via Dexie.js, and real-time Socket.IO notifications.',
+          description: 'Problem: Cadet attendance and drill progress were tracked manually on paper across 3 wings (Army, Navy, Air), causing record delays and loss of training data.\n\nSolution: Built a full-stack progressive web application with React 19 and Supabase Postgres featuring 16 migration tables and granular Row Level Security (RLS).\n\nTechnologies: React 19, Supabase, Postgres SQL, TailwindCSS v4, Vite, Dexie.js IndexedDB, Socket.IO.\n\nOutcome: Deployed live at nccdigi.vercel.app with multi-wing attendance analytics and offline-first IndexedDB sync.',
           tags: ['React 19', 'Supabase', 'Postgres SQL', 'TailwindCSS v4', 'Vite', 'PWA', 'Recharts'],
           highlights: [
             'Live production deployment on Vercel at nccdigi.vercel.app',
@@ -45,7 +45,7 @@
           featured: true,
           title: 'TruthLens AI Agent',
           summary: 'Multi-step AI agent pipeline in Python for flagging potentially misleading multimodal content using FastMCP protocol.',
-          description: 'Explored a multi-step agent pipeline concept in Python aimed at flagging potentially misleading multimodal content. Experimented with the FastMCP protocol to coordinate simple agent-to-agent task handoffs as an introduction to multi-agent system design. Published working demo on Hugging Face Spaces.',
+          description: 'Problem: Unverified online claims and manipulated media spread rapidly without instant contextual verification.\n\nSolution: Designed a multi-step AI agent pipeline in Python using the FastMCP protocol to coordinate subagent verification task handoffs.\n\nTechnologies: Python, FastMCP Protocol, Hugging Face Spaces, Agentic AI.\n\nOutcome: Published an interactive working demo on Hugging Face Spaces for the Kaggle × Google AI Agents Capstone.',
           tags: ['Python', 'FastMCP', 'Google AI Capstone', 'HuggingFace', 'Agentic AI'],
           highlights: [
             'Kaggle × Google AI Agents Capstone project',
@@ -64,7 +64,7 @@
           categories: ['mobile'],
           title: 'MVGR NexUs — Campus Companion App',
           summary: 'Flutter-based Android app centralizing campus information for MVGR students (TechSprint 2026 Certificate of Excellence).',
-          description: 'Built a Flutter-based Android app to centralize campus information for MVGR students, shipping a working, installable APK. Implemented event announcements, academic resource access, and campus navigation as core features. Presented the project to hackathon judges with a live demo; awarded Certificate of Excellence at TechSprint 2026.',
+          description: 'Problem: Campus event announcements, academic timetables, and venue maps were scattered across multiple unofficial channels.\n\nSolution: Created a cross-platform Flutter application that unifies announcements, academic resources, and campus maps in a clean mobile interface.\n\nTechnologies: Flutter, Dart, Android APK, Material 3 UI.\n\nOutcome: Delivered a working Android APK and presented live to hackathon judges; awarded Certificate of Excellence at TechSprint 2026.',
           tags: ['Flutter', 'Dart', 'Android APK', 'Hackathon Award'],
           highlights: [
             'Certificate of Excellence — TechSprint 2026 Hackathon',
@@ -78,33 +78,29 @@
           id: 'ananta',
           number: '04',
           categories: ['ai'],
-          title: 'Ananta: Proactive AI Execution Engine',
-          summary: 'Local AI assistant with sandboxed Python execution, voice emotion synthesis, and adaptive vector memory powered by Llama 3 via Ollama.',
-          description: 'Proactive local AI assistant combining Python, FastAPI, and Llama 3 running locally through Ollama. Features multi-turn adaptive memory with vector storage, real-time sandboxed Python code execution, and emotion-aware voice processing.',
-          tags: ['Python', 'FastAPI', 'Llama 3', 'Ollama', 'Vector DB', 'PyAudio'],
+          title: 'Ananta: Local AI Assistant',
+          summary: 'Local AI assistant with sandboxed Python code execution, voice interaction, and adaptive vector memory.',
+          description: 'Problem: Cloud-dependent AI coding tools often suffer from network latency, privacy concerns, and lack of persistent local context.\n\nSolution: Built a lightweight local AI assistant powered by FastAPI and open-weights LLMs via Ollama, featuring sandboxed code execution and vector memory.\n\nTechnologies: Python, FastAPI, Ollama, Vector DB, PyAudio, Local LLMs.\n\nOutcome: Functional local assistant capable of running Python code snippets in a local environment with long-term memory.',
+          tags: ['Python', 'FastAPI', 'Ollama', 'Vector DB', 'PyAudio', 'Local LLMs'],
           highlights: [
-            'Real-time sandboxed code generation & execution',
+            'Real-time sandboxed code execution',
             'Adaptive vector memory for long-term user context',
-            'Emotion-aware voice input & speech synthesis'
+            'Voice input & speech synthesis pipeline'
           ],
           githubUrl: 'https://github.com/Rohith-Shimori/Ananta_Rebirth'
         }
       ],
       skillsA: [
-        { name: 'Python Development', level: 'ACTIVELY IMPROVING', pct: 0.82, projects: ['truthlens', 'taskflow', 'ananta'] },
-        { name: 'JavaScript & React', level: 'APPLIED LEARNING', pct: 0.78, projects: ['ncc', 'votepath'] },
-        { name: 'Dart & Flutter', level: 'MOBILE DEV', pct: 0.80, projects: ['nexus'] },
-        { name: 'HTML5 & CSS3', level: 'FOUNDATIONAL', pct: 0.85, projects: ['ncc', 'votepath'] },
-        { name: 'Supabase & PostgreSQL', level: 'BACKEND BASICS', pct: 0.78, projects: ['ncc'] },
-        { name: 'REST APIs', level: 'INTEGRATION', pct: 0.80, projects: ['ncc', 'nexus'] }
+        { name: 'Core Languages', tags: ['Python', 'JavaScript (ES6+)', 'TypeScript', 'Dart', 'SQL', 'C'], projects: ['ncc', 'truthlens', 'nexus', 'ananta'] },
+        { name: 'Frontend Engineering', tags: ['React 19', 'Vite', 'TailwindCSS v4', 'Mobile-First PWA', 'Dexie.js'], projects: ['ncc'] },
+        { name: 'Mobile Development', tags: ['Flutter', 'Dart', 'Android APK', 'Material 3'], projects: ['nexus'] },
+        { name: 'UI / UX Architecture', tags: ['Responsive CSS', 'Design Systems', 'WCAG 2.1 AA', 'Accessibility'], projects: ['ncc', 'nexus'] }
       ],
       skillsB: [
-        { name: 'AI-Assisted Workflows', level: 'PAIR PROGRAMMING', pct: 0.90, projects: ['ncc', 'truthlens', 'nexus'] },
-        { name: 'Git & GitHub', level: 'VERSION CONTROL', pct: 0.88, projects: ['ncc', 'truthlens', 'nexus', 'taskflow'] },
-        { name: 'Vercel Deployment', level: 'LIVE HOISTING', pct: 0.88, projects: ['ncc'] },
-        { name: 'HuggingFace Spaces', level: 'DEMO DEPLOY', pct: 0.82, projects: ['truthlens'] },
-        { name: 'VS Code & Tools', level: 'DEVELOPER ENVIRONMENT', pct: 0.90, projects: ['ncc', 'nexus'] },
-        { name: 'SDLC Fundamentals', level: 'SOFTWARE LIFE CYCLE', pct: 0.80, projects: ['ncc', 'nexus'] }
+        { name: 'Backend & Database Systems', tags: ['Supabase', 'PostgreSQL', 'Node.js', 'Express', 'Row Level Security (RLS)'], projects: ['ncc'] },
+        { name: 'AI & Multi-Agent Protocols', tags: ['FastMCP Protocol', 'Agentic AI Pipelines', 'Hugging Face Spaces', 'Ollama Local LLMs'], projects: ['truthlens', 'ananta'] },
+        { name: 'DevOps & Cloud Hosting', tags: ['Vercel PWA', 'Cloudflare Edge', 'GitHub Actions', 'Docker'], projects: ['ncc', 'truthlens'] },
+        { name: 'Tooling & Methodology', tags: ['Git & GitHub Workflows', 'VS Code', 'AI-Assisted Pair Programming', 'Linux Shell'], projects: ['ncc', 'truthlens', 'nexus', 'ananta'] }
       ]
     };
 
@@ -360,28 +356,29 @@
     });
 
     /* =============================================
-       SKILLS RENDERING & INTERACTIVE HIGHLIGHTING
+       SKILLS RENDERING (CLEAN 2-COLUMN LAYOUT)
     ============================================= */
     function renderSkillsGroup(containerId, skillsList) {
       const container = $('#' + containerId);
+      if (!container) return;
+      container.innerHTML = '';
       skillsList.forEach(sk => {
         const row = document.createElement('div');
         row.className = 'skill-row';
         row.tabIndex = 0;
         row.dataset.projects = JSON.stringify(sk.projects);
         row.setAttribute('role', 'button');
-        row.setAttribute('aria-label', sk.name + ' — ' + sk.level);
+        row.setAttribute('aria-label', sk.name + ': ' + sk.tags.join(', '));
 
-        row.innerHTML = `
-      <span class="skill-name">${escapeHtml(sk.name)}</span>
-      <div class="skill-meta">
-        <span class="skill-badge">${sk.level}</span>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" style="width: ${sk.pct * 100}%"></div>
-        </div>
-      </div>
-    `;
+        let html = '<div style="display:flex; flex-direction:column; gap:4px; flex:1">';
+        html += '<span class="skill-name" style="font-size:0.85rem; font-weight:700; color:var(--paper)">' + escapeHtml(sk.name) + '</span>';
+        html += '<div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:4px">';
+        sk.tags.forEach(t => {
+          html += '<span class="card-tag" style="font-size:0.58rem; padding:3px 8px; background:var(--surface-2); border-color:var(--border)">' + escapeHtml(t) + '</span>';
+        });
+        html += '</div></div>';
 
+        row.innerHTML = html;
         row.addEventListener('click', () => handleSkillHighlight(sk));
         row.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSkillHighlight(sk); });
         container.appendChild(row);
@@ -390,22 +387,10 @@
     renderSkillsGroup('skillsColA', PORTFOLIO_DATA.skillsA);
     renderSkillsGroup('skillsColB', PORTFOLIO_DATA.skillsB);
 
-    // Animate Skill Bars on Scroll
-    const skillBarsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.skill-bar-fill').forEach(fill => fill.classList.add('active'));
-          skillBarsObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    $$('#skillsColA, #skillsColB').forEach(col => skillBarsObserver.observe(col));
-
     function handleSkillHighlight(skill) {
       $$('.skill-row').forEach(r => r.classList.remove('highlighted'));
       $$('.project-card').forEach(c => { c.style.boxShadow = ''; c.style.opacity = ''; });
 
-      // Highlight skill row
       $$('.skill-row').forEach(r => {
         try {
           const p = JSON.parse(r.dataset.projects || '[]');
@@ -413,7 +398,6 @@
         } catch (e) { }
       });
 
-      // Highlight project cards
       $$('.project-card').forEach(c => {
         const titleEl = c.querySelector('.card-title');
         if (!titleEl) return;
@@ -426,7 +410,7 @@
       });
 
       smoothScrollTo('#projects');
-      showToast('Filtered projects using ' + skill.name);
+      showToast('Highlighted projects using ' + skill.name);
 
       setTimeout(() => {
         $$('.skill-row').forEach(r => r.classList.remove('highlighted'));

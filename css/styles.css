@@ -8,7 +8,7 @@
       --accent-hover: #FF6B26;
       --accent-glow: rgba(224, 83, 21, 0.25);
       --text-muted: #9DA3AE;
-      --text-dim: #6B7280;
+      --text-dim: #94A3B8;
       --border: #27272A;
       --border-light: #3F3F46;
       --mono: 'Space Mono', monospace;
@@ -17,6 +17,11 @@
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 16px;
+    }
+
+    *:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
     }
 
 
@@ -1355,10 +1360,76 @@
       }
     }
 
-    /* SKILLS SECTION */
+    /* SKILLS SECTION - 7 NATURAL DOMAIN GROUPS */
     #skills {
       border-bottom: 1px solid var(--border);
       padding-bottom: 80px;
+    }
+
+    .skills-categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-domain-card {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .skill-domain-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .skill-domain-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .skill-domain-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .skill-domain-title {
+      font-family: var(--display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--paper);
+      letter-spacing: -0.01em;
+    }
+
+    .skill-pills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag-pill {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      color: var(--paper);
+      background: var(--surface-2);
+      border: 1px solid var(--border-light);
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+    }
+
+    .skill-domain-card:hover .skill-tag-pill {
+      border-color: var(--accent);
+      color: var(--accent-hover);
     }
 
     .skills-columns {
@@ -1820,9 +1891,15 @@
     }
 
     .bento-contact-card:hover .bento-pill-btn {
-      background: var(--paper);
-      color: var(--bg-dark);
-      border-color: var(--paper);
+      background: rgba(224, 83, 21, 0.15);
+      color: var(--paper);
+      border-color: rgba(224, 83, 21, 0.4);
+    }
+
+    .bento-pill-btn:hover {
+      background: var(--accent) !important;
+      color: #FFFFFF !important;
+      border-color: var(--accent) !important;
     }
 
     /* Form Card */
