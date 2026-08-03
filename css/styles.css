@@ -2214,3 +2214,54 @@
       z-index: 0;
       opacity: 0.35;
     }
+
+    /* PERFECTED SLEEPING MASCOT Zzz FLOATING ANIMATION */
+    @keyframes sleepZ {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.5) rotate(-6deg);
+      }
+      25% {
+        opacity: 0.95;
+        transform: translate(6px, -16px) scale(0.9) rotate(4deg);
+      }
+      65% {
+        opacity: 0.8;
+        transform: translate(16px, -36px) scale(1.15) rotate(-4deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(24px, -56px) scale(1.35) rotate(6deg);
+      }
+    }
+
+    .zzz-particle {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-family: var(--mono);
+      font-weight: 800;
+      color: var(--accent);
+      pointer-events: none;
+      user-select: none;
+      animation: sleepZ 3.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+      letter-spacing: 0.05em;
+    }
+
+    .zzz-1 {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      animation-delay: 0s;
+    }
+
+    .zzz-2 {
+      font-size: 0.88rem;
+      color: var(--accent);
+      animation-delay: 1.05s;
+    }
+
+    .zzz-3 {
+      font-size: 1.08rem;
+      color: var(--paper);
+      animation-delay: 2.1s;
+    }
