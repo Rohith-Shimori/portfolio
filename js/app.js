@@ -300,7 +300,7 @@
       if (p.isLive) {
         bodyHtml += '<div style="margin-bottom:16px"><span class="card-live-badge">● LIVE PRODUCTION SYSTEM</span></div>';
       }
-      bodyHtml += '<div style="font-size:0.82rem; color:var(--text-muted); line-height:1.8; margin-bottom:24px">' + escapeHtml(p.description) + '</div>';
+      bodyHtml += '<div style="font-size:0.82rem; color:var(--text-muted); line-height:1.8; margin-bottom:24px; white-space:pre-line">' + escapeHtml(p.description) + '</div>';
 
       bodyHtml += '<div style="font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px">Key Features &amp; Architecture</div>';
       bodyHtml += '<ul style="list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:24px">';
