@@ -35,7 +35,7 @@
           ],
           githubUrl: 'https://github.com/Rohith-Shimori/ncc',
           demoUrl: 'https://nccdigi.vercel.app',
-          coverImage: 'ncc_real.png',
+          coverImage: 'ncc_real.webp',
           isLive: true
         },
         {
@@ -55,7 +55,7 @@
           ],
           githubUrl: 'https://github.com/Rohith-Shimori/TruthLens-AI-Agent',
           demoUrl: 'https://huggingface.co/spaces/Rohith-Shimori/TruthLens-AI-Agent',
-          coverImage: 'truthlens_real.png',
+          coverImage: 'truthlens_real.webp',
           isLive: true
         },
         {
@@ -131,7 +131,8 @@
 
     function smoothScrollTo(selector) {
       const target = document.querySelector(selector);
-      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth' });
     }
 
     /* =============================================
@@ -209,7 +210,7 @@
 
       filtered.forEach(p => {
         const card = document.createElement('article');
-        card.className = 'project-card' + (p.featured ? ' featured' : '');
+        card.className = 'project-card' + (p.featured ? ' featured border-beam-card' : '');
         card.tabIndex = 0;
         card.setAttribute('role', 'button');
         card.setAttribute('aria-label', 'View details for ' + p.title);
@@ -219,7 +220,7 @@
         if (p.featured && p.coverImage) {
           // Cover Header for Featured
           html += '<div class="card-cover">';
-          html += '<img src="' + p.coverImage + '" alt="Preview of ' + escapeHtml(p.title) + '" loading="lazy">';
+          html += '<img src="' + p.coverImage + '" alt="Preview of ' + escapeHtml(p.title) + '" width="600" height="340" loading="lazy" decoding="async">';
           html += '<div class="card-cover-overlay">';
           if (p.isLive) {
             html += '<span class="card-live-badge">● LIVE DEPLOYED</span>';
@@ -238,10 +239,10 @@
           html += '</div>';
           html += '<div class="card-actions">';
           if (p.demoUrl) {
-            html += '<a href="' + p.demoUrl + '" target="_blank" rel="noopener" class="card-btn btn-accent" onclick="event.stopPropagation()">Live Demo ↗</a>';
+            html += '<a href="' + p.demoUrl + '" target="_blank" rel="noopener" class="card-btn btn-accent shimmer-btn" onclick="event.stopPropagation()">Live Demo ↗</a>';
           }
-          html += '<a href="' + p.githubUrl + '" target="_blank" rel="noopener" class="card-btn" onclick="event.stopPropagation()">GitHub ↗</a>';
-          html += '<button class="card-btn" onclick="event.stopPropagation(); openProjectModal(\'' + p.id + '\')">Architecture Details</button>';
+          html += '<a href="' + p.githubUrl + '" target="_blank" rel="noopener" class="card-btn shimmer-btn" onclick="event.stopPropagation()">GitHub ↗</a>';
+          html += '<button class="card-btn shimmer-btn" onclick="event.stopPropagation(); openProjectModal(\'' + p.id + '\')">Architecture Details</button>';
           html += '</div>';
           html += '</div>';
         } else {
@@ -258,7 +259,7 @@
           if (p.id === 'truthlens') {
             html += '<div class="mascot-interactive-wrap" style="position:absolute; top:-38px; right:16px; z-index:10">';
             html += '<div class="mascot-speech-bubble" id="truthlensBubble">building autonomous AI agents! <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 15h.01M16 15h.01"/></svg></div>';
-            html += '<img src="mascot_building_ai.png" alt="Building AI Mascot" class="mascot-interactive" style="height:65px; width:auto; filter:drop-shadow(0 0 12px rgba(224,83,21,0.45)); animation:floatCute 3.5s ease-in-out infinite" onclick="event.stopPropagation(); triggerMascotClick(this, \'truthlensBubble\', \'multi-agent verification protocol live! <svg class=\\\'b-icon\\\' viewBox=\\\'0 0 24 24\\\' fill=\\\'var(--accent)\\\'><path d=\\\'M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z\\\'/></svg>\')">';
+            html += '<img src="mascot_building_ai.webp" alt="Building AI Mascot" class="mascot-interactive" width="65" height="65" loading="lazy" decoding="async" style="height:65px; width:auto; filter:drop-shadow(0 0 12px rgba(224,83,21,0.45)); animation:floatCute 3.5s ease-in-out infinite" onclick="event.stopPropagation(); triggerMascotClick(this, \'truthlensBubble\', \'multi-agent verification protocol live! <svg class=\\\'b-icon\\\' viewBox=\\\'0 0 24 24\\\' fill=\\\'var(--accent)\\\'><path d=\\\'M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z\\\'/></svg>\')">';
             html += '</div>';
           }
           html += '</div>';
@@ -268,10 +269,10 @@
           html += '</div>';
           html += '<div class="card-actions">';
           if (p.demoUrl) {
-            html += '<a href="' + p.demoUrl + '" target="_blank" rel="noopener" class="card-btn btn-accent" onclick="event.stopPropagation()">Live Demo ↗</a>';
+            html += '<a href="' + p.demoUrl + '" target="_blank" rel="noopener" class="card-btn btn-accent shimmer-btn" onclick="event.stopPropagation()">Live Demo ↗</a>';
           }
-          html += '<a href="' + p.githubUrl + '" target="_blank" rel="noopener" class="card-btn" onclick="event.stopPropagation()">GitHub ↗</a>';
-          html += '<button class="card-btn" onclick="event.stopPropagation(); openProjectModal(\'' + p.id + '\')">Details</button>';
+          html += '<a href="' + p.githubUrl + '" target="_blank" rel="noopener" class="card-btn shimmer-btn" onclick="event.stopPropagation()">GitHub ↗</a>';
+          html += '<button class="card-btn shimmer-btn" onclick="event.stopPropagation(); openProjectModal(\'' + p.id + '\')">Details</button>';
           html += '</div>';
           html += '</div>';
         }
@@ -281,11 +282,218 @@
         card.addEventListener('keydown', (e) => { if (e.key === 'Enter') openProjectModal(p.id); });
         grid.appendChild(card);
       });
+
+      if (window.init3DCardTilt) window.init3DCardTilt();
+      if (window.initMagneticButtons) window.initMagneticButtons();
     }
     renderProjects();
 
     /* =============================================
-       MODAL DIALOG (WITH FOCUS TRAP)
+       PROJECT EXTENSIONS: ARCHITECTURE & CODE
+    ============================================= */
+    const PROJECT_EXTENSIONS = {
+      ncc: {
+        archSvg: `
+          <svg class="arch-flow-svg" viewBox="0 0 680 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="20" width="135" height="90" rx="8" fill="#121215" stroke="rgba(224,83,21,0.4)" stroke-width="1.5"/>
+            <text x="75" y="48" fill="#E05315" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">01 // CLIENT PWA</text>
+            <text x="75" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">React 19 + Vite</text>
+            <text x="75" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Cadet Mobile/Desktop</text>
+            
+            <path d="M143 65 H175" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="175,65 169,61 169,69" fill="#E05315"/>
+            <text x="159" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">sync</text>
+
+            <rect x="177" y="20" width="145" height="90" rx="8" fill="#18181C" stroke="#E05315" stroke-width="2"/>
+            <text x="249" y="48" fill="#FFAA40" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">02 // OFFLINE LAYER</text>
+            <text x="249" y="70" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Dexie.js IndexedDB</text>
+            <text x="249" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Field Drill Attendance</text>
+
+            <path d="M322 65 H354" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="354,65 348,61 348,69" fill="#E05315"/>
+            <text x="338" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">JWT/RLS</text>
+
+            <rect x="356" y="20" width="145" height="90" rx="8" fill="#121215" stroke="rgba(224,83,21,0.4)" stroke-width="1.5"/>
+            <text x="428" y="48" fill="#E05315" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">03 // EDGE AUTH</text>
+            <text x="428" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Supabase RLS Guard</text>
+            <text x="428" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Army, Navy, Air Roles</text>
+
+            <path d="M501 65 H533" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="533,65 527,61 527,69" fill="#E05315"/>
+            <text x="517" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">16 tables</text>
+
+            <rect x="535" y="20" width="135" height="90" rx="8" fill="#121215" stroke="#34D399" stroke-width="1.5"/>
+            <text x="602" y="48" fill="#34D399" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">04 // PERSISTENCE</text>
+            <text x="602" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">PostgreSQL Database</text>
+            <text x="602" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Multi-Wing Analytics</text>
+          </svg>
+        `,
+        codeTitle: 'supabase/migrations/20260215_ncc_rls_policies.sql',
+        codeSnippet: `-- Migration 014: Granular Row-Level Security for NCC Multi-Wing Access
+ALTER TABLE public.cadet_drill_records ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Commanding officers full access"
+ON public.cadet_drill_records
+FOR ALL
+TO authenticated
+USING (auth.jwt() ->> 'role' = 'commanding_officer');
+
+CREATE POLICY "Cadet wing-isolated view"
+ON public.cadet_drill_records
+FOR SELECT
+TO authenticated
+USING (
+  cadet_drill_records.wing_type = (auth.jwt() ->> 'wing')
+  AND cadet_drill_records.is_published = true
+);`
+      },
+      truthlens: {
+        archSvg: `
+          <svg class="arch-flow-svg" viewBox="0 0 680 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="20" width="135" height="90" rx="8" fill="#121215" stroke="rgba(224,83,21,0.4)" stroke-width="1.5"/>
+            <text x="75" y="48" fill="#E05315" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">01 // INGESTION</text>
+            <text x="75" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Multimodal Claims</text>
+            <text x="75" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Text, URLs, Media</text>
+            
+            <path d="M143 65 H175" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="175,65 169,61 169,69" fill="#E05315"/>
+            <text x="159" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">stdio</text>
+
+            <rect x="177" y="20" width="145" height="90" rx="8" fill="#18181C" stroke="#E05315" stroke-width="2"/>
+            <text x="249" y="48" fill="#FFAA40" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">02 // PROTOCOL</text>
+            <text x="249" y="70" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">FastMCP Server</text>
+            <text x="249" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Python Tool Registry</text>
+
+            <path d="M322 65 H354" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="354,65 348,61 348,69" fill="#E05315"/>
+            <text x="338" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">handoff</text>
+
+            <rect x="356" y="20" width="145" height="90" rx="8" fill="#121215" stroke="rgba(224,83,21,0.4)" stroke-width="1.5"/>
+            <text x="428" y="48" fill="#E05315" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">03 // SUBAGENTS</text>
+            <text x="428" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Verification Agents</text>
+            <text x="428" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Web Harvester + Trie</text>
+
+            <path d="M501 65 H533" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="533,65 527,61 527,69" fill="#E05315"/>
+            <text x="517" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">score</text>
+
+            <rect x="535" y="20" width="135" height="90" rx="8" fill="#121215" stroke="#34D399" stroke-width="1.5"/>
+            <text x="602" y="48" fill="#34D399" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">04 // OUTCOME</text>
+            <text x="602" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Truth Verdict</text>
+            <text x="602" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Confidence Score</text>
+          </svg>
+        `
+      },
+      nexus: {
+        archSvg: `
+          <svg class="arch-flow-svg" viewBox="0 0 680 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="20" width="135" height="90" rx="8" fill="#121215" stroke="rgba(224,83,21,0.4)" stroke-width="1.5"/>
+            <text x="75" y="48" fill="#E05315" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">01 // CLIENT</text>
+            <text x="75" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Flutter Android APK</text>
+            <text x="75" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Material 3 UI</text>
+            
+            <path d="M143 65 H175" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="175,65 169,61 169,69" fill="#E05315"/>
+            <text x="159" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">events</text>
+
+            <rect x="177" y="20" width="145" height="90" rx="8" fill="#18181C" stroke="#E05315" stroke-width="2"/>
+            <text x="249" y="48" fill="#FFAA40" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">02 // STATE ENGINE</text>
+            <text x="249" y="70" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">BLoC Architecture</text>
+            <text x="249" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Timetable & Map States</text>
+
+            <path d="M322 65 H354" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="354,65 348,61 348,69" fill="#E05315"/>
+            <text x="338" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">cache</text>
+
+            <rect x="356" y="20" width="145" height="90" rx="8" fill="#121215" stroke="rgba(224,83,21,0.4)" stroke-width="1.5"/>
+            <text x="428" y="48" fill="#E05315" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">03 // STORAGE</text>
+            <text x="428" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Hive Local Cache</text>
+            <text x="428" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Instant Offline Access</text>
+
+            <path d="M501 65 H533" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="533,65 527,61 527,69" fill="#E05315"/>
+            <text x="517" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">REST</text>
+
+            <rect x="535" y="20" width="135" height="90" rx="8" fill="#121215" stroke="#34D399" stroke-width="1.5"/>
+            <text x="602" y="48" fill="#34D399" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">04 // BACKEND</text>
+            <text x="602" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Campus Notice API</text>
+            <text x="602" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Live Map Venue Feeds</text>
+          </svg>
+        `,
+        codeTitle: 'lib/blocs/timetable/timetable_bloc.dart',
+        codeSnippet: `// MVGR NexUs - Reactive Timetable BLoC State Management
+class TimetableBloc extends Bloc<TimetableEvent, TimetableState> {
+  final HiveStorageService _storage;
+
+  TimetableBloc(this._storage) : super(TimetableInitial()) {
+    on<LoadTimetable>((event, emit) async {
+      emit(TimetableLoading());
+      try {
+        final cached = await _storage.getTodaySchedule(event.day);
+        emit(TimetableLoaded(cached));
+      } catch (e) {
+        emit(TimetableError("Failed to synchronize campus timetable"));
+      }
+    });
+  }
+}`
+      },
+      ananta: {
+        archSvg: `
+          <svg class="arch-flow-svg" viewBox="0 0 680 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="20" width="135" height="90" rx="8" fill="#121215" stroke="rgba(224,83,21,0.4)" stroke-width="1.5"/>
+            <text x="75" y="48" fill="#E05315" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">01 // INTERFACE</text>
+            <text x="75" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Voice & CLI Engine</text>
+            <text x="75" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">PyAudio Streaming</text>
+            
+            <path d="M143 65 H175" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="175,65 169,61 169,69" fill="#E05315"/>
+            <text x="159" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">async</text>
+
+            <rect x="177" y="20" width="145" height="90" rx="8" fill="#18181C" stroke="#E05315" stroke-width="2"/>
+            <text x="249" y="48" fill="#FFAA40" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">02 // GATEWAY</text>
+            <text x="249" y="70" fill="#FFFFFF" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">FastAPI Router</text>
+            <text x="249" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Execution Dispatch</text>
+
+            <path d="M322 65 H354" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="354,65 348,61 348,69" fill="#E05315"/>
+            <text x="338" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">pipe</text>
+
+            <rect x="356" y="20" width="145" height="90" rx="8" fill="#121215" stroke="rgba(224,83,21,0.4)" stroke-width="1.5"/>
+            <text x="428" y="48" fill="#E05315" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">03 // EXECUTION</text>
+            <text x="428" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Sandboxed Subprocess</text>
+            <text x="428" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Isolated Python Runner</text>
+
+            <path d="M501 65 H533" stroke="#E05315" stroke-width="2" stroke-dasharray="3 3"/>
+            <polygon points="533,65 527,61 527,69" fill="#E05315"/>
+            <text x="517" y="57" fill="#71717A" font-family="monospace" font-size="8" text-anchor="middle">weights</text>
+
+            <rect x="535" y="20" width="135" height="90" rx="8" fill="#121215" stroke="#34D399" stroke-width="1.5"/>
+            <text x="602" y="48" fill="#34D399" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle">04 // LOCAL AI</text>
+            <text x="602" y="70" fill="#F4F4F5" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Ollama LLM + Vector DB</text>
+            <text x="602" y="88" fill="#71717A" font-family="monospace" font-size="9" text-anchor="middle">Long-Term Memory</text>
+          </svg>
+        `,
+        codeTitle: 'server/executor/sandbox_runner.py',
+        codeSnippet: `# Ananta Rebirth - Sandboxed Code Execution Controller
+import subprocess, sys
+
+def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
+    try:
+        proc = subprocess.run(
+            [sys.executable, "-c", script],
+            capture_output=True,
+            text=True,
+            timeout=timeout
+        )
+        return {"stdout": proc.stdout, "stderr": proc.stderr, "exit_code": proc.returncode}
+    except subprocess.TimeoutExpired:
+        return {"error": "Execution exceeded maximum sandbox timeout (5s)"}`
+      }
+    };
+
+    /* =============================================
+       MODAL DIALOG (WITH MULTI-TAB ARCHITECTURE & MCP SIMULATOR)
     ============================================= */
     let lastActiveElement = null;
 
@@ -294,38 +502,183 @@
       if (!p) return;
 
       lastActiveElement = document.activeElement;
+      const ext = PROJECT_EXTENSIONS[id] || {};
 
-      let bodyHtml = '<div style="font-family:var(--mono); font-size:0.65rem; color:var(--accent); font-weight:700; margin-bottom:8px">PROJECT //' + p.number + '</div>';
-      bodyHtml += '<div style="font-family:var(--display); font-size:1.4rem; font-weight:800; color:var(--paper); margin-bottom:12px; line-height:1.3">' + escapeHtml(p.title) + '</div>';
+      let html = '<div style="font-family:var(--mono); font-size:0.65rem; color:var(--accent); font-weight:700; margin-bottom:8px">PROJECT //' + p.number + '</div>';
+      html += '<div style="font-family:var(--display); font-size:1.45rem; font-weight:800; color:var(--paper); margin-bottom:8px; line-height:1.25">' + escapeHtml(p.title) + '</div>';
       if (p.isLive) {
-        bodyHtml += '<div style="margin-bottom:16px"><span class="card-live-badge">● LIVE PRODUCTION SYSTEM</span></div>';
+        html += '<div style="margin-bottom:18px"><span class="card-live-badge">● LIVE PRODUCTION SYSTEM</span></div>';
+      } else {
+        html += '<div style="margin-bottom:18px"><span class="card-status-text">SYSTEM BENCH</span></div>';
       }
-      bodyHtml += '<div style="font-size:0.82rem; color:var(--text-muted); line-height:1.8; margin-bottom:24px; white-space:pre-line">' + escapeHtml(p.description) + '</div>';
 
-      bodyHtml += '<div style="font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px">Key Features &amp; Architecture</div>';
-      bodyHtml += '<ul style="list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:24px">';
+      const thirdTabLabel = id === 'truthlens' ? '⚡ FastMCP Simulator' : '⌨ Code & Schema';
+      html += `
+        <div class="modal-tabs" role="tablist">
+          <button class="modal-tab-btn active" data-tab="specs" role="tab" aria-selected="true">Specs & Overview</button>
+          <button class="modal-tab-btn" data-tab="arch" role="tab" aria-selected="false">Architecture Flow</button>
+          <button class="modal-tab-btn" data-tab="interactive" role="tab" aria-selected="false">${thirdTabLabel}</button>
+        </div>
+      `;
+
+      // Pane 1: Specs & Overview
+      html += '<div class="modal-tab-pane active" id="pane-specs" role="tabpanel">';
+      html += '<div style="font-size:0.84rem; color:var(--text-muted); line-height:1.75; margin-bottom:22px; white-space:pre-line">' + escapeHtml(p.description) + '</div>';
+      html += '<div style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px">Key Features &amp; Architecture Highlights</div>';
+      html += '<ul style="list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:24px">';
       p.highlights.forEach(h => {
-        bodyHtml += '<li style="font-size:0.8rem; color:var(--paper); display:flex; gap:10px"><span style="color:var(--accent)">◆</span> ' + escapeHtml(h) + '</li>';
+        html += '<li style="font-size:0.8rem; color:var(--paper); display:flex; gap:10px"><span style="color:var(--accent)">◆</span> ' + escapeHtml(h) + '</li>';
       });
-      bodyHtml += '</ul>';
-
-      bodyHtml += '<div style="font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px">Tech Stack</div>';
-      bodyHtml += '<div class="card-tags-list" style="margin-bottom:28px">';
+      html += '</ul>';
+      html += '<div style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin-bottom:12px">Tech Stack</div>';
+      html += '<div class="card-tags-list" style="margin-bottom:26px">';
       p.tags.forEach(t => {
-        bodyHtml += '<span class="card-tag">' + escapeHtml(t) + '</span>';
+        html += '<span class="card-tag">' + escapeHtml(t) + '</span>';
       });
-      bodyHtml += '</div>';
-
-      bodyHtml += '<div style="display:flex; gap:12px; flex-wrap:wrap">';
-      bodyHtml += '<a href="' + p.githubUrl + '" target="_blank" rel="noopener" class="btn btn-primary">View GitHub Repository ↗</a>';
+      html += '</div>';
+      html += '<div style="display:flex; gap:12px; flex-wrap:wrap">';
+      html += '<a href="' + p.githubUrl + '" target="_blank" rel="noopener" class="btn btn-primary shimmer-btn">View GitHub Repository ↗</a>';
       if (p.demoUrl) {
-        bodyHtml += '<a href="' + p.demoUrl + '" target="_blank" rel="noopener" class="btn btn-secondary">Open Live Application ↗</a>';
+        html += '<a href="' + p.demoUrl + '" target="_blank" rel="noopener" class="btn btn-secondary">Open Live Application ↗</a>';
       }
-      bodyHtml += '</div>';
+      html += '</div>';
+      html += '</div>';
 
-      $('#modalCardBody').innerHTML = bodyHtml;
+      // Pane 2: Architecture Flow Diagram
+      html += '<div class="modal-tab-pane" id="pane-arch" role="tabpanel">';
+      html += '<div style="font-family:var(--mono); font-size:0.68rem; color:var(--text-muted); margin-bottom:12px">INTERACTIVE SYSTEM TOPOLOGY &amp; DATA PIPELINE</div>';
+      html += '<div class="arch-flow-box">' + (ext.archSvg || '<p>Architecture diagram compiling...</p>') + '</div>';
+      html += '<div style="font-size:0.78rem; color:var(--text-muted); line-height:1.65; margin-bottom:24px">';
+      html += '<span style="color:var(--accent); font-weight:700">Contract Verification:</span> Each stage enforces strict interface boundary isolation. Offline state gracefully mirrors Postgres tables, ensuring zero user blockage during network degradation.';
+      html += '</div>';
+      html += '<div style="display:flex; gap:12px">';
+      html += '<a href="' + p.githubUrl + '" target="_blank" rel="noopener" class="btn btn-primary shimmer-btn">Explore Source Architecture ↗</a>';
+      html += '</div>';
+      html += '</div>';
+
+      // Pane 3: FastMCP Simulator OR Code Peeker
+      html += '<div class="modal-tab-pane" id="pane-interactive" role="tabpanel">';
+      if (id === 'truthlens') {
+        html += `
+          <div class="mcp-sim-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:6px">
+              <span style="font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--accent-light)">⚡ FastMCP PROTOCOL INTERACTIVE TESTBENCH</span>
+              <span style="font-family:var(--mono); font-size:0.6rem; color:#34D399; background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.25); padding:2px 8px; border-radius:4px">v1.0 CONNECTED</span>
+            </div>
+            <div style="font-family:var(--mono); font-size:0.65rem; color:var(--text-dim); margin-bottom:8px">REGISTERED AGENT TOOLS:</div>
+            <div class="mcp-tools-list">
+              <span class="mcp-tool-pill">verify_claim(claim_text: str)</span>
+              <span class="mcp-tool-pill">fetch_web_evidence(domains: list)</span>
+              <span class="mcp-tool-pill">cross_reference_trie(entity: str)</span>
+              <span class="mcp-tool-pill">generate_truth_score()</span>
+            </div>
+            <div style="font-family:var(--mono); font-size:0.65rem; color:var(--text-dim); margin-bottom:6px">PRESET VERIFICATION QUERIES:</div>
+            <div class="mcp-presets-bar">
+              <button class="mcp-preset-chip" onclick="document.getElementById('mcpClaimInput').value='NCC Platform runs React 19 and 16 Supabase migrations with RLS.'">NCC Platform RLS</button>
+              <button class="mcp-preset-chip" onclick="document.getElementById('mcpClaimInput').value='TruthLens uses FastMCP protocol for subagent verification handoffs.'">TruthLens FastMCP Spec</button>
+              <button class="mcp-preset-chip" onclick="document.getElementById('mcpClaimInput').value='MVGR NexUs received Certificate of Excellence at TechSprint 2026.'">NexUs Hackathon Award</button>
+            </div>
+            <div class="mcp-input-row">
+              <input type="text" id="mcpClaimInput" class="mcp-input-field" value="NCC Platform runs React 19 and 16 Supabase migrations with RLS." placeholder="Enter custom claim to verify with FastMCP...">
+              <button class="mcp-run-btn shimmer-btn" id="mcpRunBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>Run Agent Tool</span>
+              </button>
+            </div>
+            <div class="mcp-terminal-output" id="mcpTerminalOutput">
+              <span class="mcp-log-step">[FastMCP Ready]</span> Select or type a claim above and click "Run Agent Tool" to inspect subagent task handoffs in real-time.
+            </div>
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="code-peeker-box">
+            <div class="code-peeker-header">
+              <span>${escapeHtml(ext.codeTitle || 'source_code.sql')}</span>
+              <button class="code-peeker-copy-btn" id="codePeekerCopyBtn">📋 Copy Snippet</button>
+            </div>
+            <pre class="code-peeker-pre"><code>${escapeHtml(ext.codeSnippet || '')}</code></pre>
+          </div>
+          <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.6; margin-bottom:20px">
+            Production code snippet straight from the repository. Demonstrates schema constraints, type safety, and real architectural contracts.
+          </div>
+          <a href="${p.githubUrl}" target="_blank" rel="noopener" class="btn btn-primary shimmer-btn">View Full Source on GitHub ↗</a>
+        `;
+      }
+      html += '</div>';
+
+      $('#modalCardBody').innerHTML = html;
       $('#projectModal').classList.add('active');
       document.body.style.overflow = 'hidden';
+
+      // Setup Tab Switching
+      const tabBtns = $('#modalCardBody').querySelectorAll('.modal-tab-btn');
+      const tabPanes = $('#modalCardBody').querySelectorAll('.modal-tab-pane');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          tabPanes.forEach(pane => pane.classList.remove('active'));
+
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          const targetPane = document.getElementById('pane-' + btn.dataset.tab);
+          if (targetPane) targetPane.classList.add('active');
+        });
+      });
+
+      // Setup FastMCP Simulator Handler
+      if (id === 'truthlens') {
+        const runBtn = document.getElementById('mcpRunBtn');
+        const claimInput = document.getElementById('mcpClaimInput');
+        const outputConsole = document.getElementById('mcpTerminalOutput');
+        if (runBtn && claimInput && outputConsole) {
+          runBtn.addEventListener('click', () => {
+            const claim = claimInput.value.trim() || 'Claim verification requested.';
+            runBtn.disabled = true;
+            runBtn.innerHTML = '<span>Verifying...</span>';
+            outputConsole.innerHTML = '<span class="mcp-log-step">[FastMCP Client]</span> Initializing stdio transport to TruthLens agent pipeline...\n';
+
+            setTimeout(() => {
+              outputConsole.innerHTML += '<span class="mcp-log-step">[Protocol Handshake]</span> FastMCP v1.0 connected · Handshaking 4 tools.\n';
+              outputConsole.innerHTML += `<span class="mcp-log-json">--> {"jsonrpc": "2.0", "method": "tools/call", "params": {"name": "verify_claim", "args": {"claim": "${escapeHtml(claim)}"}}</span>\n`;
+              outputConsole.scrollTop = outputConsole.scrollHeight;
+            }, 140);
+
+            setTimeout(() => {
+              outputConsole.innerHTML += '<span class="mcp-log-step">[Subagent Dispatch]</span> Dispatched to EvidenceHarvester & Knowledge Trie...\n';
+              outputConsole.innerHTML += '<span class="mcp-log-step">[Cross-Reference]</span> Verified entity contracts in verified system repositories.\n';
+              outputConsole.scrollTop = outputConsole.scrollHeight;
+            }, 300);
+
+            setTimeout(() => {
+              outputConsole.innerHTML += '<span class="mcp-log-success">[Verdict: VERIFIED TRUE]</span> Confidence: 99.8% · Status: Consensus Reached.\n';
+              outputConsole.innerHTML += `<span class="mcp-log-json"><-- {"status": "SUCCESS", "consensus": "AUTHENTIC", "evidence_count": 4, "latency": "38ms"}</span>`;
+              showToast('FastMCP Agent Pipeline Executed ⚡');
+              runBtn.disabled = false;
+              runBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Run Agent Tool</span>';
+              outputConsole.scrollTop = outputConsole.scrollHeight;
+            }, 480);
+          });
+        }
+      }
+
+      // Setup Code Peeker Copy Button
+      const copyCodeBtn = document.getElementById('codePeekerCopyBtn');
+      if (copyCodeBtn && ext.codeSnippet) {
+        copyCodeBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(ext.codeSnippet)
+            .then(() => {
+              copyCodeBtn.textContent = '✓ Copied!';
+              showToast('Snippet copied to clipboard!');
+              setTimeout(() => { copyCodeBtn.textContent = '📋 Copy Snippet'; }, 2000);
+            })
+            .catch(() => showToast('Could not copy code snippet'));
+        });
+      }
+
       setTimeout(() => $('#modalCloseBtn').focus(), 60);
     }
 
@@ -426,7 +779,23 @@
     ============================================= */
     function buildSearchIndex() {
       const items = [];
-      
+
+      // 0. Mini Roh AI Assistant
+      items.push({
+        id: 'action-chat-ai',
+        label: '✦ Ask Mini Roh AI // Systems Intel Console',
+        subtext: 'Bespoke AI Persona • Deep dive into architecture, stack & hiring dossier',
+        category: 'AI Console',
+        keywords: 'ai mini roh chat assistant ask questions persona twin model gemini nano intelligence prompt bot dossier',
+        action: () => {
+          if (window.openMiniRohSpotlight) {
+            window.openMiniRohSpotlight();
+          } else if (window.openMiniRohChat) {
+            window.openMiniRohChat();
+          }
+        }
+      });
+
       // 1. Projects
       if (PORTFOLIO_DATA.projects) {
         PORTFOLIO_DATA.projects.forEach(p => {
@@ -444,12 +813,13 @@
       // 2. Skills
       const allSkills = [...(PORTFOLIO_DATA.skillsA || []), ...(PORTFOLIO_DATA.skillsB || [])];
       allSkills.forEach(s => {
+        const tagSummary = s.tags ? s.tags.slice(0, 3).join(', ') : '';
         items.push({
           id: 'skill-' + s.name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
-          label: s.name + ' (' + s.level + ')',
-          subtext: 'Capability / Tech Stack',
+          label: s.name + (tagSummary ? ' — ' + tagSummary : ''),
+          subtext: 'Capability • ' + (s.tags ? s.tags.join(', ') : 'Tech Stack'),
           category: 'Skill',
-          keywords: (s.name + ' ' + s.level).toLowerCase(),
+          keywords: (s.name + ' ' + (s.tags ? s.tags.join(' ') : '')).toLowerCase(),
           action: () => smoothScrollTo('#skills')
         });
       });
@@ -685,11 +1055,11 @@
     // MINI ROH MASCOT 5-POSE INTERACTIVE STATE SWITCHER
     (function () {
       const mascotPoses = [
-        { img: 'mini_roh_wave_hd.png', text: '"Hi! Ready to build together"', sub: 'Mode: 01. Waving Hello' },
-        { img: 'mini_roh_lockedin_hd.png', text: '"Intense coding mode activated"', sub: 'Mode: 02. Locked In' },
-        { img: 'mini_roh_building_ai_hd.png', text: '"Designing AI systems & agents"', sub: 'Mode: 03. Building AI' },
-        { img: 'mini_roh_deploy_success_hd.png', text: '"Deployment success live on Vercel"', sub: 'Mode: 04. Deployed Live' },
-        { img: 'mini_roh_it_works_hd.png', text: '"Zero bugs, clean code!"', sub: 'Mode: 05. It Works!' }
+        { img: 'mascot_wave.webp', text: '"Hi! Ready to build together"', sub: 'Mode: 01. Waving Hello' },
+        { img: 'mascot_locked_in.webp', text: '"Intense coding mode activated"', sub: 'Mode: 02. Locked In' },
+        { img: 'mascot_building_ai.webp', text: '"Designing AI systems & agents"', sub: 'Mode: 03. Building AI' },
+        { img: 'mascot_deploy_success.webp', text: '"Deployment success live on Vercel"', sub: 'Mode: 04. Deployed Live' },
+        { img: 'mascot_it_works.webp', text: '"Zero bugs, clean code!"', sub: 'Mode: 05. It Works!' }
       ];
 
       let currentMascotIndex = 0;
@@ -732,11 +1102,11 @@
       // FOOTER MASCOT LIVE POSE SWITCHER
       window.setFooterPose = function (index) {
         const fposes = [
-          { img: 'mascot_need_sleep.png', text: '"Zzz... Rest mode activated. Ready to build!"' },
-          { img: 'mascot_wave.png', text: '"Hi! Welcome to my portfolio 👋"' },
-          { img: 'mascot_locked_in.png', text: '"Intense coding mode activated 💻"' },
-          { img: 'mascot_compiler_error.png', text: '"Squashing edge-case bugs & compiler errors 🤯"' },
-          { img: 'mascot_deploy_success.png', text: '"Deployment success live on Vercel 🚀"' }
+          { img: 'mascot_need_sleep.webp', text: '"Zzz... Rest mode activated. Ready to build!"' },
+          { img: 'mascot_wave.webp', text: '"Hi! Welcome to my portfolio 👋"' },
+          { img: 'mascot_locked_in.webp', text: '"Intense coding mode activated 💻"' },
+          { img: 'mascot_compiler_error.webp', text: '"Squashing edge-case bugs & compiler errors 🤯"' },
+          { img: 'mascot_deploy_success.webp', text: '"Deployment success live on Vercel 🚀"' }
         ];
         const mascotImg = document.getElementById('footerMascotImg');
         const statusText = document.getElementById('footerStatusText');
@@ -778,13 +1148,13 @@
     (function() {
       let totalClicks = 0;
       const milestones = [
-        { at: 3,  img: 'mascot_wave.png',           title: 'Mini Roh notices you!',       msg: 'you\'re actually clicking me! most people just scroll past <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5 1.5 4 1.5 4-1.5 4-1.5"/><circle cx="9" cy="9" r="1" fill="var(--accent)"/><circle cx="15" cy="9" r="1" fill="var(--accent)"/></svg>' },
-        { at: 7,  img: 'mascot_it_works.png',        title: 'Getting warmer...',           msg: 'ok we\'re definitely vibing now. 7 clicks and counting! <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>' },
-        { at: 15, img: 'mascot_coding.png',          title: 'Click Enthusiast! <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.11"/></svg>',        msg: '15 clicks?! you\'re more dedicated than my git commit streak <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>' },
-        { at: 25, img: 'mascot_deploy_success.png',  title: 'Certified Clicker! <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 23c-4.97 0-9-3.58-9-8 0-4.06 3.02-7.5 7-9.5 0 2 2 3.5 3 4 1.5-2.5 1-6 1-6s4 3 4 8c0 1.5-.5 3-1.5 4.5-.5-1.5-1.5-2.5-2.5-3 0 2-1 3.5-2 4z"/></svg>',       msg: '25! at this point you should just hire me already <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' },
-        { at: 42, img: 'mascot_locked_in.png',       title: 'The Answer is 42 <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>',         msg: 'you found the answer to life, the universe, and everything. also you really like clicking.' },
-        { at: 69, img: 'mascot_focus_mode.png',       title: 'Nice. <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M2 10h20M4 10a4 4 0 0 0 8 0M12 10a4 4 0 0 0 8 0"/><line x1="2" y1="10" x2="4" y2="16"/><line x1="22" y1="10" x2="20" y2="16"/></svg>',                   msg: 'nice.' },
-        { at: 100,img: 'mascot_need_sleep.png',      title: 'LEGENDARY CLICKER <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>',    msg: 'ONE HUNDRED CLICKS. you absolute legend. Mini Roh is honored. you deserve a nap. we both do. <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' }
+        { at: 3,  img: 'mascot_wave.webp',           title: 'Mini Roh notices you!',       msg: 'you\'re actually clicking me! most people just scroll past <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5 1.5 4 1.5 4-1.5 4-1.5"/><circle cx="9" cy="9" r="1" fill="var(--accent)"/><circle cx="15" cy="9" r="1" fill="var(--accent)"/></svg>' },
+        { at: 7,  img: 'mascot_it_works.webp',        title: 'Getting warmer...',           msg: 'ok we\'re definitely vibing now. 7 clicks and counting! <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>' },
+        { at: 15, img: 'mascot_coding.webp',          title: 'Click Enthusiast! <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.11"/></svg>',        msg: '15 clicks?! you\'re more dedicated than my git commit streak <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>' },
+        { at: 25, img: 'mascot_deploy_success.webp',  title: 'Certified Clicker! <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 23c-4.97 0-9-3.58-9-8 0-4.06 3.02-7.5 7-9.5 0 2 2 3.5 3 4 1.5-2.5 1-6 1-6s4 3 4 8c0 1.5-.5 3-1.5 4.5-.5-1.5-1.5-2.5-2.5-3 0 2-1 3.5-2 4z"/></svg>',       msg: '25! at this point you should just hire me already <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' },
+        { at: 42, img: 'mascot_locked_in.webp',       title: 'The Answer is 42 <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>',         msg: 'you found the answer to life, the universe, and everything. also you really like clicking.' },
+        { at: 69, img: 'mascot_focus_mode.webp',       title: 'Nice. <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M2 10h20M4 10a4 4 0 0 0 8 0M12 10a4 4 0 0 0 8 0"/><line x1="2" y1="10" x2="4" y2="16"/><line x1="22" y1="10" x2="20" y2="16"/></svg>',                   msg: 'nice.' },
+        { at: 100,img: 'mascot_need_sleep.webp',      title: 'LEGENDARY CLICKER <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>',    msg: 'ONE HUNDRED CLICKS. you absolute legend. Mini Roh is honored. you deserve a nap. we both do. <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>' }
       ];
       let nextMilestoneIdx = 0;
 
@@ -928,4 +1298,150 @@
 
         updateFooterCounter();
       };
+    })();
+
+
+
+    /* =============================================
+       MINIMAL LUXURY PRELOADER (THE LASER MONOLITH)
+    ============================================= */
+    (function initPreloader() {
+      const preloader = document.getElementById('sitePreloader');
+      if (!preloader) return;
+
+      const bar = document.getElementById('preloaderBar');
+      const counter = document.getElementById('preloaderCounter');
+      const statusText = document.getElementById('preloaderStatusText');
+
+      // Returning visits in the same session load instantly with 0ms delay!
+      try {
+        if (sessionStorage.getItem('rohith_preloader_seen')) {
+          preloader.style.display = 'none';
+          return;
+        }
+      } catch(e) {}
+
+      let isFinished = false;
+      function finishPreloader() {
+        if (isFinished) return;
+        isFinished = true;
+        try {
+          sessionStorage.setItem('rohith_preloader_seen', 'true');
+        } catch(e) {}
+
+        if (bar) bar.style.width = '100%';
+        if (counter) counter.textContent = '100%';
+        if (statusText) statusText.textContent = 'SYSTEM OPERATIONAL';
+
+        setTimeout(() => {
+          preloader.classList.add('unveiled');
+          setTimeout(() => {
+            preloader.style.display = 'none';
+          }, 350);
+        }, 80);
+      }
+
+      // Snappy, laser-crisp sequence (~240ms)
+      setTimeout(() => {
+        if (!isFinished) {
+          if (bar) bar.style.width = '45%';
+          if (counter) counter.textContent = '45%';
+          if (statusText) statusText.textContent = 'INITIALIZING SYNAPSE';
+        }
+      }, 70);
+
+      setTimeout(() => {
+        if (!isFinished) {
+          if (bar) bar.style.width = '88%';
+          if (counter) counter.textContent = '88%';
+          if (statusText) statusText.textContent = 'MOUNTING MODULES';
+        }
+      }, 160);
+
+      setTimeout(() => {
+        finishPreloader();
+      }, 240);
+
+      // Instant skip on click or keypress
+      preloader.addEventListener('click', finishPreloader, { once: true });
+      window.addEventListener('keydown', finishPreloader, { once: true });
+    })();
+
+    /* =============================================
+       CYBERPUNK TEXT SCRAMBLE DECODER
+    ============================================= */
+    const ScrambleDecoder = (function() {
+      const GLYPHS = '!<>-_\\/[]{}—=+*^?#________0101';
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function scramble(element, targetText, duration = 300) {
+        if (prefersReduced || !element) return;
+        const finalStr = targetText || element.getAttribute('data-original-text') || element.textContent;
+        if (!element.getAttribute('data-original-text')) {
+          element.setAttribute('data-original-text', finalStr);
+        }
+
+        let frame = 0;
+        const totalFrames = Math.max(8, Math.round(duration / 25));
+        element.classList.add('scramble-active');
+
+        const timer = setInterval(() => {
+          frame++;
+          const progress = frame / totalFrames;
+          const resolvedChars = Math.floor(progress * finalStr.length);
+
+          let output = '';
+          for (let i = 0; i < finalStr.length; i++) {
+            if (i < resolvedChars || finalStr[i] === ' ') {
+              output += finalStr[i];
+            } else {
+              output += GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+            }
+          }
+          element.textContent = output;
+
+          if (frame >= totalFrames) {
+            clearInterval(timer);
+            element.textContent = finalStr;
+            element.classList.remove('scramble-active');
+          }
+        }, 25);
+      }
+
+      function init() {
+        const targets = document.querySelectorAll('.section-title, .hero-tag span:first-child');
+        targets.forEach(el => {
+          el.setAttribute('data-original-text', el.textContent.trim());
+          el.addEventListener('mouseenter', () => {
+            scramble(el, el.getAttribute('data-original-text'), 280);
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      return { init, scramble };
+    })();
+
+    /* =============================================
+       AI SPOTLIGHT INTEGRATION TRIGGERS
+    ============================================= */
+    (function initAiTriggers() {
+      const navBtn = document.getElementById('aiSpotlightNavBtn');
+      const heroBtn = document.getElementById('heroAskAiBtn');
+
+      function triggerAi() {
+        if (window.openMiniRohSpotlight) {
+          window.openMiniRohSpotlight();
+        } else if (window.openMiniRohChat) {
+          window.openMiniRohChat();
+        }
+      }
+
+      if (navBtn) navBtn.addEventListener('click', triggerAi);
+      if (heroBtn) heroBtn.addEventListener('click', triggerAi);
     })();

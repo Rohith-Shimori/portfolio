@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Local build / assets backups
+originals/
+github-profile-readme/
+is-a-dev-register/
+
+# OS files
+.DS_Store
+Thumbs.db
