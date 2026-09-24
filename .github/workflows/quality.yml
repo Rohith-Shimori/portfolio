@@ -1,0 +1,121 @@
+name: Quality checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: JavaScript syntax check
+        run: node --check js/app.js
+
+      - name: Required files check
+        run: |
+          set -euo pipefail
+          required=(
+            "index.html"
+            "cv.html"
+            "rights.html"
+            "robots.txt"
+            "sitemap.xml"
+            "CNAME"
+            "LICENSE-CODE"
+            "CONTENT-LICENSE.md"
+            "THIRD-PARTY-NOTICES.md"
+            "README.md"
+          )
+          for file in "${required[@]}"; do
+            [ -f "$file" ] || { echo "Missing required file: $file"; exit 1; }
+          done
+
+      - name: CNAME canonical host check
+        run: |
+          set -euo pipefail
+          cname_value="$(tr -d '\r\n' < CNAME)"
+          [ "$cname_value" = "rohith.is-a.dev" ] || { echo "Unexpected CNAME: $cname_value"; exit 1; }
+
+      - name: Validate sitemap XML and canonical URLs
+        run: |
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+
+          tree = ET.parse('sitemap.xml')
+          root = tree.getroot()
+          ns = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          locs = [el.text.strip() for el in root.findall('sm:url/sm:loc', ns) if el.text]
+          expected = {
+              'https://rohith.is-a.dev/',
+              'https://rohith.is-a.dev/cv.html',
+              'https://rohith.is-a.dev/rights.html',
+          }
+          if set(locs) != expected:
+              raise SystemExit(f'Sitemap URLs mismatch. got={set(locs)} expected={expected}')
+          print('Sitemap URLs validated.')
+          PY
+
+      - name: Validate local asset references
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          files = ['index.html', 'cv.html', 'rights.html']
+          root = Path('.')
+          missing = []
+
+          pattern = re.compile(r'(?:src|href)="([^"]+)"')
+          for f in files:
+            text = (root / f).read_text(encoding='utf-8')
+            for ref in pattern.findall(text):
+              if ref.startswith(('http://', 'https://', 'mailto:', '#', 'data:')):
+                continue
+              rel = ref.split('?', 1)[0].split('#', 1)[0]
+              if not rel:
+                continue
+              path = root / rel.lstrip('/')
+              if not path.exists():
+                missing.append((f, ref))
+
+          if missing:
+            raise SystemExit('Missing local references: ' + ', '.join(f'{f}:{r}' for f, r in missing))
+          print('Local references validated.')
+          PY
+
+      - name: Validate SEO and licensing invariants
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          index_html = Path('index.html').read_text(encoding='utf-8')
+          cv_html = Path('cv.html').read_text(encoding='utf-8')
+          app_js = Path('js/app.js').read_text(encoding='utf-8')
+
+          checks = [
+            ('index canonical', 'https://rohith.is-a.dev/' in index_html),
+            ('cv canonical', 'https://rohith.is-a.dev/cv.html' in cv_html),
+            ('rights link index', 'rights.html' in index_html),
+            ('rights link cv', 'rights.html' in cv_html),
+            ('robots sitemap', 'Sitemap: https://rohith.is-a.dev/sitemap.xml' in Path('robots.txt').read_text(encoding='utf-8')),
+            ('spdx index', 'SPDX-License-Identifier: GPL-3.0-or-later' in index_html),
+            ('spdx cv', 'SPDX-License-Identifier: GPL-3.0-or-later' in cv_html),
+            ('spdx app', 'SPDX-License-Identifier: GPL-3.0-or-later' in app_js),
+            ('no preview mini mascot refs', 'mini_roh_' not in app_js),
+          ]
+
+          failed = [name for name, ok in checks if not ok]
+          if failed:
+            raise SystemExit('Invariant checks failed: ' + ', '.join(failed))
+
+          print('SEO/licensing invariants validated.')
+          PY

@@ -1,6 +1,7 @@
 /* =============================================
        DATA ENGINE
     ============================================= */
+    /* SPDX-License-Identifier: GPL-3.0-or-later */
     const PORTFOLIO_DATA = {
       email: 'rohith@rohith.is-a.dev',
       github: 'https://github.com/Rohith-Shimori',
@@ -446,10 +447,10 @@
       allSkills.forEach(s => {
         items.push({
           id: 'skill-' + s.name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
-          label: s.name + ' (' + s.level + ')',
+          label: s.name,
           subtext: 'Capability / Tech Stack',
           category: 'Skill',
-          keywords: (s.name + ' ' + s.level).toLowerCase(),
+          keywords: (s.name + ' ' + (s.tags ? s.tags.join(' ') : '')).toLowerCase(),
           action: () => smoothScrollTo('#skills')
         });
       });
@@ -680,96 +681,6 @@
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         render();
       }
-    })();
-
-    // MINI ROH MASCOT 5-POSE INTERACTIVE STATE SWITCHER
-    (function () {
-      const mascotPoses = [
-        { img: 'mini_roh_wave_hd.png', text: '"Hi! Ready to build together"', sub: 'Mode: 01. Waving Hello' },
-        { img: 'mini_roh_lockedin_hd.png', text: '"Intense coding mode activated"', sub: 'Mode: 02. Locked In' },
-        { img: 'mini_roh_building_ai_hd.png', text: '"Designing AI systems & agents"', sub: 'Mode: 03. Building AI' },
-        { img: 'mini_roh_deploy_success_hd.png', text: '"Deployment success live on Vercel"', sub: 'Mode: 04. Deployed Live' },
-        { img: 'mini_roh_it_works_hd.png', text: '"Zero bugs, clean code!"', sub: 'Mode: 05. It Works!' }
-      ];
-
-      let currentMascotIndex = 0;
-
-      window.setMascotPose = function (index) {
-        currentMascotIndex = index;
-        const pose = mascotPoses[index];
-        const mascotImg = document.getElementById('mascotMainImg');
-        const statusText = document.getElementById('mascotStatusText');
-        const modeSub = document.getElementById('mascotModeSub');
-
-        if (mascotImg) {
-          mascotImg.style.opacity = '0';
-          mascotImg.style.transform = 'scale(0.9)';
-          setTimeout(() => {
-            mascotImg.src = pose.img;
-            mascotImg.style.opacity = '1';
-            mascotImg.style.transform = 'scale(1)';
-          }, 200);
-        }
-        if (statusText) statusText.textContent = pose.text;
-        if (modeSub) modeSub.textContent = pose.sub;
-
-        for (let i = 0; i < 5; i++) {
-          const btn = document.getElementById(`mpill-${i}`);
-          if (btn) {
-            if (i === index) {
-              btn.style.background = 'rgba(224,83,21,0.25)';
-              btn.style.borderColor = 'rgba(224,83,21,0.5)';
-              btn.style.color = 'var(--paper)';
-            } else {
-              btn.style.background = 'rgba(255,255,255,0.03)';
-              btn.style.borderColor = 'rgba(255,255,255,0.1)';
-              btn.style.color = 'var(--text-muted)';
-            }
-          }
-        }
-      };
-
-      // FOOTER MASCOT LIVE POSE SWITCHER
-      window.setFooterPose = function (index) {
-        const fposes = [
-          { img: 'mascot_need_sleep.png', text: '"Zzz... Rest mode activated. Ready to build!"' },
-          { img: 'mascot_wave.png', text: '"Hi! Welcome to my portfolio 👋"' },
-          { img: 'mascot_locked_in.png', text: '"Intense coding mode activated 💻"' },
-          { img: 'mascot_compiler_error.png', text: '"Squashing edge-case bugs & compiler errors 🤯"' },
-          { img: 'mascot_deploy_success.png', text: '"Deployment success live on Vercel 🚀"' }
-        ];
-        const mascotImg = document.getElementById('footerMascotImg');
-        const statusText = document.getElementById('footerStatusText');
-        if (mascotImg) {
-          mascotImg.style.opacity = '0';
-          mascotImg.style.transform = 'scale(0.85)';
-          setTimeout(() => {
-            mascotImg.src = fposes[index].img;
-            mascotImg.style.opacity = '1';
-            mascotImg.style.transform = 'scale(1)';
-          }, 180);
-        }
-        if (statusText) statusText.textContent = fposes[index].text;
-        for (let i = 0; i < 5; i++) {
-          const btn = document.getElementById(`fpose-${i}`);
-          if (btn) {
-            if (i === index) {
-              btn.style.background = 'rgba(224,83,21,0.25)';
-              btn.style.borderColor = 'rgba(224,83,21,0.5)';
-              btn.style.color = 'var(--paper)';
-            } else {
-              btn.style.background = 'rgba(255,255,255,0.04)';
-              btn.style.borderColor = 'rgba(255,255,255,0.1)';
-              btn.style.color = 'var(--text-muted)';
-            }
-          }
-        }
-      };
-
-      setInterval(() => {
-        currentMascotIndex = (currentMascotIndex + 1) % 5;
-        window.setMascotPose(currentMascotIndex);
-      }, 4000);
     })();
 
     /* =============================================
