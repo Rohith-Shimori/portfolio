@@ -100,21 +100,31 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&family=Unbounded:wght@700;800&display=swap"
     rel="stylesheet">
   <link rel="preload" as="image" href="mascot_wave.webp" type="image/webp">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=2.4">
 </head>
 
 <body>
 
-  <!-- MINIMAL LUXURY PRELOADER -->
+  <!-- MINI ROH ENTRANCE PRELOADER -->
   <div id="sitePreloader" class="site-preloader" aria-hidden="true">
-    <div class="preloader-monolith">
-      <div class="preloader-mono-brand">PONTAPALLI ROHITH</div>
-      <div class="preloader-laser-track">
-        <div class="preloader-laser-bar" id="preloaderBar"></div>
+    <div class="preloader-inner">
+      <!-- Mini Roh waving animation -->
+      <div class="preloader-mascot-wrap">
+        <video class="preloader-mascot-video" autoplay loop muted playsinline>
+          <source src="mascot_wave_animated.webm" type="video/webm">
+        </video>
       </div>
-      <div class="preloader-mono-stat">
-        <span id="preloaderStatusText">SYSTEM INITIALIZING</span>
-        <span class="preloader-mono-counter" id="preloaderCounter">00%</span>
+      <!-- Name + bar -->
+      <div class="preloader-text-block">
+        <div class="preloader-name">Mini Roh</div>
+        <div class="preloader-sub">booting up rohith's digital garden...</div>
+        <div class="preloader-laser-track">
+          <div class="preloader-laser-bar" id="preloaderBar"></div>
+        </div>
+        <div class="preloader-mono-stat">
+          <span id="preloaderStatusText">SYSTEM INITIALIZING</span>
+          <span class="preloader-mono-counter" id="preloaderCounter">00%</span>
+        </div>
       </div>
     </div>
   </div>
@@ -163,10 +173,12 @@
         <div class="hero-title-box" style="position:relative">
           <h1 class="hero-main-title">PONT<span class="accent-letter">A</span>PALLI</h1>
           <span class="hero-subtitle-outline">ROHITH</span>
-          <!-- ENLARGED ANIMATED MINI ROH MASCOT WITH INTERACTIVE BUBBLE -->
-          <div class="mascot-interactive-wrap" style="position:absolute; right:-20px; bottom:-30px; z-index:10">
+          <!-- ENLARGED ANIMATED MINI ROH MASCOT WITH CURSOR TRACKING & INTERACTIVE BUBBLE -->
+          <div class="mascot-interactive-wrap hero-mascot-wrap">
             <div class="mascot-speech-bubble" id="heroBubble">yo! welcome to my corner of the internet <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V3a2 2 0 0 0-4 0v9"/><path d="M18 11a4 4 0 0 1 4 4v2a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7v-2a4 4 0 0 1 4-4"/></svg></div>
-            <img src="mascot_wave.webp" alt="Mini Roh Mascot Waving" class="mascot-interactive" width="235" height="235" loading="eager" fetchpriority="high" style="height:235px; width:auto; animation:floatCute 3.2s ease-in-out infinite" onclick="triggerMascotClick(this, 'heroBubble', 'you clicked me! ask me anything about my code <svg class=\'b-icon\' viewBox=\'0 0 24 24\' fill=\'var(--accent)\' aria-hidden=\'true\'><path d=\'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\'/></svg>')">
+            <div id="heroCursorMascot" class="mascot-interactive hero-cursor-mascot">
+              <img src="mascot-frames/center.webp" alt="Mini Roh Mascot" class="mascot-interactive" width="290" height="290" loading="eager" fetchpriority="high">
+            </div>
           </div>
         </div>
         <div class="hero-rule"></div>
@@ -179,7 +191,6 @@
               <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
                 <a href="#projects" class="btn btn-primary" style="padding:6px 12px; font-size:0.68rem; white-space:nowrap; font-weight:700">View Projects ↗</a>
                 <a href="cv.html" target="_blank" onclick="window.open('cv.html', 'RohithWebCV'); return false;" class="btn btn-secondary" style="padding:6px 12px; font-size:0.68rem; white-space:nowrap; font-weight:700">Web CV ↗</a>
-                <a href="rohith-os.html" class="btn btn-secondary" style="padding:6px 12px; font-size:0.68rem; white-space:nowrap; font-weight:700; border-color:rgba(224,83,21,0.4); color:var(--paper)"><span style="color:var(--accent)">✦</span> Mini Roh ↗</a>
               </div>
 
             </div>
@@ -503,9 +514,9 @@
             <div style="display:flex; gap:10px">
               <a href="mailto:rohith@rohith.is-a.dev?subject=Resume%20Request%20-%20Pontapalli%20Rohith" class="bento-pill-btn"
                 style="flex:1" onclick="event.stopPropagation()">Request Resume</a>
-              <a href="https://rohith.is-a.dev/cv.html" target="_blank" class="bento-pill-btn"
+              <a href="cv.html" target="_blank" class="bento-pill-btn"
                 style="flex:1"
-                onclick="event.stopPropagation(); window.open('https://rohith.is-a.dev/cv.html', 'RohithWebCV'); return false;">Web CV ↗</a>
+                onclick="event.stopPropagation(); window.open('cv.html', 'RohithWebCV'); return false;">Web CV ↗</a>
             </div>
           </div>
 
@@ -613,18 +624,9 @@
   <!-- COMMAND PALETTE MODAL -->
   <div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Command palette">
     <div class="cmd-modal-box">
-      <div class="cmd-header">
-        <img src="mascot_focus_mode.webp" alt="Mini Roh" class="cmd-mascot-avatar" width="28" height="28">
-        <input class="cmd-input-field" id="cmdInputField" placeholder="Search projects, sections, or ask Mini Roh…"
-          aria-label="Command search" autocomplete="off">
-        <span class="cmd-kbd-hint">ESC</span>
-      </div>
+      <input class="cmd-input-field" id="cmdInputField" placeholder="Type a command or search portfolio..."
+        aria-label="Command search" autocomplete="off">
       <div class="cmd-items-list" id="cmdItemsList" role="listbox"></div>
-      <div class="cmd-footer">
-        <span><kbd>↑↓</kbd> navigate</span>
-        <span><kbd>↵</kbd> open</span>
-        <span><kbd>ESC</kbd> close</span>
-      </div>
     </div>
   </div>
 
@@ -632,6 +634,7 @@
   <!-- TOAST WRAPPER -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
+  <script defer src="js/cursor-follower.js"></script>
   <script defer src="js/app.js"></script>
   <!-- Cloudflare Web Analytics -->
 

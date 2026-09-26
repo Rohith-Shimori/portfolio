@@ -8,7 +8,7 @@
       linkedin: 'https://www.linkedin.com/in/pontapalli-rohith/',
       tickerItems: [
         '3rd Year Computer Science Student',
-        'Building Software & Exploring AI',
+        'Full-Stack Systems & Software Architecture',
         'Curious enough to build it. Persistent enough to finish it.',
         'Custom Domain: rohith.is-a.dev',
         'Live Platform: nccdigi.vercel.app',
@@ -141,11 +141,20 @@
     ============================================= */
     (function initTicker() {
       const track = $('#tickerTrack');
+      if (!track) return;
+      track.innerHTML = '';
       const items = [...PORTFOLIO_DATA.tickerItems, ...PORTFOLIO_DATA.tickerItems];
       items.forEach(text => {
-        const span = document.createElement('span');
-        span.textContent = text;
-        track.appendChild(span);
+        const item = document.createElement('span');
+        item.className = 'ticker-item';
+        item.textContent = text;
+        track.appendChild(item);
+
+        const sep = document.createElement('span');
+        sep.className = 'ticker-sep';
+        sep.setAttribute('aria-hidden', 'true');
+        sep.innerHTML = '<span class="ticker-star">✦</span>';
+        track.appendChild(sep);
       });
     })();
 
@@ -781,22 +790,6 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
     function buildSearchIndex() {
       const items = [];
 
-      // 0. Mini Roh AI Assistant
-      items.push({
-        id: 'action-chat-ai',
-        label: '✦ Ask Mini Roh AI // Systems Intel Console',
-        subtext: 'Bespoke AI Persona • Deep dive into architecture, stack & hiring dossier',
-        category: 'AI Console',
-        keywords: 'ai mini roh chat assistant ask questions persona twin model gemini nano intelligence prompt bot dossier',
-        action: () => {
-          if (window.openMiniRohSpotlight) {
-            window.openMiniRohSpotlight();
-          } else if (window.openMiniRohChat) {
-            window.openMiniRohChat();
-          }
-        }
-      });
-
       // 1. Projects
       if (PORTFOLIO_DATA.projects) {
         PORTFOLIO_DATA.projects.forEach(p => {
@@ -1165,6 +1158,10 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
         if (bubble) {
           bubble.innerHTML = displayMsg;
           bubble.style.opacity = '1';
+          if (bubble._fadeTimer) clearTimeout(bubble._fadeTimer);
+          bubble._fadeTimer = setTimeout(() => {
+            bubble.style.opacity = '';
+          }, 3200);
 
           // Reset positioning overrides
           bubble.style.top = '';
@@ -1224,21 +1221,10 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
       const counter = document.getElementById('preloaderCounter');
       const statusText = document.getElementById('preloaderStatusText');
 
-      // Returning visits in the same session load instantly with 0ms delay!
-      try {
-        if (sessionStorage.getItem('rohith_preloader_seen')) {
-          preloader.style.display = 'none';
-          return;
-        }
-      } catch(e) {}
-
       let isFinished = false;
       function finishPreloader() {
         if (isFinished) return;
         isFinished = true;
-        try {
-          sessionStorage.setItem('rohith_preloader_seen', 'true');
-        } catch(e) {}
 
         if (bar) bar.style.width = '100%';
         if (counter) counter.textContent = '100%';
@@ -1248,30 +1234,47 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
           preloader.classList.add('unveiled');
           setTimeout(() => {
             preloader.style.display = 'none';
-          }, 350);
-        }, 80);
+          }, 450);
+        }, 120);
       }
 
-      // Snappy, laser-crisp sequence (~240ms)
-      setTimeout(() => {
-        if (!isFinished) {
-          if (bar) bar.style.width = '45%';
-          if (counter) counter.textContent = '45%';
-          if (statusText) statusText.textContent = 'INITIALIZING SYNAPSE';
+      // Smooth progressive counter with micro-increments (~900ms total)
+      let progress = 8;
+      const statusSteps = [
+        { at: 20, text: 'WAKING UP MINI ROH...' },
+        { at: 50, text: 'SYNAPSE CONNECTING...' },
+        { at: 75, text: 'CULTIVATING GARDEN...' },
+        { at: 95, text: 'ALL SYSTEMS GO' }
+      ];
+
+      const interval = setInterval(() => {
+        if (isFinished) {
+          clearInterval(interval);
+          return;
+        }
+        progress += Math.floor(Math.random() * 12) + 7;
+        if (progress > 98) progress = 98;
+        if (bar) bar.style.width = progress + '%';
+        if (counter) counter.textContent = String(progress).padStart(2, '0') + '%';
+
+        const matched = statusSteps.filter(s => progress >= s.at).pop();
+        if (matched && statusText && statusText.textContent !== matched.text) {
+          statusText.textContent = matched.text;
         }
       }, 70);
 
-      setTimeout(() => {
-        if (!isFinished) {
-          if (bar) bar.style.width = '88%';
-          if (counter) counter.textContent = '88%';
-          if (statusText) statusText.textContent = 'MOUNTING MODULES';
-        }
-      }, 160);
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          clearInterval(interval);
+          finishPreloader();
+        }, 750);
+      });
 
+      // Safety fallback
       setTimeout(() => {
+        clearInterval(interval);
         finishPreloader();
-      }, 240);
+      }, 1500);
 
       // Instant skip on click or keypress
       preloader.addEventListener('click', finishPreloader, { once: true });
@@ -1337,5 +1340,31 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
 
       return { init, scramble };
     })();
+    /* =============================================
+       HERO CURSOR FOLLOWER MASCOT MOUNT
+    ============================================= */
+    (function initHeroCursorMascot() {
+      const container = document.getElementById('heroCursorMascot');
+      if (!container) return;
 
-    /* AI panel triggers are wired in mini-roh-ai.js */
+      function mount() {
+        if (typeof mountCursorFollower !== 'function') return;
+        const follower = mountCursorFollower(container, {
+          size: 290,
+          deadZone: 28,
+          label: 'Mini Roh Interactive Mascot',
+          onClick: (e) => {
+            if (window.triggerMascotClick) {
+              window.triggerMascotClick(follower.image, 'heroBubble', 'you clicked me! move your cursor, I watch you 👀 <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+            }
+          }
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', mount);
+      } else {
+        mount();
+      }
+    })();
+

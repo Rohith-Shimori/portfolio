@@ -76,12 +76,35 @@
   }
 
   body.light-theme {
-    --bg-dark: #F4F4F7;
+    --bg-dark: #ECEEF2;
     --surface-1: #FFFFFF;
-    --surface-2: #F0F0F4;
-    --paper: #121215;
-    --text-muted: #64748B;
-    --border: #E2E8F0;
+    --surface-2: #F8FAFC;
+    --paper: #0F172A;
+    --text-muted: #475569;
+    --border: #CBD5E1;
+    --accent: #C2410C;
+    --accent-light: #EA580C;
+  }
+
+  body.light-theme .cv-paper {
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  }
+
+  body.light-theme .skill-card {
+    background: #F8FAFC;
+    border-color: #E2E8F0;
+  }
+
+  body.light-theme .pill {
+    background: #FFFFFF;
+    border-color: #CBD5E1;
+    color: #0F172A;
+  }
+
+  body.light-theme .nav-btn {
+    background: #FFFFFF;
+    border-color: #CBD5E1;
+    color: #0F172A;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -337,29 +360,166 @@
     color: var(--accent);
   }
 
-  /* Print Styles */
+  /* Print & PDF Export Styles */
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm 12mm 15mm;
+  }
+
   @media print {
+    :root {
+      --bg-dark: #FFFFFF !important;
+      --surface-1: #F8FAFC !important;
+      --surface-2: #F1F5F9 !important;
+      --paper: #0F172A !important;
+      --text-muted: #475569 !important;
+      --border: #E2E8F0 !important;
+      --accent: #C2410C !important;
+    }
+
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
     body {
       background: #FFFFFF !important;
-      color: #000000 !important;
+      color: #0F172A !important;
       padding: 0 !important;
+      margin: 0 !important;
     }
-    .cv-toolbar { display: none !important; }
+
+    .cv-toolbar,
+    .cv-license-footer {
+      display: none !important;
+    }
+
     .cv-paper {
       border: none !important;
       box-shadow: none !important;
       padding: 0 !important;
       max-width: 100% !important;
       background: #FFFFFF !important;
+      margin: 0 !important;
     }
-    .cv-section, .entry {
+
+    .cv-section {
+      break-inside: auto;
+      margin-bottom: 20px !important;
+    }
+
+    .entry {
+      break-inside: avoid !important;
       page-break-inside: avoid !important;
+      margin-bottom: 14px !important;
     }
-    .header-main h1 { color: #000000 !important; }
-    .section-title, .header-main .subtitle, .entry-date, .skill-card h4 { color: #D94600 !important; }
-    .skill-card { background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; }
-    .pill { background: #FFFFFF !important; border: 1px solid #CBD5E1 !important; color: #000000 !important; }
-    .entry-bullets li { color: #1E293B !important; }
+
+    .header-main h1 {
+      color: #0F172A !important;
+      font-size: 2rem !important;
+    }
+
+    .header-main .subtitle {
+      color: #C2410C !important;
+      font-weight: 700 !important;
+    }
+
+    .header-main .meta {
+      color: #475569 !important;
+      font-size: 0.8rem !important;
+    }
+
+    .contact-item {
+      color: #334155 !important;
+      text-decoration: none !important;
+    }
+
+    .contact-item svg {
+      stroke: #475569 !important;
+      color: #475569 !important;
+    }
+
+    .section-title {
+      color: #C2410C !important;
+      border-bottom: 1.5px solid #CBD5E1 !important;
+      padding-bottom: 4px !important;
+      break-after: avoid !important;
+      font-size: 0.92rem !important;
+      margin-bottom: 12px !important;
+    }
+
+    .summary-text {
+      color: #1E293B !important;
+      font-size: 0.88rem !important;
+      line-height: 1.55 !important;
+    }
+
+    .skills-grid {
+      gap: 10px !important;
+      break-inside: avoid !important;
+    }
+
+    .skill-card {
+      background: #F8FAFC !important;
+      border: 1px solid #E2E8F0 !important;
+      padding: 10px 12px !important;
+    }
+
+    .skill-card h4 {
+      color: #C2410C !important;
+      font-size: 0.72rem !important;
+      margin-bottom: 6px !important;
+    }
+
+    .pill {
+      background: #FFFFFF !important;
+      border: 1px solid #CBD5E1 !important;
+      color: #0F172A !important;
+      font-size: 0.72rem !important;
+      padding: 2px 7px !important;
+    }
+
+    .entry-title {
+      color: #0F172A !important;
+      font-size: 0.95rem !important;
+      font-weight: 700 !important;
+    }
+
+    .entry-date {
+      color: #C2410C !important;
+      font-weight: 600 !important;
+      font-size: 0.78rem !important;
+    }
+
+    .entry-sub {
+      color: #475569 !important;
+      font-size: 0.8rem !important;
+      margin-bottom: 6px !important;
+    }
+
+    .entry-sub a {
+      color: #0F172A !important;
+      text-decoration: underline !important;
+    }
+
+    .entry-bullets li {
+      color: #1E293B !important;
+      font-size: 0.85rem !important;
+      line-height: 1.5 !important;
+    }
+
+    .entry-bullets li::before {
+      color: #C2410C !important;
+    }
+
+    .entry-bullets strong {
+      color: #0F172A !important;
+    }
+
+    .entry-bullets a {
+      color: #C2410C !important;
+      text-decoration: underline !important;
+    }
   }
 
   @media (max-width: 640px) {
@@ -378,6 +538,12 @@
       Portfolio
     </button>
     <div class="nav-actions">
+      <button class="nav-btn" id="themeToggleBtn" onclick="toggleCvTheme()" aria-label="Toggle paper theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="themeIcon">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <span id="themeBtnText">Paper Mode</span>
+      </button>
       <button class="nav-btn" onclick="window.print()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         Print / PDF
@@ -552,11 +718,26 @@
     </section>
 
   </main>
-  <p style="margin-top:16px; font-family:var(--mono); font-size:0.78rem; color:var(--text-muted)">
+  <p class="cv-license-footer" style="margin-top:16px; font-family:var(--mono); font-size:0.78rem; color:var(--text-muted)">
     <a href="rights.html" style="color:inherit; text-decoration:underline; text-underline-offset:2px">License &amp; rights</a>
   </p>
 
   <script>
+    function toggleCvTheme() {
+      document.body.classList.toggle('light-theme');
+      const isLight = document.body.classList.contains('light-theme');
+      const btnText = document.getElementById('themeBtnText');
+      const icon = document.getElementById('themeIcon');
+      if (btnText) btnText.textContent = isLight ? 'Dark Mode' : 'Paper Mode';
+      if (icon) {
+        if (isLight) {
+          icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        } else {
+          icon.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+        }
+      }
+    }
+
     function returnToPortfolio() {
       if (window.opener && !window.opener.closed) {
         try {
@@ -565,7 +746,7 @@
           return;
         } catch (e) {}
       }
-      window.location.href = 'https://rohith.is-a.dev/';
+      window.location.href = 'index.html';
     }
   </script>
   <!-- Cloudflare Web Analytics -->

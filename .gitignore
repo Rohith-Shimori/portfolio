@@ -5,6 +5,7 @@ node_modules/
 originals/
 github-profile-readme/
 is-a-dev-register/
+follow-cursor/
 
 # OS files
 .DS_Store
