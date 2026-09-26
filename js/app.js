@@ -1338,21 +1338,4 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
       return { init, scramble };
     })();
 
-    /* =============================================
-       AI SPOTLIGHT INTEGRATION TRIGGERS
-    ============================================= */
-    (function initAiTriggers() {
-      const navBtn = document.getElementById('aiSpotlightNavBtn');
-      const heroBtn = document.getElementById('heroAskAiBtn');
-
-      function triggerAi() {
-        if (window.openMiniRohSpotlight) {
-          window.openMiniRohSpotlight();
-        } else if (window.openMiniRohChat) {
-          window.openMiniRohChat();
-        }
-      }
-
-      if (navBtn) navBtn.addEventListener('click', triggerAi);
-      if (heroBtn) heroBtn.addEventListener('click', triggerAi);
-    })();
+    /* AI panel triggers are wired in mini-roh-ai.js */

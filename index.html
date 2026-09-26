@@ -142,13 +142,11 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div style="display:flex; align-items:center; gap:8px">
-        <button class="cmd-btn" id="aiSpotlightNavBtn" aria-label="Open Mini Roh AI Console">
-          <span style="color:var(--accent); font-weight:700">✦</span> Ask AI
-        </button>
         <button class="cmd-btn" id="cmdToggleBtn" aria-label="Open command palette (Ctrl+K)">
           ⌘ Search <span class="cmd-kbd">Ctrl+K</span>
         </button>
       </div>
+
     </div>
   </nav>
 
@@ -181,8 +179,9 @@
               <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
                 <a href="#projects" class="btn btn-primary" style="padding:6px 12px; font-size:0.68rem; white-space:nowrap; font-weight:700">View Projects ↗</a>
                 <a href="cv.html" target="_blank" onclick="window.open('cv.html', 'RohithWebCV'); return false;" class="btn btn-secondary" style="padding:6px 12px; font-size:0.68rem; white-space:nowrap; font-weight:700">Web CV ↗</a>
-                <button id="heroAskAiBtn" class="btn btn-secondary" style="padding:6px 12px; font-size:0.68rem; white-space:nowrap; font-weight:700; border-color:rgba(224,83,21,0.4); color:var(--paper)"><span style="color:var(--accent)">✦</span> Ask AI</button>
+                <a href="rohith-os.html" class="btn btn-secondary" style="padding:6px 12px; font-size:0.68rem; white-space:nowrap; font-weight:700; border-color:rgba(224,83,21,0.4); color:var(--paper)"><span style="color:var(--accent)">✦</span> Mini Roh ↗</a>
               </div>
+
             </div>
           </div>
 
@@ -614,19 +613,28 @@
   <!-- COMMAND PALETTE MODAL -->
   <div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Command palette">
     <div class="cmd-modal-box">
-      <input class="cmd-input-field" id="cmdInputField" placeholder="Type a command or page destination..."
-        aria-label="Command search" autocomplete="off">
+      <div class="cmd-header">
+        <img src="mascot_focus_mode.webp" alt="Mini Roh" class="cmd-mascot-avatar" width="28" height="28">
+        <input class="cmd-input-field" id="cmdInputField" placeholder="Search projects, sections, or ask Mini Roh…"
+          aria-label="Command search" autocomplete="off">
+        <span class="cmd-kbd-hint">ESC</span>
+      </div>
       <div class="cmd-items-list" id="cmdItemsList" role="listbox"></div>
+      <div class="cmd-footer">
+        <span><kbd>↑↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> open</span>
+        <span><kbd>ESC</kbd> close</span>
+      </div>
     </div>
   </div>
+
 
   <!-- TOAST WRAPPER -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
   <script defer src="js/app.js"></script>
-  <!-- Mini Roh AI Persona Assistant -->
-  <script defer src="js/mini-roh-ai.js"></script>
   <!-- Cloudflare Web Analytics -->
+
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "46a4f5c293a143d29c584cf099ada63a"}'></script>
   <!-- End Cloudflare Web Analytics -->
 </body>

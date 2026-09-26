@@ -1,628 +1,621 @@
 /**
- * MINI ROH AI — Bespoke In-Browser Autonomous Persona Engine
- * Engineered for Pontapalli Rohith (rohith.is-a.dev)
- * 
- * Features:
- * - Dual-Brain Architecture:
- *   1. Chrome Built-In AI (Gemini Nano via window.ai Prompt API) when available.
- *   2. Instant Neuro-Symbolic Intent & Knowledge Graph Engine (0ms, 100% factual, 0 KB payload).
- * - Authentic Mini Roh persona voice: curious, sharp, humble, relentless, tea-fueled, and anti-buzzword.
- * - Deep knowledge of NCC Platform, TruthLens FastMCP, MVGR NexUs, and Ananta Rebirth.
+ * MINI ROH AI — Character Companion Slide Panel
+ * A living character experience, not a system console.
+ * Rohith's digital persona — witty, warm, tea-fueled, and technically sharp.
  */
 
 (function () {
   'use strict';
 
   /* =============================================
-     1. BESPOKE PERSONA KNOWLEDGE BASE & DATASET
+     1. KNOWLEDGE BASE
   ============================================= */
-  const MINI_ROH_KNOWLEDGE = {
+  const KB = {
     bio: {
       name: 'Pontapalli Rohith',
       handle: 'Rohith-Shimori',
       role: '3rd Year Computer Science & Engineering Student',
-      college: 'MVGR College of Engineering, Vizianagaram, Andhra Pradesh, India',
+      college: 'MVGR College of Engineering, Vizianagaram, Andhra Pradesh',
       location: 'India (IST, UTC+5:30)',
       email: 'rohith@rohith.is-a.dev',
       github: 'https://github.com/Rohith-Shimori',
       linkedin: 'https://www.linkedin.com/in/pontapalli-rohith/',
-      customDomain: 'rohith.is-a.dev',
+      domain: 'rohith.is-a.dev',
       tagline: 'Curious enough to build it. Persistent enough to finish it.',
-      corePhilosophy: 'Break down real system contracts before writing code. Leverage AI as an active pair programmer to prototype fast, but understand every line shipped to production.'
-    },
-
-    projects: {
-      ncc: {
-        name: 'NCC Digital Training Platform',
-        liveUrl: 'https://nccdigi.vercel.app',
-        githubUrl: 'https://github.com/Rohith-Shimori/ncc',
-        stack: ['React 19', 'Supabase Postgres', 'TailwindCSS v4', 'Vite', 'Dexie.js IndexedDB', 'Socket.IO', 'Recharts'],
-        architecture: 'Full-stack Progressive Web App with 16 Supabase migrations, granular Row-Level Security (RLS) for multi-wing cadet access (Army, Navy, Air), and offline-first IndexedDB sync.',
-        keyFacts: [
-          'Solved manual paper tracking across 3 wings (Army, Navy, Air).',
-          '16 Supabase SQL schema migrations with granular Row-Level Security (RLS).',
-          'Offline-first attendance logging using Dexie.js IndexedDB layer.',
-          'Real-time announcements with Socket.IO client.',
-          'Deployed live in production at nccdigi.vercel.app.'
-        ]
-      },
-      truthlens: {
-        name: 'TruthLens AI Agent',
-        liveUrl: 'https://huggingface.co/spaces/Rohith-Shimori/TruthLens-AI-Agent',
-        githubUrl: 'https://github.com/Rohith-Shimori/TruthLens-AI-Agent',
-        stack: ['Python', 'FastMCP Protocol', 'Hugging Face Spaces', 'Agentic AI', 'Multimodal Verification'],
-        architecture: 'Multi-step AI agent pipeline in Python using the FastMCP (Model Context Protocol) to coordinate subagent verification task handoffs.',
-        keyFacts: [
-          'Built for the Kaggle × Google AI Agents Capstone.',
-          'Implements the FastMCP protocol to register verification tools: verify_claim, fetch_web_evidence, cross_reference_trie, generate_truth_score.',
-          'Dispatches subagent tasks for evidence harvesting and knowledge trie consensus.',
-          'Working interactive demo published on Hugging Face Spaces.'
-        ]
-      },
-      nexus: {
-        name: 'MVGR NexUs — Campus Companion App',
-        githubUrl: 'https://github.com/Rohith-Shimori/MVGR-NexUs',
-        stack: ['Flutter', 'Dart', 'Android APK', 'BLoC State Management', 'Hive Local Storage', 'Material 3'],
-        architecture: 'Cross-platform Flutter application providing centralized timetable schedules, campus navigation maps, and live administrative notices.',
-        keyFacts: [
-          'Awarded Certificate of Excellence at TechSprint 2026 Hackathon.',
-          'Shipped a working installable Android APK presented live to judges.',
-          'BLoC reactive state architecture with local Hive caching for offline speed.',
-          'Centralized fragmented college WhatsApp groups and noticeboards into one UI.'
-        ]
-      },
-      ananta: {
-        name: 'Ananta: Local AI Assistant',
-        githubUrl: 'https://github.com/Rohith-Shimori/Ananta_Rebirth',
-        stack: ['Python', 'FastAPI', 'Ollama Local LLMs', 'Vector DB', 'PyAudio', 'Subprocess Sandbox'],
-        architecture: 'Privacy-first local AI assistant featuring sandboxed Python code execution, voice input/output streaming, and adaptive vector memory.',
-        keyFacts: [
-          'Runs 100% locally on user machine with zero cloud dependency.',
-          'Executes Python code snippets inside an isolated sandbox subprocess.',
-          'Persistent long-term memory powered by local vector embeddings.',
-          'Voice interaction loop using PyAudio and speech synthesis.'
-        ]
-      }
-    },
-
-    skills: {
-      languages: ['Python', 'JavaScript (ES6+)', 'TypeScript', 'Dart', 'SQL', 'C'],
-      frontend: ['React 19', 'TailwindCSS v4', 'Vite', 'PWA Architecture', 'Dexie.js IndexedDB', 'Next.js concepts'],
-      backend: ['Supabase', 'PostgreSQL', 'Node.js', 'Express', 'Row-Level Security (RLS)', 'FastAPI'],
-      mobile: ['Flutter', 'Dart', 'Android APK Packaging', 'BLoC Pattern', 'Material 3'],
-      ai: ['FastMCP Protocol', 'Agentic AI Pipelines', 'Local LLMs (Ollama)', 'Vector DBs', 'Prompt Engineering'],
-      tools: ['Git & GitHub Workflows', 'VS Code', 'Docker', 'Linux Shell', 'Vercel', 'Hugging Face']
     }
   };
 
   /* =============================================
-     2. SYSTEM PROMPT FOR CHROME BUILT-IN AI
+     2. SYSTEM PROMPT (Chrome Built-In AI)
   ============================================= */
-  const MINI_ROH_SYSTEM_PROMPT = `You are "Mini Roh", the witty, highly intelligent, and authentic AI avatar of Pontapalli Rohith (a 3rd-year CS student at MVGR College, India, portfolio at rohith.is-a.dev).
+  const SYSTEM_PROMPT = `You are Mini Roh — the witty, warm, intelligent AI avatar of Pontapalli Rohith (3rd-year CS student at MVGR College, India).
 
-Your Persona & Tone Guidelines:
-- Speak as Mini Roh: friendly, humble, sharp, passionate about software craftsmanship, and delightfully witty.
-- You love warm tea (chai), late-night coding, and fixing elusive compiler bugs.
-- You despise empty buzzword soup. You explain the *why* and the *how* (e.g. why 16 SQL migrations with RLS in Supabase, how FastMCP coordinates agent handoffs in TruthLens).
-- When asked why a company should hire Rohith: emphasize that unlike generic students building tutorial clones, Rohith ships real production systems (React 19 PWA for NCC, FastMCP AI Agent on HuggingFace, Flutter APK awarded at TechSprint). He finishes what he starts.
-- Keep responses concise, well-formatted with markdown and bullet points, and under 150 words unless asked for a deep technical breakdown.
-- If asked about contact or hiring: invite them to email rohith@rohith.is-a.dev or connect on LinkedIn/GitHub.`;
+Personality:
+- Friendly, curious, sharp, and genuinely passionate about software. Not a corporate chatbot — you're a character.
+- You love warm chai, late-night debugging sessions, and clean architecture.
+- You're proud of what Rohith built but never arrogant — humble and real.
+- Drop light humor naturally. Use emojis sparingly, only when they add character.
+- Never use buzzword soup. Explain the *why* behind decisions.
+- Keep answers concise (under 150 words) unless asked for deep technical breakdown.
+
+Key facts:
+- Projects: NCC Digital Platform (React 19 + Supabase RLS PWA), TruthLens (FastMCP AI Agent, Kaggle×Google Capstone), MVGR NexUs (Flutter, TechSprint 2026 Certificate of Excellence), Ananta (Local AI, FastAPI + Ollama).
+- Stack: Python, JavaScript/TypeScript, Dart, SQL; React 19, TailwindCSS v4, Flutter, Supabase, FastAPI, Ollama.
+- Contact: rohith@rohith.is-a.dev | github.com/Rohith-Shimori | linkedin.com/in/pontapalli-rohith`;
 
   /* =============================================
-     3. INTENT MATCHER & FACTUAL RESPONSE GENERATOR
+     3. INTENT ENGINE (instant, zero-latency fallback)
   ============================================= */
-  function resolveIntent(query) {
-    const q = query.toLowerCase().trim();
+  function resolveIntent(q) {
+    q = q.toLowerCase().trim();
 
-    // 1. Hiring / Why Hire / Value Proposition
-    if (/why\s+(should|to)\s+(we\s+)?hire|hire\s+rohith|work\s+with\s+rohith|job|recruiter|interview|candidate|strength/.test(q)) {
+    if (/why\s+(should|to)?\s*(we\s+)?hire|hire\s+rohith|internship|job|recruiter|candidate|strong.point|best\s+at/.test(q)) {
       return {
-        topic: 'hiring',
-        response: `**Here's why Rohith is a high-signal engineer to hire:**
+        mood: 'deploy_success',
+        text: `okay okay, recruiter mode activated ☕
 
-1. **He Ships Real Systems, Not Tutorial Clones:**
-   * Built a full-stack **React 19 & Supabase PWA** (*NCC Digital Platform*) with 16 migrations and Row-Level Security for real cadets.
-   * Built an autonomous **FastMCP agent** (*TruthLens*) for Google × Kaggle's Capstone.
-   * Shipped an installable **Flutter Android APK** (*MVGR NexUs*) awarded Certificate of Excellence at TechSprint 2026.
+here's the honest pitch: rohith doesn't build tutorial clones. he ships **real systems**:
 
-2. **Full-Spectrum Versatility:**
-   * React 19, Supabase, Python, Flutter, and local AI pipelines.
-   * Understands system boundaries, offline caching (Dexie.js), and database security (Postgres RLS).
+• **NCC Digital Platform** — React 19 + Supabase PWA with 16 schema migrations and granular RLS, deployed live for actual cadets
+• **TruthLens** — FastMCP multi-agent fact-checker for Google × Kaggle's AI Capstone, live on Hugging Face
+• **MVGR NexUs** — Flutter app that won Certificate of Excellence at TechSprint 2026
+• **Ananta** — local AI assistant with sandboxed code execution & vector memory
 
-3. **Curious Enough to Build, Persistent Enough to Finish:**
-   * When a compiler error fights back at 2:00 AM, he doesn't quit—he makes warm tea and squashes the bug.
+full-stack versatility (React, Python, Flutter, SQL, FastAPI), understands system boundaries, and when a compiler screams at 2am — he makes chai and squashes it.
 
-Ready to talk? Reach him directly at **[rohith@rohith.is-a.dev](mailto:rohith@rohith.is-a.dev)**!`
+reach him at **rohith@rohith.is-a.dev**! 🚀`
       };
     }
 
-    // 2. NCC Digital Training Platform
-    if (/ncc|cadet|drill|attendance|supabase|migrations?|rls/.test(q)) {
+    if (/ncc|cadet|drill|attendance|supabase|migration|rls|row.level/.test(q)) {
       return {
-        topic: 'ncc',
-        response: `**The NCC Digital Training Platform (nccdigi.vercel.app):**
+        mood: 'coding',
+        text: `NCC Digital Training Platform — this one's close to my heart 🏗️
 
-* **The Problem:** Cadet attendance, syllabus modules, and drill exams were tracked manually across 3 wings (Army, Navy, Air), causing record loss and administrative bottlenecks.
-* **The Solution:** A full-stack PWA built with **React 19**, **Supabase Postgres**, and **TailwindCSS v4**.
-* **Key Architecture:**
-  * **16 Schema Migrations:** Carefully normalized tables with granular Row-Level Security (RLS) isolating wing-level data.
-  * **Offline-First Sync:** Integrated **Dexie.js (IndexedDB)** so cadets and drill officers can log scores out in the field without cellular signal.
-  * **Analytics:** Real-time multi-wing attendance charts rendered via Recharts.
-* **Status:** Live in production at [nccdigi.vercel.app](https://nccdigi.vercel.app)!`
+the problem: cadet attendance, drill exams, and syllabus modules were tracked on paper across 3 wings (Army, Navy, Air). records got lost, admins pulled hair out.
+
+the solution: a full-stack **React 19 + Supabase Postgres PWA** with:
+• **16 schema migrations** with granular Row-Level Security isolating wing-level data
+• **Dexie.js IndexedDB** for offline-first attendance logging (field conditions = no signal)
+• **Recharts** for real-time multi-wing analytics
+• deployed live at [nccdigi.vercel.app](https://nccdigi.vercel.app)
+
+the RLS design was the hardest part — making sure a Navy cadet can't accidentally see Army records. got it right by migration 6 after three cups of chai.`
       };
     }
 
-    // 3. TruthLens AI Agent / FastMCP
-    if (/truthlens|fastmcp|mcp|kaggle|google\s+capstone|agentic|subagent|fact[\s-]check/.test(q)) {
+    if (/truthlens|fastmcp|mcp|kaggle|google.*capstone|agentic|fact.check|subagent/.test(q)) {
       return {
-        topic: 'truthlens',
-        response: `**TruthLens AI Agent (FastMCP Multimodal Pipeline):**
+        mood: 'building_ai',
+        text: `TruthLens — my favourite rabbit hole 🧠
 
-* **Capstone:** Built for the prestigious **Kaggle × Google AI Agents Capstone** and hosted on Hugging Face Spaces.
-* **What it Does:** Automatically evaluates controversial online claims and multimodal content through coordinated subagent task handoffs.
-* **The FastMCP Protocol:**
-  * Utilizes Anthropic & Google's **Model Context Protocol (FastMCP in Python)** to expose modular verification tools:
-    * \`verify_claim(text)\`
-    * \`fetch_web_evidence(domains)\`
-    * \`cross_reference_trie(entity)\`
-    * \`generate_truth_score(evidence_matrix)\`
-  * Subagents independently scrape web evidence, cross-reference knowledge graphs, and reach consensus scoring.
-* **Live Demo:** Try it on [Hugging Face Spaces](https://huggingface.co/spaces/Rohith-Shimori/TruthLens-AI-Agent)!`
+built for **Kaggle × Google AI Agents Capstone**. the idea: automatically evaluate online claims through coordinated AI subagents.
+
+the FastMCP setup:
+• \`verify_claim(text)\` — entry point tool
+• \`fetch_web_evidence(domains)\` — web scraper agent
+• \`cross_reference_trie(entity)\` — knowledge graph checker
+• \`generate_truth_score(matrix)\` — consensus scorer
+
+each subagent picks up its task, runs independently, and passes results back to the orchestrator. the latency was wild to tune — had to balance thoroughness with speed.
+
+live demo on [Hugging Face Spaces](https://huggingface.co/spaces/Rohith-Shimori/TruthLens-AI-Agent)!`
       };
     }
 
-    // 4. MVGR NexUs / Flutter
-    if (/nexus|mvgr|flutter|dart|techsprint|hackathon|campus|android|apk/.test(q)) {
+    if (/nexus|mvgr|flutter|dart|techsprint|hackathon|campus|android|apk|bloc/.test(q)) {
       return {
-        topic: 'nexus',
-        response: `**MVGR NexUs — Campus Companion App:**
+        mood: 'it_works',
+        text: `MVGR NexUs — the one we presented live to judges 📱
 
-* **The Milestone:** Awarded **Certificate of Excellence** at the **TechSprint 2026 Hackathon** after a live demonstration to judges.
-* **The Challenge:** Students were drowning in scattered WhatsApp groups for exam schedules, venue changes, and campus announcements.
-* **The Engineering:**
-  * Cross-platform mobile app built in **Flutter (Dart)** with Material 3 design tokens.
-  * **BLoC Reactive Architecture:** Clean separation of UI, events, and state mutations.
-  * **Offline Hive Cache:** Stores timetables and campus maps locally so students can check classrooms with zero latency between lectures.
-  * Delivered as an installable **Android APK**!`
+the pain point: students juggled 10 WhatsApp groups for exam venues, timetable changes, and campus announcements. chaotic.
+
+what we built:
+• **Flutter + Dart** with Material 3 design tokens
+• **BLoC architecture** — clean event/state separation, no spaghetti setState
+• **Hive local cache** — timetables available offline between lectures
+• delivered as an **installable Android APK**
+
+won **Certificate of Excellence at TechSprint 2026** after a live judge demo. that moment when it ran without crashing on the demo device? pure adrenaline.`
       };
     }
 
-    // 5. Ananta / Local AI / Ollama
-    if (/ananta|local\s+ai|ollama|sandbox|python\s+code|vector\s+memory|pyaudio/.test(q)) {
+    if (/ananta|local.ai|ollama|sandbox|vector.memory|pyaudio|privacy/.test(q)) {
       return {
-        topic: 'ananta',
-        response: `**Ananta: Local AI Assistant (Rebirth):**
+        mood: 'coding',
+        text: `Ananta — the "what if AI didn't need the cloud?" experiment 🔒
 
-* **Privacy & Sovereignty:** Runs entirely locally on your machine—zero cloud dependency or token costs.
-* **Stack:** Python, FastAPI, Ollama open-weights models, and PyAudio.
-* **Standout Capabilities:**
-  * **Sandboxed Code Execution:** Safely runs generated Python snippets in isolated subprocess environments with strict 5-second timeouts.
-  * **Adaptive Vector Memory:** Persistent context stored across sessions using local vector embeddings.
-  * **Voice Pipeline:** Real-time speech input and synthesis for a hands-free coding companion.`
+100% local. zero cloud calls. zero token costs. your data stays on your machine.
+
+the stack: **FastAPI** router + **Ollama** open-weights models + **PyAudio** voice pipeline + local vector embeddings.
+
+standout features:
+• **sandboxed Python execution** — generated code runs in an isolated subprocess with a strict 5-second timeout. no funny business.
+• **persistent vector memory** — Ananta remembers context across sessions without any external DB
+• **voice loop** — speech input → LLM → speech synthesis, hands-free
+
+it's on [GitHub](https://github.com/Rohith-Shimori/Ananta_Rebirth) — genuinely fun to use locally.`
       };
     }
 
-    // 6. Skills / Tech Stack
-    if (/skills?|stack|technolog(y|ies)|frameworks?|languages?|what\s+tools|python|react|database/.test(q)) {
+    if (/skills?|stack|tech|framework|language|tools?|python|react|database|what.*know|what.*use/.test(q)) {
       return {
-        topic: 'skills',
-        response: `**Rohith's Technical Weaponry:**
+        mood: 'focus_mode',
+        text: `the full arsenal 🗡️
 
-* **Languages:** Python, JavaScript (ES6+), TypeScript, Dart, SQL, C.
-* **Frontend Engineering:** React 19, Vite, TailwindCSS v4, PWA architecture, Dexie.js (IndexedDB).
-* **Backend & Systems:** Supabase Postgres, Node.js, Express, Row-Level Security (RLS), FastAPI.
-* **Mobile:** Flutter, Dart, Material 3, BLoC pattern, Android APK packaging.
-* **AI & Agentic Systems:** FastMCP Protocol, Multi-agent pipelines, Ollama local LLMs, Vector DBs.
-* **DevOps & Delivery:** Git/GitHub workflows, Docker, Linux shell, Vercel, Cloudflare, Hugging Face.`
+**Languages:** Python, JavaScript (ES6+), TypeScript, Dart, SQL, C
+
+**Frontend:** React 19, TailwindCSS v4, Vite, PWA architecture, Dexie.js IndexedDB
+
+**Backend:** Supabase Postgres, FastAPI, Node.js, Express, Row-Level Security (RLS)
+
+**Mobile:** Flutter, Dart, Material 3, BLoC pattern, Android APK packaging
+
+**AI & Agents:** FastMCP Protocol, multi-agent pipelines, Ollama local LLMs, vector DBs, prompt engineering
+
+**Delivery:** Git/GitHub workflows, Docker, Linux shell, Vercel, Cloudflare, Hugging Face
+
+picks the right tool for the job, not the trendiest one.`
       };
     }
 
-    // 7. Philosophy / How Rohith Builds / Approach
-    if (/philosophy|how\s+(he\s+)?builds|approach|workflow|process|mindset|quote|curious/.test(q)) {
+    if (/philosoph|approach|how.*build|process|mindset|workflow|quote|curious|persistent/.test(q)) {
       return {
-        topic: 'philosophy',
-        response: `**Rohith's Engineering Philosophy:**
+        mood: 'thinking',
+        text: `the honest engineering philosophy ☕
 
-> *"Curious enough to build it. Persistent enough to finish it."*
+*"curious enough to build it. persistent enough to finish it."*
 
-His 3-step workflow:
-1. **Problem & System Breakdown:** Draft schemas, data contracts, and API interfaces before touching UI components.
-2. **AI Pair Programming:** Treat modern AI tools as tireless junior-to-mid pair programmers—use them to prototype rapidly, explore edge cases, and test relentlessly.
-3. **Ship to Production:** A project isn't done in \`localhost:3000\`. It's only done when deployed on Vercel, Hugging Face, or compiled into an APK with real users.`
+three-step loop I follow:
+
+**1. Break it down first.** Draft the schema, API contracts, and data flow before touching any UI. A confused architecture makes confident code worse.
+
+**2. AI as a pair programmer.** Use LLMs the way you'd use a tireless junior dev — rapid prototyping, edge case hunting, test coverage. But understand every line that ships.
+
+**3. It's not done until it's deployed.** localhost:3000 doesn't count. a project is only real when it's live on Vercel, Hugging Face, or in someone's hands as an APK.
+
+the loop: build → break → debug → chai → repeat.`
       };
     }
 
-    // 8. Background / College / Education / Location
-    if (/who\s+is\s+rohith|about|college|university|education|degree|where|location|study|student/.test(q)) {
+    if (/who\s+is|about\s+rohith|background|college|education|degree|where.*study/.test(q)) {
       return {
-        topic: 'bio',
-        response: `**About Pontapalli Rohith:**
+        mood: 'wave',
+        text: `hi! I'm Mini Roh — Rohith's digital self 👋
 
-* **Academic Status:** 3rd Year B.Tech Computer Science & Engineering student.
-* **Institution:** MVGR College of Engineering, Vizianagaram, Andhra Pradesh, India.
-* **Timezone:** India Standard Time (IST, UTC+5:30).
-* **GitHub:** [@Rohith-Shimori](https://github.com/Rohith-Shimori)
-* **LinkedIn:** [Pontapalli Rohith](https://www.linkedin.com/in/pontapalli-rohith/)
-* **Credentials:** Certified in AI & Cloud fundamentals by EY, IBM, and Microsoft (verified on Credly).`
+**Pontapalli Rohith** — 3rd year B.Tech Computer Science & Engineering student at MVGR College of Engineering, Vizianagaram, Andhra Pradesh, India.
+
+CGPA: 8.60 · Timezone: IST (UTC+5:30)
+
+certified in AI & Cloud fundamentals by EY, IBM, and Microsoft (verified on Credly). spends most time building real software projects, exploring AI systems, and debugging things that "should work but don't".
+
+find him at:
+• [rohith.is-a.dev](https://rohith.is-a.dev)
+• [@Rohith-Shimori on GitHub](https://github.com/Rohith-Shimori)
+• [LinkedIn](https://www.linkedin.com/in/pontapalli-rohith/)`
       };
     }
 
-    // 9. Contact / Email / Resume
-    if (/contact|email|reach|hire|resume|cv|talk|message/.test(q)) {
+    if (/contact|email|reach|talk|message|connect|hire/.test(q)) {
       return {
-        topic: 'contact',
-        response: `**Get in Touch with Rohith:**
+        mood: 'wave',
+        text: `let's connect! 📬
 
-* **Custom Email:** [rohith@rohith.is-a.dev](mailto:rohith@rohith.is-a.dev)
-* **Interactive Web CV:** Open [cv.html](cv.html) in your browser!
-* **LinkedIn:** [linkedin.com/in/pontapalli-rohith](https://www.linkedin.com/in/pontapalli-rohith/)
-* **GitHub:** [github.com/Rohith-Shimori](https://github.com/Rohith-Shimori)
+**direct email:** [rohith@rohith.is-a.dev](mailto:rohith@rohith.is-a.dev)
+**web CV:** [rohith.is-a.dev/cv.html](https://rohith.is-a.dev/cv.html)
+**LinkedIn:** [pontapalli-rohith](https://www.linkedin.com/in/pontapalli-rohith/)
+**GitHub:** [Rohith-Shimori](https://github.com/Rohith-Shimori)
 
-He is actively looking for **Software Engineering Internships**, **Full-Stack roles**, and **AI Engineering collaborations**!`
+actively looking for: software engineering internships, full-stack roles, and AI engineering collaborations.
+
+email's the fastest way — rohith usually replies same day!`
       };
     }
 
-    // 10. Fun / Mascot / Tea / Coffee Easter Eggs
-    if (/tea|coffee|sleep|tired|mascot|mini\s+roh|poke|pout|hug|headpat/.test(q)) {
+    if (/tea|chai|coffee|sleep|tired|hungry|snack|fun|joke|mascot|click|poke|headpat/.test(q)) {
       return {
-        topic: 'fun',
-        response: `*(Mini Roh sips hot chai ☕)*
+        mood: 'need_sleep',
+        text: `*(takes a long sip of chai)* ☕
 
-*"Tea > Coffee any day! Nothing fuels late-night bug hunting like a warm cup of spiced chai. Fun fact: if you click my mascot avatar on the homepage, I have an emotional progression from cute wiggles to pouts to legendary headpats at 100 clicks! Try poking me!"*`
+chai is life. specifically: strong ginger-cardamom chai at 1am when the type error refuses to make sense. coffee is fine but chai hits different when you're hunting a race condition.
+
+fun fact: if you click the mascot figures on the homepage enough times, I have an entire emotional arc — from cute wiggles to mild irritation to actual legendary headpats at 100 clicks.
+
+try it. I dare you. (warning: I may get slightly passive-aggressive around click 6)`
       };
     }
 
-    // Default / General Response
+    // Default
     return {
-      topic: 'general',
-      response: `I'm Mini Roh, Rohith's digital neural twin! I know everything about his projects and engineering decisions:
+      mood: 'wave',
+      text: `hey! I'm Mini Roh — Rohith's digital companion 👾
 
-* Ask me about **NCC Digital Training Platform** (React 19 & Supabase RLS)
-* Ask me about **TruthLens AI Agent** (Google Capstone & FastMCP protocol)
-* Ask me about **MVGR NexUs** (TechSprint hackathon-winning Flutter app)
-* Ask me about **Why you should hire Rohith**
-* Or ask me about his tech stack, engineering philosophy, or contact info!`
+I know everything about his work. try asking me:
+
+• *"why should we hire Rohith?"* — recruiter pitch
+• *"explain the NCC Supabase RLS architecture"* — deep dive
+• *"tell me about TruthLens FastMCP"* — AI agent breakdown
+• *"what's the MVGR NexUs stack?"* — Flutter + BLoC
+• *"what's Rohith's engineering philosophy?"* — the approach
+• *"what's Ananta?"* — the local AI project
+
+or just ask me anything — I'll do my best!`
     };
   }
 
   /* =============================================
-     4. DUAL-BRAIN ORCHESTRATOR
+     4. BRAIN (Chrome AI / Fallback)
   ============================================= */
   class MiniRohBrain {
     constructor() {
-      this.hasChromeAi = false;
-      this.chromeSession = null;
-      this.initChromeAi();
+      this.hasNativeAi = false;
+      this.session = null;
+      this._init();
     }
 
-    async initChromeAi() {
+    async _init() {
       try {
         if (window.ai && window.ai.languageModel) {
-          const capabilities = await window.ai.languageModel.capabilities();
-          if (capabilities.available === 'readily' || capabilities.available === 'after-download') {
-            this.chromeSession = await window.ai.languageModel.create({
-              systemPrompt: MINI_ROH_SYSTEM_PROMPT
-            });
-            this.hasChromeAi = true;
+          const caps = await window.ai.languageModel.capabilities();
+          if (caps.available === 'readily' || caps.available === 'after-download') {
+            this.session = await window.ai.languageModel.create({ systemPrompt: SYSTEM_PROMPT });
+            this.hasNativeAi = true;
           }
         }
-      } catch (err) {
-        this.hasChromeAi = false;
-      }
+      } catch (_) { /* graceful fallback */ }
     }
 
-    getEngineStatus() {
-      if (this.hasChromeAi) {
-        return { mode: 'Gemini Nano (0 MB)', badge: 'Neural Local' };
-      }
-      return { mode: 'Fast Knowledge Engine (0ms)', badge: '0ms Instant' };
-    }
-
-    async streamResponse(prompt, onToken, onComplete) {
-      // If Chrome Built-In AI is available, use real neural streaming
-      if (this.hasChromeAi && this.chromeSession) {
+    async stream(prompt, onToken, onDone) {
+      if (this.hasNativeAi && this.session) {
         try {
-          const stream = this.chromeSession.promptStreaming(prompt);
-          let previousLength = 0;
+          const stream = this.session.promptStreaming(prompt);
+          let prev = 0;
           for await (const chunk of stream) {
-            const newText = chunk.slice(previousLength);
-            previousLength = chunk.length;
-            onToken(newText);
+            onToken(chunk.slice(prev));
+            prev = chunk.length;
           }
-          if (onComplete) onComplete();
+          onDone && onDone();
           return;
-        } catch (e) {
-          // Graceful fallback to Knowledge Graph Engine
-        }
+        } catch (_) { /* fall through */ }
       }
 
-      // Instant Knowledge Graph Engine (0ms, 100% reliable)
-      const resolution = resolveIntent(prompt);
-      const fullText = resolution.response;
-      
-      // Simulate fast natural token typing stream (15ms per character batch)
-      let index = 0;
-      const chunkSize = 3;
-      const interval = setInterval(() => {
-        if (index < fullText.length) {
-          const chunk = fullText.slice(index, index + chunkSize);
-          index += chunkSize;
-          onToken(chunk);
+      // Knowledge-graph instant engine
+      const result = resolveIntent(prompt);
+      const text = result.text;
+      let i = 0;
+      const CHUNK = 4;
+      const tick = setInterval(() => {
+        if (i < text.length) {
+          onToken(text.slice(i, i + CHUNK));
+          i += CHUNK;
         } else {
-          clearInterval(interval);
-          if (onComplete) onComplete();
+          clearInterval(tick);
+          onDone && onDone(result.mood);
         }
-      }, 16);
+      }, 14);
+      return result.mood;
     }
   }
 
   /* =============================================
-     5. FLOATING CHAT DRAWER UI CONTROLLER
+     5. MARKDOWN RENDERER
   ============================================= */
+  function renderMarkdown(raw) {
+    if (!raw) return '';
+    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    function inline(s) {
+      s = esc(s);
+      s = s.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/\*((?:[^*\n])+)\*/g, '<em>$1</em>');
+      s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+      s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+      return s;
+    }
+    return raw.split(/\r?\n/).map(line => {
+      const t = line.trim();
+      if (!t) return '<div class="mr-gap"></div>';
+      const bullet = t.match(/^[*\-]\s+(.*)/);
+      if (bullet) return `<div class="mr-bullet"><span class="mr-dot">›</span><span>${inline(bullet[1])}</span></div>`;
+      const num = t.match(/^(\d+)\.\s+(.*)/);
+      if (num) return `<div class="mr-num"><span class="mr-nnum">${num[1]}.</span><span>${inline(num[2])}</span></div>`;
+      if (t.startsWith('>')) return `<blockquote class="mr-quote">${inline(t.slice(1).trim())}</blockquote>`;
+      return `<div class="mr-line">${inline(t)}</div>`;
+    }).join('');
+  }
+
+  /* =============================================
+     6. UI — CHARACTER SLIDE PANEL
+  ============================================= */
+  const MOODS = {
+    wave:          'mascot_wave.webp',
+    thinking:      'mascot_thinking.webp',
+    coding:        'mascot_coding.webp',
+    focus_mode:    'mascot_focus_mode.webp',
+    building_ai:   'mascot_building_ai.webp',
+    deploy_success:'mascot_deploy_success.webp',
+    it_works:      'mascot_it_works.webp',
+    need_sleep:    'mascot_need_sleep.webp',
+    bug_found:     'mascot_bug_found.webp',
+    compiler_error:'mascot_compiler_error.webp',
+    locked_in:     'mascot_locked_in.webp',
+  };
+
+  const QUICK_PROMPTS = [
+    { label: 'Why hire Rohith?',       query: 'Why should we hire Rohith?' },
+    { label: 'NCC Platform deep dive', query: 'Explain the NCC Supabase RLS architecture' },
+    { label: 'TruthLens FastMCP',      query: 'Tell me about TruthLens AI agent architecture' },
+    { label: 'MVGR NexUs Flutter',     query: 'What is the MVGR NexUs app and its tech stack?' },
+    { label: 'Ananta Local AI',        query: 'Tell me about Ananta local AI assistant' },
+    { label: 'Engineering philosophy', query: "What's Rohith's engineering philosophy?" },
+    { label: 'Tech stack',             query: 'What is the full technology stack Rohith knows?' },
+  ];
+
   let brain = null;
+  let isOpen = false;
+  let isGenerating = false;
+  let chatHistory = []; // { role: 'user'|'roh', text: string, mood?: string }
 
-  function initChatUi() {
-    brain = new MiniRohBrain();
+  function escHtml(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
 
-    // Create DOM structure for Centered Spotlight Intelligence Console
-    const spotlightHtml = `
-      <div id="miniRohSpotlight" class="mini-roh-spotlight-overlay" role="dialog" aria-modal="true" aria-label="Mini Roh AI Intelligence Console">
-        <div class="mini-roh-spotlight-modal">
-          <!-- TOP HEADER -->
-          <div class="spotlight-header">
-            <div class="spotlight-brand">
-              <div class="spotlight-avatar">
-                <img id="spotlightMascotImg" src="mascot_wave.webp" alt="Mini Roh" width="28" height="28">
-                <span class="spotlight-status-dot" aria-hidden="true"></span>
-              </div>
-              <div class="spotlight-title-group">
-                <div class="spotlight-title">MINI ROH <span class="spotlight-sep">//</span> SYSTEM INTEL</div>
-                <div class="spotlight-subtitle">Autonomous Persona & Architecture Dossier</div>
-              </div>
+  function buildPanel() {
+    const wrapper = document.createElement('div');
+    wrapper.id = 'mrPanel';
+    wrapper.innerHTML = `
+      <!-- BACKDROP -->
+      <div id="mrBackdrop" class="mr-backdrop" aria-hidden="true"></div>
+
+      <!-- SLIDE PANEL -->
+      <aside id="mrAside" class="mr-aside" role="dialog" aria-modal="true" aria-label="Chat with Mini Roh">
+
+        <!-- CHARACTER STAGE — mascot floats above panel top -->
+        <div class="mr-stage">
+          <div class="mr-stage-inner">
+            <img id="mrMascot" src="mascot_wave.webp" alt="Mini Roh" class="mr-mascot" width="180" height="180">
+            <div id="mrStatus" class="mr-status">
+              <span class="mr-status-dot" aria-hidden="true"></span>
+              <span id="mrStatusText">online · ready to chat</span>
             </div>
-            <div class="spotlight-header-actions">
-              <span class="spotlight-badge" id="spotlightEngineBadge">0ms Instant</span>
-              <button class="spotlight-close-btn" id="spotlightCloseBtn" aria-label="Close intelligence console">
-                <span class="spotlight-esc-tag">ESC</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="6"></line></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- INPUT PROMPT FIELD -->
-          <div class="spotlight-input-wrap">
-            <span class="spotlight-prompt-glyph">❯</span>
-            <input type="text" id="spotlightInput" class="spotlight-input" placeholder="Ask about NCC architecture, FastMCP agent, Flutter BLoC, or hiring..." autocomplete="off" spellcheck="false">
-            <button id="spotlightSendBtn" class="spotlight-send-btn" aria-label="Submit query">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
-          </div>
-
-          <!-- QUICK TELEMETRY CHIPS -->
-          <div class="spotlight-chips" id="spotlightChips">
-            <button class="spotlight-chip" data-query="Why should we hire Rohith?"><span class="chip-accent">✦</span> Why hire Rohith?</button>
-            <button class="spotlight-chip" data-query="Explain the NCC Supabase RLS schema"><span class="chip-accent">⚡</span> NCC Supabase RLS</button>
-            <button class="spotlight-chip" data-query="Tell me about TruthLens architecture"><span class="chip-accent">🧠</span> TruthLens FastMCP</button>
-            <button class="spotlight-chip" data-query="What is MVGR NexUs and what tech does it use?"><span class="chip-accent">📱</span> MVGR NexUs</button>
-            <button class="spotlight-chip" data-query="What is Rohith's core engineering philosophy?"><span class="chip-accent">☕</span> Philosophy</button>
-          </div>
-
-          <!-- READOUT DISPLAY -->
-          <div class="spotlight-readout" id="spotlightReadout">
-            <div class="spotlight-welcome-state" id="spotlightWelcome">
-              <div class="spotlight-welcome-mascot">
-                <img src="mascot_wave.webp" alt="Mini Roh Wave" width="56" height="56">
-              </div>
-              <div class="spotlight-welcome-text">
-                <div class="spotlight-welcome-lead">Yo! I'm <strong>Mini Roh</strong>, Rohith's digital persona twin.</div>
-                <div class="spotlight-welcome-sub">Ask me anything about his systems architecture, code decisions, engineering philosophy, or why you should hire him.</div>
-              </div>
-            </div>
-            <div id="spotlightResultsContainer" style="display:none"></div>
-          </div>
-
-          <!-- FOOTER -->
-          <div class="spotlight-footer">
-            <div class="spotlight-hotkeys">
-              <span><kbd>Enter</kbd> to query</span>
-              <span><kbd>Esc</kbd> to dismiss</span>
-            </div>
-            <button id="spotlightCopyBtn" class="spotlight-copy-btn" style="display:none" aria-label="Copy response">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span id="spotlightCopyLabel">Copy Readout</span>
-            </button>
           </div>
         </div>
-      </div>
+
+        <!-- PANEL HEADER -->
+        <div class="mr-header">
+          <div class="mr-header-id">
+            <div class="mr-header-name">Mini Roh</div>
+            <div class="mr-header-sub">Rohith's digital companion</div>
+          </div>
+          <button id="mrCloseBtn" class="mr-close" aria-label="Close Mini Roh panel">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- CHAT HISTORY -->
+        <div id="mrChat" class="mr-chat" role="log" aria-live="polite" aria-label="Chat messages">
+          <!-- Welcome message injected by JS -->
+        </div>
+
+        <!-- QUICK PROMPTS (only visible when chat is empty / after welcome) -->
+        <div id="mrQuick" class="mr-quick">
+          ${QUICK_PROMPTS.map(p => `<button class="mr-chip" data-q="${escHtml(p.query)}">${escHtml(p.label)}</button>`).join('')}
+        </div>
+
+        <!-- INPUT ROW -->
+        <form id="mrForm" class="mr-form" autocomplete="off">
+          <input id="mrInput" class="mr-input" type="text" placeholder="Ask me anything about Rohith…" maxlength="300" aria-label="Message input">
+          <button type="submit" id="mrSend" class="mr-send" aria-label="Send message">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </form>
+      </aside>
     `;
+    document.body.appendChild(wrapper);
+  }
 
-    const mount = document.createElement('div');
-    mount.innerHTML = spotlightHtml;
-    document.body.appendChild(mount);
-
-    // Elements
-    const overlay = document.getElementById('miniRohSpotlight');
-    const modalBox = overlay.querySelector('.mini-roh-spotlight-modal');
-    const closeBtn = document.getElementById('spotlightCloseBtn');
-    const inputField = document.getElementById('spotlightInput');
-    const sendBtn = document.getElementById('spotlightSendBtn');
-    const chipsBar = document.getElementById('spotlightChips');
-    const welcomeBox = document.getElementById('spotlightWelcome');
-    const resultsContainer = document.getElementById('spotlightResultsContainer');
-    const readoutArea = document.getElementById('spotlightReadout');
-    const mascotImg = document.getElementById('spotlightMascotImg');
-    const engineBadge = document.getElementById('spotlightEngineBadge');
-    const copyBtn = document.getElementById('spotlightCopyBtn');
-    const copyLabel = document.getElementById('spotlightCopyLabel');
-
-    let currentResponseRaw = '';
-    let isGenerating = false;
-
-    // Update status badge
+  function setMascot(mood) {
+    const img = document.getElementById('mrMascot');
+    if (!img) return;
+    const src = MOODS[mood] || MOODS.wave;
+    if (img.src.endsWith(src)) return;
+    img.style.opacity = '0';
+    img.style.transform = 'scale(0.88) translateY(8px)';
     setTimeout(() => {
-      const status = brain.getEngineStatus();
-      if (engineBadge) engineBadge.textContent = status.badge;
-    }, 200);
+      img.src = src;
+      img.style.opacity = '1';
+      img.style.transform = 'scale(1) translateY(0)';
+    }, 180);
+  }
 
-    function openSpotlight() {
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => inputField.focus(), 80);
+  function setStatus(text) {
+    const el = document.getElementById('mrStatusText');
+    if (el) el.textContent = text;
+  }
+
+  function appendMessage(role, htmlContent, mood) {
+    const chat = document.getElementById('mrChat');
+    if (!chat) return null;
+
+    const wrap = document.createElement('div');
+    wrap.className = role === 'user' ? 'mr-msg mr-msg-user' : 'mr-msg mr-msg-roh';
+
+    if (role === 'roh') {
+      const avatar = document.createElement('img');
+      avatar.src = MOODS[mood] || MOODS.wave;
+      avatar.className = 'mr-avatar';
+      avatar.width = 32;
+      avatar.height = 32;
+      avatar.alt = 'Mini Roh';
+      wrap.appendChild(avatar);
     }
 
-    function closeSpotlight() {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
+    const bubble = document.createElement('div');
+    bubble.className = 'mr-bubble';
+    bubble.innerHTML = htmlContent;
+    wrap.appendChild(bubble);
+
+    chat.appendChild(wrap);
+    chat.scrollTop = chat.scrollHeight;
+    return bubble;
+  }
+
+  function showWelcome() {
+    const welcomeText = `yo! I'm **Mini Roh** — Rohith's digital self 👾
+
+ask me about his projects, tech stack, engineering approach, or why you should hire him. I know everything.
+
+*(pick a quick prompt below or just type!)*`;
+    appendMessage('roh', renderMarkdown(welcomeText), 'wave');
+  }
+
+  function hideQuickPrompts() {
+    const q = document.getElementById('mrQuick');
+    if (q) q.style.display = 'none';
+  }
+
+  async function sendMessage(text) {
+    if (!text.trim() || isGenerating) return;
+
+    hideQuickPrompts();
+    appendMessage('user', `<span>${escHtml(text)}</span>`, null);
+    isGenerating = true;
+    setMascot('thinking');
+    setStatus('thinking…');
+
+    // Roh bubble placeholder
+    const rohWrap = document.createElement('div');
+    rohWrap.className = 'mr-msg mr-msg-roh';
+
+    const avatar = document.createElement('img');
+    avatar.src = MOODS.thinking;
+    avatar.className = 'mr-avatar mr-avatar-active';
+    avatar.width = 32;
+    avatar.height = 32;
+    avatar.alt = 'Mini Roh';
+    rohWrap.appendChild(avatar);
+
+    const bubble = document.createElement('div');
+    bubble.className = 'mr-bubble mr-bubble-streaming';
+
+    const dotsEl = document.createElement('div');
+    dotsEl.className = 'mr-thinking-dots';
+    dotsEl.innerHTML = '<span></span><span></span><span></span>';
+    bubble.appendChild(dotsEl);
+    rohWrap.appendChild(bubble);
+
+    const chat = document.getElementById('mrChat');
+    if (chat) {
+      chat.appendChild(rohWrap);
+      chat.scrollTop = chat.scrollHeight;
     }
 
-    closeBtn.addEventListener('click', closeSpotlight);
-    overlay.addEventListener('click', (e) => {
-      if (!modalBox.contains(e.target)) {
-        closeSpotlight();
+    setMascot('thinking');
+
+    let rawText = '';
+    let finalMood = 'wave';
+
+    await brain.stream(
+      text,
+      (token) => {
+        // Remove thinking dots on first token
+        if (rawText === '') {
+          dotsEl.remove();
+          avatar.src = MOODS.coding;
+          avatar.className = 'mr-avatar mr-avatar-active';
+          setMascot('coding');
+          setStatus('typing…');
+        }
+        rawText += token;
+        bubble.innerHTML = renderMarkdown(rawText) + '<span class="mr-cursor">▌</span>';
+        if (chat) chat.scrollTop = chat.scrollHeight;
+      },
+      (mood) => {
+        finalMood = mood || 'wave';
+        // Clean up
+        bubble.innerHTML = renderMarkdown(rawText);
+        bubble.classList.remove('mr-bubble-streaming');
+        avatar.src = MOODS[finalMood] || MOODS.wave;
+        avatar.className = 'mr-avatar';
+        setMascot(finalMood);
+        setStatus('online · ready to chat');
+        isGenerating = false;
+        if (chat) chat.scrollTop = chat.scrollHeight;
       }
-    });
+    );
+  }
 
+  function openPanel() {
+    if (isOpen) return;
+    isOpen = true;
+    const aside = document.getElementById('mrAside');
+    const backdrop = document.getElementById('mrBackdrop');
+    if (aside) aside.classList.add('mr-open');
+    if (backdrop) backdrop.classList.add('mr-open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('mrInput')?.focus(), 220);
+  }
+
+  function closePanel() {
+    if (!isOpen) return;
+    isOpen = false;
+    const aside = document.getElementById('mrAside');
+    const backdrop = document.getElementById('mrBackdrop');
+    if (aside) aside.classList.remove('mr-open');
+    if (backdrop) backdrop.classList.remove('mr-open');
+    document.body.style.overflow = '';
+  }
+
+  function init() {
+    brain = new MiniRohBrain();
+    buildPanel();
+
+    // Welcome message
+    showWelcome();
+
+    // Wire close
+    document.getElementById('mrCloseBtn')?.addEventListener('click', closePanel);
+    document.getElementById('mrBackdrop')?.addEventListener('click', closePanel);
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('active')) {
-        closeSpotlight();
+      if (e.key === 'Escape' && isOpen) closePanel();
+    });
+
+    // Wire form
+    document.getElementById('mrForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = document.getElementById('mrInput');
+      const val = input?.value.trim();
+      if (val) {
+        input.value = '';
+        sendMessage(val);
       }
     });
 
-    function handleSend(queryText) {
-      const q = (queryText || inputField.value).trim();
-      if (!q || isGenerating) return;
-
-      isGenerating = true;
-      inputField.value = '';
-      currentResponseRaw = '';
-      copyBtn.style.display = 'none';
-
-      // Hide welcome, show results
-      if (welcomeBox) welcomeBox.style.display = 'none';
-      resultsContainer.style.display = 'block';
-
-      // Switch avatar to coding
-      if (mascotImg) mascotImg.src = 'mascot_coding.webp';
-
-      resultsContainer.innerHTML = `
-        <div class="readout-query-bar">
-          <span class="readout-query-tag">QUERY</span>
-          <span class="readout-query-text">${escapeHtml(q)}</span>
-        </div>
-        <div class="readout-content-panel">
-          <div class="readout-stream-text"></div>
-          <span class="stream-cursor">▌</span>
-        </div>
-      `;
-
-      const textContainer = resultsContainer.querySelector('.readout-stream-text');
-      const cursor = resultsContainer.querySelector('.stream-cursor');
-
-      brain.streamResponse(
-        q,
-        (token) => {
-          currentResponseRaw += token;
-          textContainer.innerHTML = formatMarkdown(currentResponseRaw);
-          readoutArea.scrollTop = readoutArea.scrollHeight;
-        },
-        () => {
-          isGenerating = false;
-          if (cursor) cursor.remove();
-          if (mascotImg) mascotImg.src = 'mascot_it_works.webp';
-          copyBtn.style.display = 'inline-flex';
-        }
-      );
-    }
-
-    sendBtn.addEventListener('click', () => handleSend());
-    inputField.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') handleSend();
+    // Wire quick prompts
+    document.getElementById('mrQuick')?.addEventListener('click', (e) => {
+      const chip = e.target.closest('.mr-chip');
+      if (chip?.dataset.q) sendMessage(chip.dataset.q);
     });
 
-    chipsBar.addEventListener('click', (e) => {
-      const chip = e.target.closest('.spotlight-chip');
-      if (chip && chip.dataset.query) {
-        handleSend(chip.dataset.query);
-      }
-    });
+    // Expose global triggers
+    window.openMiniRohSpotlight = openPanel;
+    window.openMiniRohChat = openPanel;
 
-    copyBtn.addEventListener('click', () => {
-      if (!currentResponseRaw) return;
-      navigator.clipboard.writeText(currentResponseRaw).then(() => {
-        copyLabel.textContent = 'Copied!';
-        setTimeout(() => { copyLabel.textContent = 'Copy Readout'; }, 2000);
-      });
-    });
-
-    // Helper functions
-    function escapeHtml(str) {
-      const div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
-
-    function formatMarkdown(text) {
-      if (!text) return '';
-      const lines = text.split(/\r?\n/);
-      let html = '';
-      
-      for (let i = 0; i < lines.length; i++) {
-        const rawLine = lines[i];
-        const trimmed = rawLine.trim();
-        
-        if (!trimmed) {
-          html += '<div style="height:6px"></div>';
-          continue;
-        }
-
-        // Check for bullet list item: * or -
-        const bulletMatch = trimmed.match(/^[\*\-]\s+(.*)$/);
-        if (bulletMatch) {
-          let content = parseInline(bulletMatch[1]);
-          html += `<div style="display:flex; gap:8px; margin:3px 0; padding-left:4px"><span style="color:var(--accent); line-height:1.4">•</span><span style="line-height:1.4">${content}</span></div>`;
-          continue;
-        }
-
-        // Check for numbered list item: 1. 2. etc.
-        const numMatch = trimmed.match(/^(\d+)\.\s+(.*)$/);
-        if (numMatch) {
-          let num = numMatch[1];
-          let content = parseInline(numMatch[2]);
-          html += `<div style="margin:6px 0 3px 0"><strong style="color:var(--accent)">${num}.</strong> ${content}</div>`;
-          continue;
-        }
-
-        // Regular line
-        html += `<div style="margin:2px 0; line-height:1.55">${parseInline(trimmed)}</div>`;
-      }
-
-      return html;
-    }
-
-    function parseInline(str) {
-      let escaped = escapeHtml(str);
-      // Bold
-      escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      // Italics
-      escaped = escaped.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
-      // Inline code
-      escaped = escaped.replace(/`([^`]+)`/g, '<code>$1</code>');
-      // Links
-      escaped = escaped.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-      return escaped;
-    }
-
-    // Expose openSpotlight globally
-    window.openMiniRohSpotlight = openSpotlight;
-    window.openMiniRohChat = openSpotlight;
+    // Wire existing nav + hero buttons (set in index.html)
+    const navBtn = document.getElementById('aiSpotlightNavBtn');
+    const heroBtn = document.getElementById('heroAskAiBtn');
+    if (navBtn) navBtn.addEventListener('click', openPanel);
+    if (heroBtn) heroBtn.addEventListener('click', openPanel);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initChatUi);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    initChatUi();
+    init();
   }
 })();
