@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rohith OS // Mini Roh AI & Cyber Sound Lab</title>
+  <meta name="description" content="Rohith's Cybernetic Operating System: Live Mini Roh AI companion with 9-direction gaze tracking, Cyber Sound Lab lo-fi beats, GitHub Synapse telemetry, and interactive hacker terminal.">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core OS Styles -->
+  <link rel="stylesheet" href="css/rohith-os.css">
+</head>
+<body>
+
+  <div class="os-container">
+
+    <!-- ===================================================================
+         SYSTEM HEADER DOCK
+         =================================================================== -->
+    <header class="os-header" role="banner">
+      <div class="os-brand">
+        <div class="os-badge">
+          <span class="glyph">✦</span> ROHITH-OS
+        </div>
+        <span class="os-version-tag">v2.4.0-CYBER</span>
+      </div>
+
+      <div class="os-telemetry">
+        <div class="telemetry-item" id="headerAudioStatus">
+          <span class="pulse-dot"></span> AUDIO: READY (CLICK PLAY)
+        </div>
+        <div class="telemetry-item">
+          <span class="pulse-dot" id="githubStatusDot"></span> GITHUB: SYNAPSE ACTIVE
+        </div>
+        <div class="telemetry-item">
+          <span>🕒</span> <span id="istClock">--:--:-- IST</span>
+        </div>
+      </div>
+
+      <div class="os-header-actions">
+        <a href="index.html" class="back-link">
+          <span>←</span> Back to Portfolio
+        </a>
+      </div>
+    </header>
+
+    <!-- ===================================================================
+         MAIN BENTO OPERATING SYSTEM GRID
+         =================================================================== -->
+    <main class="os-grid">
+
+      <!-- ZONE 1: MINI ROH STUDIO STAGE -->
+      <section class="os-card studio-stage" aria-label="Mini Roh Studio Stage">
+        <div class="music-notes-emitter" aria-hidden="true">
+          <span class="floating-note">♫</span>
+          <span class="floating-note">♪</span>
+          <span class="floating-note">♬</span>
+        </div>
+
+        <div class="card-header" style="width: 100%;">
+          <span class="card-title">
+            <span class="icon">🪐</span> Zone 01 // Mascot Studio
+          </span>
+          <span class="card-status">
+            <span class="pulse-dot orange"></span> 9-DIR GAZE ACTIVE
+          </span>
+        </div>
+
+        <div class="mascot-viewport" id="mascotViewport">
+          <div class="mascot-viewport-ring" aria-hidden="true"></div>
+          <img 
+            id="mascotDisplayImg" 
+            src="mascot-frames/center.webp" 
+            alt="Mini Roh Gaze Tracking Character" 
+            class="mascot-image"
+            draggable="false"
+          >
+        </div>
+
+        <div class="speech-bubble" id="mascotSpeech">
+          ✦ initializing rohith os... move your cursor around, i'm watching!
+        </div>
+
+        <div class="stage-footer">
+          <div class="mood-badge" id="mascotMoodBadge">
+            <span class="pulse-dot orange"></span> ⚡ CODING SPRINT
+          </div>
+        </div>
+      </section>
+
+      <!-- ZONE 2: CONVERSATIONAL AI CORE -->
+      <section class="os-card ai-core" aria-label="Mini Roh Conversational AI">
+        <div class="card-header">
+          <span class="card-title">
+            <span class="icon">🧠</span> Zone 02 // Mini Roh AI Brain
+          </span>
+          <span class="card-status">
+            <span class="pulse-dot"></span> DUAL-BRAIN ONLINE
+          </span>
+        </div>
+
+        <div class="chat-history" id="chatHistory" role="log" aria-live="polite">
+          <div class="chat-msg mini-roh">
+            <span class="msg-sender">MINI ROH AI</span>
+            <div class="msg-bubble">
+              hey there! I'm **Mini Roh**—Rohith's digital twin and system co-pilot. Ask me anything about his real-world builds (*NCC Digi, TruthLens, NexUs*), engineering philosophy, or why you should hire him! ☕
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Recruiter & Tech Chips -->
+        <div class="prompt-chips" role="toolbar" aria-label="Prompt Suggestions">
+          <button class="chip-btn" data-query="Why should we hire Rohith?">🎯 Why Hire Rohith?</button>
+          <button class="chip-btn" data-query="Explain the NCC Digital Platform RLS architecture">🏗️ NCC Digi Architecture</button>
+          <button class="chip-btn" data-query="How does TruthLens use FastMCP subagents?">🧠 TruthLens Agents</button>
+          <button class="chip-btn" data-query="What is Rohith's technical stack?">⚡ Tech Arsenal</button>
+          <button class="chip-btn" data-query="How can I contact Rohith?">📬 Contact & Links</button>
+        </div>
+
+        <div class="chat-input-bar">
+          <input 
+            type="text" 
+            id="chatInput" 
+            class="chat-input-field" 
+            placeholder="Ask Mini Roh anything (e.g., 'Why hire Rohith?' or 'Tell me about TruthLens')..." 
+            autocomplete="off"
+            aria-label="Ask Mini Roh a question"
+          >
+          <button id="chatSendBtn" class="chat-send-btn" aria-label="Send message">SEND</button>
+        </div>
+      </section>
+
+      <!-- ZONE 3: APPLE MUSIC STUDIO // PEACE OF HELL & DUAL AUDIO ENGINE -->
+      <section class="os-card apple-music-card" id="appleMusicDeck" aria-label="Apple Music Studio">
+        <!-- Dynamic Ambient Artwork Mesh Background -->
+        <div class="am-ambient-mesh" id="amAmbientMesh" aria-hidden="true">
+          <div class="am-mesh-blob blob-1"></div>
+          <div class="am-mesh-blob blob-2"></div>
+          <div class="am-mesh-blob blob-3"></div>
+        </div>
+
+        <!-- Master-Detail Glass Deck Container -->
+        <div class="am-deck-container">
+          
+          <!-- LEFT: NOW PLAYING SHOWCASE (APPLE MUSIC HERO) -->
+          <div class="am-now-playing-col">
+            <!-- Glass Header & Brand -->
+            <div class="am-col-header">
+              <div class="am-brand-pill">
+                <svg class="am-logo-icon" viewBox="0 0 170 170" width="14" height="14" fill="currentColor" aria-hidden="true">
+                  <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.99-6.42-9.98-11.38-21.75-14.88-35.3-3.5-13.56-5.25-25.79-5.25-36.7 0-14.88 3.73-27.12 11.19-36.74 7.46-9.62 16.79-14.54 27.99-14.77 5.17 0 10.63 1.34 16.38 4.03 5.75 2.68 9.5 4.09 11.25 4.23 2.01-.2 5.92-1.63 11.73-4.29 5.8-2.65 11.1-3.9 15.89-3.74 13.91.68 25.13 6.03 33.64 16.05-12.18 7.37-18.15 17.52-17.92 30.45.23 10.15 4.16 18.73 11.78 25.74 7.62 7.01 16.66 10.98 27.12 11.91-2.45 7.42-5.46 15.01-9.03 22.78zM119.22 31.84c0-7.39 2.68-14.39 8.04-21 5.37-6.61 11.98-10.45 19.84-11.51.56 1.45.84 2.87.84 4.25 0 7.27-2.73 14.33-8.19 21.18-5.46 6.85-12.19 10.69-20.19 11.51-.22-1.45-.34-2.93-.34-4.43z"/>
+                </svg>
+                <span class="am-brand-title">Music</span>
+                <span class="am-brand-channel" id="amActiveChannelTag">PEACE OF HELL</span>
+              </div>
+              <div class="am-live-status-pill" id="amLiveStatus">
+                <span class="am-pulse-dot"></span> <span id="amStatusText">STANDBY</span>
+              </div>
+            </div>
+
+            <!-- Artwork Display -->
+            <div class="am-artwork-showcase">
+              <div class="am-artwork-frame" id="amArtworkFrame">
+                <img 
+                  id="amAlbumArt" 
+                  class="am-album-art" 
+                  src="https://c.saavncdn.com/850/Nine-Track-Mind-English-2016-20190607044034-500x500.jpg" 
+                  alt="Now Playing Album Artwork"
+                  loading="eager"
+                >
+                <div class="am-artwork-glare"></div>
+              </div>
+            </div>
+
+            <!-- Track Metadata -->
+            <div class="am-meta-block">
+              <div class="am-track-title-row">
+                <h3 class="am-song-title" id="amSongTitle">We Don't Talk Anymore (feat. Selena Gomez)</h3>
+                <div class="am-equalizer" id="amEqualizer" aria-label="Audio Playing Equalizer">
+                  <span class="am-eq-bar"></span>
+                  <span class="am-eq-bar"></span>
+                  <span class="am-eq-bar"></span>
+                </div>
+              </div>
+              <p class="am-song-artist" id="amSongArtist">Charlie Puth, Selena Gomez</p>
+              <p class="am-album-name" id="amAlbumName">Nine Track Mind • Peace of Hell #01</p>
+            </div>
+
+            <!-- Apple Scrubber Timeline -->
+            <div class="am-scrubber-block">
+              <input type="range" class="am-progress-slider" id="amProgressSlider" min="0" max="100" value="0" aria-label="Song progress scrubber">
+              <div class="am-time-row">
+                <span class="am-time" id="amTimeElapsed">0:00</span>
+                <span class="am-time" id="amTimeRemaining">-3:37</span>
+              </div>
+            </div>
+
+            <!-- Apple Transport Controls -->
+            <div class="am-controls-row">
+              <button class="am-icon-btn" id="amShuffleBtn" title="Shuffle Playlist" aria-label="Shuffle">🔀</button>
+              <button class="am-icon-btn" id="amPrevBtn" title="Previous Track" aria-label="Previous track">⏮</button>
+              <button class="am-play-btn" id="amPlayBtn" title="Play / Pause" aria-label="Play or pause">▶</button>
+              <button class="am-icon-btn" id="amNextBtn" title="Next Track" aria-label="Next track">⏭</button>
+              <button class="am-icon-btn" id="amLoopBtn" title="Repeat Track" aria-label="Repeat track">🔁</button>
+            </div>
+
+            <!-- Volume Slider & Mode Toggle -->
+            <div class="am-lower-bar">
+              <div class="am-volume-control">
+                <span class="am-vol-glyph" id="amVolIcon" title="Toggle Mute">🔈</span>
+                <input type="range" class="am-vol-slider" id="amVolSlider" min="0" max="100" value="80" aria-label="Volume slider">
+                <span class="am-vol-glyph">🔊</span>
+              </div>
+
+              <!-- Apple Segmented Source Switcher -->
+              <div class="am-segmented-pill">
+                <button class="am-seg-btn active" id="amModePreview" title="Instant High-Fidelity 60FPS Web Audio">⚡ Preview</button>
+                <button class="am-seg-btn" id="amModeFull" title="Headless Full-Length Song Stream">🎧 Full Song</button>
+                <a 
+                  id="amSpotifyLink"
+                  href="https://open.spotify.com/playlist/5OfNNCRIxcq2h8dGRZf4JY?si=ccbfa0b701ea4eb9" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="am-spotify-pill" 
+                  title="Open in Spotify"
+                >
+                  🟢 Spotify ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: PLAYLIST & UP NEXT QUEUE (APPLE MUSIC QUEUE) -->
+          <div class="am-queue-col">
+            <!-- Queue Masthead -->
+            <div class="am-queue-masthead">
+              <div class="am-masthead-info">
+                <img 
+                  id="amPlaylistThumb" 
+                  class="am-playlist-thumb" 
+                  src="https://mosaic.scdn.co/640/ab67616d00001e0215145482a542a9adb282250bab67616d00001e02897f73256b9128a9d70eaf66ab67616d00001e02b1fd209c11e33b3902159ab2ab67616d00001e02fddfffec51b4580acae727c1" 
+                  alt="Playlist thumbnail"
+                >
+                <div class="am-masthead-texts">
+                  <span class="am-eyebrow">PLAYLIST</span>
+                  <h2 class="am-playlist-title" id="amPlaylistTitle">Peace of Hell</h2>
+                  <p class="am-playlist-curator" id="amPlaylistCurator">Curated by Shimorikichiri (Rohith) • 100 songs, 5 hr 28 min</p>
+                </div>
+              </div>
+
+              <!-- Station & Search Controls -->
+              <div class="am-masthead-actions">
+                <div class="am-channel-switch">
+                  <button class="am-channel-btn active" id="amChanPlaylist">🔥 Peace of Hell</button>
+                  <button class="am-channel-btn" id="amChanLofi">🎧 Focus Lo-Fi</button>
+                </div>
+                <div class="am-search-box">
+                  <input 
+                    type="text" 
+                    id="amSearchInput" 
+                    class="am-search-field" 
+                    placeholder="🔍 Search 100 songs or artists..." 
+                    autocomplete="off"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Apple Music Tracklist Table -->
+            <div class="am-table-container">
+              <div class="am-table-header">
+                <span class="col-num">#</span>
+                <span class="col-title">TITLE</span>
+                <span class="col-artist">ARTIST</span>
+                <span class="col-time">TIME</span>
+              </div>
+              <div class="am-track-scroll-area" id="amTracklistContainer" role="list"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Headless / Background Full Song Engine (Zero visual clutter) -->
+        <div id="amHeadlessPlayer" style="position:fixed; bottom:-999px; right:-999px; width:200px; height:200px; opacity:0.001; pointer-events:none; z-index:-100;">
+          <iframe id="amHeadlessIframe" allow="autoplay; encrypted-media" frameborder="0"></iframe>
+        </div>
+      </section>
+
+      <!-- ZONE 4: GITHUB SYNAPSE WALL -->
+      <section class="os-card github-synapse-card" aria-label="GitHub Synapse Telemetry">
+        <div class="card-header">
+          <span class="card-title">
+            <span class="icon">⚡</span> Zone 04 // GitHub Synapse
+          </span>
+          <span class="card-status">
+            <span class="pulse-dot"></span> 30M TTL CACHE
+          </span>
+        </div>
+
+        <div class="synapse-stat-strip">
+          <div class="synapse-stat-pill">
+            <span class="stat-label">Public Repos</span>
+            <span class="stat-val accent" id="statRepoCount">9</span>
+          </div>
+          <div class="synapse-stat-pill">
+            <span class="stat-label">Followers</span>
+            <span class="stat-val" id="statFollowerCount">0</span>
+          </div>
+          <div class="synapse-stat-pill">
+            <span class="stat-label">Latest Push</span>
+            <span class="stat-val" id="statLatestPush">Recent</span>
+          </div>
+        </div>
+
+        <!-- Language DNA Bar -->
+        <div class="dna-section">
+          <div class="dna-header">
+            <span>LANGUAGE DNA SPECTRUM</span>
+            <span>TOP CODEBASES</span>
+          </div>
+          <div class="dna-bar-track" id="dnaBarTrack" aria-label="Language DNA breakdown bar"></div>
+          <div class="dna-legend" id="dnaLegend"></div>
+        </div>
+
+        <!-- Live Commit Stream -->
+        <div class="commit-feed" id="commitFeed" role="feed" aria-label="Recent GitHub Public Commits"></div>
+      </section>
+
+      <!-- ZONE 5: HACKER TERMINAL (roh-sh) — RESTORED CLASSIC WITH INLINE PROMPT & ZERO DEAD SPACE -->
+      <section class="os-card terminal-card" id="terminalCard" aria-label="Interactive Hacker Terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="t-dot red"></div>
+            <div class="t-dot yellow"></div>
+            <div class="t-dot green"></div>
+          </div>
+          <div class="terminal-title">roh-sh // interactive aerospace terminal</div>
+        </div>
+
+        <div class="terminal-body" id="terminalBody">
+          <div class="terminal-log" id="terminalLog" role="log" aria-live="polite"></div>
+
+          <!-- Active Prompt Line sits directly below output with zero wasted gap -->
+          <div class="terminal-active-line" id="terminalActiveLine">
+            <span class="term-prompt-prefix">mini-roh@rohith-os:~$</span>
+            <input 
+              type="text" 
+              id="terminalInput" 
+              class="terminal-input" 
+              placeholder="Type 'help', 'git log', 'cat ncc', or 'music play'..." 
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Terminal command prompt"
+            >
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="js/playlist-data.js"></script>
+  <script src="js/spicetify-player.js"></script>
+  <script src="js/github-synapse.js"></script>
+  <script src="js/roh-terminal.js"></script>
+  <script src="js/rohith-os.js"></script>
+</body>
+</html>

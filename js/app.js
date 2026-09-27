@@ -830,6 +830,7 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
 
       // 4. Direct Actions & Links
       items.push(
+        { id: 'open-rohith-os', label: 'Launch Rohith OS // Mini Roh AI & Cyber Sound Deck', subtext: 'Standalone App • rohith-os.html', category: 'Operating System', keywords: 'rohith os mini roh ai audio deck music player lofi terminal cyber sound lab github synapse', action: () => window.location.href = 'rohith-os.html' },
         { id: 'live-ncc', label: 'NCC Digital Training Platform (Live App)', subtext: 'Live • nccdigi.vercel.app', category: 'Live Demo', keywords: 'ncc cadet live vercel pwa react supabase', action: () => window.open('https://nccdigi.vercel.app', '_blank') },
         { id: 'live-truthlens', label: 'TruthLens AI Agent (HuggingFace Space)', subtext: 'Live • huggingface.co', category: 'Live Demo', keywords: 'truthlens ai agent space huggingface fastmcp python', action: () => window.open('https://huggingface.co/spaces/Rohith-Shimori/TruthLens-AI-Agent', '_blank') },
         { id: 'copy-email', label: 'Copy Custom Email (rohith@rohith.is-a.dev)', subtext: 'Action • Copy to clipboard', category: 'Action', keywords: 'copy email mail address contact rohith', action: () => copyEmailToClipboard() },
