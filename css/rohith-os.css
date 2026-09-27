@@ -735,13 +735,13 @@ body::after {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 8px #10B981;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .am-pulse-dot.standby {
-  background: var(--amber);
-  box-shadow: 0 0 8px var(--amber);
+  background: var(--text-dim);
+  box-shadow: none;
 }
 
 /* Artwork Showcase */
@@ -911,6 +911,27 @@ body::after {
   color: #8E8E93;
 }
 
+/* Live 60FPS Frequency Spectrum Visualizer */
+.am-visualizer-container {
+  width: 100%;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 3px 8px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.am-visualizer-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 /* Transport Controls */
 .am-controls-row {
   display: flex;
@@ -923,7 +944,7 @@ body::after {
   background: transparent;
   border: none;
   color: #A1A1A6;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   cursor: pointer;
   padding: 0.4rem;
   display: inline-flex;
@@ -949,7 +970,6 @@ body::after {
   background: #FFFFFF;
   border: none;
   color: #000000;
-  font-size: 1.25rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -967,6 +987,11 @@ body::after {
   transform: scale(0.96);
 }
 
+.am-play-btn svg {
+  display: block;
+  fill: #000000;
+}
+
 /* Lower Bar: Volume & Mode Pill */
 .am-lower-bar {
   display: flex;
@@ -981,10 +1006,26 @@ body::after {
   gap: 0.65rem;
 }
 
-.am-vol-glyph {
-  font-size: 0.85rem;
+.am-vol-btn {
+  background: transparent;
+  border: none;
   color: #8E8E93;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+  transition: color 0.15s ease;
+}
+
+.am-vol-btn:hover {
+  color: #FFFFFF;
+}
+
+.am-vol-glyph {
+  color: #8E8E93;
+  display: inline-flex;
+  align-items: center;
 }
 
 .am-vol-slider {
@@ -1014,7 +1055,7 @@ body::after {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 3px;
-  gap: 3px;
+  gap: 4px;
   margin: 0 auto;
 }
 
@@ -1026,8 +1067,11 @@ body::after {
   font-size: 0.7rem;
   font-weight: 600;
   color: #A1A1A6;
-  padding: 0.25rem 0.75rem;
+  padding: 0.28rem 0.75rem;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   transition: all 0.2s ease;
 }
 
@@ -1041,15 +1085,15 @@ body::after {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-.am-spotify-pill {
+.am-ext-link-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.25rem 0.75rem;
-  background: rgba(29, 185, 84, 0.15);
-  border: 1px solid rgba(29, 185, 84, 0.3);
+  gap: 0.35rem;
+  padding: 0.28rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  color: var(--spotify);
+  color: #E5E5EA;
   text-decoration: none;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   font-size: 0.7rem;
@@ -1057,9 +1101,10 @@ body::after {
   transition: all 0.2s ease;
 }
 
-.am-spotify-pill:hover {
-  background: var(--spotify);
-  color: #000;
+.am-ext-link-pill:hover {
+  background: rgba(224, 83, 21, 0.15);
+  border-color: var(--accent);
+  color: #FFFFFF;
 }
 
 /* -------------------------------------------------------------
@@ -1179,13 +1224,22 @@ body::after {
 
 .am-search-box {
   position: relative;
-  width: 240px;
+  width: 250px;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 960px) {
   .am-search-box {
     width: 100%;
   }
+}
+
+.am-search-icon-svg {
+  position: absolute;
+  left: 10px;
+  color: #8E8E93;
+  pointer-events: none;
 }
 
 .am-search-field {
@@ -1196,7 +1250,7 @@ body::after {
   color: #FFFFFF;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   font-size: 0.75rem;
-  padding: 0.4rem 0.85rem;
+  padding: 0.4rem 0.85rem 0.4rem 2rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -1294,7 +1348,9 @@ body::after {
 }
 
 .am-track-row:hover .am-row-play-icon {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .am-track-row.active .am-row-play-icon {
@@ -1322,7 +1378,9 @@ body::after {
 }
 
 .am-track-row.is-playing:hover .am-row-play-icon {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .am-row-eq .am-eq-bar {
@@ -1395,20 +1453,26 @@ body::after {
   gap: 0.5rem;
 }
 
-.am-row-spotify-icon {
+.am-row-spotify-icon,
+.am-row-ext-icon {
   opacity: 0;
-  color: var(--spotify);
+  color: #8E8E93;
   font-size: 0.75rem;
   text-decoration: none;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  display: inline-flex;
+  align-items: center;
 }
 
-.am-track-row:hover .am-row-spotify-icon {
+.am-track-row:hover .am-row-spotify-icon,
+.am-track-row:hover .am-row-ext-icon {
   opacity: 0.85;
 }
 
-.am-row-spotify-icon:hover {
+.am-row-spotify-icon:hover,
+.am-row-ext-icon:hover {
   opacity: 1;
+  color: var(--accent);
   transform: scale(1.15);
 }
 

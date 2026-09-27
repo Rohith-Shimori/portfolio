@@ -139,8 +139,8 @@
         </div>
       </section>
 
-      <!-- ZONE 3: APPLE MUSIC STUDIO // PEACE OF HELL & DUAL AUDIO ENGINE -->
-      <section class="os-card apple-music-card" id="appleMusicDeck" aria-label="Apple Music Studio">
+      <!-- ZONE 3: CYBER SOUND LAB // PEACE OF HELL & FOCUS LO-FI ENGINE -->
+      <section class="os-card apple-music-card" id="appleMusicDeck" aria-label="Cyber Sound Lab">
         <!-- Dynamic Ambient Artwork Mesh Background -->
         <div class="am-ambient-mesh" id="amAmbientMesh" aria-hidden="true">
           <div class="am-mesh-blob blob-1"></div>
@@ -151,15 +151,17 @@
         <!-- Master-Detail Glass Deck Container -->
         <div class="am-deck-container">
           
-          <!-- LEFT: NOW PLAYING SHOWCASE (APPLE MUSIC HERO) -->
+          <!-- LEFT: NOW PLAYING SHOWCASE -->
           <div class="am-now-playing-col">
-            <!-- Glass Header & Brand -->
+            <!-- Glass Header & Brand (No Apple branding, clean Cyber Sound Lab identity) -->
             <div class="am-col-header">
               <div class="am-brand-pill">
-                <svg class="am-logo-icon" viewBox="0 0 170 170" width="14" height="14" fill="currentColor" aria-hidden="true">
-                  <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.7-11.64-13.99-6.42-9.98-11.38-21.75-14.88-35.3-3.5-13.56-5.25-25.79-5.25-36.7 0-14.88 3.73-27.12 11.19-36.74 7.46-9.62 16.79-14.54 27.99-14.77 5.17 0 10.63 1.34 16.38 4.03 5.75 2.68 9.5 4.09 11.25 4.23 2.01-.2 5.92-1.63 11.73-4.29 5.8-2.65 11.1-3.9 15.89-3.74 13.91.68 25.13 6.03 33.64 16.05-12.18 7.37-18.15 17.52-17.92 30.45.23 10.15 4.16 18.73 11.78 25.74 7.62 7.01 16.66 10.98 27.12 11.91-2.45 7.42-5.46 15.01-9.03 22.78zM119.22 31.84c0-7.39 2.68-14.39 8.04-21 5.37-6.61 11.98-10.45 19.84-11.51.56 1.45.84 2.87.84 4.25 0 7.27-2.73 14.33-8.19 21.18-5.46 6.85-12.19 10.69-20.19 11.51-.22-1.45-.34-2.93-.34-4.43z"/>
+                <svg class="am-logo-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M9 18V5l12-2v13"></path>
+                  <circle cx="6" cy="18" r="3"></circle>
+                  <circle cx="18" cy="16" r="3"></circle>
                 </svg>
-                <span class="am-brand-title">Music</span>
+                <span class="am-brand-title">SOUND LAB</span>
                 <span class="am-brand-channel" id="amActiveChannelTag">PEACE OF HELL</span>
               </div>
               <div class="am-live-status-pill" id="amLiveStatus">
@@ -192,10 +194,10 @@
                 </div>
               </div>
               <p class="am-song-artist" id="amSongArtist">Charlie Puth, Selena Gomez</p>
-              <p class="am-album-name" id="amAlbumName">Nine Track Mind • Peace of Hell #01</p>
+              <p class="am-album-name" id="amAlbumName">Nine Track Mind • Track #01</p>
             </div>
 
-            <!-- Apple Scrubber Timeline -->
+            <!-- Scrubber Timeline -->
             <div class="am-scrubber-block">
               <input type="range" class="am-progress-slider" id="amProgressSlider" min="0" max="100" value="0" aria-label="Song progress scrubber">
               <div class="am-time-row">
@@ -204,42 +206,68 @@
               </div>
             </div>
 
-            <!-- Apple Transport Controls -->
-            <div class="am-controls-row">
-              <button class="am-icon-btn" id="amShuffleBtn" title="Shuffle Playlist" aria-label="Shuffle">🔀</button>
-              <button class="am-icon-btn" id="amPrevBtn" title="Previous Track" aria-label="Previous track">⏮</button>
-              <button class="am-play-btn" id="amPlayBtn" title="Play / Pause" aria-label="Play or pause">▶</button>
-              <button class="am-icon-btn" id="amNextBtn" title="Next Track" aria-label="Next track">⏭</button>
-              <button class="am-icon-btn" id="amLoopBtn" title="Repeat Track" aria-label="Repeat track">🔁</button>
+            <!-- Live 60FPS Frequency Spectrum Visualizer Canvas -->
+            <div class="am-visualizer-container" id="amVisualizerContainer" title="Live 60FPS Audio Visualizer">
+              <canvas id="amVisualizerCanvas" class="am-visualizer-canvas" height="36" width="300"></canvas>
             </div>
 
-            <!-- Volume Slider & Mode Toggle -->
+            <!-- Transport Controls (Dynamic Customizable SVGs, Zero Emojis) -->
+            <div class="am-controls-row">
+              <button class="am-icon-btn" id="amShuffleBtn" title="Shuffle Playlist" aria-label="Shuffle">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+              </button>
+              <button class="am-icon-btn" id="amPrevBtn" title="Previous Track" aria-label="Previous track">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+              </button>
+              <button class="am-play-btn" id="amPlayBtn" title="Play / Pause" aria-label="Play or pause">
+                <svg class="play-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+              </button>
+              <button class="am-icon-btn" id="amNextBtn" title="Next Track" aria-label="Next track">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+              </button>
+              <button class="am-icon-btn" id="amLoopBtn" title="Repeat Track" aria-label="Repeat track">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+              </button>
+            </div>
+
+            <!-- Volume Slider & Mode Toggle (SVGs, Zero Emojis) -->
             <div class="am-lower-bar">
               <div class="am-volume-control">
-                <span class="am-vol-glyph" id="amVolIcon" title="Toggle Mute">🔈</span>
+                <button class="am-vol-btn" id="amVolIcon" title="Toggle Mute" aria-label="Mute">
+                  <svg id="amVolSvg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                </button>
                 <input type="range" class="am-vol-slider" id="amVolSlider" min="0" max="100" value="80" aria-label="Volume slider">
-                <span class="am-vol-glyph">🔊</span>
+                <span class="am-vol-glyph">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                </span>
               </div>
 
-              <!-- Apple Segmented Source Switcher -->
+              <!-- Segmented Audio Engine Selector & External Link (No Spotify green dots/badges) -->
               <div class="am-segmented-pill">
-                <button class="am-seg-btn active" id="amModePreview" title="Instant High-Fidelity 60FPS Web Audio">⚡ Preview</button>
-                <button class="am-seg-btn" id="amModeFull" title="Headless Full-Length Song Stream">🎧 Full Song</button>
+                <button class="am-seg-btn active" id="amModePreview" title="Instant High-Fidelity Audio Preview">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span>Preview</span>
+                </button>
+                <button class="am-seg-btn" id="amModeFull" title="Headless Full-Length Stream">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                  <span>Full Track</span>
+                </button>
                 <a 
                   id="amSpotifyLink"
-                  href="https://open.spotify.com/playlist/5OfNNCRIxcq2h8dGRZf4JY?si=ccbfa0b701ea4eb9" 
+                  href="https://open.spotify.com/playlist/5OfNNCRIxcq2h8dGRZf4JY" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  class="am-spotify-pill" 
-                  title="Open in Spotify"
+                  class="am-ext-link-pill" 
+                  title="Open Playlist in Web Player"
                 >
-                  🟢 Spotify ↗
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Open Player</span>
                 </a>
               </div>
             </div>
           </div>
 
-          <!-- RIGHT: PLAYLIST & UP NEXT QUEUE (APPLE MUSIC QUEUE) -->
+          <!-- RIGHT: PLAYLIST & UP NEXT QUEUE -->
           <div class="am-queue-col">
             <!-- Queue Masthead -->
             <div class="am-queue-masthead">
@@ -253,29 +281,36 @@
                 <div class="am-masthead-texts">
                   <span class="am-eyebrow">PLAYLIST</span>
                   <h2 class="am-playlist-title" id="amPlaylistTitle">Peace of Hell</h2>
-                  <p class="am-playlist-curator" id="amPlaylistCurator">Curated by Shimorikichiri (Rohith) • 100 songs, 5 hr 28 min</p>
+                  <p class="am-playlist-curator" id="amPlaylistCurator">Curated by Shimorikichiri (Rohith) • 307 songs, about 17 hr</p>
                 </div>
               </div>
 
-              <!-- Station & Search Controls -->
+              <!-- Station & Search Controls (SVGs, Zero Emojis) -->
               <div class="am-masthead-actions">
                 <div class="am-channel-switch">
-                  <button class="am-channel-btn active" id="amChanPlaylist">🔥 Peace of Hell</button>
-                  <button class="am-channel-btn" id="amChanLofi">🎧 Focus Lo-Fi</button>
+                  <button class="am-channel-btn active" id="amChanPlaylist">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    <span>Peace of Hell (307)</span>
+                  </button>
+                  <button class="am-channel-btn" id="amChanLofi">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+                    <span>Focus Lo-Fi</span>
+                  </button>
                 </div>
                 <div class="am-search-box">
+                  <svg class="am-search-icon-svg" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                   <input 
                     type="text" 
                     id="amSearchInput" 
                     class="am-search-field" 
-                    placeholder="🔍 Search 100 songs or artists..." 
+                    placeholder="Search 307 songs or artists..." 
                     autocomplete="off"
                   >
                 </div>
               </div>
             </div>
 
-            <!-- Apple Music Tracklist Table -->
+            <!-- Tracklist Table -->
             <div class="am-table-container">
               <div class="am-table-header">
                 <span class="col-num">#</span>
@@ -370,8 +405,8 @@
   </div>
 
   <!-- Core Scripts -->
-  <script src="js/playlist-data.js"></script>
-  <script src="js/spicetify-player.js"></script>
+  <script src="js/playlist-data.js?v=2.1"></script>
+  <script src="js/spicetify-player.js?v=2.1"></script>
   <script src="js/github-synapse.js"></script>
   <script src="js/roh-terminal.js"></script>
   <script src="js/rohith-os.js"></script>
