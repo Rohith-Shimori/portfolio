@@ -643,34 +643,46 @@ body::after {
   100% { transform: translate(-30px, 40px) scale(0.95); }
 }
 
-/* Master-Detail Glass Deck Container */
+/* Master-Detail Glass Deck Container (Space-Optimized Studio Deck) */
 .am-deck-container {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 370px 1fr;
-  min-height: 540px;
-  background: rgba(16, 16, 20, 0.65);
-  backdrop-filter: blur(40px) saturate(190%);
-  -webkit-backdrop-filter: blur(40px) saturate(190%);
+  grid-template-columns: 375px 1fr;
+  height: 700px;
+  min-height: 700px;
+  max-height: 700px;
+  background: rgba(14, 14, 18, 0.75);
+  backdrop-filter: blur(48px) saturate(200%);
+  -webkit-backdrop-filter: blur(48px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 @media (max-width: 960px) {
   .am-deck-container {
     grid-template-columns: 1fr;
+    height: auto;
+    min-height: auto;
+    max-height: none;
   }
 }
 
 /* -------------------------------------------------------------
-   LEFT COLUMN: NOW PLAYING SHOWCASE (APPLE MUSIC HERO)
+   LEFT COLUMN: NOW PLAYING SHOWCASE (STUDIO HARDWARE DECK)
    ------------------------------------------------------------- */
 .am-now-playing-col {
-  padding: 1.6rem 2rem;
+  padding: 1.5rem 1.85rem 1.35rem 1.85rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
-  gap: 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(0, 0, 0, 0.28) 100%);
+  gap: 0.75rem;
 }
 
 @media (max-width: 960px) {
@@ -744,29 +756,116 @@ body::after {
   box-shadow: none;
 }
 
-/* Artwork Showcase */
+/* Interactive Vinyl & Artwork Showcase */
 .am-artwork-showcase {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 0;
+  position: relative;
+  padding: 0.35rem 0;
+}
+
+.am-artwork-stack {
+  position: relative;
+  width: 205px;
+  height: 205px;
+}
+
+.am-vinyl-disc {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #252528 0%, #121214 55%, #050505 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), inset 0 0 12px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.am-artwork-stack.playing .am-vinyl-disc {
+  transform: translateX(52px);
+}
+
+.am-vinyl-body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+}
+
+.am-artwork-stack.playing .am-vinyl-body {
+  animation: amSpinVinyl 12s linear infinite 0.6s;
+}
+
+@keyframes amSpinVinyl {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.am-vinyl-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+.am-vinyl-ring.ring-1 { width: 160px; height: 160px; }
+.am-vinyl-ring.ring-2 { width: 130px; height: 130px; }
+.am-vinyl-ring.ring-3 { width: 100px; height: 100px; }
+
+.am-vinyl-center-label {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+}
+
+.am-vinyl-center-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.am-vinyl-spindle-hole {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .am-artwork-frame {
   position: relative;
-  width: 210px;
-  height: 210px;
+  width: 205px;
+  height: 205px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75), 0 4px 15px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #111;
+  z-index: 2;
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
 }
 
-.am-artwork-frame.playing {
-  transform: scale(1.025);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(224, 83, 21, 0.25);
+.am-artwork-stack.playing .am-artwork-frame {
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.85), 0 0 30px rgba(224, 83, 21, 0.3);
 }
 
 .am-album-art {
@@ -779,7 +878,25 @@ body::after {
 .am-artwork-glare {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 45%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.am-artwork-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
   pointer-events: none;
 }
 
@@ -799,19 +916,22 @@ body::after {
 
 .am-song-title {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #FFFFFF;
   margin: 0;
-  white-space: nowrap;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
   letter-spacing: -0.02em;
+  word-break: break-word;
 }
 
 .am-song-artist {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: #A1A1A6;
   margin: 0;
   white-space: nowrap;
@@ -822,14 +942,14 @@ body::after {
 
 .am-album-name {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  color: #636366;
+  font-size: 0.66rem;
+  color: #71717A;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-/* Apple Animated Equalizer Icon (ılı) */
+/* Animated Equalizer Icon (ılı) */
 .am-equalizer {
   display: inline-flex;
   align-items: flex-end;
@@ -864,41 +984,38 @@ body::after {
   100% { height: 14px; }
 }
 
-/* =============================================================
-   INTEGRATED INTERACTIVE AUDIO WAVEFORM SCRUBBER (ZERO SEPARATE BOX)
-   Combines 60FPS real-time Web Audio FFT visualizer and precision timeline
-   ============================================================= */
+/* Integrated Interactive Audio Waveform Scrubber */
 .am-waveform-scrubber-wrap {
   position: relative;
   width: 100%;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  padding: 8px 12px 6px 12px;
+  padding: 7px 12px 5px 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   cursor: pointer;
   user-select: none;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.65);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .am-waveform-scrubber-wrap:hover {
   border-color: rgba(224, 83, 21, 0.4);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 16px rgba(224, 83, 21, 0.15);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.65), 0 0 16px rgba(224, 83, 21, 0.15);
 }
 
 .am-waveform-canvas {
   width: 100%;
-  height: 42px;
+  height: 46px;
   display: block;
   border-radius: 6px;
 }
 
 .am-scrubber-ghost-playhead {
   position: absolute;
-  top: 8px;
+  top: 7px;
   bottom: 24px;
   width: 2px;
   background: rgba(255, 255, 255, 0.85);
@@ -959,7 +1076,7 @@ body::after {
   text-transform: uppercase;
 }
 
-/* Transport Controls */
+/* Transport Controls: Tactile Cyberpunk Studio Play Button */
 .am-controls-row {
   display: flex;
   align-items: center;
@@ -1006,36 +1123,38 @@ body::after {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: #FFFFFF;
-  border: none;
-  color: #000000;
+  background: linear-gradient(135deg, #FFFFFF 0%, #E8E8ED 100%);
+  border: 2px solid rgba(224, 83, 21, 0.45);
+  color: #0E0E12;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
-  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 22px rgba(224, 83, 21, 0.4), 0 8px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .am-play-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 35px rgba(224, 83, 21, 0.7), 0 10px 25px rgba(0, 0, 0, 0.7);
+  background: #FFFFFF;
 }
 
 .am-play-btn:active {
-  transform: scale(0.96);
+  transform: scale(0.95);
 }
 
 .am-play-btn svg {
   display: block;
-  fill: #000000;
+  fill: #0E0E12;
 }
 
 /* Lower Bar: Volume & Mode Pill */
 .am-lower-bar {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
 .am-volume-control {
@@ -1061,29 +1180,43 @@ body::after {
   color: #FFFFFF;
 }
 
-.am-vol-glyph {
-  color: #8E8E93;
-  display: inline-flex;
-  align-items: center;
-}
-
 .am-vol-slider {
-  width: 140px;
+  width: 120px;
   -webkit-appearance: none;
+  appearance: none;
   height: 4px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--vol-pct, 80%), rgba(255, 255, 255, 0.15) var(--vol-pct, 80%), rgba(255, 255, 255, 0.15) 100%);
   outline: none;
   cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.am-vol-slider:hover {
+  height: 5px;
 }
 
 .am-vol-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #FFFFFF;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
   cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.am-vol-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.am-vol-val {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: #A1A1A6;
+  min-width: 28px;
+  text-align: right;
 }
 
 .am-segmented-pill {
@@ -1147,36 +1280,38 @@ body::after {
 }
 
 /* -------------------------------------------------------------
-   RIGHT COLUMN: PLAYLIST & UP NEXT QUEUE (APPLE MUSIC QUEUE)
+   RIGHT COLUMN: PLAYLIST & UP NEXT QUEUE (SPACE-OPTIMIZED)
    ------------------------------------------------------------- */
 .am-queue-col {
-  padding: 2rem 2.25rem;
+  padding: 1.4rem 1.85rem 1.15rem 1.85rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  height: 100%;
+  box-sizing: border-box;
   overflow: hidden;
+  gap: 0.75rem;
 }
 
 /* Queue Masthead */
 .am-queue-masthead {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
 }
 
 .am-masthead-info {
   display: flex;
   align-items: center;
-  gap: 1.15rem;
+  gap: 1rem;
 }
 
 .am-playlist-thumb {
-  width: 68px;
-  height: 68px;
+  width: 60px;
+  height: 60px;
   border-radius: 10px;
   object-fit: cover;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1192,7 +1327,7 @@ body::after {
 
 .am-eyebrow {
   font-family: var(--mono);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -1201,7 +1336,7 @@ body::after {
 
 .am-playlist-title {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #FFFFFF;
   margin: 0;
@@ -1210,7 +1345,7 @@ body::after {
 
 .am-playlist-curator {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: #8E8E93;
   margin: 0;
 }
@@ -1219,7 +1354,7 @@ body::after {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.65rem;
+  gap: 0.5rem;
 }
 
 @media (max-width: 960px) {
@@ -1243,10 +1378,10 @@ body::after {
   border: none;
   border-radius: 16px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: #A1A1A6;
-  padding: 0.3rem 0.8rem;
+  padding: 0.25rem 0.75rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -1263,7 +1398,7 @@ body::after {
 
 .am-search-box {
   position: relative;
-  width: 250px;
+  width: 260px;
   display: flex;
   align-items: center;
 }
@@ -1288,8 +1423,8 @@ body::after {
   border-radius: 16px;
   color: #FFFFFF;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  font-size: 0.75rem;
-  padding: 0.4rem 0.85rem 0.4rem 2rem;
+  font-size: 0.74rem;
+  padding: 0.35rem 0.85rem 0.35rem 2rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -1299,34 +1434,76 @@ body::after {
   box-shadow: 0 0 12px rgba(224, 83, 21, 0.25);
 }
 
-/* Apple Music Tracklist Table */
+/* Quick Mood & Genre Filter Strip */
+.am-genre-filter-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 1px 0 3px 0;
+  scrollbar-width: none;
+}
+.am-genre-filter-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.am-genre-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #A1A1A6;
+  padding: 0.22rem 0.7rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.am-genre-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}
+
+.am-genre-pill.active {
+  background: rgba(224, 83, 21, 0.2);
+  border-color: var(--accent);
+  color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(224, 83, 21, 0.25);
+}
+
+/* Tracklist Table (Full-Height Flex Expansion) */
 .am-table-container {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;
   overflow: hidden;
 }
 
 .am-table-header {
   display: grid;
-  grid-template-columns: 44px 1fr 180px 70px;
+  grid-template-columns: 40px minmax(180px, 2fr) minmax(120px, 1.2fr) minmax(110px, 1.2fr) 60px;
   align-items: center;
-  padding: 0.4rem 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--mono);
-  font-size: 0.65rem;
-  color: #636366;
+  font-size: 0.64rem;
+  color: #71717A;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
 .am-track-scroll-area {
-  max-height: 380px;
+  flex: 1 1 0;
+  min-height: 0;
+  max-height: none;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding-top: 0.35rem;
+  gap: 3px;
+  padding: 0.35rem 4px 0.35rem 0;
 }
 
 .am-track-scroll-area::-webkit-scrollbar {
@@ -1344,22 +1521,25 @@ body::after {
 
 .am-track-row {
   display: grid;
-  grid-template-columns: 44px 1fr 180px 70px;
+  grid-template-columns: 40px minmax(180px, 2fr) minmax(120px, 1.2fr) minmax(110px, 1.2fr) 60px;
   align-items: center;
-  padding: 0.55rem 0.75rem;
+  padding: 0.45rem 0.75rem;
   border-radius: 8px;
-  transition: background 0.12s ease;
+  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
   cursor: pointer;
   border: 1px solid transparent;
+  user-select: none;
 }
 
 .am-track-row:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .am-track-row.active {
-  background: rgba(224, 83, 21, 0.12);
-  border-color: rgba(224, 83, 21, 0.35);
+  background: linear-gradient(90deg, rgba(224, 83, 21, 0.18) 0%, rgba(224, 83, 21, 0.05) 100%);
+  border-color: rgba(224, 83, 21, 0.4);
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .am-row-num {
@@ -1450,17 +1630,18 @@ body::after {
 }
 
 .am-row-mini-thumb {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 6px;
   object-fit: cover;
   flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .am-row-title-text {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   font-weight: 600;
   color: #FFFFFF;
   white-space: nowrap;
@@ -1469,13 +1650,22 @@ body::after {
 }
 
 .am-track-row.active .am-row-title-text {
-  color: var(--accent);
+  color: #FFAA40;
 }
 
 .am-row-artist-cell {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  font-size: 0.8rem;
-  color: #8E8E93;
+  font-size: 0.78rem;
+  color: #A1A1A6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.am-row-album-cell {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  font-size: 0.74rem;
+  color: #71717A;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1484,20 +1674,124 @@ body::after {
 .am-row-time-cell {
   font-family: var(--mono);
   font-size: 0.72rem;
-  color: #636366;
+  color: #8E8E93;
   text-align: right;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
-.am-row-spotify-icon,
 .am-row-ext-icon {
   opacity: 0;
   color: #8E8E93;
   font-size: 0.75rem;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.am-track-row:hover .am-row-ext-icon {
+  opacity: 1;
+}
+
+.am-row-ext-icon:hover {
+  color: var(--accent);
+  background: rgba(224, 83, 21, 0.15);
+}
+
+@media (max-width: 1200px) {
+  .am-table-header, .am-track-row {
+    grid-template-columns: 38px 1fr 140px 60px;
+  }
+  .col-album, .am-row-album-cell {
+    display: none !important;
+  }
+}
+
+/* Anchored Telemetry Status Dock (Zero Wasted Space) */
+.am-queue-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.85rem;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  margin-top: auto;
+}
+
+.am-footer-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: #8E8E93;
+  letter-spacing: 0.04em;
+}
+
+.am-footer-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.am-footer-sep {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.am-footer-specs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.am-spec-tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #A1A1A6;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.am-spec-tag.accent {
+  background: rgba(224, 83, 21, 0.15);
+  color: var(--accent);
+  border-color: rgba(224, 83, 21, 0.35);
+}
+
+.am-scroll-top-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #A1A1A6;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.15s ease;
+}
+
+.am-scroll-top-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border-color: var(--accent);
+}
   transition: opacity 0.15s ease, color 0.15s ease, transform 0.15s ease;
   display: inline-flex;
   align-items: center;

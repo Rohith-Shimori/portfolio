@@ -169,17 +169,33 @@
               </div>
             </div>
 
-            <!-- Artwork Display -->
+            <!-- Interactive Vinyl & Artwork Showcase -->
             <div class="am-artwork-showcase">
-              <div class="am-artwork-frame" id="amArtworkFrame">
-                <img 
-                  id="amAlbumArt" 
-                  class="am-album-art" 
-                  src="https://c.saavncdn.com/850/Nine-Track-Mind-English-2016-20190607044034-500x500.jpg" 
-                  alt="Now Playing Album Artwork"
-                  loading="eager"
-                >
-                <div class="am-artwork-glare"></div>
+              <div class="am-artwork-stack" id="amArtworkStack">
+                <!-- Physical Vinyl Record that glides out and spins when playing -->
+                <div class="am-vinyl-disc" id="amVinylDisc" aria-hidden="true">
+                  <div class="am-vinyl-body">
+                    <div class="am-vinyl-ring ring-1"></div>
+                    <div class="am-vinyl-ring ring-2"></div>
+                    <div class="am-vinyl-ring ring-3"></div>
+                    <div class="am-vinyl-center-label">
+                      <img id="amVinylCenterImg" src="https://c.saavncdn.com/850/Nine-Track-Mind-English-2016-20190607044034-500x500.jpg" alt="" />
+                      <div class="am-vinyl-spindle-hole"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Sleek Album Jacket Sleeve with glass glare & lossless badge -->
+                <div class="am-artwork-frame" id="amArtworkFrame">
+                  <img 
+                    id="amAlbumArt" 
+                    class="am-album-art" 
+                    src="https://c.saavncdn.com/850/Nine-Track-Mind-English-2016-20190607044034-500x500.jpg" 
+                    alt="Now Playing Album Artwork"
+                    loading="eager"
+                  >
+                  <div class="am-artwork-glare"></div>
+                  <div class="am-artwork-badge">LOSSLESS 24-BIT</div>
+                </div>
               </div>
             </div>
 
@@ -199,7 +215,7 @@
 
             <!-- Integrated Interactive Audio Waveform Scrubber (Zero Separate Box) -->
             <div class="am-waveform-scrubber-wrap" id="amWaveformWrap" title="Click or drag to scrub track" role="slider" aria-label="Audio scrubber waveform" tabindex="0">
-              <canvas id="amWaveformCanvas" class="am-waveform-canvas" height="42"></canvas>
+              <canvas id="amWaveformCanvas" class="am-waveform-canvas" height="46"></canvas>
               <div class="am-scrubber-ghost-playhead" id="amGhostPlayhead"></div>
               <div class="am-scrubber-hover-time" id="amHoverTime">0:00</div>
               <div class="am-time-row">
@@ -209,7 +225,7 @@
               </div>
             </div>
 
-            <!-- Transport Controls (Dynamic Customizable SVGs, Zero Emojis) -->
+            <!-- Transport Controls (Tactile Cyber Play Button, SVGs) -->
             <div class="am-controls-row">
               <button class="am-icon-btn" id="amShuffleBtn" title="Shuffle Playlist" aria-label="Shuffle">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
@@ -218,7 +234,7 @@
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
               </button>
               <button class="am-play-btn" id="amPlayBtn" title="Play / Pause" aria-label="Play or pause">
-                <svg class="play-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+                <svg class="play-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
               </button>
               <button class="am-icon-btn" id="amNextBtn" title="Next Track" aria-label="Next track">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
@@ -228,19 +244,17 @@
               </button>
             </div>
 
-            <!-- Volume Slider & Mode Toggle (SVGs, Zero Emojis) -->
+            <!-- Volume Slider with Readout & Mode Toggle -->
             <div class="am-lower-bar">
               <div class="am-volume-control">
                 <button class="am-vol-btn" id="amVolIcon" title="Toggle Mute" aria-label="Mute">
-                  <svg id="amVolSvg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                  <svg id="amVolSvg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                 </button>
-                <input type="range" class="am-vol-slider" id="amVolSlider" min="0" max="100" value="80" aria-label="Volume slider">
-                <span class="am-vol-glyph">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                </span>
+                <input type="range" class="am-vol-slider" id="amVolSlider" min="0" max="100" value="80" aria-label="Volume slider" style="--vol-pct: 80%;">
+                <span class="am-vol-val" id="amVolVal">80%</span>
               </div>
 
-              <!-- Segmented Audio Engine Selector & External Link (No Spotify green dots/badges) -->
+              <!-- Segmented Audio Engine Selector & External Link -->
               <div class="am-segmented-pill">
                 <button class="am-seg-btn active" id="amModePreview" title="Instant High-Fidelity Audio Preview">
                   <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -265,7 +279,7 @@
             </div>
           </div>
 
-          <!-- RIGHT: PLAYLIST & UP NEXT QUEUE -->
+          <!-- RIGHT: PLAYLIST & UP NEXT QUEUE (SPACE-OPTIMIZED) -->
           <div class="am-queue-col">
             <!-- Queue Masthead -->
             <div class="am-queue-masthead">
@@ -277,13 +291,13 @@
                   alt="Playlist thumbnail"
                 >
                 <div class="am-masthead-texts">
-                  <span class="am-eyebrow">PLAYLIST</span>
+                  <span class="am-eyebrow">CURATED MASTER COLLECTION</span>
                   <h2 class="am-playlist-title" id="amPlaylistTitle">Peace of Hell</h2>
                   <p class="am-playlist-curator" id="amPlaylistCurator">Curated by Shimorikichiri (Rohith) • 307 songs, about 17 hr</p>
                 </div>
               </div>
 
-              <!-- Station & Search Controls (SVGs, Zero Emojis) -->
+              <!-- Station & Search Controls -->
               <div class="am-masthead-actions">
                 <div class="am-channel-switch">
                   <button class="am-channel-btn active" id="amChanPlaylist">
@@ -301,22 +315,52 @@
                     type="text" 
                     id="amSearchInput" 
                     class="am-search-field" 
-                    placeholder="Search 307 songs or artists..." 
+                    placeholder="Search 307 songs, artists, albums..." 
                     autocomplete="off"
                   >
                 </div>
               </div>
             </div>
 
-            <!-- Tracklist Table -->
+            <!-- Quick Mood & Genre Filter Strip (Space Utilization & Discovery) -->
+            <div class="am-genre-filter-strip" id="amGenreFilters" role="tablist">
+              <button class="am-genre-pill active" data-genre="all">All Tracks (307)</button>
+              <button class="am-genre-pill" data-genre="pop">Pop & Hits</button>
+              <button class="am-genre-pill" data-genre="electronic">Electronic & EDM</button>
+              <button class="am-genre-pill" data-genre="hiphop">Hip-Hop & R&B</button>
+              <button class="am-genre-pill" data-genre="indie">Indie & Alt</button>
+              <button class="am-genre-pill" data-genre="chill">Chill & Acoustic</button>
+            </div>
+
+            <!-- Full-Height Space-Optimized Tracklist Table -->
             <div class="am-table-container">
               <div class="am-table-header">
                 <span class="col-num">#</span>
                 <span class="col-title">TITLE</span>
                 <span class="col-artist">ARTIST</span>
+                <span class="col-album">ALBUM</span>
                 <span class="col-time">TIME</span>
               </div>
               <div class="am-track-scroll-area" id="amTracklistContainer" role="list"></div>
+
+              <!-- Anchored Telemetry Status Dock (Zero Wasted Space) -->
+              <div class="am-queue-footer">
+                <div class="am-footer-stat">
+                  <span class="am-footer-dot"></span>
+                  <span id="amFooterCount">307 TRACKS</span>
+                  <span class="am-footer-sep">//</span>
+                  <span id="amFooterDuration">17 HR 12 MIN TOTAL</span>
+                </div>
+                <div class="am-footer-specs">
+                  <span class="am-spec-tag">44.1 kHz</span>
+                  <span class="am-spec-tag">24-BIT</span>
+                  <span class="am-spec-tag accent" id="amFooterEngine">DIRECT CDN 320 KBPS</span>
+                </div>
+                <button class="am-scroll-top-btn" id="amScrollTopBtn" title="Scroll to top of playlist">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+                  <span>TOP</span>
+                </button>
+              </div>
             </div>
           </div>
 

@@ -148,6 +148,7 @@
   let currentVolume = 0.8;
   let previousVolume = 0.8;
   let searchQuery = '';
+  let currentGenre = 'all';
 
   // Web Audio Graph & 60FPS Visualizer
   let audioContext = null;
@@ -181,8 +182,13 @@
     dom.liveStatus = document.getElementById('amLiveStatus');
     dom.statusText = document.getElementById('amStatusText');
 
+    // Artwork & Physical Vinyl Disc
+    dom.artworkStack = document.getElementById('amArtworkStack');
     dom.artworkFrame = document.getElementById('amArtworkFrame');
     dom.albumArt = document.getElementById('amAlbumArt');
+    dom.vinylDisc = document.getElementById('amVinylDisc');
+    dom.vinylCenterImg = document.getElementById('amVinylCenterImg');
+
     dom.songTitle = document.getElementById('amSongTitle');
     dom.songArtist = document.getElementById('amSongArtist');
     dom.albumName = document.getElementById('amAlbumName');
@@ -209,6 +215,7 @@
     dom.volIcon = document.getElementById('amVolIcon');
     dom.volSvg = document.getElementById('amVolSvg');
     dom.volSlider = document.getElementById('amVolSlider');
+    dom.volVal = document.getElementById('amVolVal');
 
     dom.modePreview = document.getElementById('amModePreview');
     dom.modeFull = document.getElementById('amModeFull');
@@ -221,7 +228,14 @@
     dom.chanPlaylist = document.getElementById('amChanPlaylist');
     dom.chanLofi = document.getElementById('amChanLofi');
     dom.searchInput = document.getElementById('amSearchInput');
+    dom.genreFilters = document.getElementById('amGenreFilters');
     dom.tracklistContainer = document.getElementById('amTracklistContainer');
+
+    // Anchored Telemetry Footer
+    dom.footerCount = document.getElementById('amFooterCount');
+    dom.footerDuration = document.getElementById('amFooterDuration');
+    dom.footerEngine = document.getElementById('amFooterEngine');
+    dom.scrollTopBtn = document.getElementById('amScrollTopBtn');
 
     dom.headlessPlayer = document.getElementById('amHeadlessPlayer');
     dom.headlessIframe = document.getElementById('amHeadlessIframe');
@@ -801,7 +815,13 @@
       } catch (e) {}
     }
 
-    if (dom.volSlider) dom.volSlider.value = val;
+    if (dom.volSlider) {
+      dom.volSlider.value = val;
+      dom.volSlider.style.setProperty('--vol-pct', `${val}%`);
+    }
+    if (dom.volVal) {
+      dom.volVal.textContent = `${Math.round(val)}%`;
+    }
     updateVolumeIcon(val);
   }
 
@@ -874,6 +894,9 @@
     if (dom.albumArt && dom.albumArt.src !== coverUrl) {
       dom.albumArt.src = coverUrl;
     }
+    if (dom.vinylCenterImg && dom.vinylCenterImg.src !== coverUrl) {
+      dom.vinylCenterImg.src = coverUrl;
+    }
 
     if (dom.spotifyLink) {
       dom.spotifyLink.href = track.spotifyUrl || 'https://open.spotify.com/playlist/5OfNNCRIxcq2h8dGRZf4JY';
@@ -894,11 +917,14 @@
   function setPlayingUI(playing) {
     if (dom.playBtn) {
       dom.playBtn.innerHTML = playing
-        ? '<svg class="play-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>'
-        : '<svg class="play-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>';
+        ? '<svg class="play-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>'
+        : '<svg class="play-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>';
       dom.playBtn.title = playing ? 'Pause' : 'Play';
     }
 
+    if (dom.artworkStack) {
+      dom.artworkStack.classList.toggle('playing', playing);
+    }
     if (dom.artworkFrame) {
       dom.artworkFrame.classList.toggle('playing', playing);
     }
@@ -936,7 +962,28 @@
     });
   }
 
-  // 11. Queue & Tracklist Rendering with Pure SVGs
+  // 11. Queue & Tracklist Rendering with Genre Filtering, 5-Columns & Telemetry
+  function isTrackInGenre(track, genre) {
+    if (!genre || genre === 'all') return true;
+    const text = ((track.title || '') + ' ' + (track.artist || '') + ' ' + (track.album || '')).toLowerCase();
+    if (genre === 'pop') {
+      return /charlie puth|selena|harry styles|weeknd|bieber|shawn mendes|taylor swift|ariana|camila|ed sheeran|dua lipa|sia|maroon 5|bruno mars|olivia rodrigo|billie|sabrina carpenter|tate mcrae|zayn|halsey|alessia cara|anne-marie|bebe rexha/i.test(text);
+    }
+    if (genre === 'electronic') {
+      return /walker|marshmello|chainsmokers|dj snake|avicii|garrix|kygo|clean bandit|galantis|zedd|calvin harris|david guetta|major lazer|skrillex|diplo|tiesto|alesso|gryffin|illenium|cash cash/i.test(text);
+    }
+    if (genre === 'hiphop') {
+      return /travis scott|drake|post malone|kendrick|juice wrld|eminem|lil nas|tyga|dababy|harlow|21 savage|metro boomin|kanye|future|migos|roddy ricch|xxxtentacion|cardi b|doja cat/i.test(text);
+    }
+    if (genre === 'indie') {
+      return /djo|arctic monkeys|neighbourhood|glass animals|conan gray|lorde|wallows|steve lacy|clairo|boywithuke|cage the elephant|strokes|bastille|foster the people|vance joy|lumineers/i.test(text);
+    }
+    if (genre === 'chill') {
+      return /stephen sanchez|justine skye|joji|frank ocean|sza|giveon|caesar|bazzi|alec benjamin|jeremy zucker|lauv|keshi|ruth b|prateek|anuv|shiloh|idealism|jinsang|potsu|kupla|deli|elijah/i.test(text);
+    }
+    return true;
+  }
+
   function renderTracklist() {
     if (!dom.tracklistContainer) return;
     const list = getActiveTracks();
@@ -944,6 +991,8 @@
 
     const filtered = list.filter((t, originalIdx) => {
       t._originalIdx = originalIdx;
+      const matchesGenre = (currentSource === 'lofi') ? true : isTrackInGenre(t, currentGenre);
+      if (!matchesGenre) return false;
       if (!query) return true;
       const titleMatch = t.title && t.title.toLowerCase().includes(query);
       const artistMatch = t.artist && t.artist.toLowerCase().includes(query);
@@ -951,10 +1000,18 @@
       return titleMatch || artistMatch || albumMatch;
     });
 
+    // Update Telemetry Status Dock (Zero Wasted Space)
+    if (dom.footerCount) {
+      dom.footerCount.textContent = `${filtered.length} TRACK${filtered.length === 1 ? '' : 'S'}`;
+    }
+    if (dom.footerEngine) {
+      dom.footerEngine.textContent = (currentEngine === 'preview') ? 'DIRECT CDN 320 KBPS' : 'HEADLESS FULL STREAM';
+    }
+
     if (filtered.length === 0) {
       dom.tracklistContainer.innerHTML = `
-        <div style="padding: 2.5rem 1rem; text-align: center; color: #8E8E93; font-family: var(--mono); font-size: 0.8rem;">
-          No matching tracks found for "${escapeHtml(searchQuery)}"
+        <div style="padding: 3rem 1rem; text-align: center; color: #8E8E93; font-family: var(--mono); font-size: 0.8rem;">
+          No matching tracks found for "${escapeHtml(searchQuery || currentGenre)}"
         </div>
       `;
       return;
@@ -969,6 +1026,7 @@
       const isRowPlaying = isActive && isPlaying;
       const cover = t.coverArt || fallbackArt;
       const numStr = String(t.index || (originalIdx + 1)).padStart(2, '0');
+      const albumName = t.album || (currentSource === 'lofi' ? 'Focus Lo-Fi Beats' : 'Peace of Hell');
 
       html += `
         <div class="am-track-row ${isActive ? 'active' : ''} ${isRowPlaying ? 'is-playing' : ''}" data-idx="${originalIdx}" role="button" tabindex="0">
@@ -991,6 +1049,7 @@
             <span class="am-row-title-text" title="${escapeHtml(t.title)}">${escapeHtml(t.title)}</span>
           </div>
           <div class="am-row-artist-cell" title="${escapeHtml(t.artist)}">${escapeHtml(t.artist)}</div>
+          <div class="am-row-album-cell" title="${escapeHtml(albumName)}">${escapeHtml(albumName)}</div>
           <div class="am-row-time-cell">
             <span>${t.durationStr || '3:30'}</span>
             ${t.spotifyUrl ? `
@@ -1121,6 +1180,24 @@
       dom.searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value || '';
         renderTracklist();
+      });
+    }
+
+    if (dom.genreFilters) {
+      const pills = dom.genreFilters.querySelectorAll('.am-genre-pill');
+      pills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          pills.forEach((p) => p.classList.remove('active'));
+          pill.classList.add('active');
+          currentGenre = pill.dataset.genre || 'all';
+          renderTracklist();
+        });
+      });
+    }
+
+    if (dom.scrollTopBtn && dom.tracklistContainer) {
+      dom.scrollTopBtn.addEventListener('click', () => {
+        dom.tracklistContainer.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
 
