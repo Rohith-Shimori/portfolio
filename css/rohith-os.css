@@ -864,42 +864,77 @@ body::after {
   100% { height: 14px; }
 }
 
-/* Scrubber Timeline */
-.am-scrubber-block {
+/* =============================================================
+   INTEGRATED INTERACTIVE AUDIO WAVEFORM SCRUBBER (ZERO SEPARATE BOX)
+   Combines 60FPS real-time Web Audio FFT visualizer and precision timeline
+   ============================================================= */
+.am-waveform-scrubber-wrap {
+  position: relative;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 8px 12px 6px 12px;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.am-progress-slider {
+.am-waveform-scrubber-wrap:hover {
+  border-color: rgba(224, 83, 21, 0.4);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 16px rgba(224, 83, 21, 0.15);
+}
+
+.am-waveform-canvas {
   width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.12);
-  outline: none;
-  cursor: pointer;
-  transition: background 0.2s ease;
+  height: 42px;
+  display: block;
+  border-radius: 6px;
 }
 
-.am-progress-slider:hover {
-  background: rgba(255, 255, 255, 0.2);
+.am-scrubber-ghost-playhead {
+  position: absolute;
+  top: 8px;
+  bottom: 24px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  z-index: 5;
 }
 
-.am-progress-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  transition: transform 0.15s ease;
+.am-waveform-scrubber-wrap:hover .am-scrubber-ghost-playhead {
+  opacity: 1;
 }
 
-.am-progress-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.25);
+.am-scrubber-hover-time {
+  position: absolute;
+  top: -22px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: rgba(18, 18, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.am-waveform-scrubber-wrap:hover .am-scrubber-hover-time {
+  opacity: 1;
 }
 
 .am-time-row {
@@ -911,25 +946,17 @@ body::after {
   color: #8E8E93;
 }
 
-/* Live 60FPS Frequency Spectrum Visualizer */
-.am-visualizer-container {
-  width: 100%;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 3px 8px;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
-}
-
-.am-visualizer-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
+.am-quality-badge {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background: rgba(224, 83, 21, 0.12);
+  border: 1px solid rgba(224, 83, 21, 0.3);
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
 }
 
 /* Transport Controls */
@@ -941,6 +968,7 @@ body::after {
 }
 
 .am-icon-btn {
+  position: relative;
   background: transparent;
   border: none;
   color: #A1A1A6;
@@ -961,6 +989,17 @@ body::after {
 
 .am-icon-btn.active {
   color: var(--accent);
+}
+
+.am-icon-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
 }
 
 .am-play-btn {

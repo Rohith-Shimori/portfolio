@@ -165,12 +165,13 @@
   function init() {
     cacheDom();
     setupAudioElement();
-    setupVisualizerCanvas();
+    setupWaveformCanvas();
     bindEvents();
+    setupScrubberEvents();
     renderTracklist();
     updateTrackDisplay();
     setVolume(80);
-    startVisualizerLoop();
+    startWaveformLoop();
   }
 
   function cacheDom() {
@@ -187,14 +188,17 @@
     dom.albumName = document.getElementById('amAlbumName');
     dom.equalizer = document.getElementById('amEqualizer');
 
-    dom.progressSlider = document.getElementById('amProgressSlider');
+    // Integrated Interactive Waveform Scrubber
+    dom.waveformWrap = document.getElementById('amWaveformWrap');
+    dom.waveformCanvas = document.getElementById('amWaveformCanvas');
+    if (dom.waveformCanvas) {
+      dom.waveformCtx = dom.waveformCanvas.getContext('2d');
+    }
+    dom.ghostPlayhead = document.getElementById('amGhostPlayhead');
+    dom.hoverTime = document.getElementById('amHoverTime');
+    dom.qualityBadge = document.getElementById('amQualityBadge');
     dom.timeElapsed = document.getElementById('amTimeElapsed');
     dom.timeRemaining = document.getElementById('amTimeRemaining');
-
-    dom.visCanvas = document.getElementById('amVisualizerCanvas');
-    if (dom.visCanvas) {
-      dom.visCtx = dom.visCanvas.getContext('2d');
-    }
 
     dom.playBtn = document.getElementById('amPlayBtn');
     dom.prevBtn = document.getElementById('amPrevBtn');
@@ -247,6 +251,7 @@
       audioElement = new Audio();
       audioElement.crossOrigin = 'anonymous';
       audioElement.preload = 'metadata';
+      audioElement.volume = currentVolume;
     }
 
     audioElement.addEventListener('timeupdate', onAudioTimeUpdate);
@@ -275,46 +280,89 @@
       analyserNode.smoothingTimeConstant = 0.8;
 
       masterGain = audioContext.createGain();
-      masterGain.gain.setValueAtTime(currentVolume, audioContext.currentTime);
+      masterGain.gain.setValueAtTime(1.0, audioContext.currentTime);
 
       try {
         sourceNode = audioContext.createMediaElementSource(audioElement);
         sourceNode.connect(analyserNode);
-        analyserNode.connect(masterGain);
-        masterGain.connect(audioContext.destination);
+        analyserNode.connect(audioContext.destination);
       } catch (err) {
-        console.info('Direct MediaElement audio connect');
+        console.info('Direct MediaElement audio connect fallback:', err);
       }
     } catch (e) {
       console.warn('Web Audio init note:', e);
     }
   }
 
-  // 4. 60FPS Canvas Frequency Spectrum Visualizer
-  function setupVisualizerCanvas() {
-    if (!dom.visCanvas) return;
-    const rect = dom.visCanvas.getBoundingClientRect();
+  // 4. 60FPS Interactive Audio Waveform Scrubber Engine (Zero Separate Box)
+  const NUM_WAVEFORM_BARS = 48;
+  let isScrubbing = false;
+  let hoverPct = null;
+
+  function setupWaveformCanvas() {
+    if (!dom.waveformCanvas) return;
+    const rect = dom.waveformCanvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
-    dom.visCanvas.width = (rect.width || 300) * dpr;
-    dom.visCanvas.height = (rect.height || 36) * dpr;
-    if (dom.visCtx) {
-      dom.visCtx.scale(dpr, dpr);
+    dom.waveformCanvas.width = (rect.width || 320) * dpr;
+    dom.waveformCanvas.height = (rect.height || 42) * dpr;
+    if (dom.waveformCtx) {
+      if (dom.waveformCtx.resetTransform) {
+        dom.waveformCtx.resetTransform();
+      } else {
+        dom.waveformCtx.setTransform(1, 0, 0, 1, 0, 0);
+      }
+      dom.waveformCtx.scale(dpr, dpr);
     }
   }
 
-  function startVisualizerLoop() {
-    window.addEventListener('resize', setupVisualizerCanvas);
+  // Precompute organic waveform fingerprint based on track identity
+  function getTrackWaveProfile(track) {
+    if (!track) return Array(NUM_WAVEFORM_BARS).fill(0.5);
+    const seedStr = (track.title || '') + (track.artist || '');
+    let hash = 0;
+    for (let i = 0; i < seedStr.length; i++) {
+      hash = (hash << 5) - hash + seedStr.charCodeAt(i);
+      hash |= 0;
+    }
+    const profile = [];
+    for (let i = 0; i < NUM_WAVEFORM_BARS; i++) {
+      const angle = (i / NUM_WAVEFORM_BARS) * Math.PI * 2;
+      const s1 = Math.sin(angle * 3 + hash * 0.015);
+      const s2 = Math.cos(angle * 6 - hash * 0.02);
+      const s3 = Math.sin(angle * 11 + hash * 0.005);
+      const base = 0.28 + 0.45 * Math.abs((s1 + s2 + s3) / 3);
+      profile.push(Math.max(0.18, Math.min(0.95, base)));
+    }
+    return profile;
+  }
 
-    const numBars = 28;
+  function getCurrentProgressFraction() {
+    if (isScrubbing && hoverPct !== null) {
+      return hoverPct;
+    }
+    const track = getCurrentTrack();
+    if (currentEngine === 'preview') {
+      const cur = (audioElement && !isNaN(audioElement.currentTime)) ? audioElement.currentTime : 0;
+      const dur = (audioElement && !isNaN(audioElement.duration) && audioElement.duration > 0) ? audioElement.duration : 30;
+      return Math.max(0, Math.min(1, cur / dur));
+    } else {
+      const dur = getTrackDurationSec(track);
+      return Math.max(0, Math.min(1, fullSongElapsed / dur));
+    }
+  }
+
+  function startWaveformLoop() {
+    window.addEventListener('resize', setupWaveformCanvas);
+
     const freqData = new Uint8Array(32);
 
-    function renderVis() {
-      visualizerAnimId = requestAnimationFrame(renderVis);
-      if (!dom.visCanvas || !dom.visCtx) return;
+    function renderWaveform() {
+      visualizerAnimId = requestAnimationFrame(renderWaveform);
+      if (!dom.waveformCanvas || !dom.waveformCtx) return;
 
-      const ctx = dom.visCtx;
-      const w = dom.visCanvas.offsetWidth || 300;
-      const h = dom.visCanvas.offsetHeight || 36;
+      const ctx = dom.waveformCtx;
+      const w = dom.waveformCanvas.offsetWidth || 320;
+      const h = dom.waveformCanvas.offsetHeight || 42;
       ctx.clearRect(0, 0, w, h);
 
       if (isPlaying && analyserNode && currentEngine === 'preview') {
@@ -323,47 +371,62 @@
         } catch (e) {}
       }
 
-      const barWidth = (w - (numBars - 1) * 3) / numBars;
+      const track = getCurrentTrack();
+      const waveProfile = getTrackWaveProfile(track);
+      const progress = getCurrentProgressFraction(); // 0 to 1
+      const activeBarThreshold = progress * NUM_WAVEFORM_BARS;
+
+      const spacing = 2.5;
+      const barWidth = Math.max(2, (w - (NUM_WAVEFORM_BARS - 1) * spacing) / NUM_WAVEFORM_BARS);
       const now = Date.now() * 0.003;
 
-      for (let i = 0; i < numBars; i++) {
-        let val = 0;
+      for (let i = 0; i < NUM_WAVEFORM_BARS; i++) {
+        let dynamicScale = 1.0;
         if (isPlaying) {
           if (currentEngine === 'preview' && analyserNode) {
-            val = freqData[i % 24] / 255;
+            const freqVal = (freqData[i % 24] || 0) / 255;
+            dynamicScale = 0.4 + 1.1 * freqVal;
           } else {
-            // Simulated rhythmic pulse for full song engine / radio
-            const s1 = Math.sin(now * 3 + i * 0.4);
-            const s2 = Math.cos(now * 2 - i * 0.3);
-            val = Math.max(0.12, (s1 + s2 + 2) / 4);
+            const pulse = (Math.sin(now * 4 + i * 0.35) + 1) / 2;
+            dynamicScale = 0.5 + 0.65 * pulse;
           }
         } else {
-          // Idle breathing baseline
-          val = 0.08 + 0.04 * Math.sin(now + i * 0.2);
+          // Subtle breathing when idle
+          const breathe = (Math.sin(now + i * 0.18) + 1) / 2;
+          dynamicScale = 0.82 + 0.18 * breathe;
         }
 
-        const barHeight = Math.max(3, val * (h - 6));
-        const x = i * (barWidth + 3);
-        const y = h - barHeight;
+        const barFraction = Math.max(0.12, Math.min(1.0, waveProfile[i] * dynamicScale));
+        const barHeight = Math.max(4, barFraction * (h - 6));
+        const x = i * (barWidth + spacing);
+        const y = (h - barHeight) / 2; // Centered vertically for studio DAW waveform aesthetic
 
-        // Gradient coloring reflecting primary cyber theme
-        const grad = ctx.createLinearGradient(0, y, 0, h);
-        grad.addColorStop(0, '#FFAA40');
-        grad.addColorStop(0.5, '#E05315');
-        grad.addColorStop(1, 'rgba(224, 83, 21, 0.4)');
+        const isPassed = i <= activeBarThreshold;
+        const isCurrent = Math.abs(i - activeBarThreshold) < 1;
 
-        ctx.fillStyle = grad;
-        ctx.shadowColor = isPlaying ? 'rgba(224, 83, 21, 0.6)' : 'transparent';
-        ctx.shadowBlur = isPlaying ? 6 : 0;
+        if (isPassed) {
+          const grad = ctx.createLinearGradient(0, y, 0, y + barHeight);
+          grad.addColorStop(0, '#FFAA40');
+          grad.addColorStop(1, '#E05315');
+          ctx.fillStyle = grad;
+          ctx.shadowColor = isPlaying ? 'rgba(224, 83, 21, 0.7)' : 'rgba(224, 83, 21, 0.3)';
+          ctx.shadowBlur = isCurrent ? 8 : (isPlaying ? 4 : 0);
+        } else {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+          ctx.shadowColor = 'transparent';
+          ctx.shadowBlur = 0;
+        }
 
-        // Draw rounded top bar
+        // Draw pill/capsule bar with rounded ends
+        const r = Math.min(barWidth / 2, 2);
         ctx.beginPath();
-        const r = Math.min(2, barWidth / 2);
         ctx.moveTo(x + r, y);
         ctx.lineTo(x + barWidth - r, y);
         ctx.quadraticCurveTo(x + barWidth, y, x + barWidth, y + r);
-        ctx.lineTo(x + barWidth, h);
-        ctx.lineTo(x, h);
+        ctx.lineTo(x + barWidth, y + barHeight - r);
+        ctx.quadraticCurveTo(x + barWidth, y + barHeight, x + barWidth - r, y + barHeight);
+        ctx.lineTo(x + r, y + barHeight);
+        ctx.quadraticCurveTo(x, y + barHeight, x, y + barHeight - r);
         ctx.lineTo(x, y + r);
         ctx.quadraticCurveTo(x, y, x + r, y);
         ctx.closePath();
@@ -371,7 +434,7 @@
       }
     }
 
-    renderVis();
+    renderWaveform();
   }
 
   // 5. Playback Transport Controls
@@ -564,20 +627,152 @@
     return 210;
   }
 
-  // 7. Time & Scrubber Handling
+  // 7. Interactive Waveform Scrubber & Time Engine
+  function setupScrubberEvents() {
+    if (!dom.waveformWrap) return;
+
+    function getPctFromEvent(e) {
+      const rect = dom.waveformWrap.getBoundingClientRect();
+      const clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
+      const x = clientX - rect.left;
+      return Math.max(0, Math.min(1, x / rect.width));
+    }
+
+    function updateHoverUI(pct) {
+      if (!dom.ghostPlayhead || !dom.hoverTime) return;
+      const track = getCurrentTrack();
+      const dur = currentEngine === 'preview'
+        ? ((audioElement && audioElement.duration) || 30)
+        : getTrackDurationSec(track);
+      const targetSec = pct * dur;
+
+      dom.ghostPlayhead.style.left = `${(pct * 100).toFixed(2)}%`;
+      dom.hoverTime.style.left = `${(pct * 100).toFixed(2)}%`;
+      dom.hoverTime.textContent = formatTime(targetSec);
+    }
+
+    dom.waveformWrap.addEventListener('mousemove', (e) => {
+      const pct = getPctFromEvent(e);
+      updateHoverUI(pct);
+      if (isScrubbing) {
+        hoverPct = pct;
+        const track = getCurrentTrack();
+        const dur = currentEngine === 'preview'
+          ? ((audioElement && audioElement.duration) || 30)
+          : getTrackDurationSec(track);
+        updateScrubberUI(pct * dur, dur);
+      }
+    });
+
+    dom.waveformWrap.addEventListener('mouseenter', (e) => {
+      const pct = getPctFromEvent(e);
+      updateHoverUI(pct);
+    });
+
+    dom.waveformWrap.addEventListener('mousedown', (e) => {
+      isScrubbing = true;
+      const pct = getPctFromEvent(e);
+      hoverPct = pct;
+      seekToFraction(pct);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isScrubbing) return;
+      const pct = getPctFromEvent(e);
+      hoverPct = pct;
+      updateHoverUI(pct);
+      const track = getCurrentTrack();
+      const dur = currentEngine === 'preview'
+        ? ((audioElement && audioElement.duration) || 30)
+        : getTrackDurationSec(track);
+      updateScrubberUI(pct * dur, dur);
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if (!isScrubbing) return;
+      const pct = getPctFromEvent(e);
+      seekToFraction(pct);
+      isScrubbing = false;
+      hoverPct = null;
+    });
+
+    // Touch events for mobile/tablet responsive scrubbing
+    dom.waveformWrap.addEventListener('touchstart', (e) => {
+      isScrubbing = true;
+      const pct = getPctFromEvent(e);
+      hoverPct = pct;
+      updateHoverUI(pct);
+      seekToFraction(pct);
+    }, { passive: true });
+
+    dom.waveformWrap.addEventListener('touchmove', (e) => {
+      if (!isScrubbing) return;
+      const pct = getPctFromEvent(e);
+      hoverPct = pct;
+      updateHoverUI(pct);
+      const track = getCurrentTrack();
+      const dur = currentEngine === 'preview'
+        ? ((audioElement && audioElement.duration) || 30)
+        : getTrackDurationSec(track);
+      updateScrubberUI(pct * dur, dur);
+    }, { passive: true });
+
+    dom.waveformWrap.addEventListener('touchend', () => {
+      if (hoverPct !== null) {
+        seekToFraction(hoverPct);
+      }
+      isScrubbing = false;
+      hoverPct = null;
+    });
+
+    // Keyboard navigation (accessibility)
+    dom.waveformWrap.addEventListener('keydown', (e) => {
+      const track = getCurrentTrack();
+      const dur = currentEngine === 'preview'
+        ? ((audioElement && audioElement.duration) || 30)
+        : getTrackDurationSec(track);
+      const cur = currentEngine === 'preview' ? (audioElement.currentTime || 0) : fullSongElapsed;
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        seekToFraction(Math.min(1, (cur + 5) / dur));
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        seekToFraction(Math.max(0, (cur - 5) / dur));
+      }
+    });
+  }
+
+  function seekToFraction(pct) {
+    const track = getCurrentTrack();
+    const dur = currentEngine === 'preview'
+      ? ((audioElement && audioElement.duration) || 30)
+      : getTrackDurationSec(track);
+    const target = pct * dur;
+
+    if (currentEngine === 'preview') {
+      if (audioElement && !isNaN(audioElement.duration)) {
+        audioElement.currentTime = target;
+      }
+    } else {
+      seekHeadless(target);
+    }
+    updateScrubberUI(target, dur);
+  }
+
   function onAudioTimeUpdate() {
     if (currentEngine !== 'preview') return;
+    if (isScrubbing) return; // Don't snap while user is actively dragging
     const cur = audioElement.currentTime;
     const dur = audioElement.duration || 30;
     updateScrubberUI(cur, dur);
   }
 
   function updateScrubberUI(cur, dur) {
-    if (!dom.progressSlider || !dom.timeElapsed || !dom.timeRemaining) return;
-    const pct = dur > 0 ? (cur / dur) * 100 : 0;
-    dom.progressSlider.value = pct;
-    dom.timeElapsed.textContent = formatTime(cur);
-    dom.timeRemaining.textContent = '-' + formatTime(Math.max(0, dur - cur));
+    if (dom.timeElapsed) dom.timeElapsed.textContent = formatTime(cur);
+    if (dom.timeRemaining) dom.timeRemaining.textContent = '-' + formatTime(Math.max(0, dur - cur));
+    if (dom.qualityBadge) {
+      dom.qualityBadge.textContent = (currentEngine === 'preview') ? '320 KBPS AAC' : 'FULL STREAM';
+    }
   }
 
   function formatTime(seconds) {
@@ -587,44 +782,13 @@
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   }
 
-  function onScrubberInput() {
-    const pct = parseFloat(dom.progressSlider.value);
-    const track = getCurrentTrack();
-    const dur = currentEngine === 'preview'
-      ? (audioElement.duration || 30)
-      : getTrackDurationSec(track);
-    const target = (pct / 100) * dur;
-    dom.timeElapsed.textContent = formatTime(target);
-    dom.timeRemaining.textContent = '-' + formatTime(Math.max(0, dur - target));
-  }
-
-  function onScrubberChange() {
-    const pct = parseFloat(dom.progressSlider.value);
-    const track = getCurrentTrack();
-    const dur = currentEngine === 'preview'
-      ? (audioElement.duration || 30)
-      : getTrackDurationSec(track);
-    const target = (pct / 100) * dur;
-
-    if (currentEngine === 'preview') {
-      if (audioElement && audioElement.duration) {
-        audioElement.currentTime = target;
-      }
-    } else {
-      seekHeadless(target);
-    }
-  }
-
-  // 8. Volume Management (Dynamic SVGs)
+  // 8. Volume Management (Direct Native & SVG Glyphs)
   function setVolume(pct) {
     const val = Math.max(0, Math.min(100, pct));
     currentVolume = val / 100;
 
     if (audioElement) {
       audioElement.volume = currentVolume;
-    }
-    if (masterGain && audioContext) {
-      masterGain.gain.setValueAtTime(currentVolume, audioContext.currentTime);
     }
 
     if (dom.headlessIframe) {
@@ -645,8 +809,10 @@
     if (!dom.volSvg) return;
     if (val === 0) {
       dom.volSvg.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+    } else if (val < 45) {
+      dom.volSvg.innerHTML = '<path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/>';
     } else {
-      dom.volSvg.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>';
+      dom.volSvg.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
     }
   }
 
@@ -713,10 +879,14 @@
       dom.spotifyLink.href = track.spotifyUrl || 'https://open.spotify.com/playlist/5OfNNCRIxcq2h8dGRZf4JY';
     }
 
-    // Reset scrubber
-    if (dom.progressSlider) dom.progressSlider.value = 0;
+    // Reset scrubber & badges
+    hoverPct = null;
+    isScrubbing = false;
     if (dom.timeElapsed) dom.timeElapsed.textContent = '0:00';
     if (dom.timeRemaining) dom.timeRemaining.textContent = '-' + (track.durationStr || '3:30');
+    if (dom.qualityBadge) {
+      dom.qualityBadge.textContent = (currentEngine === 'preview') ? '320 KBPS AAC' : 'FULL STREAM';
+    }
 
     updateAmbientMesh(track);
   }
@@ -918,13 +1088,11 @@
       });
     }
 
-    if (dom.progressSlider) {
-      dom.progressSlider.addEventListener('input', onScrubberInput);
-      dom.progressSlider.addEventListener('change', onScrubberChange);
-    }
-
     if (dom.volSlider) {
       dom.volSlider.addEventListener('input', (e) => {
+        setVolume(parseInt(e.target.value, 10));
+      });
+      dom.volSlider.addEventListener('change', (e) => {
         setVolume(parseInt(e.target.value, 10));
       });
     }

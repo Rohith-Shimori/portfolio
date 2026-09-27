@@ -197,18 +197,16 @@
               <p class="am-album-name" id="amAlbumName">Nine Track Mind • Track #01</p>
             </div>
 
-            <!-- Scrubber Timeline -->
-            <div class="am-scrubber-block">
-              <input type="range" class="am-progress-slider" id="amProgressSlider" min="0" max="100" value="0" aria-label="Song progress scrubber">
+            <!-- Integrated Interactive Audio Waveform Scrubber (Zero Separate Box) -->
+            <div class="am-waveform-scrubber-wrap" id="amWaveformWrap" title="Click or drag to scrub track" role="slider" aria-label="Audio scrubber waveform" tabindex="0">
+              <canvas id="amWaveformCanvas" class="am-waveform-canvas" height="42"></canvas>
+              <div class="am-scrubber-ghost-playhead" id="amGhostPlayhead"></div>
+              <div class="am-scrubber-hover-time" id="amHoverTime">0:00</div>
               <div class="am-time-row">
                 <span class="am-time" id="amTimeElapsed">0:00</span>
+                <span class="am-quality-badge" id="amQualityBadge">320 KBPS AAC</span>
                 <span class="am-time" id="amTimeRemaining">-3:37</span>
               </div>
-            </div>
-
-            <!-- Live 60FPS Frequency Spectrum Visualizer Canvas -->
-            <div class="am-visualizer-container" id="amVisualizerContainer" title="Live 60FPS Audio Visualizer">
-              <canvas id="amVisualizerCanvas" class="am-visualizer-canvas" height="36" width="300"></canvas>
             </div>
 
             <!-- Transport Controls (Dynamic Customizable SVGs, Zero Emojis) -->
