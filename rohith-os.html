@@ -94,7 +94,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Core OS Styles -->
-  <link rel="stylesheet" href="css/rohith-os.css?v=3.0">
+  <link rel="stylesheet" href="css/rohith-os.css?v=3.2">
 </head>
 <body>
 
@@ -158,7 +158,6 @@
 
         <!-- Interactive Mascot Stage Viewport -->
         <div class="mascot-viewport" id="mascotViewport" title="Click to interact with Mini Roh!">
-          <div class="mascot-viewport-ring" id="mascotAuraRing" aria-hidden="true"></div>
           <img 
             id="mascotDisplayImg" 
             src="mascot-frames/center.webp" 
@@ -329,7 +328,6 @@
                     loading="eager"
                   >
                   <div class="am-artwork-glare"></div>
-                  <div class="am-artwork-badge">LOSSLESS 24-BIT</div>
                 </div>
               </div>
             </div>
@@ -358,7 +356,6 @@
               <input type="range" class="am-progress-slider" id="amProgressSlider" min="0" max="100" value="0" aria-label="Audio progress scrubber" style="--prog-pct: 0%;">
               <div class="am-time-row">
                 <span class="am-time" id="amTimeElapsed">0:00</span>
-                <span class="am-quality-badge" id="amQualityBadge">DIRECT CDN 320 KBPS</span>
                 <span class="am-time" id="amTimeRemaining">-3:37</span>
               </div>
             </div>
@@ -382,7 +379,7 @@
               </button>
             </div>
 
-            <!-- Volume Slider with Readout & Mode Toggle -->
+            <!-- Volume Slider with Readout -->
             <div class="am-lower-bar">
               <div class="am-volume-control">
                 <button class="am-vol-btn" id="amVolIcon" title="Toggle Mute" aria-label="Mute">
@@ -390,12 +387,6 @@
                 </button>
                 <input type="range" class="am-vol-slider" id="amVolSlider" min="0" max="100" value="80" aria-label="Volume slider" style="--vol-pct: 80%;">
                 <span class="am-vol-val" id="amVolVal">80%</span>
-              </div>
-
-              <!-- High-Fidelity Audio Badge -->
-              <div class="am-audio-badge-pill" style="display:flex; align-items:center; gap:6px; padding:4px 10px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; font-family:var(--font-mono); font-size:0.68rem; color:var(--text-muted); letter-spacing:0.04em;">
-                <span style="width:6px; height:6px; border-radius:50%; background:#10B981; box-shadow:0 0 8px rgba(16,185,129,0.8); display:inline-block;"></span>
-                <span>320 KBPS STREAM</span>
               </div>
             </div>
           </div>
@@ -408,13 +399,13 @@
                 <img 
                   id="amPlaylistThumb" 
                   class="am-playlist-thumb" 
-                  src="https://mosaic.scdn.co/640/ab67616d00001e0215145482a542a9adb282250bab67616d00001e02897f73256b9128a9d70eaf66ab67616d00001e02b1fd209c11e33b3902159ab2ab67616d00001e02fddfffec51b4580acae727c1" 
+                  src="https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27315145482a542a9adb282250b" 
                   alt="Playlist thumbnail"
                 >
                 <div class="am-masthead-texts">
                   <span class="am-eyebrow">STUDIO SOUND LAB</span>
                   <h2 class="am-playlist-title" id="amPlaylistTitle">Sound Lab</h2>
-                  <p class="am-playlist-curator" id="amPlaylistCurator">307 Master Tracks • 320 KBPS Studio Stream</p>
+                  <p class="am-playlist-curator" id="amPlaylistCurator">307 Master Tracks</p>
                 </div>
               </div>
 
@@ -474,8 +465,7 @@
                 </div>
                 <div class="am-footer-specs">
                   <span class="am-spec-tag">44.1 kHz</span>
-                  <span class="am-spec-tag">24-BIT</span>
-                  <span class="am-spec-tag accent" id="amFooterEngine">DIRECT CDN 320 KBPS</span>
+                  <span class="am-spec-tag accent" id="amFooterEngine">STUDIO STREAM</span>
                 </div>
                 <button class="am-scroll-top-btn" id="amScrollTopBtn" title="Scroll to top of playlist">
                   <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
@@ -564,10 +554,10 @@
   </div>
 
   <!-- Core Scripts -->
-  <script src="js/playlist-data.js?v=3.0"></script>
-  <script src="js/spicetify-player.js?v=3.0"></script>
-  <script src="js/github-synapse.js?v=3.0"></script>
-  <script src="js/roh-terminal.js?v=3.0"></script>
-  <script src="js/rohith-os.js?v=3.0"></script>
+  <script src="js/playlist-data.js?v=3.2"></script>
+  <script src="js/spicetify-player.js?v=3.2"></script>
+  <script src="js/github-synapse.js?v=3.2"></script>
+  <script src="js/roh-terminal.js?v=3.2"></script>
+  <script src="js/rohith-os.js?v=3.2"></script>
 </body>
 </html>

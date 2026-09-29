@@ -335,17 +335,7 @@ body::after {
 }
 
 .mascot-viewport-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px dashed rgba(224, 83, 21, 0.25);
-  animation: rotateRing 30s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes rotateRing {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  display: none !important;
 }
 
 .mascot-image {
@@ -883,24 +873,65 @@ body::after {
 .am-live-status-pill {
   font-family: var(--mono);
   font-size: 0.68rem;
-  color: var(--text-dim);
+  color: #8E8E93;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  letter-spacing: 0.04em;
+  gap: 0.45rem;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.am-live-status-pill.state-standby {
+  color: #818CF8;
+}
+
+.am-live-status-pill.state-playing {
+  color: #10B981;
+}
+
+.am-live-status-pill.state-paused {
+  color: #F59E0B;
 }
 
 .am-pulse-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
+  display: inline-block;
+  transition: all 0.3s ease;
 }
 
-.am-pulse-dot.standby {
-  background: var(--text-dim);
-  box-shadow: none;
+/* 1. STANDBY: Cool Cyber Indigo */
+.am-pulse-dot.standby,
+.am-pulse-dot:not(.playing):not(.paused) {
+  background: #6366F1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.75);
+  animation: pulseStandby 3s infinite ease-in-out;
+}
+
+/* 2. PLAYING: Vibrant Emerald Green */
+.am-pulse-dot.playing {
+  background: #10B981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.9);
+  animation: pulsePlaying 1.3s infinite ease-in-out;
+}
+
+/* 3. PAUSED: Warm Amber Orange */
+.am-pulse-dot.paused {
+  background: #F59E0B;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+  animation: none;
+}
+
+@keyframes pulseStandby {
+  0%, 100% { opacity: 0.6; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 10px rgba(99, 102, 241, 0.9); }
+}
+
+@keyframes pulsePlaying {
+  0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 8px rgba(16, 185, 129, 0.7); }
+  50% { transform: scale(1.25); opacity: 0.85; box-shadow: 0 0 14px rgba(16, 185, 129, 1); }
 }
 
 /* Interactive Vinyl & Artwork Showcase */
@@ -1030,21 +1061,7 @@ body::after {
 }
 
 .am-artwork-badge {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  font-family: var(--mono);
-  font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #FFFFFF;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 2px 6px;
-  border-radius: 4px;
-  pointer-events: none;
+  display: none !important;
 }
 
 /* Metadata Block */
@@ -1290,20 +1307,22 @@ body::after {
   fill: #0E0E12;
 }
 
-/* Lower Bar: Volume & Mode Pill */
+/* Lower Bar: Clean Centered Volume Slider */
 .am-lower-bar {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  justify-content: center;
   width: 100%;
+  margin-top: 0.25rem;
 }
 
 .am-volume-control {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 240px;
 }
 
 .am-vol-btn {
@@ -1323,7 +1342,9 @@ body::after {
 }
 
 .am-vol-slider {
-  width: 120px;
+  flex: 1;
+  max-width: 150px;
+  width: 100%;
   -webkit-appearance: none;
   appearance: none;
   height: 4px;

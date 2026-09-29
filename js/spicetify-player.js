@@ -147,6 +147,7 @@
 
   let isTransitioning = false;
   let isUpdatingUI = false;
+  let hasStartedPlayback = false;
 
   // DOM Elements cache
   const dom = {};
@@ -159,6 +160,7 @@
     setupScrubberEvents();
     renderTracklist();
     updateTrackDisplay();
+    setPlayingUI(false);
     setVolume(80);
     startWaveformLoop();
   }
@@ -393,6 +395,7 @@
       }
 
       const track = getCurrentTrack();
+      hasStartedPlayback = true;
       isPlaying = true;
       setPlayingUI(true);
 
@@ -538,9 +541,6 @@
   function updateScrubberUI(cur, dur) {
     if (dom.timeElapsed) dom.timeElapsed.textContent = formatTime(cur);
     if (dom.timeRemaining) dom.timeRemaining.textContent = '-' + formatTime(Math.max(0, dur - cur));
-    if (dom.qualityBadge) {
-      dom.qualityBadge.textContent = '320 KBPS STUDIO STREAM';
-    }
     if (dom.progressSlider && dur > 0) {
       const pct = Math.min(100, Math.max(0, (cur / dur) * 100));
       if (!isScrubbing) {
@@ -641,17 +641,34 @@
       if (dom.equalizer) dom.equalizer.classList.toggle('active', playing);
       if (dom.vinylDisc) dom.vinylDisc.classList.toggle('spinning', playing);
       if (dom.liveStatus) {
-        dom.liveStatus.classList.toggle('playing', playing);
-        if (dom.statusText) {
-          dom.statusText.textContent = playing ? 'LIVE' : 'PAUSED';
+        const dot = dom.liveStatus.querySelector('.am-pulse-dot');
+        dom.liveStatus.classList.remove('state-standby', 'state-playing', 'state-paused');
+        if (dot) dot.classList.remove('standby', 'playing', 'paused');
+
+        if (playing) {
+          dom.liveStatus.classList.add('state-playing');
+          if (dot) dot.classList.add('playing');
+          if (dom.statusText) dom.statusText.textContent = 'PLAYING';
+        } else if (hasStartedPlayback) {
+          dom.liveStatus.classList.add('state-paused');
+          if (dot) dot.classList.add('paused');
+          if (dom.statusText) dom.statusText.textContent = 'PAUSED';
+        } else {
+          dom.liveStatus.classList.add('state-standby');
+          if (dot) dot.classList.add('standby');
+          if (dom.statusText) dom.statusText.textContent = 'STANDBY';
         }
       }
 
       const headerDot = document.getElementById('headerAudioStatus');
       if (headerDot) {
-        headerDot.innerHTML = playing
-          ? '<span class="pulse-dot active" style="background:#10B981"></span> Sound Lab Active'
-          : '<span class="pulse-dot"></span> Audio Ready';
+        if (playing) {
+          headerDot.innerHTML = '<span class="pulse-dot active" style="background:#10B981; box-shadow:0 0 8px #10B981;"></span> Sound Lab Playing';
+        } else if (hasStartedPlayback) {
+          headerDot.innerHTML = '<span class="pulse-dot paused" style="background:#F59E0B; box-shadow:0 0 8px #F59E0B;"></span> Sound Lab Paused';
+        } else {
+          headerDot.innerHTML = '<span class="pulse-dot standby" style="background:#6366F1; box-shadow:0 0 8px #6366F1;"></span> Audio Standby';
+        }
       }
 
       updateTracklistActiveItem();
@@ -810,11 +827,11 @@
       const data = window.ROHITH_PLAYLIST_DATA;
       if (dom.playlistThumb && data && data.coverArt) dom.playlistThumb.src = data.coverArt;
       if (dom.playlistTitle) dom.playlistTitle.textContent = 'Sound Lab';
-      if (dom.playlistCurator) dom.playlistCurator.textContent = `307 Master Tracks • 320 KBPS Studio Stream`;
+      if (dom.playlistCurator) dom.playlistCurator.textContent = '307 Master Tracks';
     } else {
       if (dom.playlistThumb && LOFI_TRACKS[0].coverArt) dom.playlistThumb.src = LOFI_TRACKS[0].coverArt;
       if (dom.playlistTitle) dom.playlistTitle.textContent = 'Focus Lo-Fi Radio';
-      if (dom.playlistCurator) dom.playlistCurator.textContent = '10 Curated Chillhop & Jazz Hop Beats • 320 KBPS Studio Stream';
+      if (dom.playlistCurator) dom.playlistCurator.textContent = '10 Curated Chillhop & Jazz Hop Beats';
     }
 
     loadCurrentTrack();
