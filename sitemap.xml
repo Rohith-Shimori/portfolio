@@ -1,12 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://rohith.is-a.dev/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://rohith.is-a.dev/mascot_wave.png</image:loc>
+      <image:title>Pontapalli Rohith Portfolio Mascot</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://rohith.is-a.dev/ncc_real.webp</image:loc>
+      <image:title>NCC Digital Training Platform</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://rohith.is-a.dev/truthlens_real.webp</image:loc>
+      <image:title>TruthLens AI Platform</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://rohith.is-a.dev/rohith-os.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://rohith.is-a.dev/mascot_locked_in.png</image:loc>
+      <image:title>Rohith OS Mini Roh AI and Sound Lab</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://rohith.is-a.dev/cv.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://rohith.is-a.dev/rights.html</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

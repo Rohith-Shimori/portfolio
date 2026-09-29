@@ -58,6 +58,7 @@ jobs:
           locs = [el.text.strip() for el in root.findall('sm:url/sm:loc', ns) if el.text]
           expected = {
               'https://rohith.is-a.dev/',
+              'https://rohith.is-a.dev/rohith-os.html',
               'https://rohith.is-a.dev/cv.html',
               'https://rohith.is-a.dev/rights.html',
           }
@@ -72,7 +73,7 @@ jobs:
           from pathlib import Path
           import re
 
-          files = ['index.html', 'cv.html', 'rights.html']
+          files = ['index.html', 'cv.html', 'rights.html', 'rohith-os.html']
           root = Path('.')
           missing = []
 
@@ -101,16 +102,19 @@ jobs:
 
           index_html = Path('index.html').read_text(encoding='utf-8')
           cv_html = Path('cv.html').read_text(encoding='utf-8')
+          rohith_os_html = Path('rohith-os.html').read_text(encoding='utf-8')
           app_js = Path('js/app.js').read_text(encoding='utf-8')
 
           checks = [
             ('index canonical', 'https://rohith.is-a.dev/' in index_html),
             ('cv canonical', 'https://rohith.is-a.dev/cv.html' in cv_html),
+            ('rohith-os canonical', 'https://rohith.is-a.dev/rohith-os.html' in rohith_os_html),
             ('rights link index', 'rights.html' in index_html),
             ('rights link cv', 'rights.html' in cv_html),
             ('robots sitemap', 'Sitemap: https://rohith.is-a.dev/sitemap.xml' in Path('robots.txt').read_text(encoding='utf-8')),
             ('spdx index', 'SPDX-License-Identifier: GPL-3.0-or-later' in index_html),
             ('spdx cv', 'SPDX-License-Identifier: GPL-3.0-or-later' in cv_html),
+            ('spdx rohith-os', 'SPDX-License-Identifier: GPL-3.0-or-later' in rohith_os_html),
             ('spdx app', 'SPDX-License-Identifier: GPL-3.0-or-later' in app_js),
             ('no preview mini mascot refs', 'mini_roh_' not in app_js),
           ]
