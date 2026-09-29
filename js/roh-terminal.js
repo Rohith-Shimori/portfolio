@@ -251,17 +251,13 @@ CONTACT: rohith@rohith.is-a.dev | https://linkedin.com/in/pontapalli-rohith`);
       player.prev();
       appendLine('success', '[PREV] Audio: Switched to "' + player.getCurrentTrack().title + '"');
     } else if (sub === 'playlist') {
-      player.setSource('playlist');
-      appendLine('success', '[CHANNEL] Switched to "Peace of Hell" (307 Tracks)');
+      if (player.switchChannel) player.switchChannel('playlist');
+      else if (player.setSource) player.setSource('playlist');
+      appendLine('success', '[CHANNEL] Switched to Sound Lab (307 Tracks)');
     } else if (sub === 'lofi') {
-      player.setSource('lofi');
-      appendLine('success', '[CHANNEL] Switched to Lo-Fi Coding Radio');
-    } else if (sub === 'full') {
-      player.setEngine('full');
-      appendLine('success', '[ENGINE] Switched engine to Full Song (External Stream)');
-    } else if (sub === 'preview') {
-      player.setEngine('preview');
-      appendLine('success', '[ENGINE] Switched engine to Direct 320 KBPS Audio');
+      if (player.switchChannel) player.switchChannel('lofi');
+      else if (player.setSource) player.setSource('lofi');
+      appendLine('success', '[CHANNEL] Switched to Focus Lo-Fi Radio');
     } else if (sub.startsWith('vol')) {
       const num = parseInt(sub.split(/\s+/)[1], 10);
       if (!isNaN(num)) {
@@ -276,10 +272,8 @@ CONTACT: rohith@rohith.is-a.dev | https://linkedin.com/in/pontapalli-rohith`);
   music pause           Pause current track
   music next            Skip to next track
   music prev            Return to previous track
-  music playlist        Switch to "Peace of Hell" (100 tracks)
-  music lofi            Switch to Lo-Fi Radio
-  music full            Switch to Full Song (YouTube engine)
-  music preview         Switch to 60FPS Web Audio Preview
+  music playlist        Switch to Sound Lab (307 tracks)
+  music lofi            Switch to Focus Lo-Fi Radio
   music vol <0-100>     Adjust volume`);
     }
   }

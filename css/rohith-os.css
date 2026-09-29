@@ -283,7 +283,7 @@ body::after {
 }
 
 /* ===================================================================
-   ZONE 1: MINI ROH STUDIO STAGE
+   MINI ROH STUDIO STAGE
    =================================================================== */
 .studio-stage {
   min-height: 380px;
@@ -518,7 +518,7 @@ body::after {
 }
 
 /* ===================================================================
-   ZONE 2: CONVERSATIONAL AI CORE
+   CONVERSATIONAL AI CORE
    =================================================================== */
 .ai-core {
   min-height: 380px;
@@ -723,7 +723,7 @@ body::after {
 }
 
 /* ===================================================================
-   ZONE 3: APPLE MUSIC STUDIO // DESIGN SYSTEM & LIQUID GLASS MATERIAL
+   CYBER SOUND LAB // DESIGN SYSTEM & LIQUID GLASS MATERIAL
    =================================================================== */
 .apple-music-card {
   grid-column: 1 / -1;
@@ -1293,14 +1293,16 @@ body::after {
 /* Lower Bar: Volume & Mode Pill */
 .am-lower-bar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.75rem;
+  width: 100%;
 }
 
 .am-volume-control {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.65rem;
 }
 
@@ -1669,6 +1671,12 @@ body::after {
   cursor: pointer;
   border: 1px solid transparent;
   user-select: none;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+.am-track-row > * {
+  min-width: 0;
 }
 
 .am-track-row:hover {
@@ -1767,6 +1775,14 @@ body::after {
   gap: 0.75rem;
   overflow: hidden;
   padding-right: 0.5rem;
+  min-width: 0;
+}
+
+.am-row-texts {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .am-row-mini-thumb {
@@ -1787,6 +1803,16 @@ body::after {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: block;
+}
+
+.am-row-artist-mobile {
+  display: none;
+  font-size: 0.72rem;
+  color: #8E8E93;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .am-track-row.active .am-row-title-text {
@@ -1800,6 +1826,7 @@ body::after {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: block;
 }
 
 .am-row-album-cell {
@@ -1809,6 +1836,7 @@ body::after {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: block;
 }
 
 .am-row-time-cell {
@@ -1932,6 +1960,11 @@ body::after {
   color: #FFFFFF;
   border-color: var(--accent);
 }
+
+.am-row-spotify-icon,
+.am-row-ext-icon {
+  opacity: 0;
+  color: #8E8E93;
   transition: opacity 0.15s ease, color 0.15s ease, transform 0.15s ease;
   display: inline-flex;
   align-items: center;
@@ -1953,19 +1986,24 @@ body::after {
   .am-table-header {
     grid-template-columns: 36px 1fr 60px;
   }
-  .am-table-header .col-artist {
+  .am-table-header .col-artist,
+  .am-table-header .col-album {
     display: none;
   }
   .am-track-row {
     grid-template-columns: 36px 1fr 60px;
   }
-  .am-row-artist-cell {
+  .am-row-artist-cell,
+  .am-row-album-cell {
     display: none;
+  }
+  .am-row-artist-mobile {
+    display: block;
   }
 }
 
 /* ===================================================================
-   ZONE 4: GITHUB SYNAPSE WALL
+   GITHUB SYNAPSE WALL
    =================================================================== */
 .github-synapse-card {
   min-height: 400px;
@@ -2115,7 +2153,7 @@ body::after {
 }
 
 /* ===================================================================
-   ZONE 5: HACKER TERMINAL (roh-sh) — AUTHENTIC ROLLBACK WITH INLINE PROMPT
+   HACKER TERMINAL (roh-sh) — AUTHENTIC ROLLBACK WITH INLINE PROMPT
    =================================================================== */
 .terminal-card {
   min-height: 400px;

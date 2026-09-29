@@ -145,6 +145,9 @@
   let audioElement = null;
   let visualizerAnimId = null;
 
+  let isTransitioning = false;
+  let isUpdatingUI = false;
+
   // DOM Elements cache
   const dom = {};
 
@@ -249,11 +252,13 @@
     audioElement.addEventListener('play', () => setPlayingUI(true));
     audioElement.addEventListener('pause', () => setPlayingUI(false));
     audioElement.addEventListener('error', (e) => {
-      console.warn('Audio stream fallback note:', e);
+      console.warn('Audio stream playback error for track:', getCurrentTrack() ? getCurrentTrack().title : 'unknown', e);
       const track = getCurrentTrack();
       if (track && track.previewUrl && audioElement.src !== track.previewUrl) {
         audioElement.src = track.previewUrl;
         audioElement.play().catch(() => {});
+      } else {
+        setPlayingUI(false);
       }
     });
   }
@@ -379,29 +384,35 @@
 
   // 5. Playback Controls
   function play() {
-    initWebAudio();
-    if (audioContext && audioContext.state === 'suspended') {
-      audioContext.resume();
-    }
-
-    const track = getCurrentTrack();
-    isPlaying = true;
-    setPlayingUI(true);
-
-    const streamUrl = track.streamUrl || track.previewUrl || '';
-    if (streamUrl) {
-      if (audioElement.src !== streamUrl) {
-        audioElement.src = streamUrl;
-        audioElement.load();
+    if (isTransitioning) return;
+    isTransitioning = true;
+    try {
+      initWebAudio();
+      if (audioContext && audioContext.state === 'suspended') {
+        audioContext.resume().catch(() => {});
       }
-      audioElement.play().catch((err) => {
-        console.warn('Playback error or interaction required:', err);
-      });
-    }
 
-    window.dispatchEvent(new CustomEvent('spicetify:play', {
-      detail: { track, source: currentSource }
-    }));
+      const track = getCurrentTrack();
+      isPlaying = true;
+      setPlayingUI(true);
+
+      const streamUrl = track.streamUrl || track.previewUrl || '';
+      if (streamUrl && audioElement) {
+        if (audioElement.src !== streamUrl) {
+          audioElement.src = streamUrl;
+          audioElement.load();
+        }
+        audioElement.play().catch((err) => {
+          console.warn('Playback error or interaction required:', err);
+        });
+      }
+
+      window.dispatchEvent(new CustomEvent('spicetify:play', {
+        detail: { track, source: currentSource }
+      }));
+    } finally {
+      isTransitioning = false;
+    }
   }
 
   function pause() {
@@ -617,30 +628,36 @@
 
   // 9. UI State Synchronization
   function setPlayingUI(playing) {
-    if (dom.playBtn) {
-      dom.playBtn.innerHTML = playing
-        ? '<svg class="pause-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'
-        : '<svg class="play-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>';
-      dom.playBtn.classList.toggle('playing', playing);
-    }
-
-    if (dom.equalizer) dom.equalizer.classList.toggle('active', playing);
-    if (dom.vinylDisc) dom.vinylDisc.classList.toggle('spinning', playing);
-    if (dom.liveStatus) {
-      dom.liveStatus.classList.toggle('playing', playing);
-      if (dom.statusText) {
-        dom.statusText.textContent = playing ? 'LIVE' : 'PAUSED';
+    if (isUpdatingUI) return;
+    isUpdatingUI = true;
+    try {
+      if (dom.playBtn) {
+        dom.playBtn.innerHTML = playing
+          ? '<svg class="pause-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>'
+          : '<svg class="play-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>';
+        dom.playBtn.classList.toggle('playing', playing);
       }
-    }
 
-    const headerDot = document.getElementById('headerAudioStatus');
-    if (headerDot) {
-      headerDot.innerHTML = playing
-        ? '<span class="pulse-dot active" style="background:#10B981"></span> Sound Lab Active'
-        : '<span class="pulse-dot"></span> Audio Ready';
-    }
+      if (dom.equalizer) dom.equalizer.classList.toggle('active', playing);
+      if (dom.vinylDisc) dom.vinylDisc.classList.toggle('spinning', playing);
+      if (dom.liveStatus) {
+        dom.liveStatus.classList.toggle('playing', playing);
+        if (dom.statusText) {
+          dom.statusText.textContent = playing ? 'LIVE' : 'PAUSED';
+        }
+      }
 
-    updateTracklistActiveItem();
+      const headerDot = document.getElementById('headerAudioStatus');
+      if (headerDot) {
+        headerDot.innerHTML = playing
+          ? '<span class="pulse-dot active" style="background:#10B981"></span> Sound Lab Active'
+          : '<span class="pulse-dot"></span> Audio Ready';
+      }
+
+      updateTracklistActiveItem();
+    } finally {
+      isUpdatingUI = false;
+    }
   }
 
   function updateTrackDisplay() {
@@ -691,24 +708,31 @@
     }
 
     const html = tracks.map((track) => {
-      const isActive = (track.index === (currentTrackIdx + 1));
+      const isCur = (track.index === (currentTrackIdx + 1));
       const art = track.coverArt || '';
       return `
-        <div class="am-track-row ${isActive ? 'active' : ''}" data-track-index="${track.index - 1}" role="button" tabindex="0">
-          <span class="col-num">
-            <span class="num-text">${track.index}</span>
-            <span class="num-play-icon">▶</span>
+        <div class="am-track-row ${isCur ? 'active' : ''} ${isCur && isPlaying ? 'is-playing playing' : ''}" data-track-index="${track.index - 1}" role="button" tabindex="0">
+          <span class="am-row-num">
+            <span class="am-row-num-text">${track.index}</span>
+            <span class="am-row-play-icon">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            </span>
+            <span class="am-row-eq ${isCur && isPlaying ? 'playing' : ''}">
+              <span class="am-eq-bar"></span>
+              <span class="am-eq-bar"></span>
+              <span class="am-eq-bar"></span>
+            </span>
           </span>
-          <div class="col-title-cell">
-            ${art ? `<img class="am-row-art" src="${art}" alt="" width="34" height="34" loading="lazy">` : ''}
-            <div class="am-row-texts">
-              <span class="am-row-title">${escapeHtml(track.title)}</span>
+          <div class="am-row-title-cell">
+            ${art ? `<img class="am-row-mini-thumb" src="${art}" alt="" width="36" height="36" loading="lazy">` : ''}
+            <div class="am-row-texts" style="min-width:0; overflow:hidden;">
+              <span class="am-row-title-text" title="${escapeHtml(track.title)}">${escapeHtml(track.title)}</span>
               <span class="am-row-artist-mobile">${escapeHtml(track.artist)}</span>
             </div>
           </div>
-          <span class="col-artist">${escapeHtml(track.artist)}</span>
-          <span class="col-album">${escapeHtml(track.album || '—')}</span>
-          <span class="col-time">${track.durationStr || '3:30'}</span>
+          <span class="am-row-artist-cell" title="${escapeHtml(track.artist)}">${escapeHtml(track.artist)}</span>
+          <span class="am-row-album-cell" title="${escapeHtml(track.album || 'Sound Lab')}">${escapeHtml(track.album || 'Sound Lab')}</span>
+          <span class="am-row-time-cell">${track.durationStr || '3:30'}</span>
         </div>`;
     }).join('');
 
@@ -734,10 +758,13 @@
       const idx = parseInt(row.getAttribute('data-track-index'), 10);
       const isCur = (idx === currentTrackIdx);
       row.classList.toggle('active', isCur);
+      const eq = row.querySelector('.am-row-eq');
       if (isCur && isPlaying) {
-        row.classList.add('playing');
+        row.classList.add('is-playing', 'playing');
+        if (eq) eq.classList.add('playing');
       } else {
-        row.classList.remove('playing');
+        row.classList.remove('is-playing', 'playing');
+        if (eq) eq.classList.remove('playing');
       }
     });
   }
@@ -903,6 +930,8 @@
     prev: prevTrack,
     setVolume,
     selectTrack,
+    switchChannel,
+    setSource: switchChannel,
     getCurrentTrack,
     getActiveTracks
   };
