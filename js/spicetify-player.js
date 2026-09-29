@@ -308,7 +308,7 @@
   }
 
   // 4. 60FPS Interactive Audio Waveform Scrubber Engine (Zero Separate Box)
-  const NUM_WAVEFORM_BARS = 36;
+  const NUM_WAVEFORM_BARS = 48;
   let isScrubbing = false;
   let hoverPct = null;
 
@@ -344,7 +344,7 @@
       const s2 = Math.cos(angle * 6 - hash * 0.02);
       const s3 = Math.sin(angle * 11 + hash * 0.005);
       const base = 0.28 + 0.45 * Math.abs((s1 + s2 + s3) / 3);
-      profile.push(Math.max(0.2, Math.min(0.95, base)));
+      profile.push(Math.max(0.18, Math.min(0.95, base)));
     }
     return profile;
   }
@@ -370,67 +370,65 @@
 
       const track = getCurrentTrack();
       const waveProfile = getTrackWaveProfile(track);
-      const spacing = 3;
-      const barWidth = Math.max(3, (w - (NUM_WAVEFORM_BARS - 1) * spacing) / NUM_WAVEFORM_BARS);
-      const now = Date.now() * 0.004;
+      const spacing = 2.5;
+      const barWidth = Math.max(2.5, (w - (NUM_WAVEFORM_BARS - 1) * spacing) / NUM_WAVEFORM_BARS);
+      const now = Date.now() * 0.0035;
+      const centerY = h / 2;
 
       for (let i = 0; i < NUM_WAVEFORM_BARS; i++) {
         let dynamicScale = 1.0;
         if (isPlaying) {
           if (currentEngine === 'preview' && analyserNode) {
             const freqVal = (freqData[i % 32] || 0) / 255;
-            dynamicScale = 0.35 + 1.25 * freqVal;
+            dynamicScale = 0.3 + 1.35 * freqVal;
           } else {
-            const pulse = (Math.sin(now * 3.5 + i * 0.4) + Math.cos(now * 2 - i * 0.25) + 2) / 4;
-            dynamicScale = 0.4 + 0.85 * pulse;
+            const pulse = (Math.sin(now * 4 + i * 0.35) + Math.cos(now * 2.2 - i * 0.2) + 2) / 4;
+            dynamicScale = 0.35 + 0.9 * pulse;
           }
         } else {
-          // Subtle resting breathing wave
-          const breathe = (Math.sin(now * 0.8 + i * 0.15) + 1) / 2;
-          dynamicScale = 0.4 + 0.15 * breathe;
+          // Resting subtle wave
+          const breathe = (Math.sin(now * 0.9 + i * 0.18) + 1) / 2;
+          dynamicScale = 0.3 + 0.15 * breathe;
         }
 
-        const barFraction = Math.max(0.1, Math.min(1.0, waveProfile[i] * dynamicScale));
-        const barHeight = Math.max(3, barFraction * (h - 4));
+        const barFraction = Math.max(0.12, Math.min(1.0, waveProfile[i] * dynamicScale));
+        const barHeight = Math.max(4, barFraction * (h - 4));
         const x = i * (barWidth + spacing);
-        const y = h - barHeight; // Base-aligned for classic studio spectrum visualizer
+        const y = centerY - barHeight / 2;
 
-        // Glowing cyber gradient
-        const grad = ctx.createLinearGradient(0, y, 0, h);
+        // Clean modern studio audio gradient (Zero candle flame blur)
+        const grad = ctx.createLinearGradient(0, y, 0, y + barHeight);
         if (isPlaying) {
-          grad.addColorStop(0, '#FFAA40');
-          grad.addColorStop(0.6, '#E05315');
-          grad.addColorStop(1, 'rgba(224, 83, 21, 0.4)');
-          ctx.shadowColor = 'rgba(224, 83, 21, 0.6)';
-          ctx.shadowBlur = 6;
+          grad.addColorStop(0, '#FFA534');
+          grad.addColorStop(0.5, '#E05315');
+          grad.addColorStop(1, '#C23E08');
         } else {
-          grad.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
-          grad.addColorStop(1, 'rgba(255, 255, 255, 0.08)');
-          ctx.shadowColor = 'transparent';
-          ctx.shadowBlur = 0;
+          grad.addColorStop(0, 'rgba(255, 255, 255, 0.32)');
+          grad.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
         }
 
         ctx.fillStyle = grad;
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
 
-        // Rounded top capsule bar
+        // Draw symmetrical rounded pill soundwave bar
         const r = Math.min(barWidth / 2, 2);
-        ctx.beginPath();
-        ctx.moveTo(x, h);
-        ctx.lineTo(x, y + r);
-        ctx.quadraticCurveTo(x, y, x + r, y);
-        ctx.lineTo(x + barWidth - r, y);
-        ctx.quadraticCurveTo(x + barWidth, y, x + barWidth, y + r);
-        ctx.lineTo(x + barWidth, h);
-        ctx.closePath();
-        ctx.fill();
-
-        // Peak cap dot when playing
-        if (isPlaying && barHeight > 10) {
-          ctx.fillStyle = '#FFFFFF';
-          ctx.shadowColor = '#FFAA40';
-          ctx.shadowBlur = 4;
+        if (typeof ctx.roundRect === 'function') {
           ctx.beginPath();
-          ctx.arc(x + barWidth / 2, Math.max(2, y - 2), 1, 0, Math.PI * 2);
+          ctx.roundRect(x, y, barWidth, barHeight, r);
+          ctx.fill();
+        } else {
+          ctx.beginPath();
+          ctx.moveTo(x + r, y);
+          ctx.lineTo(x + barWidth - r, y);
+          ctx.quadraticCurveTo(x + barWidth, y, x + barWidth, y + r);
+          ctx.lineTo(x + barWidth, y + barHeight - r);
+          ctx.quadraticCurveTo(x + barWidth, y + barHeight, x + barWidth - r, y + barHeight);
+          ctx.lineTo(x + r, y + barHeight);
+          ctx.quadraticCurveTo(x, y + barHeight, x, y + barHeight - r);
+          ctx.lineTo(x, y + r);
+          ctx.quadraticCurveTo(x, y, x + r, y);
+          ctx.closePath();
           ctx.fill();
         }
       }
@@ -844,10 +842,10 @@
     if (dom.statusText) {
       if (playing) {
         dom.statusText.textContent = currentEngine === 'preview'
-          ? 'PLAYING // HQ STREAM'
-          : 'PLAYING // FULL STREAM';
+          ? 'Playing HQ'
+          : 'Playing Full Track';
       } else {
-        dom.statusText.textContent = 'STANDBY';
+        dom.statusText.textContent = 'Standby';
       }
     }
 

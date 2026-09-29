@@ -16,73 +16,79 @@
     gaze: {
       src: 'mascot-frames/center.webp',
       isGaze: true,
-      label: '9-DIR GAZE ACTIVE',
-      speech: '[MINI-ROH] 360° gaze tracker engaged. Move cursor to inspect angle telemetry.'
+      label: 'Gaze Tracking',
+      speech: 'Move your cursor to track 360° gaze!'
     },
     wave: {
       src: 'mascot_wave.webp',
-      label: 'ONLINE & GREETING',
-      speech: '[MINI-ROH] Systems nominal! Welcome to Rohith OS. Explore the studio or test my AI brain.'
+      label: 'Greeting',
+      speech: 'Welcome to Rohith OS! Explore the studio or test my AI companion.'
     },
     coding: {
       src: 'mascot_coding.webp',
-      label: 'CODING SPRINT',
-      speech: '[MINI-ROH] Locked into code. Compiling React 19, Supabase RLS policies, and FastMCP tools.'
-    },
-    building_ai: {
-      src: 'mascot_building_ai.webp',
-      label: 'AGENTIC REASONING',
-      speech: '[MINI-ROH] Training multi-agent consensus tools for TruthLens on Hugging Face.'
-    },
-    focus_mode: {
-      src: 'mascot_focus_mode.webp',
-      label: 'FOCUS BEATS',
-      speech: '[MINI-ROH] Studio headphones on. Direct 320kbps Lo-Fi audio frequencies flowing.'
+      label: 'Coding Sprint',
+      speech: 'Locked into code. Compiling React 19, Supabase RLS policies, and FastMCP tools.'
     },
     locked_in: {
       src: 'mascot_locked_in.webp',
-      label: '100% FLOW STATE',
-      speech: '[MINI-ROH] Zero distractions. Shipping distributed architectures with clean boundary seams.'
+      label: '100% Flow State',
+      speech: 'Zero distractions. Shipping distributed architectures with clean boundary seams.'
     },
-    bug_found: {
-      src: 'mascot_bug_found.webp',
-      label: 'INVESTIGATING BUG',
-      speech: '[MINI-ROH] Discovered race condition! Isolating async Promise queue in state manager.'
+    need_chai: {
+      src: 'mascot_focus_mode.webp',
+      label: 'Chai Refuel',
+      speech: 'Refueling with hot ginger chai! Ready for the next coding sprint.'
     },
-    compiler_error: {
-      src: 'mascot_compiler_error.webp',
-      label: 'SYNTAX ERROR',
-      speech: '[MINI-ROH] Compiler exception thrown! Brewing hot cardamom chai to debug stack trace.'
-    },
-    git_conflict: {
-      src: 'mascot_git_conflict.webp',
-      label: 'MERGE CONFLICT',
-      speech: '[MINI-ROH] Incoming merge conflict on main. Re-basing cleanly without overwriting commits.'
-    },
-    it_works: {
-      src: 'mascot_it_works.webp',
-      label: 'TESTS PASSED',
-      speech: '[MINI-ROH] All unit and integration suites green! Architecture verified.'
-    },
-    deploy_success: {
-      src: 'mascot_deploy_success.webp',
-      label: 'SHIPPED & READY',
-      speech: '[MINI-ROH] Deployed to production edge! Zero latency, zero cold starts.'
+    sleep: {
+      src: 'mascot_need_sleep.webp',
+      label: 'Sleep Mode',
+      speech: 'Late night debug session completed. Powering down to sleep on the laptop...'
     },
     thinking: {
       src: 'mascot_thinking.webp',
-      label: 'PROCESSING QUERY',
-      speech: '[MINI-ROH] Query received. Consulting neural context and project knowledge graph...'
+      label: 'Thinking',
+      speech: 'Query received. Consulting neural context and project knowledge base...'
+    },
+    it_works: {
+      src: 'mascot_it_works.webp',
+      label: 'Tests Passed',
+      speech: 'All unit and integration suites green! Architecture verified.'
+    },
+    deploy_success: {
+      src: 'mascot_deploy_success.webp',
+      label: 'Deploy Success',
+      speech: 'Deployed to production edge! Zero latency, zero cold starts.'
+    },
+    bug_found: {
+      src: 'mascot_bug_found.webp',
+      label: 'Bug Found',
+      speech: 'Discovered race condition! Isolating async Promise queue in state manager.'
+    },
+    compiler_error: {
+      src: 'mascot_compiler_error.webp',
+      label: 'Compiler Error',
+      speech: 'Compiler exception thrown! Refueling with chai to fix stack trace.'
+    },
+    git_conflict: {
+      src: 'mascot_git_conflict.webp',
+      label: 'Merge Conflict',
+      speech: 'Incoming merge conflict on main. Re-basing cleanly without overwriting commits.'
+    },
+    building_ai: {
+      src: 'mascot_building_ai.webp',
+      label: 'Say Hi',
+      speech: 'Hi there! Building intelligent agentic tools and fast MCP pipelines.'
+    },
+    // Aliases for compatibility
+    focus_mode: {
+      src: 'mascot_focus_mode.webp',
+      label: 'Chai Refuel',
+      speech: 'Refueling with hot ginger chai! Ready for the next coding sprint.'
     },
     need_sleep: {
       src: 'mascot_need_sleep.webp',
-      label: 'CHAI REFUEL',
-      speech: '[MINI-ROH] 2 AM debug session completed. Refueling stamina with hot ginger chai.'
-    },
-    sleep: {
-      src: 'mascot_sleep.webp',
-      label: 'POWER SAVE MODE',
-      speech: '[MINI-ROH] Idling in standby state. CPU consumption throttled to 0.1%.'
+      label: 'Sleep Mode',
+      speech: 'Late night debug marathon complete. Powering down to sleep on the laptop...'
     }
   };
 
@@ -157,14 +163,14 @@
     if (mode === 'gaze') {
       isTrackingGaze = true;
       applyPose('gaze');
-      setMascotSpeech('[MINI-ROH] 360° cursor gaze tracking active. Move mouse anywhere on screen.');
+      setMascotSpeech('360° cursor gaze tracking active. Move your mouse anywhere on screen.');
     } else if (mode === 'poses') {
       isTrackingGaze = false;
       if (currentPoseKey === 'gaze') applyPose('wave');
-      setMascotSpeech('[MINI-ROH] Character pose studio active. Select any of the 13 states to inspect.');
+      setMascotSpeech('Character pose studio active. Select any state below.');
     } else if (mode === 'react') {
       isTrackingGaze = true;
-      setMascotSpeech('[MINI-ROH] Auto-React enabled: synced with Cyber Sound Lab, Hacker Terminal & AI.');
+      setMascotSpeech('Auto-React active: synchronized with Sound Lab, Terminal & AI.');
     }
   }
 
@@ -180,12 +186,12 @@
     if (pose.isGaze) {
       isTrackingGaze = true;
       mascotImg.src = 'mascot-frames/' + (GAZE_FRAMES[currentGazeDir] || 'center.webp');
-      if (telemetryText) telemetryText.textContent = '9-DIR GAZE ACTIVE';
-      setMascotMood('GAZE TRACKING');
+      if (telemetryText) telemetryText.textContent = 'Gaze Tracking';
+      setMascotMood('Gaze Tracking');
     } else {
       isTrackingGaze = false;
       mascotImg.src = pose.src;
-      if (telemetryText) telemetryText.textContent = `POSE: ${poseKey.toUpperCase()}`;
+      if (telemetryText) telemetryText.textContent = pose.label;
       setMascotMood(pose.label);
     }
 
@@ -243,7 +249,7 @@
     const file = GAZE_FRAMES[dir] || 'center.webp';
     mascotImg.src = 'mascot-frames/' + file;
     if (telemetryText && isTrackingGaze) {
-      telemetryText.textContent = `GAZE: ${dir.toUpperCase()}`;
+      telemetryText.textContent = 'Gaze Tracking';
     }
   }
 
@@ -265,7 +271,7 @@
   }
 
   // Banter on clicking mascot directly
-  const BANTER_POSES = ['it_works', 'deploy_success', 'coding', 'building_ai', 'focus_mode', 'locked_in'];
+  const BANTER_POSES = ['it_works', 'deploy_success', 'coding', 'locked_in', 'need_chai', 'thinking'];
   let banterIdx = 0;
   function onMascotClick() {
     banterIdx = (banterIdx + 1) % BANTER_POSES.length;
@@ -396,22 +402,22 @@ Built for the **Kaggle x Google AI Agents Capstone**:
     // React with Mascot Studio
     if (currentStudioMode === 'react' || currentStudioMode === 'gaze') {
       applyPose('thinking');
-      setMascotSpeech(`[NEURAL INFERENCE] Analyzing prompt: "${query.slice(0, 30)}..."`);
+      setMascotSpeech(`Analyzing: "${query.slice(0, 32)}..."`);
     }
 
     // Live AI bubble with streaming cursor
     const aiBubble = appendChatMsg('mini-roh', '<span class="typing-dot"></span>');
-    if (aiStatusText) aiStatusText.textContent = 'PROCESSING QUERY...';
+    if (aiStatusText) aiStatusText.textContent = 'Processing...';
 
     // 1. Check Portfolio & Recruiter Dossier Intents First
     for (const item of LOCAL_KNOWLEDGE) {
       if (item.match.test(query)) {
         setTimeout(() => {
           streamTextIntoBubble(aiBubble, item.reply);
-          if (aiStatusText) aiStatusText.textContent = 'PORTFOLIO CORE // VERIFIED';
+          if (aiStatusText) aiStatusText.textContent = 'Verified Dossier';
           if (currentStudioMode === 'react') {
             applyPose('deploy_success');
-            setMascotSpeech('[MINI-ROH] Architecture dossier retrieved.');
+            setMascotSpeech('Architecture dossier retrieved.');
           }
         }, 300);
         return;
@@ -436,13 +442,13 @@ Built for the **Kaggle x Google AI Agents Capstone**:
           if (sumRes.ok) {
             const sumData = await sumRes.json();
             if (sumData.extract && sumData.extract.length > 30) {
-              const reply = `**${sumData.title} // Technical Deep-Dive:**\n\n${sumData.extract}\n\n**Architectural Relevance & Takeaways:**\nIn modern distributed computing, understanding these protocols and abstractions is critical for building resilient systems. Rohith incorporates these architectural principles across his full-stack builds—from offline-first IndexedDB caching (NCC Digi) and FastMCP agentic tool loops (TruthLens) to low-latency client pipelines.\n\n*Source: Live Technical Knowledge Base // ${sumData.title}*`;
+              const reply = `**${sumData.title} // Technical Deep-Dive:**\n\n${sumData.extract}\n\n**Architectural Relevance & Takeaways:**\nIn modern distributed computing, understanding these protocols and abstractions is critical for building resilient systems. Rohith incorporates these architectural principles across his full-stack builds—from offline-first IndexedDB caching (NCC Digi) and FastMCP agentic tool loops (TruthLens) to low-latency client pipelines.\n\n*Source: Technical Knowledge Base • ${sumData.title}*`;
 
               streamTextIntoBubble(aiBubble, reply);
-              if (aiStatusText) aiStatusText.textContent = 'NEURAL KNOWLEDGE // LIVE';
+              if (aiStatusText) aiStatusText.textContent = 'Live Knowledge';
               if (currentStudioMode === 'react') {
                 applyPose('it_works');
-                setMascotSpeech(`[MINI-ROH] Live technical synthesis complete for "${sumData.title}".`);
+                setMascotSpeech(`Synthesized knowledge for "${sumData.title}".`);
               }
               return;
             }
@@ -458,10 +464,10 @@ Built for the **Kaggle x Google AI Agents Capstone**:
       const fallbackReply = `**Mini Roh Digital Companion:**\n\nI have indexed your query into Rohith's engineering knowledge base. You can test my technical knowledge on:\n\n• **Flagship Builds**: NCC Digital Platform (React 19 + Supabase RLS), TruthLens (FastMCP Agentic fact-checker on Hugging Face), and MVGR NexUs (TechSprint 2026 winner).\n• **Computer Science**: Ask me to explain any technology, protocol, or system architecture (e.g. WebSockets, Docker, RLS, Concurrency).\n• **Recruiter Inquiries**: Type "Why hire Rohith?" for a verified technical evaluation of his capabilities!`;
       
       streamTextIntoBubble(aiBubble, fallbackReply);
-      if (aiStatusText) aiStatusText.textContent = 'MINI ROH AI // ONLINE';
+      if (aiStatusText) aiStatusText.textContent = 'Online';
       if (currentStudioMode === 'react') {
         applyPose('wave');
-        setMascotSpeech('[MINI-ROH] Ready to answer your next technical inquiry.');
+        setMascotSpeech('Ready for your next inquiry.');
       }
     }, 350);
   }
@@ -471,7 +477,7 @@ Built for the **Kaggle x Google AI Agents Capstone**:
     const div = document.createElement('div');
     div.className = `chat-msg ${sender === 'user' ? 'user' : 'mini-roh'}`;
 
-    const senderLabel = sender === 'user' ? 'RECRUITER / VISITOR' : 'MINI ROH AI';
+    const senderLabel = sender === 'user' ? 'You' : 'Mini Roh';
     div.innerHTML = `
       <span class="msg-sender">${senderLabel}</span>
       <div class="msg-bubble">${htmlContent}</div>
@@ -553,21 +559,21 @@ Built for the **Kaggle x Google AI Agents Capstone**:
      4. CROSS-SYSTEM DYNAMIC REACTIVITY
      =================================================================== */
   function bindSubsystemReactivity() {
-    // Cyber Sound Lab Events
+    // Sound Lab Events
     window.addEventListener('spicetify:play', (e) => {
       const track = e.detail && e.detail.track;
       const title = track ? track.title : 'Track';
       if (currentStudioMode === 'react' || currentStudioMode === 'gaze') {
-        applyPose('focus_mode');
-        setMascotSpeech(`[AUDIO ENGAGED] Locked in with "${title}" at 320 KBPS.`);
+        applyPose('locked_in');
+        setMascotSpeech(`Now playing: "${title}"`);
       }
       if (mascotContainer) mascotContainer.classList.add('music-active');
     });
 
     window.addEventListener('spicetify:pause', () => {
       if (currentStudioMode === 'react' || currentStudioMode === 'gaze') {
-        applyPose('need_sleep');
-        setMascotSpeech('[AUDIO PAUSED] Taking a breather. Ready when you are.');
+        applyPose('need_chai');
+        setMascotSpeech('Playback paused. Taking a quick breather.');
       }
       if (mascotContainer) mascotContainer.classList.remove('music-active');
     });
@@ -578,12 +584,12 @@ Built for the **Kaggle x Google AI Agents Capstone**:
       if (!cmd) return;
       if (cmd.startsWith('git') || cmd === 'build') {
         applyPose('coding');
-        setMascotSpeech(`[TERMINAL] Executing "${cmd}" in isolated sandbox.`);
+        setMascotSpeech(`Running command: ${cmd}`);
       } else if (cmd.startsWith('music')) {
-        applyPose('focus_mode');
+        applyPose('locked_in');
       } else if (e.detail.isError) {
         applyPose('compiler_error');
-        setMascotSpeech(`[TERMINAL ERROR] Command "${cmd}" rejected by shell.`);
+        setMascotSpeech(`Command not found: ${cmd}`);
       }
     });
   }
