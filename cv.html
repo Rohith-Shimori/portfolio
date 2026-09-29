@@ -756,7 +756,15 @@
     }
   </script>
   <!-- Cloudflare Web Analytics -->
-  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "46a4f5c293a143d29c584cf099ada63a"}'></script>
+  <script>
+    if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      const s = document.createElement('script');
+      s.type = 'module';
+      s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+      s.setAttribute('data-cf-beacon', '{"token": "46a4f5c293a143d29c584cf099ada63a"}');
+      document.body.appendChild(s);
+    }
+  </script>
   <!-- End Cloudflare Web Analytics -->
 </body>
 </html>

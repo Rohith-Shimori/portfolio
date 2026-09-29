@@ -605,7 +605,7 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
           <div class="code-peeker-box">
             <div class="code-peeker-header">
               <span>${escapeHtml(ext.codeTitle || 'source_code.sql')}</span>
-              <button class="code-peeker-copy-btn" id="codePeekerCopyBtn">📋 Copy Snippet</button>
+              <button class="code-peeker-copy-btn" id="codePeekerCopyBtn">Copy Snippet</button>
             </div>
             <pre class="code-peeker-pre"><code>${escapeHtml(ext.codeSnippet || '')}</code></pre>
           </div>
@@ -683,7 +683,7 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
             .then(() => {
               copyCodeBtn.textContent = '✓ Copied!';
               showToast('Snippet copied to clipboard!');
-              setTimeout(() => { copyCodeBtn.textContent = '📋 Copy Snippet'; }, 2000);
+              setTimeout(() => { copyCodeBtn.textContent = 'Copy Snippet'; }, 2000);
             })
             .catch(() => showToast('Could not copy code snippet'));
         });
@@ -1043,7 +1043,11 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
       }
 
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        render();
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => render(), { timeout: 800 });
+        } else {
+          setTimeout(render, 250);
+        }
       }
     })();
 
@@ -1223,59 +1227,71 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
       const statusText = document.getElementById('preloaderStatusText');
 
       let isFinished = false;
+      let currentProgress = 20;
+
+      function setProgress(target, status) {
+        if (isFinished) return;
+        currentProgress = Math.max(currentProgress, target);
+        if (currentProgress > 100) currentProgress = 100;
+        if (bar) bar.style.width = currentProgress + '%';
+        if (counter) counter.textContent = String(Math.round(currentProgress)).padStart(2, '0') + '%';
+        if (status && statusText) statusText.textContent = status;
+      }
+
       function finishPreloader() {
         if (isFinished) return;
         isFinished = true;
-
-        if (bar) bar.style.width = '100%';
-        if (counter) counter.textContent = '100%';
-        if (statusText) statusText.textContent = 'SYSTEM OPERATIONAL';
+        setProgress(100, 'ALL SYSTEMS OPERATIONAL');
 
         setTimeout(() => {
           preloader.classList.add('unveiled');
           setTimeout(() => {
             preloader.style.display = 'none';
-          }, 450);
-        }, 120);
+          }, 350);
+        }, 80);
       }
 
-      // Smooth progressive counter with micro-increments (~900ms total)
-      let progress = 8;
-      const statusSteps = [
-        { at: 20, text: 'WAKING UP MINI ROH...' },
-        { at: 50, text: 'SYNAPSE CONNECTING...' },
-        { at: 75, text: 'CULTIVATING GARDEN...' },
-        { at: 95, text: 'ALL SYSTEMS GO' }
-      ];
+      // Milestone 1: Instant boot
+      setProgress(30, 'BOOTING SYSTEM ARCHITECTURE...');
 
-      const interval = setInterval(() => {
+      // Milestone 2: DOM Interactive
+      if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        setProgress(65, 'CULTIVATING DIGITAL GARDEN...');
+      } else {
+        document.addEventListener('DOMContentLoaded', () => {
+          setProgress(65, 'CULTIVATING DIGITAL GARDEN...');
+        }, { once: true });
+      }
+
+      // Milestone 3: Preload Hero Image
+      const heroImg = new Image();
+      heroImg.onload = () => {
+        setProgress(85, 'MINI ROH SYNAPSE ACTIVE...');
+      };
+      heroImg.src = 'mascot-frames/center.webp';
+
+      // Milestone 4: Full Page Ready
+      window.addEventListener('load', () => {
+        setProgress(100, 'ALL SYSTEMS OPERATIONAL');
+        setTimeout(finishPreloader, 60);
+      }, { once: true });
+
+      // Smooth micro-ticker to avoid stalling
+      const ticker = setInterval(() => {
         if (isFinished) {
-          clearInterval(interval);
+          clearInterval(ticker);
           return;
         }
-        progress += Math.floor(Math.random() * 12) + 7;
-        if (progress > 98) progress = 98;
-        if (bar) bar.style.width = progress + '%';
-        if (counter) counter.textContent = String(progress).padStart(2, '0') + '%';
-
-        const matched = statusSteps.filter(s => progress >= s.at).pop();
-        if (matched && statusText && statusText.textContent !== matched.text) {
-          statusText.textContent = matched.text;
+        if (currentProgress < 94) {
+          setProgress(currentProgress + 8, currentProgress > 60 ? 'MINI ROH SYNAPSE ACTIVE...' : 'CULTIVATING DIGITAL GARDEN...');
         }
-      }, 70);
+      }, 50);
 
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          clearInterval(interval);
-          finishPreloader();
-        }, 750);
-      });
-
-      // Safety fallback
+      // Max safety boundary (never block user longer than 750ms)
       setTimeout(() => {
-        clearInterval(interval);
+        clearInterval(ticker);
         finishPreloader();
-      }, 1500);
+      }, 750);
 
       // Instant skip on click or keypress
       preloader.addEventListener('click', finishPreloader, { once: true });
@@ -1356,7 +1372,7 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
           label: 'Mini Roh Interactive Mascot',
           onClick: (e) => {
             if (window.triggerMascotClick) {
-              window.triggerMascotClick(follower.image, 'heroBubble', 'you clicked me! move your cursor, I watch you 👀 <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+              window.triggerMascotClick(follower.image, 'heroBubble', 'you clicked me! move your cursor, I watch you. <svg class="b-icon" viewBox="0 0 24 24" fill="var(--accent)" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
             }
           }
         });

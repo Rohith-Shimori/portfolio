@@ -67,12 +67,20 @@
     container.innerHTML = '';
     container.append(wrapper);
 
-    // Preload all 9 frames
-    var preloads = Object.values(frames).map(function (url) {
-      var img = new Image();
-      img.src = url;
-      return img;
-    });
+    // Preload remaining 8 directional frames during idle time
+    function preloadRemainingFrames() {
+      Object.keys(frames).forEach(function (dir) {
+        if (dir !== 'center') {
+          var img = new Image();
+          img.src = frames[dir];
+        }
+      });
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(preloadRemainingFrames, { timeout: 1200 });
+    } else {
+      setTimeout(preloadRemainingFrames, 300);
+    }
 
     var current = 'center';
     var tracking = true;

@@ -688,7 +688,7 @@
       dom.albumName.textContent = `${track.album || 'Sound Lab'} • Track #${track.index}`;
     }
 
-    const artUrl = track.coverArt || 'https://mosaic.scdn.co/640/ab67616d00001e0215145482a542a9adb282250bab67616d00001e02897f73256b9128a9d70eaf66ab67616d00001e02b1fd209c11e33b3902159ab2ab67616d00001e02fddfffec51b4580acae727c1';
+    const artUrl = track.coverArt || 'https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbf58716549c4db9ced11b081d';
     if (dom.albumArt) dom.albumArt.src = artUrl;
     if (dom.vinylCenterImg) dom.vinylCenterImg.src = artUrl;
 
@@ -755,14 +755,6 @@
     }).join('');
 
     dom.tracklistContainer.innerHTML = html;
-
-    const rows = dom.tracklistContainer.querySelectorAll('.am-track-row');
-    rows.forEach((row) => {
-      row.addEventListener('click', () => {
-        const idx = parseInt(row.getAttribute('data-track-index'), 10);
-        selectTrack(idx);
-      });
-    });
 
     if (dom.footerCount) {
       dom.footerCount.textContent = `${tracks.length} Tracks`;
@@ -924,6 +916,30 @@
     if (dom.scrollTopBtn && dom.tracklistContainer) {
       dom.scrollTopBtn.addEventListener('click', () => {
         dom.tracklistContainer.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    if (dom.tracklistContainer) {
+      dom.tracklistContainer.addEventListener('click', (e) => {
+        const row = e.target.closest('.am-track-row');
+        if (row && dom.tracklistContainer.contains(row)) {
+          const idx = parseInt(row.getAttribute('data-track-index'), 10);
+          if (!isNaN(idx)) {
+            selectTrack(idx);
+          }
+        }
+      });
+      dom.tracklistContainer.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const row = e.target.closest('.am-track-row');
+          if (row && dom.tracklistContainer.contains(row)) {
+            e.preventDefault();
+            const idx = parseInt(row.getAttribute('data-track-index'), 10);
+            if (!isNaN(idx)) {
+              selectTrack(idx);
+            }
+          }
+        }
       });
     }
 

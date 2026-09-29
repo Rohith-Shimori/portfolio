@@ -52,7 +52,7 @@ Key facts:
     if (/why\s+(should|to)?\s*(we\s+)?hire|hire\s+rohith|internship|job|recruiter|candidate|strong.point|best\s+at/.test(q)) {
       return {
         mood: 'deploy_success',
-        text: `okay okay, recruiter mode activated ☕
+        text: `okay okay, recruiter mode activated 
 
 here's the honest pitch: rohith doesn't build tutorial clones. he ships **real systems**:
 
@@ -63,14 +63,14 @@ here's the honest pitch: rohith doesn't build tutorial clones. he ships **real s
 
 full-stack versatility (React, Python, Flutter, SQL, FastAPI), understands system boundaries, and when a compiler screams at 2am — he makes chai and squashes it.
 
-reach him at **rohith@rohith.is-a.dev**! 🚀`
+reach him at **rohith@rohith.is-a.dev**! `
       };
     }
 
     if (/ncc|cadet|drill|attendance|supabase|migration|rls|row.level/.test(q)) {
       return {
         mood: 'coding',
-        text: `NCC Digital Training Platform — this one's close to my heart 🏗️
+        text: `NCC Digital Training Platform — this one's close to my heart ️
 
 the problem: cadet attendance, drill exams, and syllabus modules were tracked on paper across 3 wings (Army, Navy, Air). records got lost, admins pulled hair out.
 
@@ -87,7 +87,7 @@ the RLS design was the hardest part — making sure a Navy cadet can't accidenta
     if (/truthlens|fastmcp|mcp|kaggle|google.*capstone|agentic|fact.check|subagent/.test(q)) {
       return {
         mood: 'building_ai',
-        text: `TruthLens — my favourite rabbit hole 🧠
+        text: `TruthLens — my favourite rabbit hole 
 
 built for **Kaggle × Google AI Agents Capstone**. the idea: automatically evaluate online claims through coordinated AI subagents.
 
@@ -106,7 +106,7 @@ live demo on [Hugging Face Spaces](https://huggingface.co/spaces/Rohith-Shimori/
     if (/nexus|mvgr|flutter|dart|techsprint|hackathon|campus|android|apk|bloc/.test(q)) {
       return {
         mood: 'it_works',
-        text: `MVGR NexUs — the one we presented live to judges 📱
+        text: `MVGR NexUs — the one we presented live to judges 
 
 the pain point: students juggled 10 WhatsApp groups for exam venues, timetable changes, and campus announcements. chaotic.
 
@@ -123,7 +123,7 @@ won **Certificate of Excellence at TechSprint 2026** after a live judge demo. th
     if (/ananta|local.ai|ollama|sandbox|vector.memory|pyaudio|privacy/.test(q)) {
       return {
         mood: 'coding',
-        text: `Ananta — the "what if AI didn't need the cloud?" experiment 🔒
+        text: `Ananta — the "what if AI didn't need the cloud?" experiment 
 
 100% local. zero cloud calls. zero token costs. your data stays on your machine.
 
@@ -141,7 +141,7 @@ it's on [GitHub](https://github.com/Rohith-Shimori/Ananta_Rebirth) — genuinely
     if (/skills?|stack|tech|framework|language|tools?|python|react|database|what.*know|what.*use/.test(q)) {
       return {
         mood: 'focus_mode',
-        text: `the full arsenal 🗡️
+        text: `the full arsenal ️
 
 **Languages:** Python, JavaScript (ES6+), TypeScript, Dart, SQL, C
 
@@ -162,7 +162,7 @@ picks the right tool for the job, not the trendiest one.`
     if (/philosoph|approach|how.*build|process|mindset|workflow|quote|curious|persistent/.test(q)) {
       return {
         mood: 'thinking',
-        text: `the honest engineering philosophy ☕
+        text: `the honest engineering philosophy 
 
 *"curious enough to build it. persistent enough to finish it."*
 
@@ -181,7 +181,7 @@ the loop: build → break → debug → chai → repeat.`
     if (/who\s+is|about\s+rohith|background|college|education|degree|where.*study/.test(q)) {
       return {
         mood: 'wave',
-        text: `hi! I'm Mini Roh — Rohith's digital self 👋
+        text: `hi! I'm Mini Roh — Rohith's digital self 
 
 **Pontapalli Rohith** — 3rd year B.Tech Computer Science & Engineering student at MVGR College of Engineering, Vizianagaram, Andhra Pradesh, India.
 
@@ -199,7 +199,7 @@ find him at:
     if (/contact|email|reach|talk|message|connect|hire/.test(q)) {
       return {
         mood: 'wave',
-        text: `let's connect! 📬
+        text: `let's connect! 
 
 **direct email:** [rohith@rohith.is-a.dev](mailto:rohith@rohith.is-a.dev)
 **web CV:** [rohith.is-a.dev/cv.html](https://rohith.is-a.dev/cv.html)
@@ -215,7 +215,7 @@ email's the fastest way — rohith usually replies same day!`
     if (/tea|chai|coffee|sleep|tired|hungry|snack|fun|joke|mascot|click|poke|headpat/.test(q)) {
       return {
         mood: 'need_sleep',
-        text: `*(takes a long sip of chai)* ☕
+        text: `*(takes a long sip of chai)* 
 
 chai is life. specifically: strong ginger-cardamom chai at 1am when the type error refuses to make sense. coffee is fine but chai hits different when you're hunting a race condition.
 
@@ -228,7 +228,7 @@ try it. I dare you. (warning: I may get slightly passive-aggressive around click
     // Default
     return {
       mood: 'wave',
-      text: `hey! I'm Mini Roh — Rohith's digital companion 👾
+      text: `hey! I'm Mini Roh — Rohith's digital companion 
 
 I know everything about his work. try asking me:
 
@@ -466,7 +466,7 @@ or just ask me anything — I'll do my best!`
   }
 
   function showWelcome() {
-    const welcomeText = `yo! I'm **Mini Roh** — Rohith's digital self 👾
+    const welcomeText = `yo! I'm **Mini Roh** — Rohith's digital self 
 
 ask me about his projects, tech stack, engineering approach, or why you should hire him. I know everything.
 
