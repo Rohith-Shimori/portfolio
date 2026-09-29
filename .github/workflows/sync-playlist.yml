@@ -1,0 +1,41 @@
+name: Sync Spotify Playlist
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Daily at midnight UTC
+  workflow_dispatch:      # Allows manual 1-click execution anytime
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          pip install pyDes
+
+      - name: Run Playlist Synchronizer
+        run: |
+          python scripts/sync_spotify_playlist.py
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add js/playlist-data.json js/playlist-data.js rohith-os.html
+          if git diff --staged --quiet; then
+            echo "No changes detected in Spotify playlist."
+          else
+            git commit -m "chore(music): auto-sync live Spotify playlist Peace of Hell"
+            git push
+          fi

@@ -1488,29 +1488,18 @@ body::after {
   gap: 0.15rem;
 }
 
-.am-eyebrow {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
+.am-eyebrow,
+.am-playlist-curator {
+  display: none !important;
 }
 
 .am-playlist-title {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #FFFFFF;
   margin: 0;
   letter-spacing: -0.02em;
-}
-
-.am-playlist-curator {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  font-size: 0.75rem;
-  color: #8E8E93;
-  margin: 0;
 }
 
 .am-masthead-actions {

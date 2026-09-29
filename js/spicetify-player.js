@@ -163,6 +163,7 @@
     setPlayingUI(false);
     setVolume(80);
     startWaveformLoop();
+    syncSpotifyPlaylistLive();
   }
 
   function cacheDom() {
@@ -826,15 +827,38 @@
     if (isPlaylist) {
       const data = window.ROHITH_PLAYLIST_DATA;
       if (dom.playlistThumb && data && data.coverArt) dom.playlistThumb.src = data.coverArt;
-      if (dom.playlistTitle) dom.playlistTitle.textContent = 'Sound Lab';
-      if (dom.playlistCurator) dom.playlistCurator.textContent = '307 Master Tracks';
+      if (dom.playlistTitle) dom.playlistTitle.textContent = (data && data.playlistName) ? data.playlistName : 'Peace of Hell';
+      if (dom.playlistCurator) dom.playlistCurator.textContent = '';
+      syncSpotifyPlaylistLive();
     } else {
       if (dom.playlistThumb && LOFI_TRACKS[0].coverArt) dom.playlistThumb.src = LOFI_TRACKS[0].coverArt;
       if (dom.playlistTitle) dom.playlistTitle.textContent = 'Focus Lo-Fi Radio';
-      if (dom.playlistCurator) dom.playlistCurator.textContent = '10 Curated Chillhop & Jazz Hop Beats';
+      if (dom.playlistCurator) dom.playlistCurator.textContent = '';
     }
 
     loadCurrentTrack();
+  }
+
+  // Dynamic live synchronization with user's Spotify playlist
+  async function syncSpotifyPlaylistLive() {
+    try {
+      const spotifyUrl = 'https://open.spotify.com/playlist/5OfNNCRIxcq2h8dGRZf4JY';
+      const oembedUrl = `https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`;
+      const res = await fetch(oembedUrl);
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data.title && dom.playlistTitle && currentSource === 'playlist') {
+        dom.playlistTitle.textContent = data.title;
+      }
+      if (data.thumbnail_url && dom.playlistThumb && currentSource === 'playlist') {
+        let highRes = data.thumbnail_url
+          .replace('ab67706c0000da84', 'ab67706c0000bebb')
+          .replace('ab67616d00001e02', 'ab67616d0000b273');
+        dom.playlistThumb.src = highRes;
+      }
+    } catch (_) {
+      // Offline fallback: retains pre-rendered custom artwork
+    }
   }
 
   // 12. Event Bindings
