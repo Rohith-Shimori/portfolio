@@ -148,7 +148,7 @@
 
       case 'git':
         if (arg === 'status') {
-          appendLine('success', `On branch main\nYour branch is up to date with 'origin/main'.\nStatus: 🟢 0 merge conflicts, 9 public repos, continuous shipping.`);
+          appendLine('success', `On branch main\nYour branch is up to date with 'origin/main'.\nStatus: [OK] 0 merge conflicts, 9 public repos, continuous shipping.`);
         } else if (arg === 'log') {
           appendLine('accent', `commit 2f12982 (HEAD -> main, origin/main)
 Author: Pontapalli Rohith <rohith@rohith.is-a.dev>
@@ -240,33 +240,33 @@ CONTACT: rohith@rohith.is-a.dev | https://linkedin.com/in/pontapalli-rohith`);
     const sub = arg.toLowerCase().trim();
     if (sub === 'play') {
       player.play();
-      appendLine('success', '▶ Audio: Playing "' + player.getCurrentTrack().title + '"');
+      appendLine('success', '[PLAY] Audio: Playing "' + player.getCurrentTrack().title + '"');
     } else if (sub === 'pause') {
       player.pause();
-      appendLine('output', '⏸ Audio: Playback paused.');
+      appendLine('output', '[PAUSE] Audio: Playback paused.');
     } else if (sub === 'next') {
       player.next();
-      appendLine('success', '⏭ Audio: Switched to "' + player.getCurrentTrack().title + '"');
+      appendLine('success', '[NEXT] Audio: Switched to "' + player.getCurrentTrack().title + '"');
     } else if (sub === 'prev') {
       player.prev();
-      appendLine('success', '⏮ Audio: Switched to "' + player.getCurrentTrack().title + '"');
+      appendLine('success', '[PREV] Audio: Switched to "' + player.getCurrentTrack().title + '"');
     } else if (sub === 'playlist') {
       player.setSource('playlist');
-      appendLine('success', '🔥 Channel switched to "Peace of Hell" (100 Tracks)');
+      appendLine('success', '[CHANNEL] Switched to "Peace of Hell" (307 Tracks)');
     } else if (sub === 'lofi') {
       player.setSource('lofi');
-      appendLine('success', '🎧 Channel switched to Lo-Fi Coding Radio');
+      appendLine('success', '[CHANNEL] Switched to Lo-Fi Coding Radio');
     } else if (sub === 'full') {
-      player.setEngine('youtube');
-      appendLine('success', '🎬 Switched engine to Full Song (YouTube Stream)');
+      player.setEngine('full');
+      appendLine('success', '[ENGINE] Switched engine to Full Song (External Stream)');
     } else if (sub === 'preview') {
       player.setEngine('preview');
-      appendLine('success', '⚡ Switched engine to 60FPS Web Audio Preview');
+      appendLine('success', '[ENGINE] Switched engine to Direct 320 KBPS Audio');
     } else if (sub.startsWith('vol')) {
       const num = parseInt(sub.split(/\s+/)[1], 10);
       if (!isNaN(num)) {
         player.setVolume(num);
-        appendLine('output', `🔊 Volume adjusted to ${num}%`);
+        appendLine('output', `[VOL] Volume adjusted to ${num}%`);
       } else {
         appendLine('error', 'Usage: music vol <0-100>');
       }

@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Core OS Styles -->
-  <link rel="stylesheet" href="css/rohith-os.css">
+  <link rel="stylesheet" href="css/rohith-os.css?v=2.5">
 </head>
 <body>
 
@@ -26,10 +26,14 @@
     <!-- ===================================================================
          SYSTEM HEADER DOCK
          =================================================================== -->
+    <!-- ===================================================================
+         SYSTEM HEADER DOCK (ZERO EMOJIS, PURE CYBER SVGS)
+         =================================================================== -->
     <header class="os-header" role="banner">
       <div class="os-brand">
         <div class="os-badge">
-          <span class="glyph">✦</span> ROHITH-OS
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          <span>ROHITH-OS</span>
         </div>
         <span class="os-version-tag">v2.4.0-CYBER</span>
       </div>
@@ -42,13 +46,15 @@
           <span class="pulse-dot" id="githubStatusDot"></span> GITHUB: SYNAPSE ACTIVE
         </div>
         <div class="telemetry-item">
-          <span>🕒</span> <span id="istClock">--:--:-- IST</span>
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="istClock">--:--:-- IST</span>
         </div>
       </div>
 
       <div class="os-header-actions">
         <a href="index.html" class="back-link">
-          <span>←</span> Back to Portfolio
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          <span>Back to Portfolio</span>
         </a>
       </div>
     </header>
@@ -58,25 +64,27 @@
          =================================================================== -->
     <main class="os-grid">
 
-      <!-- ZONE 1: MINI ROH STUDIO STAGE -->
-      <section class="os-card studio-stage" aria-label="Mini Roh Studio Stage">
-        <div class="music-notes-emitter" aria-hidden="true">
-          <span class="floating-note">♫</span>
-          <span class="floating-note">♪</span>
-          <span class="floating-note">♬</span>
+      <!-- ZONE 1: MINI ROH MASCOT STUDIO (FULL INTERACTIVE CHARACTER SUITE) -->
+      <section class="os-card studio-stage" aria-label="Mini Roh Mascot Studio">
+        <div class="music-notes-emitter" id="mascotNotesEmitter" aria-hidden="true">
+          <span class="floating-note note-1"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+          <span class="floating-note note-2"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/></svg></span>
+          <span class="floating-note note-3"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
         </div>
 
         <div class="card-header" style="width: 100%;">
           <span class="card-title">
-            <span class="icon">🪐</span> Zone 01 // Mascot Studio
+            <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            <span>Zone 01 // Mascot Studio</span>
           </span>
-          <span class="card-status">
-            <span class="pulse-dot orange"></span> 9-DIR GAZE ACTIVE
+          <span class="card-status" id="mascotTelemetryPill">
+            <span class="pulse-dot orange"></span> <span id="mascotTelemetryText">9-DIR GAZE ACTIVE</span>
           </span>
         </div>
 
-        <div class="mascot-viewport" id="mascotViewport">
-          <div class="mascot-viewport-ring" aria-hidden="true"></div>
+        <!-- Interactive Mascot Stage Viewport -->
+        <div class="mascot-viewport" id="mascotViewport" title="Click to interact with Mini Roh!">
+          <div class="mascot-viewport-ring" id="mascotAuraRing" aria-hidden="true"></div>
           <img 
             id="mascotDisplayImg" 
             src="mascot-frames/center.webp" 
@@ -86,25 +94,62 @@
           >
         </div>
 
+        <!-- Dynamic Speech Bubble -->
         <div class="speech-bubble" id="mascotSpeech">
-          ✦ initializing rohith os... move your cursor around, i'm watching!
+          [MINI-ROH] Initializing Rohith OS... Move your cursor or explore my pose studio below!
+        </div>
+
+        <!-- Studio Mode Selector -->
+        <div class="mascot-mode-bar" role="tablist" aria-label="Mascot Studio Modes">
+          <button class="mascot-mode-btn active" id="modeBtnGaze" data-mode="gaze" title="360° Cursor Following">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>360° Gaze</span>
+          </button>
+          <button class="mascot-mode-btn" id="modeBtnPoses" data-mode="poses" title="Character Action States">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>Poses (13)</span>
+          </button>
+          <button class="mascot-mode-btn" id="modeBtnReact" data-mode="react" title="Auto-react to Music, Terminal, and AI">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Auto React</span>
+          </button>
+        </div>
+
+        <!-- Comprehensive 13-Pose Selector Strip -->
+        <div class="mascot-pose-strip" id="mascotPoseStrip" role="region" aria-label="Action Poses">
+          <button class="mascot-pose-chip active" data-pose="gaze" title="Default 360° Gaze Tracking">Gaze Follow</button>
+          <button class="mascot-pose-chip" data-pose="wave" title="Waving Hello">Wave</button>
+          <button class="mascot-pose-chip" data-pose="coding" title="Midnight Coding Sprint">Coding</button>
+          <button class="mascot-pose-chip" data-pose="building_ai" title="Assembling Neural Agents">Building AI</button>
+          <button class="mascot-pose-chip" data-pose="focus_mode" title="Focus Mode with Headphones">Focus Beats</button>
+          <button class="mascot-pose-chip" data-pose="locked_in" title="100% Locked-In Flow State">Locked In</button>
+          <button class="mascot-pose-chip" data-pose="bug_found" title="Investigating Stack Trace">Bug Found</button>
+          <button class="mascot-pose-chip" data-pose="compiler_error" title="Syntax Panic at 2 AM">Compiler Error</button>
+          <button class="mascot-pose-chip" data-pose="git_conflict" title="Git Merge Conflict">Git Conflict</button>
+          <button class="mascot-pose-chip" data-pose="it_works" title="Unit Tests Passed Celebration">It Works!</button>
+          <button class="mascot-pose-chip" data-pose="deploy_success" title="Production Shipped Rocket">Deploy Success</button>
+          <button class="mascot-pose-chip" data-pose="thinking" title="Consulting Knowledge Graph">Thinking</button>
+          <button class="mascot-pose-chip" data-pose="need_sleep" title="Cardamom Chai Refuel">Need Chai</button>
+          <button class="mascot-pose-chip" data-pose="sleep" title="Idle Power Save Mode">Sleep</button>
         </div>
 
         <div class="stage-footer">
           <div class="mood-badge" id="mascotMoodBadge">
-            <span class="pulse-dot orange"></span> ⚡ CODING SPRINT
+            <span class="pulse-dot orange"></span> <span id="mascotMoodText">CODING SPRINT</span>
           </div>
+          <span class="mascot-spec-tag">60 FPS // WEBP HD</span>
         </div>
       </section>
 
-      <!-- ZONE 2: CONVERSATIONAL AI CORE -->
+      <!-- ZONE 2: CONVERSATIONAL AI CORE (INTELLIGENT NEURAL ENGINE) -->
       <section class="os-card ai-core" aria-label="Mini Roh Conversational AI">
         <div class="card-header">
           <span class="card-title">
-            <span class="icon">🧠</span> Zone 02 // Mini Roh AI Brain
+            <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04zm5 0A2.5 2.5 0 0 1 17 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04z"/></svg>
+            <span>Zone 02 // Mini Roh AI Brain</span>
           </span>
-          <span class="card-status">
-            <span class="pulse-dot"></span> DUAL-BRAIN ONLINE
+          <span class="card-status" id="aiStatusPill">
+            <span class="pulse-dot"></span> <span id="aiStatusText">NEURAL CORE // LIVE</span>
           </span>
         </div>
 
@@ -112,18 +157,33 @@
           <div class="chat-msg mini-roh">
             <span class="msg-sender">MINI ROH AI</span>
             <div class="msg-bubble">
-              hey there! I'm **Mini Roh**—Rohith's digital twin and system co-pilot. Ask me anything about his real-world builds (*NCC Digi, TruthLens, NexUs*), engineering philosophy, or why you should hire him! ☕
+              System online. I am **Mini Roh**—Rohith's digital companion and engineering co-pilot. Powered by real-time neural inference with full knowledge of Rohith's architecture, projects (NCC Digi, TruthLens, NexUs), codebases, and CS fundamentals. Ask me anything, test my technical reasoning, or request deep architecture breakdowns!
             </div>
           </div>
         </div>
 
-        <!-- Quick Recruiter & Tech Chips -->
+        <!-- Quick Recruiter & Tech Chips (Pure SVGs, Zero Emojis) -->
         <div class="prompt-chips" role="toolbar" aria-label="Prompt Suggestions">
-          <button class="chip-btn" data-query="Why should we hire Rohith?">🎯 Why Hire Rohith?</button>
-          <button class="chip-btn" data-query="Explain the NCC Digital Platform RLS architecture">🏗️ NCC Digi Architecture</button>
-          <button class="chip-btn" data-query="How does TruthLens use FastMCP subagents?">🧠 TruthLens Agents</button>
-          <button class="chip-btn" data-query="What is Rohith's technical stack?">⚡ Tech Arsenal</button>
-          <button class="chip-btn" data-query="How can I contact Rohith?">📬 Contact & Links</button>
+          <button class="chip-btn" data-query="Why should we hire Rohith?">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <span>Why Hire Rohith?</span>
+          </button>
+          <button class="chip-btn" data-query="Explain the NCC Digital Platform RLS architecture">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span>NCC Digi Architecture</span>
+          </button>
+          <button class="chip-btn" data-query="How does TruthLens use FastMCP subagents?">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>TruthLens Agents</span>
+          </button>
+          <button class="chip-btn" data-query="What is Rohith's technical stack?">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <span>Technical Arsenal</span>
+          </button>
+          <button class="chip-btn" data-query="How can I contact Rohith?">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Contact & Links</span>
+          </button>
         </div>
 
         <div class="chat-input-bar">
@@ -131,11 +191,14 @@
             type="text" 
             id="chatInput" 
             class="chat-input-field" 
-            placeholder="Ask Mini Roh anything (e.g., 'Why hire Rohith?' or 'Tell me about TruthLens')..." 
+            placeholder="Ask Mini Roh anything (e.g., 'Explain NCC RLS', 'Compare WebSockets with SSE', 'Why hire Rohith?')..." 
             autocomplete="off"
             aria-label="Ask Mini Roh a question"
           >
-          <button id="chatSendBtn" class="chat-send-btn" aria-label="Send message">SEND</button>
+          <button id="chatSendBtn" class="chat-send-btn" aria-label="Send message">
+            <span>SEND</span>
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
         </div>
       </section>
 
@@ -151,9 +214,9 @@
         <!-- Master-Detail Glass Deck Container -->
         <div class="am-deck-container">
           
-          <!-- LEFT: NOW PLAYING SHOWCASE -->
+          <!-- LEFT: NOW PLAYING SHOWCASE (INTEGRATED VISUALIZER, NO SEPARATE BOX) -->
           <div class="am-now-playing-col">
-            <!-- Glass Header & Brand (No Apple branding, clean Cyber Sound Lab identity) -->
+            <!-- Glass Header & Brand (Clean Cyber Sound Lab identity) -->
             <div class="am-col-header">
               <div class="am-brand-pill">
                 <svg class="am-logo-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -169,10 +232,10 @@
               </div>
             </div>
 
-            <!-- Interactive Vinyl & Artwork Showcase -->
+            <!-- Centered Artwork Showcase with Spinning Vinyl Disc -->
             <div class="am-artwork-showcase">
               <div class="am-artwork-stack" id="amArtworkStack">
-                <!-- Physical Vinyl Record that glides out and spins when playing -->
+                <!-- Physical Vinyl Disc that spins on-axis when playing -->
                 <div class="am-vinyl-disc" id="amVinylDisc" aria-hidden="true">
                   <div class="am-vinyl-body">
                     <div class="am-vinyl-ring ring-1"></div>
@@ -213,19 +276,22 @@
               <p class="am-album-name" id="amAlbumName">Nine Track Mind • Track #01</p>
             </div>
 
-            <!-- Integrated Interactive Audio Waveform Scrubber (Zero Separate Box) -->
-            <div class="am-waveform-scrubber-wrap" id="amWaveformWrap" title="Click or drag to scrub track" role="slider" aria-label="Audio scrubber waveform" tabindex="0">
-              <canvas id="amWaveformCanvas" class="am-waveform-canvas" height="46"></canvas>
-              <div class="am-scrubber-ghost-playhead" id="amGhostPlayhead"></div>
-              <div class="am-scrubber-hover-time" id="amHoverTime">0:00</div>
+            <!-- UNIFIED INTEGRATED VISUALIZER (Directly integrated into surface, ZERO separate box!) -->
+            <div class="am-visualizer-integrated-zone" id="amVisualizerZone">
+              <canvas id="amVisualizerCanvas" class="am-visualizer-canvas" height="36" width="315"></canvas>
+            </div>
+
+            <!-- Sleek Edge-to-Edge Audio Timeline Scrubber -->
+            <div class="am-timeline-block">
+              <input type="range" class="am-progress-slider" id="amProgressSlider" min="0" max="100" value="0" aria-label="Audio progress scrubber" style="--prog-pct: 0%;">
               <div class="am-time-row">
                 <span class="am-time" id="amTimeElapsed">0:00</span>
-                <span class="am-quality-badge" id="amQualityBadge">320 KBPS AAC</span>
+                <span class="am-quality-badge" id="amQualityBadge">DIRECT CDN 320 KBPS</span>
                 <span class="am-time" id="amTimeRemaining">-3:37</span>
               </div>
             </div>
 
-            <!-- Transport Controls (Tactile Cyber Play Button, SVGs) -->
+            <!-- Transport Controls (Tactile Cyber Play Button, Pure SVGs) -->
             <div class="am-controls-row">
               <button class="am-icon-btn" id="amShuffleBtn" title="Shuffle Playlist" aria-label="Shuffle">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
@@ -376,7 +442,8 @@
       <section class="os-card github-synapse-card" aria-label="GitHub Synapse Telemetry">
         <div class="card-header">
           <span class="card-title">
-            <span class="icon">⚡</span> Zone 04 // GitHub Synapse
+            <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Zone 04 // GitHub Synapse</span>
           </span>
           <span class="card-status">
             <span class="pulse-dot"></span> 30M TTL CACHE
@@ -447,10 +514,10 @@
   </div>
 
   <!-- Core Scripts -->
-  <script src="js/playlist-data.js?v=2.1"></script>
-  <script src="js/spicetify-player.js?v=2.1"></script>
-  <script src="js/github-synapse.js"></script>
-  <script src="js/roh-terminal.js"></script>
-  <script src="js/rohith-os.js"></script>
+  <script src="js/playlist-data.js?v=2.6"></script>
+  <script src="js/spicetify-player.js?v=2.6"></script>
+  <script src="js/github-synapse.js?v=2.6"></script>
+  <script src="js/roh-terminal.js?v=2.6"></script>
+  <script src="js/rohith-os.js?v=2.6"></script>
 </body>
 </html>

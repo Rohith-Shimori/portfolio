@@ -194,14 +194,13 @@
     dom.albumName = document.getElementById('amAlbumName');
     dom.equalizer = document.getElementById('amEqualizer');
 
-    // Integrated Interactive Waveform Scrubber
-    dom.waveformWrap = document.getElementById('amWaveformWrap');
-    dom.waveformCanvas = document.getElementById('amWaveformCanvas');
-    if (dom.waveformCanvas) {
-      dom.waveformCtx = dom.waveformCanvas.getContext('2d');
+    // Integrated Interactive Audio Visualizer (Zero Separate Box)
+    dom.visualizerCanvas = document.getElementById('amVisualizerCanvas') || document.getElementById('amWaveformCanvas');
+    dom.waveformCanvas = dom.visualizerCanvas;
+    if (dom.visualizerCanvas) {
+      dom.waveformCtx = dom.visualizerCanvas.getContext('2d');
     }
-    dom.ghostPlayhead = document.getElementById('amGhostPlayhead');
-    dom.hoverTime = document.getElementById('amHoverTime');
+    dom.progressSlider = document.getElementById('amProgressSlider');
     dom.qualityBadge = document.getElementById('amQualityBadge');
     dom.timeElapsed = document.getElementById('amTimeElapsed');
     dom.timeRemaining = document.getElementById('amTimeRemaining');
@@ -309,7 +308,7 @@
   }
 
   // 4. 60FPS Interactive Audio Waveform Scrubber Engine (Zero Separate Box)
-  const NUM_WAVEFORM_BARS = 48;
+  const NUM_WAVEFORM_BARS = 36;
   let isScrubbing = false;
   let hoverPct = null;
 
@@ -317,8 +316,8 @@
     if (!dom.waveformCanvas) return;
     const rect = dom.waveformCanvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
-    dom.waveformCanvas.width = (rect.width || 320) * dpr;
-    dom.waveformCanvas.height = (rect.height || 42) * dpr;
+    dom.waveformCanvas.width = (rect.width || 315) * dpr;
+    dom.waveformCanvas.height = (rect.height || 36) * dpr;
     if (dom.waveformCtx) {
       if (dom.waveformCtx.resetTransform) {
         dom.waveformCtx.resetTransform();
@@ -345,38 +344,22 @@
       const s2 = Math.cos(angle * 6 - hash * 0.02);
       const s3 = Math.sin(angle * 11 + hash * 0.005);
       const base = 0.28 + 0.45 * Math.abs((s1 + s2 + s3) / 3);
-      profile.push(Math.max(0.18, Math.min(0.95, base)));
+      profile.push(Math.max(0.2, Math.min(0.95, base)));
     }
     return profile;
   }
 
-  function getCurrentProgressFraction() {
-    if (isScrubbing && hoverPct !== null) {
-      return hoverPct;
-    }
-    const track = getCurrentTrack();
-    if (currentEngine === 'preview') {
-      const cur = (audioElement && !isNaN(audioElement.currentTime)) ? audioElement.currentTime : 0;
-      const dur = (audioElement && !isNaN(audioElement.duration) && audioElement.duration > 0) ? audioElement.duration : 30;
-      return Math.max(0, Math.min(1, cur / dur));
-    } else {
-      const dur = getTrackDurationSec(track);
-      return Math.max(0, Math.min(1, fullSongElapsed / dur));
-    }
-  }
-
   function startWaveformLoop() {
     window.addEventListener('resize', setupWaveformCanvas);
-
-    const freqData = new Uint8Array(32);
+    const freqData = new Uint8Array(64);
 
     function renderWaveform() {
       visualizerAnimId = requestAnimationFrame(renderWaveform);
       if (!dom.waveformCanvas || !dom.waveformCtx) return;
 
       const ctx = dom.waveformCtx;
-      const w = dom.waveformCanvas.offsetWidth || 320;
-      const h = dom.waveformCanvas.offsetHeight || 42;
+      const w = dom.waveformCanvas.offsetWidth || 315;
+      const h = dom.waveformCanvas.offsetHeight || 36;
       ctx.clearRect(0, 0, w, h);
 
       if (isPlaying && analyserNode && currentEngine === 'preview') {
@@ -387,64 +370,69 @@
 
       const track = getCurrentTrack();
       const waveProfile = getTrackWaveProfile(track);
-      const progress = getCurrentProgressFraction(); // 0 to 1
-      const activeBarThreshold = progress * NUM_WAVEFORM_BARS;
-
-      const spacing = 2.5;
-      const barWidth = Math.max(2, (w - (NUM_WAVEFORM_BARS - 1) * spacing) / NUM_WAVEFORM_BARS);
-      const now = Date.now() * 0.003;
+      const spacing = 3;
+      const barWidth = Math.max(3, (w - (NUM_WAVEFORM_BARS - 1) * spacing) / NUM_WAVEFORM_BARS);
+      const now = Date.now() * 0.004;
 
       for (let i = 0; i < NUM_WAVEFORM_BARS; i++) {
         let dynamicScale = 1.0;
         if (isPlaying) {
           if (currentEngine === 'preview' && analyserNode) {
-            const freqVal = (freqData[i % 24] || 0) / 255;
-            dynamicScale = 0.4 + 1.1 * freqVal;
+            const freqVal = (freqData[i % 32] || 0) / 255;
+            dynamicScale = 0.35 + 1.25 * freqVal;
           } else {
-            const pulse = (Math.sin(now * 4 + i * 0.35) + 1) / 2;
-            dynamicScale = 0.5 + 0.65 * pulse;
+            const pulse = (Math.sin(now * 3.5 + i * 0.4) + Math.cos(now * 2 - i * 0.25) + 2) / 4;
+            dynamicScale = 0.4 + 0.85 * pulse;
           }
         } else {
-          // Subtle breathing when idle
-          const breathe = (Math.sin(now + i * 0.18) + 1) / 2;
-          dynamicScale = 0.82 + 0.18 * breathe;
+          // Subtle resting breathing wave
+          const breathe = (Math.sin(now * 0.8 + i * 0.15) + 1) / 2;
+          dynamicScale = 0.4 + 0.15 * breathe;
         }
 
-        const barFraction = Math.max(0.12, Math.min(1.0, waveProfile[i] * dynamicScale));
-        const barHeight = Math.max(4, barFraction * (h - 6));
+        const barFraction = Math.max(0.1, Math.min(1.0, waveProfile[i] * dynamicScale));
+        const barHeight = Math.max(3, barFraction * (h - 4));
         const x = i * (barWidth + spacing);
-        const y = (h - barHeight) / 2; // Centered vertically for studio DAW waveform aesthetic
+        const y = h - barHeight; // Base-aligned for classic studio spectrum visualizer
 
-        const isPassed = i <= activeBarThreshold;
-        const isCurrent = Math.abs(i - activeBarThreshold) < 1;
-
-        if (isPassed) {
-          const grad = ctx.createLinearGradient(0, y, 0, y + barHeight);
+        // Glowing cyber gradient
+        const grad = ctx.createLinearGradient(0, y, 0, h);
+        if (isPlaying) {
           grad.addColorStop(0, '#FFAA40');
-          grad.addColorStop(1, '#E05315');
-          ctx.fillStyle = grad;
-          ctx.shadowColor = isPlaying ? 'rgba(224, 83, 21, 0.7)' : 'rgba(224, 83, 21, 0.3)';
-          ctx.shadowBlur = isCurrent ? 8 : (isPlaying ? 4 : 0);
+          grad.addColorStop(0.6, '#E05315');
+          grad.addColorStop(1, 'rgba(224, 83, 21, 0.4)');
+          ctx.shadowColor = 'rgba(224, 83, 21, 0.6)';
+          ctx.shadowBlur = 6;
         } else {
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.22)';
+          grad.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
+          grad.addColorStop(1, 'rgba(255, 255, 255, 0.08)');
           ctx.shadowColor = 'transparent';
           ctx.shadowBlur = 0;
         }
 
-        // Draw pill/capsule bar with rounded ends
+        ctx.fillStyle = grad;
+
+        // Rounded top capsule bar
         const r = Math.min(barWidth / 2, 2);
         ctx.beginPath();
-        ctx.moveTo(x + r, y);
-        ctx.lineTo(x + barWidth - r, y);
-        ctx.quadraticCurveTo(x + barWidth, y, x + barWidth, y + r);
-        ctx.lineTo(x + barWidth, y + barHeight - r);
-        ctx.quadraticCurveTo(x + barWidth, y + barHeight, x + barWidth - r, y + barHeight);
-        ctx.lineTo(x + r, y + barHeight);
-        ctx.quadraticCurveTo(x, y + barHeight, x, y + barHeight - r);
+        ctx.moveTo(x, h);
         ctx.lineTo(x, y + r);
         ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.lineTo(x + barWidth - r, y);
+        ctx.quadraticCurveTo(x + barWidth, y, x + barWidth, y + r);
+        ctx.lineTo(x + barWidth, h);
         ctx.closePath();
         ctx.fill();
+
+        // Peak cap dot when playing
+        if (isPlaying && barHeight > 10) {
+          ctx.fillStyle = '#FFFFFF';
+          ctx.shadowColor = '#FFAA40';
+          ctx.shadowBlur = 4;
+          ctx.beginPath();
+          ctx.arc(x + barWidth / 2, Math.max(2, y - 2), 1, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
     }
 
@@ -641,119 +629,27 @@
     return 210;
   }
 
-  // 7. Interactive Waveform Scrubber & Time Engine
+  // 7. Interactive Timeline Slider & Time Engine
   function setupScrubberEvents() {
-    if (!dom.waveformWrap) return;
-
-    function getPctFromEvent(e) {
-      const rect = dom.waveformWrap.getBoundingClientRect();
-      const clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
-      const x = clientX - rect.left;
-      return Math.max(0, Math.min(1, x / rect.width));
-    }
-
-    function updateHoverUI(pct) {
-      if (!dom.ghostPlayhead || !dom.hoverTime) return;
-      const track = getCurrentTrack();
-      const dur = currentEngine === 'preview'
-        ? ((audioElement && audioElement.duration) || 30)
-        : getTrackDurationSec(track);
-      const targetSec = pct * dur;
-
-      dom.ghostPlayhead.style.left = `${(pct * 100).toFixed(2)}%`;
-      dom.hoverTime.style.left = `${(pct * 100).toFixed(2)}%`;
-      dom.hoverTime.textContent = formatTime(targetSec);
-    }
-
-    dom.waveformWrap.addEventListener('mousemove', (e) => {
-      const pct = getPctFromEvent(e);
-      updateHoverUI(pct);
-      if (isScrubbing) {
-        hoverPct = pct;
+    if (dom.progressSlider) {
+      dom.progressSlider.addEventListener('input', (e) => {
+        isScrubbing = true;
+        const frac = parseFloat(e.target.value) / 100;
+        hoverPct = frac;
         const track = getCurrentTrack();
         const dur = currentEngine === 'preview'
           ? ((audioElement && audioElement.duration) || 30)
           : getTrackDurationSec(track);
-        updateScrubberUI(pct * dur, dur);
-      }
-    });
+        updateScrubberUI(frac * dur, dur);
+      });
 
-    dom.waveformWrap.addEventListener('mouseenter', (e) => {
-      const pct = getPctFromEvent(e);
-      updateHoverUI(pct);
-    });
-
-    dom.waveformWrap.addEventListener('mousedown', (e) => {
-      isScrubbing = true;
-      const pct = getPctFromEvent(e);
-      hoverPct = pct;
-      seekToFraction(pct);
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isScrubbing) return;
-      const pct = getPctFromEvent(e);
-      hoverPct = pct;
-      updateHoverUI(pct);
-      const track = getCurrentTrack();
-      const dur = currentEngine === 'preview'
-        ? ((audioElement && audioElement.duration) || 30)
-        : getTrackDurationSec(track);
-      updateScrubberUI(pct * dur, dur);
-    });
-
-    window.addEventListener('mouseup', (e) => {
-      if (!isScrubbing) return;
-      const pct = getPctFromEvent(e);
-      seekToFraction(pct);
-      isScrubbing = false;
-      hoverPct = null;
-    });
-
-    // Touch events for mobile/tablet responsive scrubbing
-    dom.waveformWrap.addEventListener('touchstart', (e) => {
-      isScrubbing = true;
-      const pct = getPctFromEvent(e);
-      hoverPct = pct;
-      updateHoverUI(pct);
-      seekToFraction(pct);
-    }, { passive: true });
-
-    dom.waveformWrap.addEventListener('touchmove', (e) => {
-      if (!isScrubbing) return;
-      const pct = getPctFromEvent(e);
-      hoverPct = pct;
-      updateHoverUI(pct);
-      const track = getCurrentTrack();
-      const dur = currentEngine === 'preview'
-        ? ((audioElement && audioElement.duration) || 30)
-        : getTrackDurationSec(track);
-      updateScrubberUI(pct * dur, dur);
-    }, { passive: true });
-
-    dom.waveformWrap.addEventListener('touchend', () => {
-      if (hoverPct !== null) {
-        seekToFraction(hoverPct);
-      }
-      isScrubbing = false;
-      hoverPct = null;
-    });
-
-    // Keyboard navigation (accessibility)
-    dom.waveformWrap.addEventListener('keydown', (e) => {
-      const track = getCurrentTrack();
-      const dur = currentEngine === 'preview'
-        ? ((audioElement && audioElement.duration) || 30)
-        : getTrackDurationSec(track);
-      const cur = currentEngine === 'preview' ? (audioElement.currentTime || 0) : fullSongElapsed;
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        seekToFraction(Math.min(1, (cur + 5) / dur));
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        seekToFraction(Math.max(0, (cur - 5) / dur));
-      }
-    });
+      dom.progressSlider.addEventListener('change', (e) => {
+        const frac = parseFloat(e.target.value) / 100;
+        seekToFraction(frac);
+        isScrubbing = false;
+        hoverPct = null;
+      });
+    }
   }
 
   function seekToFraction(pct) {
@@ -775,7 +671,7 @@
 
   function onAudioTimeUpdate() {
     if (currentEngine !== 'preview') return;
-    if (isScrubbing) return; // Don't snap while user is actively dragging
+    if (isScrubbing) return;
     const cur = audioElement.currentTime;
     const dur = audioElement.duration || 30;
     updateScrubberUI(cur, dur);
@@ -785,7 +681,14 @@
     if (dom.timeElapsed) dom.timeElapsed.textContent = formatTime(cur);
     if (dom.timeRemaining) dom.timeRemaining.textContent = '-' + formatTime(Math.max(0, dur - cur));
     if (dom.qualityBadge) {
-      dom.qualityBadge.textContent = (currentEngine === 'preview') ? '320 KBPS AAC' : 'FULL STREAM';
+      dom.qualityBadge.textContent = (currentEngine === 'preview') ? 'DIRECT CDN 320 KBPS' : 'HEADLESS FULL STREAM';
+    }
+    if (dom.progressSlider && dur > 0) {
+      const pct = Math.min(100, Math.max(0, (cur / dur) * 100));
+      if (!isScrubbing) {
+        dom.progressSlider.value = pct;
+      }
+      dom.progressSlider.style.setProperty('--prog-pct', `${pct}%`);
     }
   }
 
