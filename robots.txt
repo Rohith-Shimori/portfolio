@@ -23,5 +23,5 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
-Host: https://rohith.is-a.dev
+Host: rohith.is-a.dev
 Sitemap: https://rohith.is-a.dev/sitemap.xml
