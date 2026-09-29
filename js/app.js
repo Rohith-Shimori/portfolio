@@ -1072,7 +1072,7 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
         if (!popup && document.body) {
           popup = document.createElement('div');
           popup.className = 'mascot-milestone-popup';
-          popup.innerHTML = '<img id="milestoneImg" src=""><div class="milestone-title" id="milestoneTitle"></div><div class="milestone-msg" id="milestoneMsg"></div><div class="milestone-counter" id="milestoneCounter"></div>';
+          popup.innerHTML = '<img id="milestoneImg" src="" alt="Mini Roh celebration badge"><div class="milestone-title" id="milestoneTitle"></div><div class="milestone-msg" id="milestoneMsg"></div><div class="milestone-counter" id="milestoneCounter"></div>';
           document.body.appendChild(popup);
           popup.addEventListener('click', () => {
             popup.classList.remove('active');
@@ -1086,7 +1086,11 @@ def execute_sandboxed_code(script: str, timeout: int = 5) -> dict:
       }
 
       function showMilestone(m) {
-        document.getElementById('milestoneImg').src = m.img;
+        const mImg = document.getElementById('milestoneImg');
+        if (mImg) {
+          mImg.src = m.img;
+          mImg.alt = m.title ? m.title.replace(/<[^>]*>/g, '') : 'Mini Roh celebration badge';
+        }
         document.getElementById('milestoneTitle').innerHTML = m.title;
         document.getElementById('milestoneMsg').innerHTML = m.msg;
         document.getElementById('milestoneCounter').textContent = 'total mascot clicks: ' + totalClicks;

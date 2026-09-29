@@ -274,7 +274,7 @@
   <!-- NAV -->
   <nav role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
-      <a href="#" class="nav-logo" aria-label="Navigate to top" style="text-decoration:none">
+      <a href="#" class="nav-logo" aria-label="ROHITH - Navigate to top" style="text-decoration:none">
         <span
           style="font-family:var(--display); font-weight:800; font-size:1.1rem; letter-spacing:-0.02em; color:var(--paper)">ROHITH</span>
       </a>
@@ -289,7 +289,7 @@
         <a href="rohith-os.html" class="cmd-btn" style="text-decoration:none; border-color:rgba(224,83,21,0.4); background:rgba(224,83,21,0.08); color:var(--paper)">
           <span style="color:var(--accent)">✦</span> Rohith OS
         </a>
-        <button class="cmd-btn" id="cmdToggleBtn" aria-label="Open command palette (Ctrl+K)">
+        <button class="cmd-btn" id="cmdToggleBtn" aria-label="Search command palette (Ctrl+K)">
           ⌘ Search <span class="cmd-kbd">Ctrl+K</span>
         </button>
       </div>
@@ -722,9 +722,9 @@
         <div class="mascot-interactive-wrap" style="margin-bottom:24px">
           <div class="mascot-speech-bubble" id="footerBubble">5 more minutes... the code can wait... <svg class="b-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
           <div style="position:relative; display:inline-block">
-            <span class="zzz-particle zzz-1">z</span>
-            <span class="zzz-particle zzz-2">zZ</span>
-            <span class="zzz-particle zzz-3">Zzz...</span>
+            <span class="zzz-particle zzz-1" aria-hidden="true">z</span>
+            <span class="zzz-particle zzz-2" aria-hidden="true">zZ</span>
+            <span class="zzz-particle zzz-3" aria-hidden="true">Zzz...</span>
             <img src="mascot_need_sleep.webp" alt="Mini Roh Sleeping" class="mascot-interactive" width="160" height="160" loading="lazy" decoding="async" style="width:160px; height:160px; aspect-ratio:1/1; object-fit:contain; animation:floatCute 4.2s ease-in-out infinite; filter:drop-shadow(0 0 16px rgba(224,83,21,0.3))" onclick="triggerMascotClick(this, 'footerBubble', 'huh?! oh hi! you scrolled all the way down <svg class=\'b-icon\' viewBox=\'0 0 24 24\' fill=\'var(--accent)\' aria-hidden=\'true\'><path d=\'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\'/></svg>')">
           </div>
         </div>
@@ -763,7 +763,7 @@
     <div class="cmd-modal-box">
       <input class="cmd-input-field" id="cmdInputField" placeholder="Type a command or search portfolio..."
         aria-label="Command search" autocomplete="off">
-      <div class="cmd-items-list" id="cmdItemsList" role="listbox"></div>
+      <div class="cmd-items-list" id="cmdItemsList" role="listbox" aria-label="Command search suggestions"></div>
     </div>
   </div>
 

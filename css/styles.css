@@ -124,7 +124,7 @@
 
     /* Top Ticker - Signature Aerospace Orange Banner */
     .ticker {
-      background: var(--accent);
+      background: #C2410C;
       height: 34px;
       overflow: hidden;
       display: flex;
@@ -2342,7 +2342,7 @@
       right: 25px;
       font-family: var(--mono);
       font-weight: 800;
-      color: var(--accent);
+      color: #FB923C;
       pointer-events: none;
       user-select: none;
       animation: sleepZ 3.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
