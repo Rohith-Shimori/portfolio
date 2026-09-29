@@ -298,7 +298,6 @@
                   <circle cx="18" cy="16" r="3"></circle>
                 </svg>
                 <span class="am-brand-title">SOUND LAB</span>
-                <span class="am-brand-channel" id="amActiveChannelTag">PEACE OF HELL</span>
               </div>
               <div class="am-live-status-pill" id="amLiveStatus">
                 <span class="am-pulse-dot"></span> <span id="amStatusText">STANDBY</span>
@@ -393,27 +392,10 @@
                 <span class="am-vol-val" id="amVolVal">80%</span>
               </div>
 
-              <!-- Segmented Audio Engine Selector & External Link -->
-              <div class="am-segmented-pill">
-                <button class="am-seg-btn active" id="amModePreview" title="Instant High-Fidelity Audio Preview">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                  <span>Preview</span>
-                </button>
-                <button class="am-seg-btn" id="amModeFull" title="Headless Full-Length Stream">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-                  <span>Full Track</span>
-                </button>
-                <a 
-                  id="amSpotifyLink"
-                  href="https://open.spotify.com/playlist/5OfNNCRIxcq2h8dGRZf4JY" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  class="am-ext-link-pill" 
-                  title="Open Playlist in Web Player"
-                >
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  <span>Open Player</span>
-                </a>
+              <!-- High-Fidelity Audio Badge -->
+              <div class="am-audio-badge-pill" style="display:flex; align-items:center; gap:6px; padding:4px 10px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; font-family:var(--font-mono); font-size:0.68rem; color:var(--text-muted); letter-spacing:0.04em;">
+                <span style="width:6px; height:6px; border-radius:50%; background:#10B981; box-shadow:0 0 8px rgba(16,185,129,0.8); display:inline-block;"></span>
+                <span>320 KBPS STREAM</span>
               </div>
             </div>
           </div>
@@ -430,9 +412,9 @@
                   alt="Playlist thumbnail"
                 >
                 <div class="am-masthead-texts">
-                  <span class="am-eyebrow">CURATED MASTER COLLECTION</span>
-                  <h2 class="am-playlist-title" id="amPlaylistTitle">Peace of Hell</h2>
-                  <p class="am-playlist-curator" id="amPlaylistCurator">Curated by Shimorikichiri (Rohith) • 307 songs, about 17 hr</p>
+                  <span class="am-eyebrow">STUDIO SOUND LAB</span>
+                  <h2 class="am-playlist-title" id="amPlaylistTitle">Sound Lab</h2>
+                  <p class="am-playlist-curator" id="amPlaylistCurator">307 Master Tracks • 320 KBPS Studio Stream</p>
                 </div>
               </div>
 
@@ -441,7 +423,7 @@
                 <div class="am-channel-switch">
                   <button class="am-channel-btn active" id="amChanPlaylist">
                     <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                    <span>Peace of Hell (307)</span>
+                    <span>All Tracks (307)</span>
                   </button>
                   <button class="am-channel-btn" id="amChanLofi">
                     <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
@@ -503,11 +485,6 @@
             </div>
           </div>
 
-        </div>
-
-        <!-- Headless / Background Full Song Engine (Zero visual clutter) -->
-        <div id="amHeadlessPlayer" style="position:fixed; bottom:-999px; right:-999px; width:200px; height:200px; opacity:0.001; pointer-events:none; z-index:-100;">
-          <iframe id="amHeadlessIframe" allow="autoplay; encrypted-media" frameborder="0"></iframe>
         </div>
       </section>
 
