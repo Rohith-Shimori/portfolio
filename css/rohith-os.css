@@ -145,7 +145,7 @@ body::after {
   padding: 0.15rem 0.5rem;
   background: rgba(224, 83, 21, 0.12);
   border: 1px solid rgba(224, 83, 21, 0.3);
-  color: var(--accent);
+  color: #FB923C;
   border-radius: 4px;
   font-weight: 600;
 }
@@ -276,7 +276,7 @@ body::after {
 .card-status {
   font-family: var(--mono);
   font-size: 0.7rem;
-  color: var(--text-dim);
+  color: #A1A1AA;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -552,13 +552,13 @@ body::after {
 .msg-sender {
   font-family: var(--mono);
   font-size: 0.68rem;
-  color: var(--text-dim);
+  color: #A1A1AA;
   padding: 0 0.25rem;
 }
 
 .chat-msg.user .msg-sender {
   text-align: right;
-  color: var(--accent);
+  color: #FB923C;
 }
 
 .msg-bubble {
@@ -694,7 +694,7 @@ body::after {
 }
 
 .chat-send-btn {
-  background: var(--accent);
+  background: #CE460A;
   border: none;
   border-radius: var(--radius-md);
   color: #fff;
@@ -1543,9 +1543,9 @@ body::after {
 }
 
 .am-channel-btn.active {
-  background: var(--accent);
+  background: #CE460A;
   color: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(224, 83, 21, 0.35);
+  box-shadow: 0 2px 8px rgba(206, 70, 10, 0.35);
 }
 
 .am-search-box {
@@ -2041,7 +2041,7 @@ body::after {
 .stat-label {
   font-family: var(--mono);
   font-size: 0.68rem;
-  color: var(--text-dim);
+  color: #A1A1AA;
   text-transform: uppercase;
 }
 
@@ -2157,7 +2157,7 @@ body::after {
 }
 
 .commit-time {
-  color: var(--text-dim);
+  color: #A1A1AA;
   font-size: 0.65rem;
   white-space: nowrap;
 }
@@ -2202,7 +2202,7 @@ body::after {
 
 .terminal-title {
   font-size: 0.74rem;
-  color: var(--text-dim);
+  color: #A1A1AA;
 }
 
 /* Natural Terminal Body: Output and prompt live together with no gap */
@@ -2230,7 +2230,7 @@ body::after {
 }
 
 .term-line.system {
-  color: var(--text-dim);
+  color: #A1A1AA;
 }
 
 .term-line.cmd {
@@ -2242,7 +2242,7 @@ body::after {
 }
 
 .term-line.cmd .prompt-path {
-  color: var(--accent);
+  color: #FB923C;
 }
 
 .term-line.output {

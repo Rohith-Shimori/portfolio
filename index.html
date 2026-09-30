@@ -231,10 +231,17 @@
   <link rel="preload" as="image" href="mascot_wave.webp" type="image/webp">
   <link rel="preload" as="image" href="mascot-frames/center.webp" type="image/webp" fetchpriority="high">
   <link rel="prefetch" href="rohith-os.html">
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&family=Unbounded:wght@700;800&display=swap">
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&family=Unbounded:wght@700;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=2.5">
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&family=Unbounded:wght@700;800&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <link rel="stylesheet" href="css/styles.css?v=2.6">
 </head>
 
 <body>
@@ -242,11 +249,9 @@
   <!-- MINI ROH ENTRANCE PRELOADER -->
   <div id="sitePreloader" class="site-preloader" aria-hidden="true">
     <div class="preloader-inner">
-      <!-- Mini Roh waving animation -->
+      <!-- Mini Roh waving mascot -->
       <div class="preloader-mascot-wrap">
-        <video class="preloader-mascot-video" autoplay loop muted playsinline preload="metadata" poster="mascot_wave.webp">
-          <source src="mascot_wave_animated.webm" type="video/webm">
-        </video>
+        <img class="preloader-mascot-img" src="mascot_wave.webp" alt="Mini Roh Waving" width="200" height="200" fetchpriority="high" decoding="sync">
       </div>
       <!-- Name + bar -->
       <div class="preloader-text-block">
@@ -606,7 +611,7 @@
         <div class="bento-contact-grid reveal">
 
           <!-- CARD 1: HERO PRIMARY EMAIL & AVAILABILITY TILE (2 SPAN) -->
-          <div class="bento-contact-card hero-email-card" tabindex="0" role="button" aria-label="Copy email address to clipboard" onclick="copyEmailToClipboard()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();copyEmailToClipboard()}">
+          <div class="bento-contact-card hero-email-card">
             <div class="bento-card-top">
               <div style="display:flex; align-items:center; gap:10px">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2"
@@ -626,14 +631,13 @@
             <div style="display:flex; gap:12px; flex-wrap:wrap">
               <button class="bento-pill-btn" id="copyEmailBadgeBtn" type="button"
                 style="flex:1; background:var(--accent); border-color:var(--accent); color:var(--paper)"
-                onclick="event.stopPropagation(); copyEmailToClipboard()">Copy Email</button>
-              <a href="mailto:rohith@rohith.is-a.dev" class="bento-pill-btn" style="flex:1"
-                onclick="event.stopPropagation()">Send Email ↗</a>
+                onclick="copyEmailToClipboard()">Copy Email</button>
+              <a href="mailto:rohith@rohith.is-a.dev" class="bento-pill-btn" style="flex:1">Send Email ↗</a>
             </div>
           </div>
 
           <!-- CARD 2: OFFICIAL RESUME / CV TILE (TOP ROW) -->
-          <div class="bento-contact-card resume" tabindex="0" role="button" aria-label="Open Web CV" onclick="window.open('https://rohith.is-a.dev/cv.html','_blank')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();window.open('https://rohith.is-a.dev/cv.html','_blank')}">
+          <div class="bento-contact-card resume">
             <div class="bento-card-top">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E05315" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="filter:drop-shadow(0 0 10px rgba(224,83,21,0.4))">

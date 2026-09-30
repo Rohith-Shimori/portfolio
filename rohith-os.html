@@ -93,11 +93,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://image-cdn-ak.spotifycdn.com">
   <link rel="preconnect" href="https://i.scdn.co">
-  <link rel="preload" as="image" href="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbf58716549c4db9ced11b081d">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@400;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Unbounded:wght@400;600;700;800&display=swap" rel="stylesheet">
+  </noscript>
 
   <!-- Core OS Styles -->
-  <link rel="stylesheet" href="css/rohith-os.css?v=3.3">
+  <link rel="stylesheet" href="css/rohith-os.css?v=3.4">
 </head>
 <body>
 
@@ -176,7 +179,7 @@
         </div>
 
         <!-- Studio Mode Selector -->
-        <div class="mascot-mode-bar" role="tablist" aria-label="Mascot Studio Modes">
+        <div class="mascot-mode-bar" role="toolbar" aria-label="Mascot Studio Modes">
           <button class="mascot-mode-btn active" id="modeBtnGaze" data-mode="gaze" title="360° Cursor Following">
             <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
             <span>360° Gaze</span>
@@ -339,7 +342,7 @@
             <div class="am-meta-block">
               <div class="am-track-title-row">
                 <h3 class="am-song-title" id="amSongTitle">We Don't Talk Anymore (feat. Selena Gomez)</h3>
-                <div class="am-equalizer" id="amEqualizer" aria-label="Audio Playing Equalizer">
+                <div class="am-equalizer" id="amEqualizer" aria-hidden="true">
                   <span class="am-eq-bar"></span>
                   <span class="am-eq-bar"></span>
                   <span class="am-eq-bar"></span>
@@ -436,7 +439,7 @@
             </div>
 
             <!-- Quick Mood & Genre Filter Strip (Space Utilization & Discovery) -->
-            <div class="am-genre-filter-strip" id="amGenreFilters" role="tablist">
+            <div class="am-genre-filter-strip" id="amGenreFilters" role="toolbar" aria-label="Filter tracks">
               <button class="am-genre-pill active" data-genre="all">All Tracks (305)</button>
               <button class="am-genre-pill" data-genre="pop">Pop & Hits</button>
               <button class="am-genre-pill" data-genre="electronic">Electronic & EDM</button>
@@ -454,7 +457,7 @@
                 <span class="col-album">ALBUM</span>
                 <span class="col-time">TIME</span>
               </div>
-              <div class="am-track-scroll-area" id="amTracklistContainer" role="list"></div>
+              <div class="am-track-scroll-area" id="amTracklistContainer" role="region" aria-label="Track list"></div>
 
               <!-- Anchored Telemetry Status Dock (Zero Wasted Space) -->
               <div class="am-queue-footer">
@@ -517,7 +520,7 @@
         </div>
 
         <!-- Live Commit Stream -->
-        <div class="commit-feed" id="commitFeed" role="feed" aria-label="Recent GitHub Public Commits"></div>
+        <div class="commit-feed" id="commitFeed" role="region" aria-label="Recent GitHub Public Commits"></div>
       </section>
 
       <!-- HACKER TERMINAL (roh-sh) -->

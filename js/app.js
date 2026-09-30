@@ -221,9 +221,7 @@
       filtered.forEach(p => {
         const card = document.createElement('article');
         card.className = 'project-card' + (p.featured ? ' featured border-beam-card' : '');
-        card.tabIndex = 0;
-        card.setAttribute('role', 'button');
-        card.setAttribute('aria-label', 'View details for ' + p.title);
+
 
         let html = '';
 
@@ -288,8 +286,10 @@
         }
 
         card.innerHTML = html;
-        card.addEventListener('click', () => openProjectModal(p.id));
-        card.addEventListener('keydown', (e) => { if (e.key === 'Enter') openProjectModal(p.id); });
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a, button, .mascot-interactive')) return;
+          openProjectModal(p.id);
+        });
         grid.appendChild(card);
       });
 
