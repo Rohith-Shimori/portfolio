@@ -231,7 +231,7 @@ CONTACT: rohith@rohith.is-a.dev | https://linkedin.com/in/pontapalli-rohith`);
   }
 
   function handleMusicCommand(arg) {
-    const player = window.CyberAudio || window.SpicetifyPlayer;
+    const player = window.RohithSoundLab || window.CyberAudio || window.SpicetifyPlayer;
     if (!player) {
       appendLine('error', 'Audio Engine not initialized.');
       return;
@@ -240,16 +240,19 @@ CONTACT: rohith@rohith.is-a.dev | https://linkedin.com/in/pontapalli-rohith`);
     const sub = arg.toLowerCase().trim();
     if (sub === 'play') {
       player.play();
-      appendLine('success', '[PLAY] Audio: Playing "' + player.getCurrentTrack().title + '"');
+      const track = player.getCurrentTrack ? player.getCurrentTrack() : null;
+      appendLine('success', '[PLAY] Audio: Playing "' + (track ? track.title : 'Track') + '"');
     } else if (sub === 'pause') {
       player.pause();
       appendLine('output', '[PAUSE] Audio: Playback paused.');
     } else if (sub === 'next') {
       player.next();
-      appendLine('success', '[NEXT] Audio: Switched to "' + player.getCurrentTrack().title + '"');
+      const track = player.getCurrentTrack ? player.getCurrentTrack() : null;
+      appendLine('success', '[NEXT] Audio: Switched to "' + (track ? track.title : 'Track') + '"');
     } else if (sub === 'prev') {
       player.prev();
-      appendLine('success', '[PREV] Audio: Switched to "' + player.getCurrentTrack().title + '"');
+      const track = player.getCurrentTrack ? player.getCurrentTrack() : null;
+      appendLine('success', '[PREV] Audio: Switched to "' + (track ? track.title : 'Track') + '"');
     } else if (sub === 'playlist') {
       if (player.switchChannel) player.switchChannel('playlist');
       else if (player.setSource) player.setSource('playlist');
