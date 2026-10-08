@@ -20,7 +20,11 @@ jobs:
           node-version: '20'
 
       - name: JavaScript syntax check
-        run: node --check js/app.js
+        run: |
+          node --check js/app.js
+          node --check js/github-synapse.js
+          node --check js/roh-terminal.js
+          node --check js/rohith-os.js
 
       - name: Required files check
         run: |

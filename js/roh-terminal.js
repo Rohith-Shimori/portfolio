@@ -147,21 +147,7 @@
         break;
 
       case 'git':
-        if (arg === 'status') {
-          appendLine('success', `On branch main\nYour branch is up to date with 'origin/main'.\nStatus: [OK] 0 merge conflicts, 9 public repos, continuous shipping.`);
-        } else if (arg === 'log') {
-          appendLine('accent', `commit 2f12982 (HEAD -> main, origin/main)
-Author: Pontapalli Rohith <rohith@rohith.is-a.dev>
-Date:   Recent Push
-    feat: restore signature aerospace ticker, bento glow & cursor follower
-
-commit 8a4c699
-Author: Pontapalli Rohith <rohith@rohith.is-a.dev>
-Date:   Past Sprint
-    feat: implement 9-direction sprite gaze tracking engine`);
-        } else {
-          appendLine('error', `git: '${arg}' is not a recognized git subcommand. Try 'git status' or 'git log'.`);
-        }
+        handleGitCommand(arg);
         break;
 
       case 'ls':
@@ -279,6 +265,92 @@ CONTACT: rohith@rohith.is-a.dev | https://linkedin.com/in/pontapalli-rohith`);
   music lofi            Switch to Focus Lo-Fi Radio
   music vol <0-100>     Adjust volume`);
     }
+  }
+
+  function handleGitCommand(arg) {
+    const rawArg = (arg || '').trim();
+    const parts = rawArg.split(/\s+/);
+    const sub = parts[0] ? parts[0].toLowerCase() : '';
+    const telemetry = window.GitHubSynapse && window.GitHubSynapse.getTelemetry ? window.GitHubSynapse.getTelemetry() : null;
+    const commits = (telemetry && Array.isArray(telemetry.commits) && telemetry.commits.length > 0)
+      ? telemetry.commits
+      : [
+          { sha: '7da2d4f', message: 'chore(music): auto-sync live Spotify playlist Peace of Hell', date: '2026-10-03T02:42:11Z', author: 'github-actions[bot]', repo: 'Rohith-Shimori/portfolio' },
+          { sha: 'ac400a8', message: 'feat(ai): overhaul Mini Roh AI cognitive engine and connect interactive OS controls', date: '2026-10-01T00:21:00+05:30', author: 'Rohith-Shimori', repo: 'Rohith-Shimori/portfolio' },
+          { sha: '0a433e3', message: 'seo: update sitemap lastmod timestamps to 2026-09-30', date: '2026-09-30T23:43:05+05:30', author: 'Rohith-Shimori', repo: 'Rohith-Shimori/portfolio' },
+          { sha: '7ea2deb', message: 'perf & a11y: enforce strict artist stream matching, cut 5.8MB payload, and achieve 100/100/100/100 Lighthouse & Agentic Browsing', date: '2026-09-30T23:37:51+05:30', author: 'Rohith-Shimori', repo: 'Rohith-Shimori/portfolio' }
+        ];
+
+    if (!sub || sub === 'status') {
+      const pubRepos = (telemetry && telemetry.profile && telemetry.profile.public_repos !== undefined) ? telemetry.profile.public_repos : 8;
+      const head = commits[0] || { sha: '7da2d4f', message: 'chore(music): auto-sync live Spotify playlist Peace of Hell' };
+      appendLine('success', `On branch main\nYour branch is up to date with 'origin/main'.\n\nTracking: https://github.com/Rohith-Shimori/portfolio.git\nHEAD commit: ${head.sha} (${escapeHtml(head.message)})\nPublic repositories: ${pubRepos} tracked via GitHub Synapse\nWorking tree: clean, zero merge conflicts, CI/CD automated.`);
+      return;
+    }
+
+    if (sub === 'log') {
+      const isOneLine = parts.includes('--oneline');
+      let limit = 5;
+      const nIdx = parts.indexOf('-n');
+      if (nIdx !== -1 && parts[nIdx + 1]) {
+        const parsed = parseInt(parts[nIdx + 1], 10);
+        if (!isNaN(parsed) && parsed > 0) limit = Math.min(parsed, commits.length);
+      } else {
+        const numPart = parts.find(p => /^-\d+$/.test(p));
+        if (numPart) {
+          const parsed = parseInt(numPart.slice(1), 10);
+          if (!isNaN(parsed) && parsed > 0) limit = Math.min(parsed, commits.length);
+        }
+      }
+
+      const list = commits.slice(0, limit);
+      if (isOneLine) {
+        const text = list.map(c => `<span style="color:var(--accent); font-weight:700;">${c.sha}</span> ${escapeHtml(c.message)}`).join('\n');
+        appendLine('output', text);
+      } else {
+        const text = list.map((c, idx) => {
+          const headTag = idx === 0 ? ' (HEAD -> main, origin/main)' : '';
+          return `commit ${c.sha}${headTag}
+Author: ${escapeHtml(c.author || 'Rohith-Shimori')} &lt;rohith@rohith.is-a.dev&gt;
+Date:   ${c.date || 'Recent Push'}
+
+    ${escapeHtml(c.message)}`;
+        }).join('\n\n');
+        appendLine('accent', text);
+      }
+      return;
+    }
+
+    if (sub === 'remote') {
+      if (parts.includes('-v') || parts.includes('--verbose')) {
+        appendLine('output', `origin  https://github.com/Rohith-Shimori/portfolio.git (fetch)\norigin  https://github.com/Rohith-Shimori/portfolio.git (push)`);
+      } else {
+        appendLine('output', 'origin');
+      }
+      return;
+    }
+
+    if (sub === 'branch') {
+      if (parts.includes('-a') || parts.includes('--all')) {
+        appendLine('output', `* <span style="color:#22C55E; font-weight:700;">main</span>\n  remotes/origin/main`);
+      } else {
+        appendLine('output', `* <span style="color:#22C55E; font-weight:700;">main</span>`);
+      }
+      return;
+    }
+
+    if (sub === 'diff') {
+      appendLine('output', `diff --git a/working-tree b/working-tree\nZero unstaged modifications. Working tree completely in sync with origin/main.`);
+      return;
+    }
+
+    if (sub === 'show') {
+      const head = commits[0];
+      appendLine('output', `commit ${head.full_sha || head.sha} (HEAD -> main, origin/main)\nAuthor: ${escapeHtml(head.author || 'Rohith-Shimori')} &lt;rohith@rohith.is-a.dev&gt;\nDate:   ${head.date}\n\n    ${escapeHtml(head.message)}\n\nRepository: ${head.repo}\nVerified live commit.`);
+      return;
+    }
+
+    appendLine('error', `git: '${escapeHtml(rawArg)}' is not a recognized git subcommand. Try: git status, git log, git log --oneline, git remote -v, git branch, git show`);
   }
 
   function appendLine(type, html) {

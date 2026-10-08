@@ -28,14 +28,20 @@ jobs:
         run: |
           python scripts/sync_spotify_playlist.py
 
+      - name: Run GitHub Telemetry Synchronizer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/sync_github_telemetry.py
+
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add js/playlist-data.json js/playlist-data.js rohith-os.html
+          git add js/playlist-data.json js/playlist-data.js js/github-data.json js/github-data.js rohith-os.html
           if git diff --staged --quiet; then
-            echo "No changes detected in Spotify playlist."
+            echo "No changes detected in Spotify playlist or GitHub telemetry."
           else
-            git commit -m "chore(music): auto-sync live Spotify playlist Peace of Hell"
+            git commit -m "chore(telemetry): auto-sync live playlist & GitHub Synapse telemetry"
             git push
           fi

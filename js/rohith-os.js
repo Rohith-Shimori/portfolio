@@ -597,10 +597,37 @@ Guidelines:
       })
     },
 
+    // GITHUB SYNAPSE & RECENT COMMITS
+    {
+      id: 'github_synapse',
+      match: /\b(github|commits?|git\s*log|recent\s*commits?|repositories|repos|synapse)\b/i,
+      handler: () => {
+        const telemetry = window.GitHubSynapse && window.GitHubSynapse.getTelemetry ? window.GitHubSynapse.getTelemetry() : null;
+        const commits = (telemetry && Array.isArray(telemetry.commits) && telemetry.commits.length > 0)
+          ? telemetry.commits
+          : [
+              { repo: 'Rohith-Shimori/portfolio', sha: '7da2d4f', message: 'chore(music): auto-sync live Spotify playlist Peace of Hell', date: '2026-10-03' },
+              { repo: 'Rohith-Shimori/portfolio', sha: 'ac400a8', message: 'feat(ai): overhaul Mini Roh AI cognitive engine and connect interactive OS controls', date: '2026-10-01' },
+              { repo: 'Rohith-Shimori/portfolio', sha: '0a433e3', message: 'seo: update sitemap lastmod timestamps to 2026-09-30', date: '2026-09-30' },
+              { repo: 'Rohith-Shimori/TruthLens-AI-Agent', sha: '90f7ecc', message: 'Update YouTube demo badge in README', date: '2026-07-07' }
+            ];
+
+        const pubRepos = (telemetry && telemetry.profile && telemetry.profile.public_repos !== undefined) ? telemetry.profile.public_repos : 8;
+        const head = commits[0];
+        const commitItems = commits.slice(0, 4).map(c => `• \`${c.sha}\` in **${c.repo.replace('Rohith-Shimori/', '')}**: *${c.message}*`).join('\n');
+
+        return {
+          pose: 'deploy_success',
+          speech: 'Live GitHub Synapse telemetry retrieved.',
+          reply: `**GitHub Telemetry // Live Synapse Feed:**\n\n• **Public Repositories**: **${pubRepos}** tracked on **[github.com/Rohith-Shimori](https://github.com/Rohith-Shimori)**\n• **HEAD Commit**: \`${head.sha}\` — *${head.message}*\n\n**Latest Verified Commits:**\n${commitItems}\n\n**Language DNA Breakdown:**\n• **Dart**: 60.1% (MVGR NexUs campus platform)\n• **JavaScript**: 14.1% (Rohith OS & interactive interfaces)\n• **HTML5**: 13.1% (Architectural markup & layouts)\n• **Python**: 5.4% (TruthLens FastMCP pipelines)\n• **CSS3 & SQL**: 7.3% (Custom styling & Supabase RLS migrations)\n\nType \`git log\` or \`git status\` in the terminal below to query the repo directly!`
+        };
+      }
+    },
+
     // CONTACT / SOCIALS
     {
       id: 'contact',
-      match: /\b(contact|email|reach|hire|linkedin|github|portfolio|connect)\b/i,
+      match: /\b(contact|email|reach|hire|linkedin|portfolio|connect)\b/i,
       handler: () => ({
         pose: 'wave',
         speech: 'Direct communication channels.',
