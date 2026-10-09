@@ -7,8 +7,98 @@
     "avatar_url": "https://avatars.githubusercontent.com/u/228351330?v=4",
     "html_url": "https://github.com/Rohith-Shimori"
   },
-  "repos": [],
+  "repos": [
+    {
+      "name": "Rohith-Shimori",
+      "full_name": "Rohith-Shimori/Rohith-Shimori",
+      "description": "",
+      "language": "HTML",
+      "stars": 0,
+      "forks": 0,
+      "pushed_at": "2026-10-08T22:44:39Z",
+      "html_url": "https://github.com/Rohith-Shimori/Rohith-Shimori"
+    },
+    {
+      "name": "portfolio",
+      "full_name": "Rohith-Shimori/portfolio",
+      "description": "",
+      "language": "JavaScript",
+      "stars": 0,
+      "forks": 0,
+      "pushed_at": "2026-10-08T17:11:24Z",
+      "html_url": "https://github.com/Rohith-Shimori/portfolio"
+    },
+    {
+      "name": "register",
+      "full_name": "Rohith-Shimori/register",
+      "description": "Grab your own sweet-looking '.is-a.dev' subdomain.",
+      "language": "Code",
+      "stars": 0,
+      "forks": 0,
+      "pushed_at": "2026-08-06T12:52:17Z",
+      "html_url": "https://github.com/Rohith-Shimori/register"
+    },
+    {
+      "name": "skills-introduction-to-github",
+      "full_name": "Rohith-Shimori/skills-introduction-to-github",
+      "description": "My clone repository",
+      "language": "Code",
+      "stars": 0,
+      "forks": 0,
+      "pushed_at": "2026-07-24T03:57:01Z",
+      "html_url": "https://github.com/Rohith-Shimori/skills-introduction-to-github"
+    },
+    {
+      "name": "TruthLens-AI-Agent",
+      "full_name": "Rohith-Shimori/TruthLens-AI-Agent",
+      "description": "",
+      "language": "Python",
+      "stars": 0,
+      "forks": 1,
+      "pushed_at": "2026-07-07T15:22:07Z",
+      "html_url": "https://github.com/Rohith-Shimori/TruthLens-AI-Agent"
+    },
+    {
+      "name": "Task_Flow",
+      "full_name": "Rohith-Shimori/Task_Flow",
+      "description": "",
+      "language": "Python",
+      "stars": 0,
+      "forks": 0,
+      "pushed_at": "2026-04-24T14:25:25Z",
+      "html_url": "https://github.com/Rohith-Shimori/Task_Flow"
+    },
+    {
+      "name": "Vote_Path",
+      "full_name": "Rohith-Shimori/Vote_Path",
+      "description": "",
+      "language": "HTML",
+      "stars": 0,
+      "forks": 0,
+      "pushed_at": "2026-04-24T07:27:47Z",
+      "html_url": "https://github.com/Rohith-Shimori/Vote_Path"
+    },
+    {
+      "name": "MVGR-NexUs",
+      "full_name": "Rohith-Shimori/MVGR-NexUs",
+      "description": "This platform is a college-governed but student-driven community space designed to unify campus life — academic, cultural, collaborative, and social. It prioritizes awareness, participation, safety, and belonging over engagement metrics. It empowers clubs and student bodies, enables offline interaction, and uses technology only as a facilitator.",
+      "language": "Dart",
+      "stars": 0,
+      "forks": 0,
+      "pushed_at": "2026-03-14T19:14:57Z",
+      "html_url": "https://github.com/Rohith-Shimori/MVGR-NexUs"
+    }
+  ],
   "commits": [
+    {
+      "repo": "Rohith-Shimori/portfolio",
+      "sha": "cce4cb4",
+      "full_sha": "cce4cb4af3fa1bdd9c7efa27a76101f8c5152bde",
+      "message": "feat(github): replace fake snapshot with genuine live telemetry, multi-repo commits, and terminal integration",
+      "date": "2026-10-08T22:41:11+05:30",
+      "author": "Rohith-Shimori",
+      "url": "https://github.com/Rohith-Shimori/portfolio/commit/cce4cb4af3fa1bdd9c7efa27a76101f8c5152bde"
+    },
     {
       "repo": "Rohith-Shimori/portfolio",
       "sha": "7da2d4f",
@@ -23,7 +113,7 @@
       "sha": "ac400a8",
       "full_sha": "ac400a80a76eecacd68a65fec7e0a95436845009",
       "message": "feat(ai): overhaul Mini Roh AI cognitive engine and connect interactive OS controls",
-      "date": "2026-10-01T00:21:00+05:30",
+      "date": "2026-09-30T18:51:00Z",
       "author": "Rohith-Shimori",
       "url": "https://github.com/Rohith-Shimori/portfolio/commit/ac400a80a76eecacd68a65fec7e0a95436845009"
     },
@@ -32,7 +122,7 @@
       "sha": "0a433e3",
       "full_sha": "0a433e319bb5e7714a3053b7f95f24a0b92362fe",
       "message": "seo: update sitemap lastmod timestamps to 2026-09-30",
-      "date": "2026-09-30T23:43:05+05:30",
+      "date": "2026-09-30T18:13:05Z",
       "author": "Rohith-Shimori",
       "url": "https://github.com/Rohith-Shimori/portfolio/commit/0a433e319bb5e7714a3053b7f95f24a0b92362fe"
     },
@@ -41,72 +131,81 @@
       "sha": "7ea2deb",
       "full_sha": "7ea2debe9a132c9e907eb021efa9bb540592c967",
       "message": "perf & a11y: enforce strict artist stream matching, cut 5.8MB payload, and achieve 100/100/100/100 Lighthouse & Agentic Browsing",
-      "date": "2026-09-30T23:37:51+05:30",
+      "date": "2026-09-30T18:07:51Z",
       "author": "Rohith-Shimori",
       "url": "https://github.com/Rohith-Shimori/portfolio/commit/7ea2debe9a132c9e907eb021efa9bb540592c967"
     },
     {
-      "repo": "Rohith-Shimori/portfolio",
-      "sha": "bc07a52",
-      "full_sha": "bc07a52a4aa50a75fd9633fe5526bcd7f8d7ccb6",
-      "message": "perf(audit): achieve 100 SEO & 100 Best Practices with accessible labels and contrast",
-      "date": "2026-09-29T23:06:21+05:30",
-      "author": "Rohith-Shimori",
-      "url": "https://github.com/Rohith-Shimori/portfolio/commit/bc07a52a4aa50a75fd9633fe5526bcd7f8d7ccb6"
+      "repo": "Rohith-Shimori/TruthLens-AI-Agent",
+      "sha": "90f7ecc",
+      "full_sha": "90f7ecc36092141dc65d0e0654559f5e6a2f8f62",
+      "message": "Update YouTube demo badge in README",
+      "date": "2026-07-07T15:22:07Z",
+      "author": "Pontapalli Rohith",
+      "url": "https://github.com/Rohith-Shimori/TruthLens-AI-Agent/commit/90f7ecc36092141dc65d0e0654559f5e6a2f8f62"
     },
     {
-      "repo": "Rohith-Shimori/portfolio",
-      "sha": "ce143cc",
-      "full_sha": "ce143cc53f86cdb1536385bd900528d773b06876",
-      "message": "fix(seo): clean Host header format in robots.txt",
-      "date": "2026-09-29T22:52:17+05:30",
-      "author": "Rohith-Shimori",
-      "url": "https://github.com/Rohith-Shimori/portfolio/commit/ce143cc53f86cdb1536385bd900528d773b06876"
+      "repo": "Rohith-Shimori/TruthLens-AI-Agent",
+      "sha": "c35f8c9",
+      "full_sha": "c35f8c9292be842c9eb2aa3e5a52a4b0c66c3aca",
+      "message": "Add YouTube demo link to README",
+      "date": "2026-07-07T15:19:04Z",
+      "author": "Pontapalli Rohith",
+      "url": "https://github.com/Rohith-Shimori/TruthLens-AI-Agent/commit/c35f8c9292be842c9eb2aa3e5a52a4b0c66c3aca"
     },
     {
-      "repo": "Rohith-Shimori/portfolio",
-      "sha": "2608b92",
-      "full_sha": "2608b9296d8db4053be574e2684ba737e97b1bcf",
-      "message": "perf(core): optimize resource priority, reactive preloader, zero CLS, and event delegation",
-      "date": "2026-09-29T22:41:54+05:30",
-      "author": "Rohith-Shimori",
-      "url": "https://github.com/Rohith-Shimori/portfolio/commit/2608b9296d8db4053be574e2684ba737e97b1bcf"
+      "repo": "Rohith-Shimori/TruthLens-AI-Agent",
+      "sha": "56d2f44",
+      "full_sha": "56d2f440c730dfe12ce3fa40e0057a819f5458e0",
+      "message": "Update video demo link in project metadata",
+      "date": "2026-07-07T15:14:26Z",
+      "author": "Pontapalli Rohith",
+      "url": "https://github.com/Rohith-Shimori/TruthLens-AI-Agent/commit/56d2f440c730dfe12ce3fa40e0057a819f5458e0"
     },
     {
-      "repo": "Rohith-Shimori/portfolio",
-      "sha": "4a0ab0f",
-      "full_sha": "4a0ab0f92c9dc57574592715b4aa8c191bd47b0a",
-      "message": "feat(audio): display single Peace of Hell title, sync custom cover art, update to 305 tracks, and add Spotify auto-sync workflow",
-      "date": "2026-09-29T22:24:40+05:30",
+      "repo": "Rohith-Shimori/TruthLens-AI-Agent",
+      "sha": "dd826ef",
+      "full_sha": "dd826ef702e3c0339736b34b51d596413cb77dc5",
+      "message": "Fix pydantic version conflict with gradio[mcp] (<=2.12.5)",
+      "date": "2026-07-07T01:53:37Z",
       "author": "Rohith-Shimori",
-      "url": "https://github.com/Rohith-Shimori/portfolio/commit/4a0ab0f92c9dc57574592715b4aa8c191bd47b0a"
+      "url": "https://github.com/Rohith-Shimori/TruthLens-AI-Agent/commit/dd826ef702e3c0339736b34b51d596413cb77dc5"
     },
     {
-      "repo": "Rohith-Shimori/portfolio",
-      "sha": "9fb8547",
-      "full_sha": "9fb854744b8acc57ae72f3bc9a7af6336f980c91",
-      "message": "feat(ui): enrich 100% album artwork, remove 320kbps/lossless badges, add 3-color status dots, and remove mascot ring",
-      "date": "2026-09-29T22:05:49+05:30",
+      "repo": "Rohith-Shimori/TruthLens-AI-Agent",
+      "sha": "2cca27d",
+      "full_sha": "2cca27daba1d6d7e07694c40a1b6a10156f5c698",
+      "message": "Ignore huggingface_space subdir",
+      "date": "2026-07-07T01:50:46Z",
       "author": "Rohith-Shimori",
-      "url": "https://github.com/Rohith-Shimori/portfolio/commit/9fb854744b8acc57ae72f3bc9a7af6336f980c91"
+      "url": "https://github.com/Rohith-Shimori/TruthLens-AI-Agent/commit/2cca27daba1d6d7e07694c40a1b6a10156f5c698"
     },
     {
-      "repo": "Rohith-Shimori/portfolio",
-      "sha": "17aa59d",
-      "full_sha": "17aa59d59a656beb5e4756877416ad4772fd0708",
-      "message": "fix(audio): eliminate recursion overflow, enforce uniform tracklist CSS, and bump asset cache to v3.0",
-      "date": "2026-09-29T21:42:11+05:30",
-      "author": "Rohith-Shimori",
-      "url": "https://github.com/Rohith-Shimori/portfolio/commit/17aa59d59a656beb5e4756877416ad4772fd0708"
+      "repo": "Rohith-Shimori/Task_Flow",
+      "sha": "5775bb7",
+      "full_sha": "5775bb790f49df06fc882e8c77b9c1f836938b9c",
+      "message": "docs: add comprehensive resolution summary",
+      "date": "2026-04-24T14:25:17Z",
+      "author": "GitHub Audit",
+      "url": "https://github.com/Rohith-Shimori/Task_Flow/commit/5775bb790f49df06fc882e8c77b9c1f836938b9c"
+    },
+    {
+      "repo": "Rohith-Shimori/Task_Flow",
+      "sha": "1fe809b",
+      "full_sha": "1fe809b0993d73806509bdb5d2e81cf3f0c6c171",
+      "message": "docs: update audit report with completion status",
+      "date": "2026-04-24T14:23:15Z",
+      "author": "GitHub Audit",
+      "url": "https://github.com/Rohith-Shimori/Task_Flow/commit/1fe809b0993d73806509bdb5d2e81cf3f0c6c171"
     }
   ],
   "languages": {
-    "dart": 60.1,
-    "javascript": 14.1,
-    "html": 13.1,
-    "python": 5.4,
-    "css": 3.9,
+    "dart": 59.6,
+    "javascript": 14.5,
+    "html": 13.0,
+    "python": 5.6,
+    "css": 3.8,
     "plpgsql": 3.4
   },
-  "synced_at": "2026-10-08T17:03:53.007092+00:00"
+  "synced_at": "2026-10-09T03:28:22.639949+00:00"
 }
